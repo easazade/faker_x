@@ -60,7 +60,7 @@ class Date {
   ///   faker.date.month()
   /// ```
   String month() {
-    return '${random.element(_months)}';
+    return random.element(_months);
   }
 
   /// Generates a random year.
@@ -119,6 +119,6 @@ class Date {
         ? '0' + date.minute.toString()
         : date.minute.toString();
 
-    return '${hour}:${minute} ${timeSuffix}${timeZone}';
+    return '$hour:$minute $timeSuffix$timeZone';
   }
 }

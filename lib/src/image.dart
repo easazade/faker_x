@@ -30,7 +30,7 @@ class Image {
       [bool random = false]) {
     var url = 'https://source.unsplash.com';
 
-    url += '/${width}x${height}';
+    url += '/${width}x$height';
 
     if (keywords.isNotEmpty) {
       var keywordFormat =

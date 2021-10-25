@@ -13,7 +13,7 @@ import '../data/lorem/fa/words_fa.dart' as word_list;
 import '../data/person/fa/firstnames.dart' as first_names_list;
 import '../data/person/fa/lastnames.dart' as last_names_list;
 import 'package:fake_it/src/data/currency/currency_codes.dart'
-    as currencyCodesList;
+    as currency_codes_list;
 import 'base_providers.dart';
 
 class LoremDataProviderFa extends LoremDataProvider {
@@ -57,7 +57,7 @@ class FoodDataProviderFa extends FoodDataProvider {
 
 class CurrencyProviderFa extends CurrencyDataProvider {
   @override
-  List<String> currencyCodes() => currencyCodesList.currencyCodes;
+  List<String> currencyCodes() => currency_codes_list.currencyCodes;
 
   @override
   List<String> currencyNames() => currencyNamesFa;

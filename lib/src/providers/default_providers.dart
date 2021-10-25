@@ -12,15 +12,15 @@ import '../data/lorem/defaults/words.dart' as word_list;
 import '../data/person/defaults/firstnames.dart' as first_names_list;
 import '../data/person/defaults/lastnames.dart' as last_names_list;
 
-import 'package:fake_it/src/data/food/default/cuisines.dart' as cuisinesList;
-import 'package:fake_it/src/data/food/default/dishes.dart' as dishesList;
+import 'package:fake_it/src/data/food/default/cuisines.dart' as cuisines_list;
+import 'package:fake_it/src/data/food/default/dishes.dart' as dishes_list;
 import 'package:fake_it/src/data/food/default/restaurants.dart'
-    as restaurantsList;
+    as restaurants_list;
 
 import 'package:fake_it/src/data/currency/default/currency_names.dart'
-    as currencyNamesList;
+    as currency_names_list;
 import 'package:fake_it/src/data/currency/currency_codes.dart'
-    as currencyCodesList;
+    as currency_codes_list;
 
 class DefaultLoremDataProvider extends LoremDataProvider {
   @override
@@ -52,21 +52,21 @@ class DefaultConferenceDataProvider extends ConferenceDataProvider {
 
 class DefaultFoodDataProvider extends FoodDataProvider {
   @override
-  List<String> cuisines() => cuisinesList.cuisines;
+  List<String> cuisines() => cuisines_list.cuisines;
 
   @override
-  List<String> dishes() => dishesList.dishes;
+  List<String> dishes() => dishes_list.dishes;
 
   @override
-  List<String> restaurants() => restaurantsList.restaurants;
+  List<String> restaurants() => restaurants_list.restaurants;
 }
 
 class DefaultCurrencyDataProvider extends CurrencyDataProvider {
   @override
-  List<String> currencyCodes() => currencyCodesList.currencyCodes;
+  List<String> currencyCodes() => currency_codes_list.currencyCodes;
 
   @override
-  List<String> currencyNames() => currencyNamesList.currencyNames;
+  List<String> currencyNames() => currency_names_list.currencyNames;
 }
 
 class DefaultSportDataProvider extends SportNamesProvider {

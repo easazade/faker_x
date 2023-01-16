@@ -1,8 +1,4 @@
-import 'package:fake_it/src/random_generator.dart';
-
 import 'models/vehicle.dart';
-
-var randomGenerator = RandomGenerator();
 
 var vehicles = [
   VehicleYMM(model: 'A4', make: 'Audi'),

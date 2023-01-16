@@ -7,10 +7,16 @@ void main() {
       // Additional setup goes here.
     });
 
-    test('Dummy test', () {
-      for (var i = 0; i < 10; i++) {
-        final fakeWord = FakeIt.localized.en_US.lorem.word;
-        print(fakeWord);
+    test('Preview words', () {
+      for (var i = 0; i < 3; i++) {
+        print(FakeIt.localized.en_US.lorem.word);
+        print(FakeIt.localized.en_US.lorem.sentence);
+        print(FakeIt.localized.en_US.job.jobTitle);
+
+        print(FakeIt.localized.fa_IR.lorem.word);
+        print(FakeIt.localized.fa_IR.lorem.sentence);
+        print(FakeIt.localized.fa_IR.job.jobTitle);
+
       }
     });
   });

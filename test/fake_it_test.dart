@@ -1,3 +1,4 @@
+import 'package:fake_it/src/base/fake_it_object.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -7,7 +8,10 @@ void main() {
     });
 
     test('Dummy test', () {
-      expect(true, isTrue);
+      for (var i = 0; i < 10; i++) {
+        final fakeWord = FakeIt.localized.en_US.lorem.word;
+        print(fakeWord);
+      }
     });
   });
 }

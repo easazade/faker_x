@@ -1,7 +1,11 @@
-import 'package:fake_it/src/locale.dart';
+import 'package:fake_it/src/base/keys.dart';
+import 'package:fake_it/src/base/locale.dart';
+import 'package:fake_it/src/base/provider_map.dart';
 
 class Lorem {
-  const Lorem(this.locale);
+  const Lorem(this._locale);
 
-  final FakeItLocale locale;
+  final FakeItLocale _locale;
+
+  String get word => provide(Key.words, _locale);
 }

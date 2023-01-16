@@ -1,5 +1,6 @@
 import 'package:fake_it/src/base/data_list.dart';
 import 'package:fake_it/src/base/format.dart';
+import 'package:fake_it/src/base/keys.dart';
 
 const jobPrefixes = DataList(
   values: [
@@ -8,7 +9,7 @@ const jobPrefixes = DataList(
   ],
 );
 
-const jobSufixes = DataList(
+const jobSuffixes = DataList(
   values: [
     'ارشد',
     'داخلی',
@@ -18,9 +19,10 @@ const jobSufixes = DataList(
 
 const jobTitles = DataList(
   formats: [
-    Format('{{jobPrefixes}} {{jobTitles}} {{jobSufixes}}'),
-    Format('{{jobPrefixes}} {{jobTitles}}'),
-    Format('{{jobTitles}} {{jobSufixes}}'),
+    Format(
+        '{{${Key.jobPrefixes}}} {{${Key.jobTitles}}} {{${Key.jobSuffixes}}}'),
+    Format('{{${Key.jobPrefixes}}} {{${Key.jobTitles}}}'),
+    Format('{{${Key.jobTitles}}} {{${Key.jobSuffixes}}}'),
   ],
   values: [
     'حسابدار',

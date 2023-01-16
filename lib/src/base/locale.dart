@@ -14,4 +14,7 @@ class FakeItLocale {
 
   @override
   int get hashCode => languageCode.hashCode + countryCode.hashCode;
+
+  @override
+  String toString() => '${languageCode}_$countryCode';
 }

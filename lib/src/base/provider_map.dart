@@ -9,9 +9,18 @@ import 'package:fake_it/src/providers/lorem/lorem_en.dart' as lorem_en;
 import 'package:fake_it/src/providers/lorem/lorem_fa.dart' as lorem_fa;
 
 String provide(String key, FakeItLocale locale) {
-  //TODO: make these calls null safe
+  final localizedDataListMap = _providersMap[locale];
+  if (localizedDataListMap == null) {
+    throw Exception('There is no localized values available for $locale');
+  }
+
+  final dataList = localizedDataListMap[key];
+  if (dataList == null) {
+    throw Exception('There are no $key values available for $locale');
+  }
+
   //TODO: we need to make values with formats and return them
-  return _providersMap[locale]![key]!.values.randomItem;
+  return dataList.values.randomItem;
 }
 
 final Map<FakeItLocale, Map<String, DataList>> _providersMap = {
@@ -19,14 +28,14 @@ final Map<FakeItLocale, Map<String, DataList>> _providersMap = {
     Key.words: lorem_en.words,
     Key.sentences: lorem_en.sentences,
     Key.jobTitles: job_en.jobTitles,
-    Key.jobSufixes: job_en.jobSufixes,
+    Key.jobSuffixes: job_en.jobSuffixes,
     Key.jobPrefixes: job_en.jobPrefixes,
   },
   FakeItLocale('fa', 'IR'): {
     Key.words: lorem_fa.words,
     Key.sentences: lorem_fa.sentences,
     Key.jobTitles: job_fa.jobTitles,
-    Key.jobSufixes: job_en.jobSufixes,
+    Key.jobSuffixes: job_en.jobSuffixes,
     Key.jobPrefixes: job_en.jobPrefixes,
   },
 };

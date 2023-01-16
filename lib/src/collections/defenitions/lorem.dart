@@ -8,4 +8,6 @@ class Lorem {
   final FakeItLocale _locale;
 
   String get word => provide(Key.words, _locale);
+
+  String get sentence => provide(Key.sentences, _locale);
 }

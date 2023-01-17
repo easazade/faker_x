@@ -1,6 +1,7 @@
 import 'package:fake_it/src/base/data_list.dart';
 import 'package:fake_it/src/base/keys.dart';
 import 'package:fake_it/src/base/locale.dart';
+import 'package:fake_it/src/base/provider_context.dart';
 import 'package:fake_it/src/base/utils.dart';
 import 'package:fake_it/src/providers/jobs/jobs_fa.dart' as job_fa;
 import 'package:fake_it/src/providers/jobs/jobs_en.dart' as job_en;
@@ -8,7 +9,13 @@ import 'package:fake_it/src/providers/jobs/jobs_en.dart' as job_en;
 import 'package:fake_it/src/providers/lorem/lorem_en.dart' as lorem_en;
 import 'package:fake_it/src/providers/lorem/lorem_fa.dart' as lorem_fa;
 
-String provide(String key, FakeItLocale locale, {bool useFormats = true}) {
+String provide(
+  String key,
+  FakeItLocale locale, {
+  ProviderContext? context,
+}) {
+  context ??= ProviderContext(key: key, locale: locale);
+
   final localizedDataListMap = _localizedProvidersMap[locale];
   if (localizedDataListMap == null) {
     throw Exception('There is no localized values available for $locale');
@@ -20,11 +27,18 @@ String provide(String key, FakeItLocale locale, {bool useFormats = true}) {
   }
 
   String value = dataList.values.randomItem;
+
+  final useFormats =
+      !context.hasDuplicateKeyWithPreviousContexts; // causes infinite loop
+
   if (dataList.formats.isNotEmpty && useFormats) {
     final format = dataList.formats.randomItem;
     final keys = format.keys;
-    final values =
-        keys.map((e) => provide(e, locale, useFormats: false)).toList();
+    final values = keys.map((e) {
+      final newContext =
+          ProviderContext(key: e, locale: locale, previousContext: context);
+      return provide(e, locale, context: newContext);
+    }).toList();
     final parsedValue = format.parse(values);
     value = coinToss(value, parsedValue);
   }

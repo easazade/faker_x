@@ -1,4 +1,3 @@
-
 const kDefaultFakeItLocale = Locales.en_us;
 
 class Locales {

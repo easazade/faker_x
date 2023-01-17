@@ -1,4 +1,3 @@
-
 import 'package:fake_it/src/base/base.dart';
 
 class Lorem {

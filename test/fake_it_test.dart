@@ -1,6 +1,4 @@
-import 'package:fake_it/src/base/fake_it_class.dart';
-import 'package:fake_it/src/base/format.dart';
-import 'package:fake_it/src/base/utils.dart';
+import 'package:fake_it/fake_it.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -13,11 +11,11 @@ void main() {
       for (var i = 0; i < 100; i++) {
         // print(FakeIt.localized.en_US.lorem.word);
         // print(FakeIt.localized.en_US.lorem.sentence);
-        print(FakeIt.localized.en_US.job.jobTitle);
+        print(FakeIt.localized.en_us.job.jobTitle);
 
         // print(FakeIt.localized.fa_IR.lorem.word);
         // print(FakeIt.localized.fa_IR.lorem.sentence);
-        print(FakeIt.localized.en_US.job.jobTitle);
+        print(FakeIt.localized.en_us.job.jobTitle);
       }
     });
 

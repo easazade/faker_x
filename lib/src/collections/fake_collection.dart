@@ -1,13 +1,17 @@
+import 'package:fake_it/src/base/base.dart';
 import 'package:fake_it/src/collections/defenitions/job.dart';
 import 'package:fake_it/src/collections/defenitions/lorem.dart';
-import 'package:fake_it/src/base/locale.dart';
 
 class FakeCollection {
-  FakeCollection(this._locale)
-      : lorem = Lorem(_locale),
-        job = Job(_locale);
-
-  final FakeItLocale _locale;
+  FakeCollection({
+    required FakeItLocale locale,
+    required List<DataSource> dataSources,
+  })  : lorem = Lorem(locale),
+        job = Job(locale) {
+    for (var dataSource in dataSources) {
+      registerDataSource(dataSource);
+    }
+  }
 
   final Lorem lorem;
   final Job job;

@@ -1,6 +1,5 @@
-import 'package:fake_it/src/base/keys.dart';
-import 'package:fake_it/src/base/locale.dart';
-import 'package:fake_it/src/base/provider_map.dart';
+
+import 'package:fake_it/src/base/base.dart';
 
 class Lorem {
   const Lorem(this._locale);

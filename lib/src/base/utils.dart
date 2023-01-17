@@ -6,7 +6,8 @@ extension ListExt<T> on Iterable<T> {
   T get randomItem {
     if (length == 0) {
       throw Exception(
-          'Cannot return random item from an Iterable that has no items');
+        'Cannot return random item from an Iterable that has no items',
+      );
     }
 
     return elementAt(_random.nextInt(length));

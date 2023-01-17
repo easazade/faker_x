@@ -13,6 +13,8 @@ analyzer:
     invalid_annotation_target: ignore
     prefer_const_constructors: ignore
     avoid_print: ignore
+    non_constant_identifier_names: ignore
+    constant_identifier_names: ignore
 
 linter:
   rules:

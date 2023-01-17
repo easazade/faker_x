@@ -1,15 +1,17 @@
-import 'package:fake_it/src/base/data_list.dart';
-import 'package:fake_it/src/base/format.dart';
-import 'package:fake_it/src/base/keys.dart';
+import 'package:fake_it/src/base/base.dart';
 
-const jobPrefixes = DataList(
+final fa_ir_job_prefixes = DataSource(
+  locale: Locales.fa_ir,
+  key: Keys.jobPrefixes,
   values: [
     'سر',
     //TODO: add more
   ],
 );
 
-const jobSuffixes = DataList(
+final fa_ir_job_suffixes = DataSource(
+  locale: Locales.fa_ir,
+  key: Keys.jobSuffixes,
   values: [
     'ارشد',
     'داخلی',
@@ -17,7 +19,9 @@ const jobSuffixes = DataList(
   ],
 );
 
-const jobTitles = DataList(
+final fa_ir_job_titles = DataSource(
+  locale: Locales.fa_ir,
+  key: Keys.jobTitles,
   formats: [
     Format(
         '{{${Keys.jobPrefixes}}} {{${Keys.jobTitles}}} {{${Keys.jobSuffixes}}}'),

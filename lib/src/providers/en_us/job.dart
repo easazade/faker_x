@@ -1,8 +1,8 @@
-import 'package:fake_it/src/base/data_list.dart';
-import 'package:fake_it/src/base/format.dart';
-import 'package:fake_it/src/base/keys.dart';
+import 'package:fake_it/src/base/base.dart';
 
-const jobPrefixes = DataList(
+final jobPrefixes = DataSource(
+  locale: Locales.en_us,
+  key: Keys.jobPrefixes,
   values: [
     'Lead',
     'Senior',
@@ -29,7 +29,9 @@ const jobPrefixes = DataList(
   ],
 );
 
-const jobSuffixes = DataList(
+final jobSuffixes = DataSource(
+  locale: Locales.en_us,
+  key: Keys.jobSuffixes,
   values: [
     'Supervisor',
     'Associate',
@@ -59,7 +61,9 @@ const jobSuffixes = DataList(
   ],
 );
 
-const jobTitles = DataList(
+final jobTitles = DataSource(
+  locale: Locales.en_us,
+  key: Keys.jobTitles,
   formats: [
     Format(
         '{{${Keys.jobPrefixes}}} {{${Keys.jobTitles}}} {{${Keys.jobSuffixes}}}'),

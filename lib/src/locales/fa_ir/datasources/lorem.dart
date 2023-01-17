@@ -1,6 +1,8 @@
-import 'package:fake_it/src/base/data_list.dart';
+import 'package:fake_it/src/base/base.dart';
 
-const words = DataList(
+final fa_ir_words = DataSource(
+  locale: Locales.fa_ir,
+  key: Keys.words,
   values: [
     'معایبی',
     'دارد',
@@ -205,7 +207,9 @@ const words = DataList(
   ],
 );
 
-const sentences = DataList(
+final fa_ir_sentences = DataSource(
+  locale: Locales.fa_ir,
+  key: Keys.sentences,
   values: [
     'استان گیلان و جوامع کوچکتری در استانهای تهران.',
     'جعبه یا دیگر نمادها را جای نویسه‌های یونی‌کد ببینید.',

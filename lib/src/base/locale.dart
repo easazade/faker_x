@@ -1,4 +1,10 @@
-const kDefaultFakeItLocale = FakeItLocale('en', 'US');
+
+const kDefaultFakeItLocale = Locales.en_us;
+
+class Locales {
+  static const en_us = FakeItLocale('en', 'US');
+  static const fa_ir = FakeItLocale('fa', 'IR');
+}
 
 class FakeItLocale {
   final String languageCode;

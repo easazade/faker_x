@@ -8,7 +8,7 @@ import 'package:fake_it/src/providers/jobs/jobs_en.dart' as job_en;
 import 'package:fake_it/src/providers/lorem/lorem_en.dart' as lorem_en;
 import 'package:fake_it/src/providers/lorem/lorem_fa.dart' as lorem_fa;
 
-String provide(String key, FakeItLocale locale) {
+String provide(String key, FakeItLocale locale, {bool useFormats = true}) {
   final localizedDataListMap = _localizedProvidersMap[locale];
   if (localizedDataListMap == null) {
     throw Exception('There is no localized values available for $locale');
@@ -19,8 +19,17 @@ String provide(String key, FakeItLocale locale) {
     throw Exception('There are no $key values available for $locale');
   }
 
-  //TODO: we need to make values with formats and return them
-  return dataList.values.randomItem;
+  String value = dataList.values.randomItem;
+  if (dataList.formats.isNotEmpty && useFormats) {
+    final format = dataList.formats.randomItem;
+    final keys = format.keys;
+    final values =
+        keys.map((e) => provide(e, locale, useFormats: false)).toList();
+    final parsedValue = format.parse(values);
+    value = coinToss(value, parsedValue);
+  }
+
+  return value;
 }
 
 final Map<FakeItLocale, Map<String, DataList>> _localizedProvidersMap = {

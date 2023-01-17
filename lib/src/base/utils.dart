@@ -12,3 +12,6 @@ extension ListExt<T> on Iterable<T> {
     return elementAt(_random.nextInt(length));
   }
 }
+
+T coinToss<T>(T object1, T object2) =>
+    (_random.nextInt(100) > 50) ? object1 : object2;

@@ -1,5 +1,6 @@
 import 'package:fake_it/src/base/fake_it_class.dart';
 import 'package:fake_it/src/base/format.dart';
+import 'package:fake_it/src/base/utils.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -9,14 +10,14 @@ void main() {
     });
 
     test('Preview words', () {
-      for (var i = 0; i < 3; i++) {
+      for (var i = 0; i < 100; i++) {
         print(FakeIt.localized.en_US.lorem.word);
         print(FakeIt.localized.en_US.lorem.sentence);
         print(FakeIt.localized.en_US.job.jobTitle);
 
         print(FakeIt.localized.fa_IR.lorem.word);
         print(FakeIt.localized.fa_IR.lorem.sentence);
-        print(FakeIt.localized.fa_IR.job.jobTitle);
+        print(FakeIt.localized.en_US.job.jobTitle);
       }
     });
 
@@ -26,6 +27,17 @@ void main() {
 
       expect(keys[0], 'first_names');
       expect(keys[1], 'last_names');
+    });
+
+    test('test Format class parses correctly', () {
+      final format = Format('{{first_names}} {{last_names}}');
+      final parsed = format.parse(['alireza', 'easazade']);
+      print(parsed);
+      expect(parsed, 'alireza easazade');
+    });
+
+    test('preview coinToss method works', () {
+      print(coinToss('heads', 'tails'));
     });
   });
 }

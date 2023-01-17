@@ -14,4 +14,20 @@ class Format {
         .map((e) => e!)
         .toList();
   }
+
+  String parse(List<String> values) {
+    final regex = RegExp('{{(.*?)}}', caseSensitive: false);
+    final keysWithBraces = regex
+        .allMatches(format)
+        .map((e) => e.group(0))
+        .where((element) => element != null)
+        .map((e) => e!)
+        .toList();
+
+    String parsedString = format;
+    for (var i = 0; i < keysWithBraces.length; i++) {
+      parsedString = parsedString.replaceFirst(keysWithBraces[i], values[i]);
+    }
+    return parsedString;
+  }
 }

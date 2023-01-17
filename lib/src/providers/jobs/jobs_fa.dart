@@ -20,9 +20,9 @@ const jobSuffixes = DataList(
 const jobTitles = DataList(
   formats: [
     Format(
-        '{{${Key.jobPrefixes}}} {{${Key.jobTitles}}} {{${Key.jobSuffixes}}}'),
-    Format('{{${Key.jobPrefixes}}} {{${Key.jobTitles}}}'),
-    Format('{{${Key.jobTitles}}} {{${Key.jobSuffixes}}}'),
+        '{{${Keys.jobPrefixes}}} {{${Keys.jobTitles}}} {{${Keys.jobSuffixes}}}'),
+    Format('{{${Keys.jobPrefixes}}} {{${Keys.jobTitles}}}'),
+    Format('{{${Keys.jobTitles}}} {{${Keys.jobSuffixes}}}'),
   ],
   values: [
     'حسابدار',

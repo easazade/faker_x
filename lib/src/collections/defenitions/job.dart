@@ -7,9 +7,9 @@ class Job {
 
   final FakeItLocale _locale;
 
-  String get jobTitle => provide(Key.jobTitles, _locale);
+  String get jobTitle => provide(Keys.jobTitles, _locale);
 
-  String get jobSuffix => provide(Key.jobSuffixes, _locale);
+  String get jobSuffix => provide(Keys.jobSuffixes, _locale);
 
-  String get jobPrefix => provide(Key.jobPrefixes, _locale);
+  String get jobPrefix => provide(Keys.jobPrefixes, _locale);
 }

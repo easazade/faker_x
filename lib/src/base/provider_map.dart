@@ -9,7 +9,7 @@ import 'package:fake_it/src/providers/lorem/lorem_en.dart' as lorem_en;
 import 'package:fake_it/src/providers/lorem/lorem_fa.dart' as lorem_fa;
 
 String provide(String key, FakeItLocale locale) {
-  final localizedDataListMap = _providersMap[locale];
+  final localizedDataListMap = _localizedProvidersMap[locale];
   if (localizedDataListMap == null) {
     throw Exception('There is no localized values available for $locale');
   }
@@ -23,24 +23,23 @@ String provide(String key, FakeItLocale locale) {
   return dataList.values.randomItem;
 }
 
-final Map<FakeItLocale, Map<String, DataList>> _providersMap = {
+final Map<FakeItLocale, Map<String, DataList>> _localizedProvidersMap = {
   FakeItLocale('en', 'US'): {
-    Key.words: lorem_en.words,
-    Key.sentences: lorem_en.sentences,
-    Key.jobTitles: job_en.jobTitles,
-    Key.jobSuffixes: job_en.jobSuffixes,
-    Key.jobPrefixes: job_en.jobPrefixes,
+    Keys.words: lorem_en.words,
+    Keys.sentences: lorem_en.sentences,
+    Keys.jobTitles: job_en.jobTitles,
+    Keys.jobSuffixes: job_en.jobSuffixes,
+    Keys.jobPrefixes: job_en.jobPrefixes,
   },
   FakeItLocale('fa', 'IR'): {
-    Key.words: lorem_fa.words,
-    Key.sentences: lorem_fa.sentences,
-    Key.jobTitles: job_fa.jobTitles,
-    Key.jobSuffixes: job_en.jobSuffixes,
-    Key.jobPrefixes: job_en.jobPrefixes,
+    Keys.words: lorem_fa.words,
+    Keys.sentences: lorem_fa.sentences,
+    Keys.jobTitles: job_fa.jobTitles,
+    Keys.jobSuffixes: job_en.jobSuffixes,
+    Keys.jobPrefixes: job_en.jobPrefixes,
   },
 };
 
-final Map<String, DataList> _unicProviders = {
-  //TODO: remove fake entry
-  'unic_key_for_some_values': DataList(values: []),
+final Map<String, DataList> _providersMap = {
+  // Keys.numbers: DataList(values: ['1','2','3','4','5','6','7','8','9']),
 };

@@ -13,6 +13,5 @@ class FakeIt {
 
 class _Localized {
   late final en_US = FakeCollection(FakeItLocale('en', 'US'));
-
   late final fa_IR = FakeCollection(FakeItLocale('fa', 'IR'));
 }

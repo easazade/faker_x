@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:fake_it/src/collections/fake_collection.dart';
+import 'package:fake_it/src/base/fake_collection.dart';
 import 'package:fake_it/src/base/locale.dart';
 
 import 'package:fake_it/src/locales/en_us/en_us.dart';

@@ -2,7 +2,7 @@ import 'package:fake_it/src/base/base.dart';
 
 final fa_ir_job_prefixes = DataSource(
   locale: Locales.fa_ir,
-  key: Keys.jobPrefixes,
+  dataKey: DataKeys.jobPrefixes,
   values: [
     'سر',
     //TODO: add more
@@ -11,7 +11,7 @@ final fa_ir_job_prefixes = DataSource(
 
 final fa_ir_job_suffixes = DataSource(
   locale: Locales.fa_ir,
-  key: Keys.jobSuffixes,
+  dataKey: DataKeys.jobSuffixes,
   values: [
     'ارشد',
     'داخلی',
@@ -21,12 +21,12 @@ final fa_ir_job_suffixes = DataSource(
 
 final fa_ir_job_titles = DataSource(
   locale: Locales.fa_ir,
-  key: Keys.jobTitles,
+  dataKey: DataKeys.jobTitles,
   formats: [
     Format(
-        '{{${Keys.jobPrefixes}}} {{${Keys.jobTitles}}} {{${Keys.jobSuffixes}}}'),
-    Format('{{${Keys.jobPrefixes}}} {{${Keys.jobTitles}}}'),
-    Format('{{${Keys.jobTitles}}} {{${Keys.jobSuffixes}}}'),
+        '{{${DataKeys.jobPrefixes}}} {{${DataKeys.jobTitles}}} {{${DataKeys.jobSuffixes}}}'),
+    Format('{{${DataKeys.jobPrefixes}}} {{${DataKeys.jobTitles}}}'),
+    Format('{{${DataKeys.jobTitles}}} {{${DataKeys.jobSuffixes}}}'),
   ],
   values: [
     'حسابدار',

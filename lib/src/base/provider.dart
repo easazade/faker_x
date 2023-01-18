@@ -1,23 +1,23 @@
-import 'package:fake_it/src/base/data_list.dart';
+import 'package:fake_it/src/base/data_source.dart';
 import 'package:fake_it/src/base/locale.dart';
 import 'package:fake_it/src/base/provider_context.dart';
 import 'package:fake_it/src/base/utils.dart';
 
 String provide(
-  String key,
+  String dataKey,
   FakeItLocale locale, {
   ProviderContext? context,
 }) {
-  context ??= ProviderContext(key: key, locale: locale);
+  context ??= ProviderContext(dataKey: dataKey, locale: locale);
 
   final localizedDataSourceMap = _localizedProvidersMap[locale];
   if (localizedDataSourceMap == null) {
     throw Exception('There is no localized values available for $locale');
   }
 
-  final dataSource = localizedDataSourceMap[key];
+  final dataSource = localizedDataSourceMap[dataKey];
   if (dataSource == null) {
-    throw Exception('There are no $key values available for $locale');
+    throw Exception('There are no $dataKey values available for $locale');
   }
 
   String value = dataSource.values.randomItem;
@@ -30,7 +30,7 @@ String provide(
     final keys = format.keys;
     final values = keys.map((e) {
       final newContext =
-          ProviderContext(key: e, locale: locale, previousContext: context);
+          ProviderContext(dataKey: e, locale: locale, previousContext: context);
       return provide(e, locale, context: newContext);
     }).toList();
     final parsedValue = format.parse(values);
@@ -50,7 +50,7 @@ void registerDataSource(DataSource dataSource) {
     dataSources = _localizedProvidersMap[dataSource.locale];
   }
 
-  dataSources![dataSource.key] = dataSource;
+  dataSources![dataSource.dataKey] = dataSource;
 }
 
 final Map<FakeItLocale, Map<String, DataSource>> _localizedProvidersMap = {};

@@ -2,19 +2,19 @@ import 'package:fake_it/src/base/locale.dart';
 
 class ProviderContext {
   ProviderContext({
-    required this.key,
+    required this.dataKey,
     required this.locale,
     this.previousContext,
   });
 
-  final String key;
+  final String dataKey;
   final FakeItLocale locale;
   final ProviderContext? previousContext;
 
   bool get hasDuplicateKeyWithPreviousContexts {
     var context = previousContext;
     while (context != null) {
-      if (context.key == key) return true;
+      if (context.dataKey == dataKey) return true;
       context = context.previousContext;
     }
     return false;

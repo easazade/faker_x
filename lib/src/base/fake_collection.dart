@@ -1,6 +1,7 @@
-import 'package:fake_it/src/base/base.dart';
-import 'package:fake_it/src/base/defenitions/job.dart';
-import 'package:fake_it/src/base/defenitions/lorem.dart';
+import 'package:fake_it/src/base/data_source.dart';
+import 'package:fake_it/src/base/defenitions.dart';
+import 'package:fake_it/src/base/locale.dart';
+import 'package:fake_it/src/base/provider.dart';
 
 class FakeCollection {
   FakeCollection({
@@ -15,4 +16,6 @@ class FakeCollection {
 
   final Lorem lorem;
   final Job job;
+
+  final Extra extra = EmptyExtra();
 }

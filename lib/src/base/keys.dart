@@ -1,4 +1,4 @@
-class Keys {
+class DataKeys {
   static const words = 'words';
   static const sentences = 'sentences';
 

@@ -35,14 +35,5 @@ class _Localized {
     ],
   );
 
-  late final fa_ir = FakeCollection(
-    locale: Locales.fa_ir,
-    dataSources: [
-      fa_ir_words,
-      fa_ir_sentences,
-      fa_ir_job_titles,
-      fa_ir_job_prefixes,
-      fa_ir_job_suffixes,
-    ],
-  );
+  late final fa_ir = FaIrCollection();
 }

@@ -2,7 +2,7 @@ import 'package:fake_it/src/base/base.dart';
 
 final fa_ir_words = DataSource(
   locale: Locales.fa_ir,
-  key: Keys.words,
+  dataKey: DataKeys.words,
   values: [
     'معایبی',
     'دارد',
@@ -209,7 +209,7 @@ final fa_ir_words = DataSource(
 
 final fa_ir_sentences = DataSource(
   locale: Locales.fa_ir,
-  key: Keys.sentences,
+  dataKey: DataKeys.sentences,
   values: [
     'استان گیلان و جوامع کوچکتری در استانهای تهران.',
     'جعبه یا دیگر نمادها را جای نویسه‌های یونی‌کد ببینید.',

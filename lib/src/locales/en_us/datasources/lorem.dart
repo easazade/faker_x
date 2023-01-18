@@ -2,7 +2,7 @@ import 'package:fake_it/src/base/base.dart';
 
 final en_us_words = DataSource(
   locale: Locales.en_us,
-  key: Keys.words,
+  dataKey: DataKeys.words,
   values: [
     'accumsan',
     'adipiscing',
@@ -167,7 +167,7 @@ final en_us_words = DataSource(
 
 final en_us_sentences = DataSource(
   locale: Locales.en_us,
-  key: Keys.sentences,
+  dataKey: DataKeys.sentences,
   values: [
     'A arcu cursus vitae congue mauris rhoncus aenean vel elit.',
     'Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu.',

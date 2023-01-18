@@ -2,6 +2,8 @@ import 'dart:math' as math;
 
 final _random = math.Random();
 
+int get randomOneDigitInt => _random.nextInt(10);
+
 extension ListExt<T> on Iterable<T> {
   T get randomItem {
     if (length == 0) {

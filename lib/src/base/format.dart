@@ -1,3 +1,5 @@
+import 'package:fake_it/src/base/utils.dart';
+
 class Format {
   final String format;
   final int chance;
@@ -16,15 +18,17 @@ class Format {
   }
 
   String parse(List<String> values) {
+    final _format = format.replaceAllMapped('#', (_) => randomOneDigitInt.toString());
+
     final regex = RegExp('{{(.*?)}}', caseSensitive: false);
     final keysWithBraces = regex
-        .allMatches(format)
+        .allMatches(_format)
         .map((e) => e.group(0))
         .where((element) => element != null)
         .map((e) => e!)
         .toList();
 
-    String parsedString = format;
+    String parsedString = _format;
     for (var i = 0; i < keysWithBraces.length; i++) {
       parsedString = parsedString.replaceFirst(keysWithBraces[i], values[i]);
     }

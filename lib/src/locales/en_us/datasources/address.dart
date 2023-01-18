@@ -1,6 +1,6 @@
 import 'package:fake_it/src/base/base.dart';
 
-const city_suffixes = DataSource(
+const en_us_city_suffixes = DataSource(
   dataKey: DataKeys.city_suffixes,
   locale: Locales.en_us,
   values: [
@@ -26,13 +26,13 @@ const city_suffixes = DataSource(
   ],
 );
 
-const city_prefixes = DataSource(
+const en_us_city_prefixes = DataSource(
   dataKey: DataKeys.city_prefixes,
   locale: Locales.en_us,
   values: ["North", "East", "West", "South", "New", "Lake", "Port"],
 );
 
-final city_names = DataSource(
+final en_us_city_names = DataSource(
   dataKey: DataKeys.city_names,
   locale: Locales.en_us,
   formats: [
@@ -45,7 +45,7 @@ final city_names = DataSource(
   values: [],
 );
 
-final street_names = DataSource(
+final en_us_street_names = DataSource(
   dataKey: DataKeys.street_names,
   locale: Locales.en_us,
   formats: [
@@ -55,7 +55,7 @@ final street_names = DataSource(
   values: [],
 );
 
-const street_suffixes = DataSource(
+const en_us_street_suffixes = DataSource(
   dataKey: DataKeys.street_suffixes,
   locale: Locales.en_us,
   values: [
@@ -287,7 +287,7 @@ const street_suffixes = DataSource(
   ],
 );
 
-const states = DataSource(
+const en_us_states = DataSource(
   dataKey: DataKeys.states,
   locale: Locales.en_us,
   values: [
@@ -344,35 +344,35 @@ const states = DataSource(
   ],
 );
 
-const postcode_formats = DataSource(
+const en_us_postcode_formats = DataSource(
   dataKey: DataKeys.postcode_formats,
   locale: Locales.en_us,
   formats: [Format('#####-####'), Format('#####')],
   values: [],
 );
 
-const postcodes = DataSource(
+const en_us_postcodes = DataSource(
   dataKey: DataKeys.postcodes,
   locale: Locales.en_us,
   formats: [Format('#####')],
   values: [],
 );
 
-const secondary_addresses = DataSource(
+const en_us_secondary_addresses = DataSource(
   dataKey: DataKeys.secondary_addresses,
   locale: Locales.en_us,
   formats: [Format('Apt. ###'), Format('Suite ###')],
   values: [],
 );
 
-const building_numbers = DataSource(
+const en_us_building_numbers = DataSource(
   dataKey: DataKeys.building_numbers,
   locale: Locales.en_us,
   formats: [Format('###'), Format('####'), Format('#####')],
   values: [],
 );
 
-final street_addresses = DataSource(
+final en_us_street_addresses = DataSource(
   dataKey: DataKeys.street_addresses,
   locale: Locales.en_us,
   formats: [
@@ -384,7 +384,7 @@ final street_addresses = DataSource(
   values: [],
 );
 
-final addresses = DataSource(
+final en_us_addresses = DataSource(
   dataKey: DataKeys.addresses,
   locale: Locales.en_us,
   formats: [
@@ -395,7 +395,7 @@ final addresses = DataSource(
   values: [],
 );
 
-final state_abbr = DataSource(
+final en_us_state_abbr = DataSource(
   dataKey: DataKeys.states_abbr,
   locale: Locales.en_us,
   formats: [],
@@ -454,7 +454,7 @@ final state_abbr = DataSource(
   ],
 );
 
-const neighborhoods = DataSource(
+const en_us_neighborhoods = DataSource(
   dataKey: DataKeys.neighborhoods,
   locale: Locales.en_us,
   values: [

@@ -9,11 +9,11 @@ class Job {
 
   final FakeItLocale _locale;
 
-  String get jobTitle => provide(DataKeys.jobTitles, _locale);
+  String get jobTitle => provide(DataKeys.job_titles, _locale);
 
-  String get jobSuffix => provide(DataKeys.jobSuffixes, _locale);
+  String get jobSuffix => provide(DataKeys.job_suffixes, _locale);
 
-  String get jobPrefix => provide(DataKeys.jobPrefixes, _locale);
+  String get jobPrefix => provide(DataKeys.job_prefixes, _locale);
 }
 
 class Lorem {

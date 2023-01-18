@@ -1,13 +1,15 @@
 class DataKeys {
   static const first_names = 'first_names';
+  static const first_names_female = 'first_names_female';
+  static const first_names_male = 'first_names_male';
   static const last_names = 'last_names';
 
   static const words = 'words';
   static const sentences = 'sentences';
 
-  static const jobTitles = 'jobTitles';
-  static const jobSuffixes = 'jobSuffixes';
-  static const jobPrefixes = 'jobPrefixes';
+  static const job_titles = 'jobTitles';
+  static const job_suffixes = 'jobSuffixes';
+  static const job_prefixes = 'jobPrefixes';
 
   static const city_suffixes = 'citySuffixes';
   static const city_prefixes = 'cityPrefixes';

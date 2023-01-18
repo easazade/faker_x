@@ -8,7 +8,9 @@ class FakeCollection {
     required FakeItLocale locale,
     required List<DataSource> dataSources,
   })  : lorem = Lorem(locale),
-        job = Job(locale) {
+        job = Job(locale),
+        person = Person(locale),
+        address = Address(locale) {
     for (var dataSource in dataSources) {
       registerDataSource(dataSource);
     }
@@ -16,6 +18,8 @@ class FakeCollection {
 
   final Lorem lorem;
   final Job job;
+  final Person person;
+  final Address address;
 
   final Extra extra = EmptyExtra();
 }

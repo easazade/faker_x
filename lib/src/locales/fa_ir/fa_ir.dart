@@ -19,17 +19,25 @@ class FaIrCollection extends FakeCollection {
       : super(
           locale: Locales.fa_ir,
           dataSources: [
-            fa_ir_words,
-            fa_ir_sentences,
-            fa_ir_job_titles,
-            fa_ir_job_prefixes,
-            fa_ir_job_suffixes,
+            words,
+            sentences,
+            job_titles,
           ],
         );
 
   @override
   FaIrExtra get extra => FaIrExtra(Locales.fa_ir);
 }
+
+//  city_names ,
+//  street_names ,
+//  street_suffixes ,
+//  street_prefixes ,
+//  states ,
+//  postcodes ,
+//  building_names ,
+//  addresses ,
+//  alleys ,
 
 class FaIrExtra extends Extra {
   FaIrExtra(this.locale);

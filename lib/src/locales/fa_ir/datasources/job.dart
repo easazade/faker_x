@@ -1,6 +1,6 @@
 import 'package:fake_it/src/base/base.dart';
 
-final fa_ir_job_prefixes = DataSource(
+final job_prefixes = DataSource(
   locale: Locales.fa_ir,
   dataKey: DataKeys.job_prefixes,
   values: [
@@ -9,7 +9,7 @@ final fa_ir_job_prefixes = DataSource(
   ],
 );
 
-final fa_ir_job_suffixes = DataSource(
+final suffixes = DataSource(
   locale: Locales.fa_ir,
   dataKey: DataKeys.job_suffixes,
   values: [
@@ -19,7 +19,7 @@ final fa_ir_job_suffixes = DataSource(
   ],
 );
 
-final fa_ir_job_titles = DataSource(
+final job_titles = DataSource(
   locale: Locales.fa_ir,
   dataKey: DataKeys.job_titles,
   formats: [

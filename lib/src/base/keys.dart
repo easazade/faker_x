@@ -15,6 +15,7 @@ class DataKeys {
   static const city_prefixes = 'city_prefixes';
   static const city_names = 'city_names';
   static const street_suffixes = 'street_suffixes';
+  static const street_prefixes = 'street_prefixes';
   static const states = 'states';
   static const postcode_formats = 'postcode_formats';
   static const addresses = 'addresses';
@@ -24,5 +25,7 @@ class DataKeys {
   static const street_addresses = 'street_addresses';
   static const states_abbr = 'states_abbr';
   static const building_numbers = 'building_numbers';
+  static const building_names = 'building_names';
   static const secondary_addresses = 'secondary_addresses';
+  static const alleys = 'alleys';
 }

@@ -6,14 +6,6 @@ import 'package:fake_it/src/base/provider.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/job.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/lorem.dart';
 
-export 'datasources/address.dart';
-export 'datasources/car.dart';
-export 'datasources/color.dart';
-export 'datasources/country.dart';
-export 'datasources/currency.dart';
-export 'datasources/job.dart';
-export 'datasources/lorem.dart';
-
 class FaIrCollection extends FakeCollection {
   FaIrCollection()
       : super(
@@ -28,16 +20,6 @@ class FaIrCollection extends FakeCollection {
   @override
   FaIrExtra get extra => FaIrExtra(Locales.fa_ir);
 }
-
-//  city_names ,
-//  street_names ,
-//  street_suffixes ,
-//  street_prefixes ,
-//  states ,
-//  postcodes ,
-//  building_names ,
-//  addresses ,
-//  alleys ,
 
 class FaIrExtra extends Extra {
   FaIrExtra(this.locale);

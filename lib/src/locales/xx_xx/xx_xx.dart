@@ -1,11 +1,11 @@
 import 'package:fake_it/src/base/base.dart';
-import 'package:fake_it/src/locales/en_us/datasources/address.dart';
-import 'package:fake_it/src/locales/en_us/datasources/job.dart';
-import 'package:fake_it/src/locales/en_us/datasources/lorem.dart';
-import 'package:fake_it/src/locales/en_us/datasources/person.dart';
+import 'package:fake_it/src/locales/xx_xx/datasources/address.dart';
+import 'package:fake_it/src/locales/xx_xx/datasources/job.dart';
+import 'package:fake_it/src/locales/xx_xx/datasources/lorem.dart';
+import 'package:fake_it/src/locales/xx_xx/datasources/person.dart';
 
-class EnUsCollection extends FakeCollection {
-  EnUsCollection()
+class XxXxCollection extends FakeCollection {
+  XxXxCollection()
       : super(
           locale: Locales.en_us,
           dataSources: [

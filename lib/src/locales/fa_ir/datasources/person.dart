@@ -1,7 +1,7 @@
 import 'package:fake_it/src/base/base.dart';
 
 const full_names = DataSource(
-  dataKey: '',
+  dataKey: DataKeys.full_names,
   locale: Locales.fa_ir,
   formats: [
     Format('{{${DataKeys.first_names_female}}} {{${DataKeys.last_names}}}'),

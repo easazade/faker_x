@@ -1,7 +1,8 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, unused_import
 
 import 'package:fake_it/src/locales/en_us/en_us.dart';
 import 'package:fake_it/src/locales/fa_ir/fa_ir.dart';
+import 'package:fake_it/src/locales/xx_xx/xx_xx.dart';
 
 class FakeIt {
   FakeIt._();

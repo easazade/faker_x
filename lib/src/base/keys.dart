@@ -1,4 +1,5 @@
 class DataKeys {
+  static const full_names = 'full_names';
   static const first_names = 'first_names';
   static const first_names_female = 'first_names_female';
   static const first_names_male = 'first_names_male';

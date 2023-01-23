@@ -9,7 +9,7 @@ final job_prefixes = DataSource(
   ],
 );
 
-final suffixes = DataSource(
+final job_suffixes = DataSource(
   locale: Locales.fa_ir,
   dataKey: DataKeys.job_suffixes,
   values: [

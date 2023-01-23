@@ -1,16 +1,31 @@
 // ignore_for_file: unused_import, curly_braces_in_flow_control_structures
 
+import 'dart:io';
 import 'dart:mirrors';
 
 import 'package:fake_it/fake_it.dart';
 import 'package:glob/glob.dart';
+import 'package:recase/recase.dart';
 
-void main(List<String> args) {
-  //TODO: remove hardcoded lcoale and get from args
-  final locale = 'xx_xx';
+final _testArgs = <String>[
+  // use for debugging purposes to pass arguments to main
+];
+
+Future main(List<String> args) async {
+  if (args.isEmpty && _testArgs.isNotEmpty) {
+    args.addAll(_testArgs);
+  }
+  if (args.isEmpty) {
+    print('Please provide the locale like en_us as argument');
+    return;
+  }
+
+  final locale = args[0];
 
   final dataSourceGlobe =
       Glob('package:fake_it/src/locales/$locale/datasources/*.dart');
+
+  final localizedCollectionFilePath = 'lib/src/locales/$locale/$locale.dart';
 
   final dataSourcesLibMirrors = currentMirrorSystem()
       .libraries
@@ -46,38 +61,12 @@ void main(List<String> args) {
     }
   }
 
-  createFakeCollectionClass(
+  await createFakeCollectionClass(
     dataSources: definedDataSources,
     uris: dataSourceFilesUri,
     locale: locale,
+    savePath: localizedCollectionFilePath,
   );
-
-  // currentMirrorSystem().libraries.values.forEach((element) {
-  //   if (element.uri.toString().startsWith('package:fake_it/src/locales/')) {
-  //     print(glob.matches(element.uri.toString()));
-
-  //     print(element.uri);
-  //     // print('found it');
-
-  //     // print(element.declarations.length);
-
-  //     // element.declarations.forEach((key, value) {
-  //     //   print(MirrorSystem.getName(value.simpleName));
-  //     // });
-  //   }
-  // });
-
-  // final libMirror = currentMirrorSystem().findLibrary(Symbol('fake_it'));
-
-  // print(libMirror.declarations.length);
-
-  // for (var element in libMirror.declarations.entries) {
-  //   final DeclarationMirror var1 = element.value;
-  //   print(var1.simpleName);
-  //   print(libMirror.getField(var1.simpleName).reflectee);
-  //   // final varMirror = var1 as VariableMirror;
-  //   // print(var1);
-  // }
 }
 
 void checkDataKeyValidity(dataKey) {
@@ -86,12 +75,41 @@ void checkDataKeyValidity(dataKey) {
   if (dataKey.isBlank) throw Exception('data key cannot be an empty String');
 }
 
-void createFakeCollectionClass({
+Future createFakeCollectionClass({
   required List<String> dataSources,
   required List<String> uris,
   required String locale,
-}) {
+  required String savePath,
+}) async {
   dataSources.forEach(print);
-  uris.add('package:fake_it/src/base/base.dart');
-  uris.forEach(print);
+  uris.insert(0, 'package:fake_it/src/base/base.dart');
+
+  final buffer = StringBuffer();
+
+  for (var uri in uris) {
+    buffer.writeln('import \'$uri\';');
+  }
+
+  final className = '${ReCase(locale).pascalCase}Collection';
+
+  buffer.writeln('class $className extends FakeCollection {');
+
+  buffer.writeln('$className()');
+
+  buffer.writeln(':super(');
+
+  buffer.writeln('locale: Locales.$locale,');
+
+  buffer.writeln('dataSources: [');
+  for (var item in dataSources) {
+    buffer.writeln('$item,');
+  }
+  buffer.writeln(']');
+
+  buffer.writeln(',);'); //end of super
+
+  buffer.writeln('}'); // end of class
+
+  final file = await File(savePath).create(recursive: true);
+  await file.writeAsString(buffer.toString());
 }

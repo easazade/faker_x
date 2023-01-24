@@ -15,3 +15,4 @@ dev_dependencies:
   test: ^1.16.0
   glob: ^2.1.1
   recase: ^4.1.0
+  mustache_template: ^2.0.0

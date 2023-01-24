@@ -12,13 +12,7 @@ final _testArgs = <String>[
 ];
 
 Future main(List<String> args) async {
-  if (args.isEmpty && _testArgs.isNotEmpty) {
-    args.addAll(_testArgs);
-  }
-  if (args.isEmpty) {
-    print('Please provide the locale like en_us as argument');
-    return;
-  }
+  _checkArgs(args);
 
   final locale = args[0];
 
@@ -44,7 +38,7 @@ Future main(List<String> args) async {
         final dataSourceInstanceMirror =
             dataSourceMirror.getField(dataSourceVarMirror.simpleName);
         if (dataSourceInstanceMirror.reflectee is DataSource) {
-          checkDataKeyValidity(
+          _checkDataKeyValidity(
               dataSourceInstanceMirror.getField(#dataKey).reflectee);
           final dataKey =
               dataSourceInstanceMirror.getField(#dataKey).reflectee as String;
@@ -61,7 +55,7 @@ Future main(List<String> args) async {
     }
   }
 
-  await createFakeCollectionClass(
+  await _createFakeCollectionClass(
     dataSources: definedDataSources,
     uris: dataSourceFilesUri,
     locale: locale,
@@ -69,13 +63,23 @@ Future main(List<String> args) async {
   );
 }
 
-void checkDataKeyValidity(dataKey) {
+void _checkArgs(List<String> args) {
+  if (args.isEmpty && _testArgs.isNotEmpty) {
+    args.addAll(_testArgs);
+  }
+
+  if (args.isEmpty) {
+    throw Exception('\n\nPlease pass locale as argument\nEG: en_us\n\n');
+  }
+}
+
+void _checkDataKeyValidity(dataKey) {
   if (dataKey is! String)
     throw Exception('retreived dataKey is not of type String');
   if (dataKey.isBlank) throw Exception('data key cannot be an empty String');
 }
 
-Future createFakeCollectionClass({
+Future _createFakeCollectionClass({
   required List<String> dataSources,
   required List<String> uris,
   required String locale,

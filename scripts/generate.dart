@@ -7,14 +7,18 @@ import 'package:fake_it/fake_it.dart';
 import 'package:glob/glob.dart';
 import 'package:recase/recase.dart';
 
+import 'create_locale.dart';
+
 final _testArgs = <String>[
   // use for debugging purposes to pass arguments to main
 ];
 
-Future main(List<String> args) async {
-  _checkArgs(args);
+Future main(List<String> arguments) async {
+  final args = _checkArgs(arguments);
 
   final locale = args[0];
+
+  checkLocale(locale);
 
   final dataSourceGlobe =
       Glob('package:fake_it/src/locales/$locale/datasources/*.dart');
@@ -63,13 +67,15 @@ Future main(List<String> args) async {
   );
 }
 
-void _checkArgs(List<String> args) {
+List<String> _checkArgs(List<String> args) {
   if (args.isEmpty && _testArgs.isNotEmpty) {
-    args.addAll(_testArgs);
+    return _testArgs;
   }
 
   if (args.isEmpty) {
     throw Exception('\n\nPlease pass locale as argument\nEG: en_us\n\n');
+  } else {
+    return args;
   }
 }
 
@@ -94,7 +100,7 @@ Future _createFakeCollectionClass({
     buffer.writeln('import \'$uri\';');
   }
 
-  final className = '${ReCase(locale).pascalCase}Collection';
+  final className = createCollectionClassName(locale);
 
   buffer.writeln('class $className extends FakeCollection {');
 

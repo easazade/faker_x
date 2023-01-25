@@ -1,5 +1,5 @@
 import 'package:fake_it/src/base/data_source.dart';
-import 'package:fake_it/src/base/defenitions.dart';
+import 'package:fake_it/src/base/resources.dart';
 import 'package:fake_it/src/base/locale.dart';
 import 'package:fake_it/src/base/provider.dart';
 

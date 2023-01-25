@@ -7,4 +7,4 @@ export 'provider_context.dart';
 export 'provider.dart';
 export 'utils.dart';
 export 'fake_collection.dart';
-export 'defenitions.dart';
+export 'resources.dart';

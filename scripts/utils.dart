@@ -1,5 +1,9 @@
-import 'dart:io';
+// ignore_for_file: unused_import
 
+import 'dart:io';
+import 'dart:mirrors';
+import 'package:fake_it/fake_it.dart';
+import 'package:glob/glob.dart';
 import 'package:mustache_template/mustache_template.dart';
 
 /// reads and renders mustache template from the given [filePath] with provided [values]
@@ -51,3 +55,50 @@ Future<List<String>> getAvaialableLocalesInProject() async {
   final List<FileSystemEntity> entities = await dir.list().toList();
   return entities.map((e) => e.path.split('/').last).toList();
 }
+
+Future<Map<String, List<String>>> getRequiredDataSources() async {
+  final dataSourceGlobe = Glob('package:fake_it/src/base/resources.dart');
+
+  final libMirror = currentMirrorSystem()
+      .libraries
+      .values
+      .where((mirror) => dataSourceGlobe.matches(mirror.uri.toString()))
+      .toList()
+      .first;
+
+  Map<String, List<String>> requiredResources = {};
+
+  for (var entry in libMirror.declarations.entries
+      .where((element) => element.value is ClassMirror)) {
+    final resourceSymbol = entry.key;
+    final resourceName = MirrorSystem.getName(entry.key).toLowerCase();
+    final mirrorOnResource = entry.value as ClassMirror;
+    print('$resourceSymbol \n');
+
+    for (var getter in mirrorOnResource.declarations.entries.where((element) =>
+        element.value is MethodMirror &&
+        !(element.value as MethodMirror).isConstructor)) {
+      final getterSymbol = getter.key;
+
+      final getterName = MirrorSystem.getName(getterSymbol);
+      if (requiredResources[resourceName] == null) {
+        requiredResources[resourceName] = [];
+      }
+      requiredResources[resourceName]!.add(getterName);
+    }
+  }
+
+  print(requiredResources);
+  return requiredResources;
+}
+
+
+// class DataSourceInfo {
+//   DataSourceInfo({
+//     required this.fileName,
+//     required this.dataSources,
+//   });
+
+//   final String fileName;
+//   final List<DataSource> dataSources;
+// }

@@ -11,9 +11,7 @@ import 'create_locale.dart';
 import 'names.dart';
 import 'utils.dart';
 
-final _testArgs = <String>[
-  // use for debugging purposes to pass arguments to main
-];
+final _testArgs = <String>['xx_xx'];
 
 Future main(List<String> arguments) async {
   final args = _checkArgs(arguments);
@@ -25,11 +23,13 @@ Future main(List<String> arguments) async {
   final dataSourceGlobe =
       Glob('package:fake_it/src/locales/$locale/datasources/*.dart');
 
-  final localizedCollectionFilePath = 'lib/src/locales/$locale/$locale.dart';
-
   final dataSourcesLibMirrors = currentMirrorSystem()
       .libraries
       .values
+      .map((e) {
+        print(e.uri);
+        return e;
+      })
       .where((mirror) => dataSourceGlobe.matches(mirror.uri.toString()))
       .toList();
 
@@ -60,6 +60,8 @@ Future main(List<String> arguments) async {
       }
     }
   }
+
+  final localizedCollectionFilePath = 'lib/src/locales/$locale/$locale.dart';
 
   await _createFakeCollectionClass(
     dataSources: definedDataSources,

@@ -22,8 +22,7 @@ String provide(
 
   String value = dataSource.values.randomItem;
 
-  final useFormats =
-      !context.hasDuplicateKeyWithPreviousContexts; // causes infinite loop
+  final useFormats = !context.hasDuplicateKeyWithPreviousContexts;
 
   if (dataSource.formats.isNotEmpty && useFormats) {
     final format = dataSource.formats.randomItem;

@@ -53,8 +53,6 @@ class Address {
 
   String get states => provide(DataKeys.states, _locale);
 
-  String get postcodeFormats => provide(DataKeys.postcode_formats, _locale);
-
   String get addresses => provide(DataKeys.addresses, _locale);
 
   String get neighborhoods => provide(DataKeys.neighborhoods, _locale);
@@ -65,10 +63,5 @@ class Address {
 
   String get streetAddresses => provide(DataKeys.street_addresses, _locale);
 
-  String get statesAbbr => provide(DataKeys.states_abbr, _locale);
-
   String get buildingNumbers => provide(DataKeys.building_numbers, _locale);
-
-  String get secondaryAddresses =>
-      provide(DataKeys.secondary_addresses, _locale);
 }

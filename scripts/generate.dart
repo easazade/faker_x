@@ -8,6 +8,8 @@ import 'package:glob/glob.dart';
 import 'package:recase/recase.dart';
 
 import 'create_locale.dart';
+import 'names.dart';
+import 'utils.dart';
 
 final _testArgs = <String>[
   // use for debugging purposes to pass arguments to main
@@ -116,7 +118,7 @@ Future _createFakeCollectionClass({
   }
   buffer.writeln(']');
 
-  buffer.writeln(',);'); //end of super
+  buffer.writeln(',);'); // end of super
 
   buffer.writeln('}'); // end of class
 

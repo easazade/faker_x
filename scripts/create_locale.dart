@@ -1,8 +1,6 @@
 import 'dart:io';
 
-import 'package:recase/recase.dart';
-
-import 'constants.dart';
+import 'names.dart';
 import 'utils.dart';
 
 final _testArgs = <String>['xx_xx'];
@@ -13,11 +11,8 @@ Future main(List<String> arguments) async {
 
   checkLocale(locale);
 
-  final dir = Directory('lib/src/locales/');
-  final List<FileSystemEntity> entities = await dir.list().toList();
-  List<String> locales = entities.map((e) => e.path.split('/').last).toList()
-    ..add(locale);
-
+  var locales = await getAvaialableLocalesInProject();
+  locales.add(locale);
   locales = locales.toSet().toList();
 
   // generate lib/src/base/locale.dart file
@@ -26,12 +21,26 @@ Future main(List<String> arguments) async {
   // generate lib/src/base/fake_it_class.dart file
   await _generateFakeItClassFile(locales);
 
-  // final address =
-  //     await render('templates/datasources/address.mustache', values: {
-  //   'locale': 'Locales.$locale',
-  // });
+  // create datasources from templates/datasources for given locale and copy to lib/src/locales/$locale/datasources/
+  await _createDataSources(locale);
+}
 
-  // print(address);
+Future _createDataSources(String locale) async {
+  final templates =
+      Directory('templates/datasources').listSync().map((e) => e.path);
+
+  for (var templatePath in templates) {
+    final content = await render(
+      templatePath,
+      values: {'locale': 'Locales.$locale'},
+    );
+
+    final fileName =
+        templatePath.split('/').last.replaceAll('.mustache', '.dart');
+
+    final filePath = 'lib/src/locales/$locale/datasources/$fileName';
+    await writeFile(content: content, path: filePath);
+  }
 }
 
 Future _generateFakeItClassFile(List<String> locales) async {
@@ -65,9 +74,6 @@ Future _generateFakeItClassFile(List<String> locales) async {
       path: 'lib/src/base/fake_it_class.dart', content: buffer.toString());
 }
 
-String createCollectionClassName(String locale) =>
-    '${ReCase(locale).pascalCase}Collection';
-
 Future _generateLocaleFile(List<String> locales) async {
   final localesContent = await render('templates/locale.mustache', values: {
     'locales': locales.map(
@@ -81,22 +87,6 @@ Future _generateLocaleFile(List<String> locales) async {
   await writeFile(path: 'lib/src/base/locale.dart', content: localesContent);
 }
 
-void checkLocale(String locale) {
-  final e = Exception(
-    'provided locale is not valid please pass a correct locale argument. for example: en_us or en',
-  );
-
-  if (locale.length != 2 && locale.length != 5) {
-    throw e;
-  }
-
-  if (locale.length == 5) {
-    if (locale[2] != '_') {
-      throw e;
-    }
-  }
-}
-
 List<String> _checkArgs(List<String> args) {
   if (args.isEmpty && _testArgs.isNotEmpty) {
     return _testArgs;
@@ -107,9 +97,4 @@ List<String> _checkArgs(List<String> args) {
   } else {
     return args;
   }
-}
-
-Future writeFile({required String content, required String path}) async {
-  final file = await File(path).create(recursive: true);
-  await file.writeAsString(content);
 }

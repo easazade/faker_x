@@ -96,6 +96,21 @@ Future<Map<String, List<String>>> getRequiredDataSources() async {
   return requiredResources;
 }
 
+Future<Map<String, List<DataSourceInfo>>>
+    readAvailableDataSourcesForLocaleMapped(
+  String locale,
+) async {
+  final list = await readAvailableDataSourcesForLocale(locale);
+  Map<String, List<DataSourceInfo>> map = {};
+  for (var item in list) {
+    if (map[item.resourceName] == null) {
+      map[item.resourceName] = [];
+    }
+    map[item.resourceName]!.add(item);
+  }
+  return map;
+}
+
 Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
   String locale,
 ) async {
@@ -146,6 +161,35 @@ Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
   return dataSourceInfoList;
 }
 
+void checkValidityOfDataKeys() {
+  final dataSourceGlobe = Glob('package:fake_it/src/base/keys.dart');
+
+  final libMirror = currentMirrorSystem()
+      .libraries
+      .values
+      .where((mirror) => dataSourceGlobe.matches(mirror.uri.toString()))
+      .toList()
+      .first;
+
+  final classMirrorOnDataKey =
+      libMirror.declarations.values.whereType<ClassMirror>().first;
+
+  for (var varMirror in classMirrorOnDataKey.declarations.values
+      .whereType<VariableMirror>()
+      .where((e) => e.isStatic && e.isConst)) {
+    final varName = MirrorSystem.getName(varMirror.simpleName);
+    final value =
+        classMirrorOnDataKey.getField(varMirror.simpleName).reflectee as String;
+    if (varName != value) {
+      throw Exception(
+        'Found a data key in ${libMirror.uri} with unequal value and variable name\n'
+        'eg: $varName != $value\n'
+        'Please Fix that first, then run the command again',
+      );
+    }
+  }
+}
+
 class DataSourceInfo {
   DataSourceInfo({
     required this.fileUri,
@@ -165,6 +209,8 @@ class DataSourceInfo {
   final DataSource dataSource;
 
   String get fileName => fileUri.split('/').last;
+
+  String get resourceName => fileName.split('.').first;
 
   @override
   String toString() {

@@ -20,6 +20,8 @@ Future main(List<String> arguments) async {
 
   checkLocale(locale);
 
+  checkValidityOfDataKeys();
+
   final dataSourceInfoList = await readAvailableDataSourcesForLocale(locale);
 
   final localizedCollectionFilePath = 'lib/src/locales/$locale/$locale.dart';

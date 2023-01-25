@@ -20,52 +20,13 @@ Future main(List<String> arguments) async {
 
   checkLocale(locale);
 
-  final dataSourceGlobe =
-      Glob('package:fake_it/src/locales/$locale/datasources/*.dart');
-
-  final dataSourcesLibMirrors = currentMirrorSystem()
-      .libraries
-      .values
-      .map((e) {
-        print(e.uri);
-        return e;
-      })
-      .where((mirror) => dataSourceGlobe.matches(mirror.uri.toString()))
-      .toList();
-
-  final definedDataSources = <String>[];
-  final dataSourceFilesUri = <String>[];
-
-  for (var dataSourceMirror in dataSourcesLibMirrors) {
-    dataSourceFilesUri.add(dataSourceMirror.uri.toString());
-
-    for (var dataSourceVarMirror in dataSourceMirror.declarations.values) {
-      if (dataSourceVarMirror is VariableMirror) {
-        final dataSourceInstanceMirror =
-            dataSourceMirror.getField(dataSourceVarMirror.simpleName);
-        if (dataSourceInstanceMirror.reflectee is DataSource) {
-          _checkDataKeyValidity(
-              dataSourceInstanceMirror.getField(#dataKey).reflectee);
-          final dataKey =
-              dataSourceInstanceMirror.getField(#dataKey).reflectee as String;
-          final varName = MirrorSystem.getName(dataSourceVarMirror.simpleName);
-          print('$dataKey == $varName');
-          if (dataKey != varName) {
-            throw Exception(
-                'when defining DataSource variables, name of the variable should be the same as its dataKey value '
-                'But $dataKey != $varName');
-          }
-          definedDataSources.add(varName);
-        }
-      }
-    }
-  }
+  final dataSourceInfoList = await readAvailableDataSourcesForLocale(locale);
 
   final localizedCollectionFilePath = 'lib/src/locales/$locale/$locale.dart';
 
   await _createFakeCollectionClass(
-    dataSources: definedDataSources,
-    uris: dataSourceFilesUri,
+    dataSources: dataSourceInfoList.map((e) => e.varName).toList(),
+    uris: dataSourceInfoList.map((e) => e.fileUri).toSet().toList(),
     locale: locale,
     savePath: localizedCollectionFilePath,
   );
@@ -81,12 +42,6 @@ List<String> _checkArgs(List<String> args) {
   } else {
     return args;
   }
-}
-
-void _checkDataKeyValidity(dataKey) {
-  if (dataKey is! String)
-    throw Exception('retreived dataKey is not of type String');
-  if (dataKey.isBlank) throw Exception('data key cannot be an empty String');
 }
 
 Future _createFakeCollectionClass({

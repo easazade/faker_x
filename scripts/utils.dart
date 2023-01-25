@@ -31,6 +31,13 @@ Future writeFile({required String content, required String path}) async {
   await file.writeAsString(content);
 }
 
+void checkDataKeyValidity(dataKey) {
+  if (dataKey is! String) {
+    throw Exception('retreived dataKey is not of type String');
+  }
+  if (dataKey.isBlank) throw Exception('data key cannot be an empty String');
+}
+
 /// checks given [locale] to see whether it is in correct format or not
 void checkLocale(String locale) {
   final e = Exception(
@@ -70,10 +77,8 @@ Future<Map<String, List<String>>> getRequiredDataSources() async {
 
   for (var entry in libMirror.declarations.entries
       .where((element) => element.value is ClassMirror)) {
-    final resourceSymbol = entry.key;
     final resourceName = MirrorSystem.getName(entry.key).toLowerCase();
     final mirrorOnResource = entry.value as ClassMirror;
-    print('$resourceSymbol \n');
 
     for (var getter in mirrorOnResource.declarations.entries.where((element) =>
         element.value is MethodMirror &&
@@ -88,17 +93,81 @@ Future<Map<String, List<String>>> getRequiredDataSources() async {
     }
   }
 
-  print(requiredResources);
   return requiredResources;
 }
 
+Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
+  String locale,
+) async {
+  final dataSourceGlobe =
+      Glob('package:fake_it/src/locales/$locale/datasources/*.dart');
 
-// class DataSourceInfo {
-//   DataSourceInfo({
-//     required this.fileName,
-//     required this.dataSources,
-//   });
+  final mirrors = currentMirrorSystem()
+      .libraries
+      .values
+      .where((mirror) => dataSourceGlobe.matches(mirror.uri.toString()))
+      .toList();
 
-//   final String fileName;
-//   final List<DataSource> dataSources;
-// }
+  final definedDataSources = <String>[];
+  final dataSourceFilesUri = <String>[];
+
+  final dataSourceInfoList = <DataSourceInfo>[];
+
+  for (var mirror in mirrors) {
+    dataSourceFilesUri.add(mirror.uri.toString());
+
+    for (var varMirrorOnDataSource in mirror.declarations.values
+        .whereType<VariableMirror>()
+        .where((element) => element.isTopLevel)) {
+      final instanceMirror = mirror.getField(varMirrorOnDataSource.simpleName);
+
+      if (instanceMirror.reflectee is DataSource) {
+        final dataSource = instanceMirror.reflectee as DataSource;
+        checkDataKeyValidity(dataSource.dataKey);
+
+        final varName = MirrorSystem.getName(varMirrorOnDataSource.simpleName);
+        definedDataSources.add(varName);
+
+        dataSourceInfoList.add(
+          DataSourceInfo(
+            fileUri: mirror.uri.toString(),
+            varName: varName,
+            dataSource: dataSource,
+          ),
+        );
+      }
+    }
+  }
+
+  print(definedDataSources);
+  print(dataSourceFilesUri);
+  print(dataSourceInfoList);
+
+  return dataSourceInfoList;
+}
+
+class DataSourceInfo {
+  DataSourceInfo({
+    required this.fileUri,
+    required this.varName,
+    required this.dataSource,
+  }) {
+    if (varName != dataSource.dataKey) {
+      throw Exception(
+        'when defining DataSource variables, name of the variable should be the same as its dataKey value '
+        'But ${dataSource.dataKey} != $varName',
+      );
+    }
+  }
+
+  final String fileUri;
+  final String varName;
+  final DataSource dataSource;
+
+  String get fileName => fileUri.split('/').last;
+
+  @override
+  String toString() {
+    return 'DataSourceInfo( fileUri = $fileUri | varName = $varName | dataSource = \n$dataSource\n';
+  }
+}

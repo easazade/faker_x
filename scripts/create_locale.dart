@@ -6,6 +6,8 @@ import 'names.dart';
 import 'utils.dart';
 import 'lib_imports.dart';
 
+import 'generate.dart' as generate;
+
 final _testArgs = <String>['xx_xx'];
 Future main(List<String> arguments) async {
   final args = _checkArgs(arguments);
@@ -26,6 +28,8 @@ Future main(List<String> arguments) async {
 
   // create datasources from templates/datasources for given locale and copy to lib/src/locales/$locale/datasources/
   await _createDataSources(locale);
+
+  await generate.main([locale]);
 }
 
 Future _createDataSources(String locale) async {

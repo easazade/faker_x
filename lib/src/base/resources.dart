@@ -9,11 +9,11 @@ class Job {
 
   final FakeItLocale _locale;
 
-  String get jobTitles => provide(DataKeys.job_titles, _locale);
+  String get jobTitle => provide(DataKeys.job_title, _locale);
 
-  String get jobSuffixes => provide(DataKeys.job_suffixes, _locale);
+  String get jobSuffix => provide(DataKeys.job_suffix, _locale);
 
-  String get jobPrefixes => provide(DataKeys.job_prefixes, _locale);
+  String get jobPrefix => provide(DataKeys.job_prefix, _locale);
 }
 
 class Lorem {
@@ -21,9 +21,9 @@ class Lorem {
 
   final FakeItLocale _locale;
 
-  String get words => provide(DataKeys.words, _locale);
+  String get word => provide(DataKeys.word, _locale);
 
-  String get sentences => provide(DataKeys.sentences, _locale);
+  String get sentence => provide(DataKeys.sentence, _locale);
 }
 
 class Person {
@@ -31,11 +31,11 @@ class Person {
 
   final FakeItLocale _locale;
 
-  String get firstNames => provide(DataKeys.first_names, _locale);
+  String get firstName => provide(DataKeys.first_name, _locale);
 
-  String get lastNames => provide(DataKeys.last_names, _locale);
+  String get lastName => provide(DataKeys.last_name, _locale);
 
-  String get fullNames => provide(DataKeys.full_names, _locale);
+  String get fullName => provide(DataKeys.full_name, _locale);
 }
 
 class Address {
@@ -43,25 +43,25 @@ class Address {
 
   final FakeItLocale _locale;
 
-  String get citySuffixes => provide(DataKeys.city_suffixes, _locale);
+  String get citySuffix => provide(DataKeys.city_suffix, _locale);
 
-  String get cityPrefixes => provide(DataKeys.city_prefixes, _locale);
+  String get cityPrefix => provide(DataKeys.city_prefix, _locale);
 
-  String get cityNames => provide(DataKeys.city_names, _locale);
+  String get cityName => provide(DataKeys.city_name, _locale);
 
-  String get streetSuffixes => provide(DataKeys.street_suffixes, _locale);
+  String get streetSuffix => provide(DataKeys.street_suffix, _locale);
 
-  String get states => provide(DataKeys.states, _locale);
+  String get state => provide(DataKeys.state, _locale);
 
-  String get addresses => provide(DataKeys.addresses, _locale);
+  String get address => provide(DataKeys.address, _locale);
 
-  String get neighborhoods => provide(DataKeys.neighborhoods, _locale);
+  String get neighborhood => provide(DataKeys.neighborhood, _locale);
 
-  String get streetNames => provide(DataKeys.street_names, _locale);
+  String get streetName => provide(DataKeys.street_name, _locale);
 
-  String get postcodes => provide(DataKeys.postcodes, _locale);
+  String get postcode => provide(DataKeys.postcode, _locale);
 
-  String get streetAddresses => provide(DataKeys.street_addresses, _locale);
+  String get streetAddress => provide(DataKeys.street_address, _locale);
 
-  String get buildingNumbers => provide(DataKeys.building_numbers, _locale);
+  String get buildingNumber => provide(DataKeys.building_number, _locale);
 }

@@ -1,38 +1,38 @@
 import 'package:fake_it/src/base/base.dart';
 import 'package:fake_it/src/locales/en_us/datasources/address.dart';
 import 'package:fake_it/src/locales/en_us/datasources/job.dart';
-import 'package:fake_it/src/locales/en_us/datasources/lorem.dart';
 import 'package:fake_it/src/locales/en_us/datasources/person.dart';
+import 'package:fake_it/src/locales/en_us/datasources/lorem.dart';
 
 class EnUsCollection extends FakeCollection {
   EnUsCollection()
       : super(
           locale: Locales.en_us,
           dataSources: [
-            city_suffixes,
-            postcode_formats,
-            states_abbr,
-            secondary_addresses,
-            street_names,
-            city_names,
-            street_addresses,
-            street_suffixes,
-            states,
-            neighborhoods,
-            building_numbers,
-            city_prefixes,
-            postcodes,
-            addresses,
-            job_prefixes,
-            job_titles,
-            job_suffixes,
-            words,
-            sentences,
-            first_names,
-            last_names,
-            first_names_female,
-            full_names,
-            first_names_male,
+            state_abbr,
+            state,
+            address,
+            city_name,
+            neighborhood,
+            building_number,
+            city_suffix,
+            street_suffix,
+            street_address,
+            postcode,
+            street_name,
+            postcode_format,
+            city_prefix,
+            secondary_address,
+            job_suffix,
+            job_title,
+            job_prefix,
+            first_name_male,
+            full_name,
+            first_name_female,
+            last_name,
+            first_name,
+            sentence,
+            word,
           ],
         );
 }

@@ -1,7 +1,7 @@
 import 'package:fake_it/src/base/base.dart';
 
-const city_suffixes = DataSource(
-  dataKey: DataKeys.city_suffixes,
+const city_suffix = DataSource(
+  dataKey: DataKeys.city_suffix,
   locale: Locales.en_us,
   values: [
     'town',
@@ -26,37 +26,37 @@ const city_suffixes = DataSource(
   ],
 );
 
-const city_prefixes = DataSource(
-  dataKey: DataKeys.city_prefixes,
+const city_prefix = DataSource(
+  dataKey: DataKeys.city_prefix,
   locale: Locales.en_us,
   values: ['North', 'East', 'West', 'South', 'New', 'Lake', 'Port'],
 );
 
-const city_names = DataSource(
-  dataKey: DataKeys.city_names,
+const city_name = DataSource(
+  dataKey: DataKeys.city_name,
   locale: Locales.en_us,
   formats: [
     Format(
-        '{{${DataKeys.city_prefixes}}} {{${DataKeys.first_names}}}{{${DataKeys.city_suffixes}}}'),
-    Format('{{${DataKeys.city_prefixes}}} {{${DataKeys.first_names}}}'),
-    Format('{{${DataKeys.first_names}}}{{${DataKeys.city_suffixes}}}'),
-    Format('{{${DataKeys.last_names}}}{{${DataKeys.city_suffixes}}}'),
+        '{{${DataKeys.city_prefix}}} {{${DataKeys.first_name}}}{{${DataKeys.city_suffix}}}'),
+    Format('{{${DataKeys.city_prefix}}} {{${DataKeys.first_name}}}'),
+    Format('{{${DataKeys.first_name}}}{{${DataKeys.city_suffix}}}'),
+    Format('{{${DataKeys.last_name}}}{{${DataKeys.city_suffix}}}'),
   ],
   values: [],
 );
 
-const street_names = DataSource(
-  dataKey: DataKeys.street_names,
+const street_name = DataSource(
+  dataKey: DataKeys.street_name,
   locale: Locales.en_us,
   formats: [
-    Format('{{${DataKeys.first_names}}} {{${DataKeys.street_suffixes}}}'),
-    Format('{{${DataKeys.last_names}}} {{${DataKeys.street_suffixes}}}'),
+    Format('{{${DataKeys.first_name}}} {{${DataKeys.street_suffix}}}'),
+    Format('{{${DataKeys.last_name}}} {{${DataKeys.street_suffix}}}'),
   ],
   values: [],
 );
 
-const street_suffixes = DataSource(
-  dataKey: DataKeys.street_suffixes,
+const street_suffix = DataSource(
+  dataKey: DataKeys.street_suffix,
   locale: Locales.en_us,
   values: [
     'Alley',
@@ -287,8 +287,8 @@ const street_suffixes = DataSource(
   ],
 );
 
-const states = DataSource(
-  dataKey: DataKeys.states,
+const state = DataSource(
+  dataKey: DataKeys.state,
   locale: Locales.en_us,
   values: [
     'Alabama',
@@ -344,59 +344,59 @@ const states = DataSource(
   ],
 );
 
-const postcode_formats = DataSource(
-  dataKey: DataKeys.postcode_formats,
+const postcode_format = DataSource(
+  dataKey: DataKeys.postcode_format,
   locale: Locales.en_us,
   formats: [Format('#####-####'), Format('#####')],
   values: [],
 );
 
-const postcodes = DataSource(
-  dataKey: DataKeys.postcodes,
+const postcode = DataSource(
+  dataKey: DataKeys.postcode,
   locale: Locales.en_us,
   formats: [Format('#####')],
   values: [],
 );
 
-const secondary_addresses = DataSource(
-  dataKey: DataKeys.secondary_addresses,
+const secondary_address = DataSource(
+  dataKey: DataKeys.secondary_address,
   locale: Locales.en_us,
   formats: [Format('Apt. ###'), Format('Suite ###')],
   values: [],
 );
 
-const building_numbers = DataSource(
-  dataKey: DataKeys.building_numbers,
+const building_number = DataSource(
+  dataKey: DataKeys.building_number,
   locale: Locales.en_us,
   formats: [Format('###'), Format('####'), Format('#####')],
   values: [],
 );
 
-const street_addresses = DataSource(
-  dataKey: DataKeys.street_addresses,
+const street_address = DataSource(
+  dataKey: DataKeys.street_address,
   locale: Locales.en_us,
   formats: [
-    Format('{{${DataKeys.building_numbers}}} {{${DataKeys.street_names}}}'),
+    Format('{{${DataKeys.building_number}}} {{${DataKeys.street_name}}}'),
     Format(
-      '{{${DataKeys.building_numbers}}} {{${DataKeys.street_names}}} {{${DataKeys.secondary_addresses}}}',
+      '{{${DataKeys.building_number}}} {{${DataKeys.street_name}}} {{${DataKeys.secondary_address}}}',
     ),
   ],
   values: [],
 );
 
-const addresses = DataSource(
-  dataKey: DataKeys.addresses,
+const address = DataSource(
+  dataKey: DataKeys.address,
   locale: Locales.en_us,
   formats: [
     Format(
-      '{{${DataKeys.street_addresses}}}\n{{${DataKeys.city_names}}}, {{${DataKeys.states_abbr}}} {{${DataKeys.postcodes}}}',
+      '{{${DataKeys.street_address}}}\n{{${DataKeys.city_name}}}, {{${DataKeys.state_abbr}}} {{${DataKeys.postcode}}}',
     ),
   ],
   values: [],
 );
 
-const states_abbr = DataSource(
-  dataKey: DataKeys.states_abbr,
+const state_abbr = DataSource(
+  dataKey: DataKeys.state_abbr,
   locale: Locales.en_us,
   formats: [],
   values: [
@@ -454,8 +454,8 @@ const states_abbr = DataSource(
   ],
 );
 
-const neighborhoods = DataSource(
-  dataKey: DataKeys.neighborhoods,
+const neighborhood = DataSource(
+  dataKey: DataKeys.neighborhood,
   locale: Locales.en_us,
   values: [
     'East of Telegraph Road',

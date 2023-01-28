@@ -1,7 +1,7 @@
 import 'package:fake_it/src/base/base.dart';
 
-const city_names = DataSource(
-  dataKey: DataKeys.city_names,
+const city_name = DataSource(
+  dataKey: DataKeys.city_name,
   locale: Locales.fa_ir,
   formats: [],
   values: [
@@ -1250,24 +1250,24 @@ const city_names = DataSource(
   ],
 );
 
-const street_names = DataSource(
-  dataKey: DataKeys.street_names,
+const street_name = DataSource(
+  dataKey: DataKeys.street_name,
   locale: Locales.fa_ir,
   formats: [
     Format(
-      '{{${DataKeys.street_prefixes}}} {{${DataKeys.last_names}}}',
+      '{{${DataKeys.street_prefix}}} {{${DataKeys.last_name}}}',
       chance: 20,
     ),
     Format(
-      '{{${DataKeys.last_names}}} {{${DataKeys.street_suffixes}}}',
+      '{{${DataKeys.last_name}}} {{${DataKeys.street_suffix}}}',
       chance: 4,
     ),
   ],
   values: [],
 );
 
-const street_suffixes = DataSource(
-  dataKey: DataKeys.street_suffixes,
+const street_suffix = DataSource(
+  dataKey: DataKeys.street_suffix,
   locale: Locales.fa_ir,
   values: [
     'شمالی',
@@ -1287,14 +1287,14 @@ const street_suffixes = DataSource(
   ],
 );
 
-const street_prefixes = DataSource(
-  dataKey: DataKeys.street_prefixes,
+const street_prefix = DataSource(
+  dataKey: DataKeys.street_prefix,
   locale: Locales.fa_ir,
   values: ['خیابان', 'کمربندی', 'بزرگراه'],
 );
 
-const states = DataSource(
-  dataKey: DataKeys.states,
+const state = DataSource(
+  dataKey: DataKeys.state,
   locale: Locales.fa_ir,
   values: [
     'آذربایجان شرقی',
@@ -1332,45 +1332,45 @@ const states = DataSource(
   ],
 );
 
-const postcodes = DataSource(
-  dataKey: DataKeys.postcodes,
+const postcode = DataSource(
+  dataKey: DataKeys.postcode,
   locale: Locales.fa_ir,
   formats: [Format('##########')],
   values: [],
 );
 
-const building_names = DataSource(
-  dataKey: DataKeys.building_names,
+const building_name = DataSource(
+  dataKey: DataKeys.building_name,
   locale: Locales.fa_ir,
   formats: [
-    Format('{{${DataKeys.first_names}}}', chance: 20),
-    Format('{{${DataKeys.first_names}}} #', chance: 4),
+    Format('{{${DataKeys.first_name}}}', chance: 20),
+    Format('{{${DataKeys.first_name}}} #', chance: 4),
   ],
   values: [],
 );
 
-const addresses = DataSource(
-  dataKey: DataKeys.addresses,
+const address = DataSource(
+  dataKey: DataKeys.address,
   locale: Locales.fa_ir,
   formats: [
     Format(
-      '{{${DataKeys.city_names}}}, {{${DataKeys.street_names}}}, {{${DataKeys.alleys}}}, {{${DataKeys.building_names}}}, طبقه #, واحد #',
+      '{{${DataKeys.city_name}}}, {{${DataKeys.street_name}}}, {{${DataKeys.alley}}}, {{${DataKeys.building_name}}}, طبقه #, واحد #',
     ),
     Format(
-      '{{${DataKeys.city_names}}}, {{${DataKeys.street_names}}}, {{${DataKeys.alleys}}}, پلاک ##',
+      '{{${DataKeys.city_name}}}, {{${DataKeys.street_name}}}, {{${DataKeys.alley}}}, پلاک ##',
     ),
   ],
   values: [],
 );
 
-const alleys = DataSource(
-  dataKey: DataKeys.alleys,
+const alley = DataSource(
+  dataKey: DataKeys.alley,
   locale: Locales.fa_ir,
   formats: [
-    Format('کوچه {{${DataKeys.first_names}}} #', chance: 4),
-    Format('کوچه {{${DataKeys.first_names}}}', chance: 20),
-    Format('محله {{${DataKeys.last_names}}}', chance: 3),
-    Format('شهرک {{${DataKeys.last_names}}}', chance: 3),
+    Format('کوچه {{${DataKeys.first_name}}} #', chance: 4),
+    Format('کوچه {{${DataKeys.first_name}}}', chance: 20),
+    Format('محله {{${DataKeys.last_name}}}', chance: 3),
+    Format('شهرک {{${DataKeys.last_name}}}', chance: 3),
   ],
   values: [],
 );

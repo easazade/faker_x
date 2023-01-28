@@ -1,27 +1,27 @@
 import 'package:fake_it/src/base/base.dart';
 
-const full_names = DataSource(
-  dataKey: DataKeys.full_names,
+const full_name = DataSource(
+  dataKey: DataKeys.full_name,
   locale: Locales.en_us,
   formats: [
-    Format('{{${DataKeys.first_names_female}}} {{${DataKeys.last_names}}}'),
-    Format('{{${DataKeys.first_names_male}}} {{${DataKeys.last_names}}}'),
+    Format('{{${DataKeys.first_name_female}}} {{${DataKeys.last_name}}}'),
+    Format('{{${DataKeys.first_name_male}}} {{${DataKeys.last_name}}}'),
   ],
   values: [],
 );
 
-const first_names = DataSource(
-  dataKey: DataKeys.first_names,
+const first_name = DataSource(
+  dataKey: DataKeys.first_name,
   locale: Locales.en_us,
   formats: [
-    Format('{{${DataKeys.first_names_female}}}'),
-    Format('{{${DataKeys.first_names_male}}}'),
+    Format('{{${DataKeys.first_name_female}}}'),
+    Format('{{${DataKeys.first_name_male}}}'),
   ],
   values: [],
 );
 
-const first_names_female = DataSource(
-  dataKey: DataKeys.first_names_female,
+const first_name_female = DataSource(
+  dataKey: DataKeys.first_name_female,
   locale: Locales.en_us,
   values: [
     'April',
@@ -408,8 +408,8 @@ const first_names_female = DataSource(
   ],
 );
 
-const first_names_male = DataSource(
-  dataKey: DataKeys.first_names_male,
+const first_name_male = DataSource(
+  dataKey: DataKeys.first_name_male,
   locale: Locales.en_us,
   values: [
     'Aaron',
@@ -737,8 +737,8 @@ const first_names_male = DataSource(
   ],
 );
 
-const last_names = DataSource(
-  dataKey: DataKeys.last_names,
+const last_name = DataSource(
+  dataKey: DataKeys.last_name,
   locale: Locales.en_us,
   formats: [],
   values: [

@@ -1,22 +1,14 @@
 // ignore_for_file: unused_import
 
 import 'package:fake_it/fake_it.dart';
-import 'package:fake_it/src/locales/fa_ir/datasources/country.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/address.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/job.dart';
-import 'package:fake_it/src/locales/fa_ir/datasources/currency.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/person.dart';
-import 'package:fake_it/src/locales/fa_ir/datasources/car.dart';
-import 'package:fake_it/src/locales/fa_ir/datasources/color.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/lorem.dart';
 import 'package:fake_it/src/locales/fa_ir/fa_ir.dart';
-import 'package:fake_it/src/locales/en_us/datasources/country.dart';
 import 'package:fake_it/src/locales/en_us/datasources/address.dart';
 import 'package:fake_it/src/locales/en_us/datasources/job.dart';
-import 'package:fake_it/src/locales/en_us/datasources/currency.dart';
 import 'package:fake_it/src/locales/en_us/datasources/person.dart';
-import 'package:fake_it/src/locales/en_us/datasources/car.dart';
-import 'package:fake_it/src/locales/en_us/datasources/color.dart';
 import 'package:fake_it/src/locales/en_us/datasources/lorem.dart';
 import 'package:fake_it/src/locales/en_us/en_us.dart';
 import 'package:fake_it/src/base/base.dart';

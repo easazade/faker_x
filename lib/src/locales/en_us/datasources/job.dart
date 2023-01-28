@@ -1,8 +1,8 @@
 import 'package:fake_it/src/base/base.dart';
 
-const job_prefixes = DataSource(
+const job_prefix = DataSource(
   locale: Locales.en_us,
-  dataKey: DataKeys.job_prefixes,
+  dataKey: DataKeys.job_prefix,
   values: [
     'Lead',
     'Senior',
@@ -29,9 +29,9 @@ const job_prefixes = DataSource(
   ],
 );
 
-const job_suffixes = DataSource(
+const job_suffix = DataSource(
   locale: Locales.en_us,
-  dataKey: DataKeys.job_suffixes,
+  dataKey: DataKeys.job_suffix,
   values: [
     'Supervisor',
     'Associate',
@@ -61,14 +61,14 @@ const job_suffixes = DataSource(
   ],
 );
 
-const job_titles = DataSource(
+const job_title = DataSource(
   locale: Locales.en_us,
-  dataKey: DataKeys.job_titles,
+  dataKey: DataKeys.job_title,
   formats: [
     Format(
-        '{{${DataKeys.job_prefixes}}} {{${DataKeys.job_titles}}} {{${DataKeys.job_suffixes}}}'),
-    Format('{{${DataKeys.job_prefixes}}} {{${DataKeys.job_titles}}}'),
-    Format('{{${DataKeys.job_titles}}} {{${DataKeys.job_suffixes}}}'),
+        '{{${DataKeys.job_prefix}}} {{${DataKeys.job_title}}} {{${DataKeys.job_suffix}}}'),
+    Format('{{${DataKeys.job_prefix}}} {{${DataKeys.job_title}}}'),
+    Format('{{${DataKeys.job_title}}} {{${DataKeys.job_suffix}}}'),
   ],
   values: [
     //TODO: these job titles should be changed.

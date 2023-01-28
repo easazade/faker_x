@@ -1,8 +1,8 @@
 import 'package:fake_it/src/base/base.dart';
 
-const words = DataSource(
+const word = DataSource(
   locale: Locales.en_us,
-  dataKey: DataKeys.words,
+  dataKey: DataKeys.word,
   values: [
     'accumsan',
     'adipiscing',
@@ -165,9 +165,9 @@ const words = DataSource(
   ],
 );
 
-const sentences = DataSource(
+const sentence = DataSource(
   locale: Locales.en_us,
-  dataKey: DataKeys.sentences,
+  dataKey: DataKeys.sentence,
   values: [
     'A arcu cursus vitae congue mauris rhoncus aenean vel elit.',
     'Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu.',

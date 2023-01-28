@@ -30,7 +30,7 @@ Future main(List<String> arguments) async {
 
   final localizedCollectionFilePath = 'lib/src/locales/$locale/$locale.dart';
 
-  await _createFakeCollectionClass(
+  await createFakeCollectionClass(
     dataSources: dataSourceInfoList.map((e) => e.varName).toList(),
     uris: dataSourceInfoList.map((e) => e.fileUri).toSet().toList(),
     locale: locale,
@@ -50,7 +50,7 @@ List<String> _checkArgs(List<String> args) {
   }
 }
 
-Future _createFakeCollectionClass({
+Future createFakeCollectionClass({
   required List<String> dataSources,
   required List<String> uris,
   required String locale,

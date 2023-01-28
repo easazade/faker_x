@@ -2,6 +2,8 @@
 
 import 'dart:io';
 
+import 'package:recase/recase.dart';
+
 import 'names.dart';
 import 'utils.dart';
 import 'lib_imports.dart';
@@ -32,19 +34,22 @@ Future main(List<String> arguments) async {
 }
 
 Future _createDataSources(String locale) async {
-  final templates =
-      Directory('templates/datasources').listSync().map((e) => e.path);
+  final requriedDataSources = await getRequiredDataSources();
 
-  for (var templatePath in templates) {
-    final content = await render(
-      templatePath,
-      values: {'locale': 'Locales.$locale'},
-    );
-
-    final fileName =
-        templatePath.split('/').last.replaceAll('.mustache', '.dart');
+  for (var resource in requriedDataSources.keys) {
+    final buffer =
+        StringBuffer("import 'package:fake_it/src/base/base.dart';\n\n");
+    for (var datasourceName in requriedDataSources[resource]!) {
+      buffer.writeln(
+        await render(
+          'templates/datasource.mustache',
+          values: {'locale': locale, 'name': ReCase(datasourceName).snakeCase},
+        ),
+      );
+    }
+    final fileName = '$resource.dart';
 
     final filePath = 'lib/src/locales/$locale/datasources/$fileName';
-    await writeFile(content: content, path: filePath);
+    await writeFile(content: buffer.toString(), path: filePath);
   }
 }

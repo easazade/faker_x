@@ -9,11 +9,11 @@ class Job {
 
   final FakeItLocale _locale;
 
-  String get jobTitle => provide(DataKeys.job_titles, _locale);
+  String get jobTitles => provide(DataKeys.job_titles, _locale);
 
-  String get jobSuffix => provide(DataKeys.job_suffixes, _locale);
+  String get jobSuffixes => provide(DataKeys.job_suffixes, _locale);
 
-  String get jobPrefix => provide(DataKeys.job_prefixes, _locale);
+  String get jobPrefixes => provide(DataKeys.job_prefixes, _locale);
 }
 
 class Lorem {
@@ -21,9 +21,9 @@ class Lorem {
 
   final FakeItLocale _locale;
 
-  String get word => provide(DataKeys.words, _locale);
+  String get words => provide(DataKeys.words, _locale);
 
-  String get sentence => provide(DataKeys.sentences, _locale);
+  String get sentences => provide(DataKeys.sentences, _locale);
 }
 
 class Person {
@@ -31,11 +31,11 @@ class Person {
 
   final FakeItLocale _locale;
 
-  String get jobTitles => provide(DataKeys.job_titles, _locale);
+  String get firstNames => provide(DataKeys.first_names, _locale);
 
-  String get jobSuffixes => provide(DataKeys.job_suffixes, _locale);
+  String get lastNames => provide(DataKeys.last_names, _locale);
 
-  String get jobPrefixes => provide(DataKeys.job_prefixes, _locale);
+  String get fullNames => provide(DataKeys.full_names, _locale);
 }
 
 class Address {

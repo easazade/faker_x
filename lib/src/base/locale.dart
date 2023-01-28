@@ -3,7 +3,6 @@ const kDefaultFakeItLocale = Locales.en_us;
 class Locales {
   static const fa_ir = FakeItLocale('fa', 'ir');
   static const en_us = FakeItLocale('en', 'us');
-  static const xx_xx = FakeItLocale('xx', 'xx');
 }
 
 class FakeItLocale {

@@ -6,6 +6,7 @@ import 'package:fake_it/fake_it.dart';
 import 'package:glob/glob.dart';
 import 'package:mustache_template/mustache_template.dart';
 import 'lib_imports.dart';
+import 'names.dart';
 
 /// only use for debug & testing purposes
 const _testArgs = <String>[
@@ -228,6 +229,50 @@ Future createImports() async {
   }
 
   await libImportsFile.writeAsString(buffer.toString());
+}
+
+Future generateLocaleFile(List<String> locales) async {
+  final localesContent = await render('templates/locale.mustache', values: {
+    'locales': locales.map(
+      (locale) {
+        final parts = locale.split('_');
+        return "static const $locale = FakeItLocale('${parts[0]}', '${(parts.length > 1 ? parts[1] : '')}');";
+      },
+    ),
+  });
+
+  await writeFile(path: 'lib/src/base/locale.dart', content: localesContent);
+}
+
+Future generateFakeItClassFile(List<String> locales) async {
+  final buffer = StringBuffer();
+
+  for (var locale in locales) {
+    buffer.writeln(
+        'import \'package:fake_it/src/locales/$locale/$locale.dart\';');
+  }
+
+  // write class FakeIt
+  buffer.writeln('class $fakeItClassName {');
+  buffer.writeln('$fakeItClassName._();\n');
+
+  buffer.writeln('static late final defaultInstance = EnUsCollection();');
+  buffer.writeln('static late final localized = _Localized();');
+
+  buffer.writeln('}');
+
+  // write _Localized class
+  buffer.writeln('class _Localized {');
+  for (var locale in locales) {
+    buffer.writeln(
+      'late final $locale = ${createCollectionClassName(locale)}();',
+    );
+  }
+
+  buffer.writeln('}');
+
+  await writeFile(
+      path: 'lib/src/base/fake_it_class.dart', content: buffer.toString());
 }
 
 class DataSourceInfo {

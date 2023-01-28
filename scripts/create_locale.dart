@@ -20,10 +20,10 @@ Future main(List<String> arguments) async {
   locales = locales.toSet().toList();
 
   // generate lib/src/base/locale.dart file
-  await _generateLocaleFile(locales);
+  await generateLocaleFile(locales);
 
   // generate lib/src/base/fake_it_class.dart file
-  await _generateFakeItClassFile(locales);
+  await generateFakeItClassFile(locales);
 
   // create datasources from templates/datasources for given locale and copy to lib/src/locales/$locale/datasources/
   await _createDataSources(locale);
@@ -48,48 +48,3 @@ Future _createDataSources(String locale) async {
     await writeFile(content: content, path: filePath);
   }
 }
-
-Future _generateFakeItClassFile(List<String> locales) async {
-  final buffer = StringBuffer();
-
-  for (var locale in locales) {
-    buffer.writeln(
-        'import \'package:fake_it/src/locales/$locale/$locale.dart\';');
-  }
-
-  // write class FakeIt
-  buffer.writeln('class $fakeItClassName {');
-  buffer.writeln('$fakeItClassName._();\n');
-
-  buffer.writeln('static late final defaultInstance = EnUsCollection();');
-  buffer.writeln('static late final localized = _Localized();');
-
-  buffer.writeln('}');
-
-  // write _Localized class
-  buffer.writeln('class _Localized {');
-  for (var locale in locales) {
-    buffer.writeln(
-      'late final $locale = ${createCollectionClassName(locale)}();',
-    );
-  }
-
-  buffer.writeln('}');
-
-  await writeFile(
-      path: 'lib/src/base/fake_it_class.dart', content: buffer.toString());
-}
-
-Future _generateLocaleFile(List<String> locales) async {
-  final localesContent = await render('templates/locale.mustache', values: {
-    'locales': locales.map(
-      (locale) {
-        final parts = locale.split('_');
-        return "static const $locale = FakeItLocale('${parts[0]}', '${(parts.length > 1 ? parts[1] : '')}');";
-      },
-    ),
-  });
-
-  await writeFile(path: 'lib/src/base/locale.dart', content: localesContent);
-}
-

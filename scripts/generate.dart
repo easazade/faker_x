@@ -1,5 +1,6 @@
 // ignore_for_file: unused_import, curly_braces_in_flow_control_structures
 
+import 'dart:developer';
 import 'dart:io';
 import 'dart:mirrors';
 
@@ -10,6 +11,7 @@ import 'package:recase/recase.dart';
 import 'create_locale.dart';
 import 'names.dart';
 import 'utils.dart';
+import 'lib_imports.dart';
 
 final _testArgs = <String>['xx_xx'];
 
@@ -21,6 +23,8 @@ Future main(List<String> arguments) async {
   checkLocale(locale);
 
   checkValidityOfDataKeys();
+
+  await createImports();
 
   final dataSourceInfoList = await readAvailableDataSourcesForLocale(locale);
 

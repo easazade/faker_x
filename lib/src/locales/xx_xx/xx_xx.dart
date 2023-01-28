@@ -1,8 +1,8 @@
 import 'package:fake_it/src/base/base.dart';
 import 'package:fake_it/src/locales/xx_xx/datasources/address.dart';
 import 'package:fake_it/src/locales/xx_xx/datasources/job.dart';
-import 'package:fake_it/src/locales/xx_xx/datasources/lorem.dart';
 import 'package:fake_it/src/locales/xx_xx/datasources/person.dart';
+import 'package:fake_it/src/locales/xx_xx/datasources/lorem.dart';
 
 class XxXxCollection extends FakeCollection {
   XxXxCollection()
@@ -26,13 +26,13 @@ class XxXxCollection extends FakeCollection {
             job_prefixes,
             job_titles,
             job_suffixes,
-            words,
-            sentences,
             first_names,
             last_names,
             first_names_female,
             full_names,
             first_names_male,
+            words,
+            sentences,
           ],
         );
 }

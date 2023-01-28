@@ -5,6 +5,7 @@ import 'dart:mirrors';
 import 'package:fake_it/fake_it.dart';
 import 'package:glob/glob.dart';
 import 'package:mustache_template/mustache_template.dart';
+import 'lib_imports.dart';
 
 /// reads and renders mustache template from the given [filePath] with provided [values]
 ///
@@ -188,6 +189,28 @@ void checkValidityOfDataKeys() {
       );
     }
   }
+}
+
+Future createImports() async {
+  final libImportsFile = File('scripts/lib_imports.dart');
+  if (!libImportsFile.existsSync()) {
+    await libImportsFile.create(recursive: true);
+  }
+
+  final libDir = Directory('lib');
+  final allFiles = libDir
+      .listSync(recursive: true)
+      .whereType<File>()
+      .where((file) => file.path.endsWith('.dart'));
+
+  final buffer = StringBuffer('// ignore_for_file: unused_import\n\n');
+
+  for (var file in allFiles) {
+    final uri = file.uri.toString().replaceFirst('lib/', 'package:fake_it/');
+    buffer.writeln('import \'$uri\';');
+  }
+
+  await libImportsFile.writeAsString(buffer.toString());
 }
 
 class DataSourceInfo {

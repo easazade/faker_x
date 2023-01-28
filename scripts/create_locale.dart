@@ -1,7 +1,10 @@
+// ignore_for_file: unused_import
+
 import 'dart:io';
 
 import 'names.dart';
 import 'utils.dart';
+import 'lib_imports.dart';
 
 final _testArgs = <String>['xx_xx'];
 Future main(List<String> arguments) async {

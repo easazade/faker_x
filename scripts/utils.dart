@@ -7,6 +7,23 @@ import 'package:glob/glob.dart';
 import 'package:mustache_template/mustache_template.dart';
 import 'lib_imports.dart';
 
+/// only use for debug & testing purposes
+const _testArgs = <String>[
+  'xx_xx',
+];
+
+List<String> checkArgs(List<String> args) {
+  if (args.isEmpty && _testArgs.isNotEmpty) {
+    return _testArgs;
+  }
+
+  if (args.isEmpty) {
+    throw Exception('\n\nPlease pass locale as argument\nEG: en_us\n\n');
+  } else {
+    return args;
+  }
+}
+
 /// reads and renders mustache template from the given [filePath] with provided [values]
 ///
 /// if [templateName] is provided it will be used in error messages

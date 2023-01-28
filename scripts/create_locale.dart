@@ -8,9 +8,8 @@ import 'lib_imports.dart';
 
 import 'generate.dart' as generate;
 
-final _testArgs = <String>['xx_xx'];
 Future main(List<String> arguments) async {
-  final args = _checkArgs(arguments);
+  final args = checkArgs(arguments);
 
   final locale = args[0].toLowerCase();
 
@@ -94,14 +93,3 @@ Future _generateLocaleFile(List<String> locales) async {
   await writeFile(path: 'lib/src/base/locale.dart', content: localesContent);
 }
 
-List<String> _checkArgs(List<String> args) {
-  if (args.isEmpty && _testArgs.isNotEmpty) {
-    return _testArgs;
-  }
-
-  if (args.isEmpty) {
-    throw Exception('\n\nPlease pass locale as argument\nEG: en_us\n\n');
-  } else {
-    return args;
-  }
-}

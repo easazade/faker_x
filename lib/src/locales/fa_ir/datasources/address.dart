@@ -1349,6 +1349,13 @@ const building_name = DataSource(
   values: [],
 );
 
+const building_number = DataSource(
+  dataKey: DataKeys.building_number,
+  locale: Locales.fa_ir,
+  formats: [Format('##'), Format('###')],
+  values: [],
+);
+
 const address = DataSource(
   dataKey: DataKeys.address,
   locale: Locales.fa_ir,

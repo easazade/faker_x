@@ -1,33 +1,64 @@
 import 'package:fake_it/src/base/base.dart';
-import 'package:fake_it/src/locales/fa_ir/datasources/address.dart';
-import 'package:fake_it/src/locales/fa_ir/datasources/job.dart';
-import 'package:fake_it/src/locales/fa_ir/datasources/person.dart';
-import 'package:fake_it/src/locales/fa_ir/datasources/lorem.dart';
+
+import 'package:fake_it/src/locales/fa_ir/datasources/address.dart' as address1;
+import 'package:fake_it/src/locales/fa_ir/datasources/job.dart' as job1;
+import 'package:fake_it/src/locales/fa_ir/datasources/person.dart' as person1;
+import 'package:fake_it/src/locales/fa_ir/datasources/lorem.dart' as lorem1;
 
 class FaIrCollection extends FakeCollection {
+  final FakeItLocale locale;
+
   FaIrCollection()
-      : super(
+      : locale = Locales.fa_ir,
+        super(
           locale: Locales.fa_ir,
           dataSources: [
-            building_name,
-            street_suffix,
-            state,
-            address,
-            city_name,
-            postcode,
-            street_name,
-            alley,
-            street_prefix,
-            job_suffix,
-            job_title,
-            job_prefix,
-            first_name_male,
-            full_name,
-            first_name_female,
-            last_name,
-            first_name,
-            sentence,
-            word,
+            address1.building_name,
+            address1.street_suffix,
+            address1.state,
+            address1.address,
+            address1.city_name,
+            address1.postcode,
+            address1.building_number,
+            address1.street_name,
+            address1.alley,
+            address1.street_prefix,
+            job1.job_suffix,
+            job1.job_title,
+            job1.job_prefix,
+            person1.first_name_male,
+            person1.full_name,
+            person1.first_name_female,
+            person1.last_name,
+            person1.first_name,
+            lorem1.sentence,
+            lorem1.word,
           ],
         );
+
+  @override
+  FaIrAddress get address => FaIrAddress(locale);
+
+  @override
+  FaIrPerson get person => FaIrPerson(locale);
+}
+
+class FaIrAddress extends Address {
+  final FakeItLocale locale;
+
+  FaIrAddress(this.locale) : super(locale);
+
+  String get building_name => provide(DataKeys.building_name, locale);
+  String get street_suffix => provide(DataKeys.street_suffix, locale);
+  String get alley => provide(DataKeys.alley, locale);
+  String get street_prefix => provide(DataKeys.street_prefix, locale);
+}
+
+class FaIrPerson extends Person {
+  final FakeItLocale locale;
+
+  FaIrPerson(this.locale) : super(locale);
+
+  String get first_name_male => provide(DataKeys.first_name_male, locale);
+  String get first_name_female => provide(DataKeys.first_name_female, locale);
 }

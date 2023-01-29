@@ -5,6 +5,7 @@ import 'dart:mirrors';
 import 'package:fake_it/fake_it.dart';
 import 'package:glob/glob.dart';
 import 'package:mustache_template/mustache_template.dart';
+import 'package:recase/recase.dart';
 import 'lib_imports.dart';
 import 'names.dart';
 
@@ -108,7 +109,7 @@ Future<Map<String, List<String>>> getRequiredDataSources() async {
       if (requiredResources[resourceName] == null) {
         requiredResources[resourceName] = [];
       }
-      requiredResources[resourceName]!.add(getterName);
+      requiredResources[resourceName]!.add(ReCase(getterName).snakeCase);
     }
   }
 
@@ -172,10 +173,6 @@ Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
       }
     }
   }
-
-  print(definedDataSources);
-  print(dataSourceFilesUri);
-  print(dataSourceInfoList);
 
   return dataSourceInfoList;
 }
@@ -273,6 +270,29 @@ Future generateFakeItClassFile(List<String> locales) async {
 
   await writeFile(
       path: 'lib/src/base/fake_it_class.dart', content: buffer.toString());
+}
+
+extension IterableExtensions<T> on Iterable<Iterable<T>> {
+  /// Reduces an Iterable<Iterable<T>> to a List<T> with all the items intact.
+  ///
+  /// This method can be used to avoid calling nested for loops
+  List<T> get reduceToList => fold<List<T>>(<T>[], (list, iterable) {
+        for (var item in iterable) {
+          list.add(item);
+        }
+        return list;
+      });
+}
+
+extension IterableExt<T> on Iterable<T> {
+  bool containsAll(Iterable<T> otherList) {
+    for (var item in otherList) {
+      if (!contains(item)) {
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
 class DataSourceInfo {

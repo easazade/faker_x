@@ -10,7 +10,7 @@ void main() {
     test('Preview words', () {
       for (var i = 0; i < 100; i++) {
         // print(FakeIt.localized.en_us.lorem.word);
-        print(FakeIt.localized.en_us.lorem.sentence);
+        // print(FakeIt.localized.en_us.lorem.sentence);
         // print(FakeIt.localized.en_us.job.jobTitle);
 
         // print(FakeIt.localized.fa_ir.lorem.word);

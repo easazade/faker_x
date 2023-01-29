@@ -1,5 +1,5 @@
-import 'package:fake_it/src/locales/en_us/en_us.dart';
 import 'package:fake_it/src/locales/fa_ir/fa_ir.dart';
+import 'package:fake_it/src/locales/en_us/en_us.dart';
 
 class FakeIt {
   FakeIt._();
@@ -10,4 +10,5 @@ class FakeIt {
 
 class _Localized {
   late final fa_ir = FaIrCollection();
+  late final en_us = EnUsCollection();
 }

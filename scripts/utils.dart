@@ -39,6 +39,7 @@ Future<String> render(
     sampleFileContent,
     name: templateName ?? filePath,
     lenient: true,
+    htmlEscapeValues: false,
   );
 
   final output = template.renderString(values);
@@ -143,14 +144,9 @@ Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
       .where((mirror) => dataSourceGlobe.matches(mirror.uri.toString()))
       .toList();
 
-  final definedDataSources = <String>[];
-  final dataSourceFilesUri = <String>[];
-
   final dataSourceInfoList = <DataSourceInfo>[];
 
   for (var mirror in mirrors) {
-    dataSourceFilesUri.add(mirror.uri.toString());
-
     for (var varMirrorOnDataSource in mirror.declarations.values
         .whereType<VariableMirror>()
         .where((element) => element.isTopLevel)) {
@@ -161,7 +157,6 @@ Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
         checkDataKeyValidity(dataSource.dataKey);
 
         final varName = MirrorSystem.getName(varMirrorOnDataSource.simpleName);
-        definedDataSources.add(varName);
 
         dataSourceInfoList.add(
           DataSourceInfo(

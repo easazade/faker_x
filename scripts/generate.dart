@@ -117,7 +117,7 @@ Future _createFakeCollectionClass({
         for (var dataSourceName in availableList) {
           if (!requiredList.contains(dataSourceName))
             classBuffer.writeln(
-                'String get $dataSourceName => provide(DataKeys.$dataSourceName,locale);');
+                'String get ${ReCase(dataSourceName).camelCase} => provide(DataKeys.$dataSourceName,locale);');
         }
 
         classBuffer.writeln('}\n');
@@ -133,6 +133,5 @@ Future _createFakeCollectionClass({
     buffer.writeln(cls);
   }
 
-  final file = await File(savePath).create(recursive: true);
-  await file.writeAsString(buffer.toString());
+  await writeFile(content: buffer.toString(), path: savePath);
 }

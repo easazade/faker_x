@@ -8,7 +8,6 @@ import 'lib_imports.dart';
 
 Future main(List<String> arguments) async {
   var locales = await getAvaialableLocalesInProject();
-  locales = locales.toSet().toList();
 
   // generate lib/src/base/locale.dart file
   await generateLocaleFile(locales);

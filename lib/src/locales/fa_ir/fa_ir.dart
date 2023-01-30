@@ -48,10 +48,10 @@ class FaIrAddress extends Address {
 
   FaIrAddress(this.locale) : super(locale);
 
-  String get building_name => provide(DataKeys.building_name, locale);
-  String get street_suffix => provide(DataKeys.street_suffix, locale);
+  String get buildingName => provide(DataKeys.building_name, locale);
+  String get streetSuffix => provide(DataKeys.street_suffix, locale);
   String get alley => provide(DataKeys.alley, locale);
-  String get street_prefix => provide(DataKeys.street_prefix, locale);
+  String get streetPrefix => provide(DataKeys.street_prefix, locale);
 }
 
 class FaIrPerson extends Person {
@@ -59,6 +59,6 @@ class FaIrPerson extends Person {
 
   FaIrPerson(this.locale) : super(locale);
 
-  String get first_name_male => provide(DataKeys.first_name_male, locale);
-  String get first_name_female => provide(DataKeys.first_name_female, locale);
+  String get firstNameMale => provide(DataKeys.first_name_male, locale);
+  String get firstNameFemale => provide(DataKeys.first_name_female, locale);
 }

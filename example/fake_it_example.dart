@@ -4,7 +4,7 @@ void main() {
   print(FakeIt.defaultInstance.address.address);
 
   print(FakeIt.defaultInstance.person.fullName);
-  print(FakeIt.defaultInstance.person.first_name_female);
+  print(FakeIt.defaultInstance.person.firstNameFemale);
 
   print(FakeIt.localized.en_us.lorem.sentence);
   print(FakeIt.localized.en_us.person.firstName);

@@ -21,7 +21,7 @@ Future main(List<String> arguments) async {
       final resourceName = entry.key;
       final dsInfoList = entry.value;
       final resourceTestCode = dsInfoList.map((dsInfo) =>
-          'print(FakeIt.localized.$locale.$resourceName.${ReCase(dsInfo.varName).camelCase});');
+          '$assertFunctionName(FakeIt.localized.$locale.$resourceName.${ReCase(dsInfo.varName).camelCase});');
 
       final testCode = StringBuffer();
       testCode.write('for(var i=0; i<100; i++) {');
@@ -46,24 +46,4 @@ Future main(List<String> arguments) async {
 
     await writeFile(content: content, path: 'test/${locale}_test.dart');
   }
-}
-
-ClassMirror _getMirrorOnLocalizedCollectionClass(String locale) {
-  final glob = Glob('package:fake_it/src/locales/$locale/$locale.dart');
-
-  final mirror = currentMirrorSystem()
-      .libraries
-      .values
-      .where((mirror) => glob.matches(mirror.uri.toString()))
-      .toList()
-      .first;
-
-  return mirror.declarations.values
-      .whereType<ClassMirror>()
-      .where(
-        (element) =>
-            element.reflectedType.toString() ==
-            createCollectionClassName(locale),
-      )
-      .first;
 }

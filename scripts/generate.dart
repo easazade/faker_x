@@ -77,7 +77,13 @@ Future _createFakeCollectionClass({
     final resourceName = entry.key;
     final requiredList = entry.value;
 
-    final availableListDetails = dataSources[resourceName]!.toList();
+    final availableListDetails = dataSources[resourceName]?.toList();
+    if (availableListDetails == null) {
+      throw Exception(
+        'Cannot find datasource file in lib/locales/$locale/datasources/$resourceName.dart\n'
+        'Please make sure the file exists and has variables of type DataSource in it',
+      );
+    }
 
     for (var dsInfo in availableListDetails) {
       if (dsInfo.dataSource.formats.isEmpty &&

@@ -77,9 +77,20 @@ Future _createFakeCollectionClass({
     final resourceName = entry.key;
     final requiredList = entry.value;
 
+    final availableListDetails = dataSources[resourceName]!.toList();
+
+    for (var dsInfo in availableListDetails) {
+      if (dsInfo.dataSource.formats.isEmpty &&
+          dsInfo.dataSource.values.isEmpty) {
+        throw Exception(
+          'DataSource ${dsInfo.varName} defined in locales/$locale/datasources/${dsInfo.resourceName}.dart '
+          'has neither any item in its values or formats. Please provide either values or formats or both',
+        );
+      }
+    }
+
     final availableList =
         dataSources[resourceName]?.map((e) => e.varName).toList();
-    final availableListDetails = dataSources[resourceName]?.toList();
 
     if (availableList != null) {
       if (!availableList.containsAll(requiredList)) {

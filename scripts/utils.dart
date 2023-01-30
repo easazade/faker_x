@@ -304,7 +304,8 @@ class DataSourceInfo {
     if (varName != dataSource.dataKey) {
       throw Exception(
         'when defining DataSource variables, name of the variable should be the same as its dataKey value '
-        'But dataKey value ${dataSource.dataKey} & variable name $varName are not equal\n',
+        'But variable with name $varName has dataKey with value ${dataSource.dataKey}\n'
+        'check file $fileUri\n',
       );
     }
   }

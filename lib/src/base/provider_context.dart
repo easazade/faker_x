@@ -19,4 +19,9 @@ class ProviderContext {
     }
     return false;
   }
+
+  @override
+  String toString() => '{ dataKey:$dataKey'
+      ', locale:$locale'
+      ', \npreviousContext:$previousContext }';
 }

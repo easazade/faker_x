@@ -20,22 +20,35 @@ String provide(
     throw Exception('There are no $dataKey values available for $locale');
   }
 
-  String value = dataSource.values.randomItem;
+  String? value = dataSource.values.randomItem;
 
   final useFormats = !context.hasDuplicateKeyWithPreviousContexts;
 
   if (dataSource.formats.isNotEmpty && useFormats) {
     final format = dataSource.formats.randomItem;
-    final keys = format.keys;
-    final values = keys.map((e) {
-      final newContext =
-          ProviderContext(dataKey: e, locale: locale, previousContext: context);
-      return provide(e, locale, context: newContext);
-    }).toList();
-    final parsedValue = format.parse(values);
-    value = coinToss(value, parsedValue);
+    if (format != null) {
+      final keys = format.keys;
+      final providedValues = keys.map((e) {
+        final newContext = ProviderContext(
+            dataKey: e, locale: locale, previousContext: context);
+        return provide(e, locale, context: newContext);
+      }).toList();
+      final parsedValue = format.parse(providedValues);
+
+      if (value != null) {
+        value = coinToss(value, parsedValue);
+      } else {
+        value = parsedValue;
+      }
+    }
   }
 
+  if (value == null) {
+    throw Exception(
+      'could not provide a value for dataKey:$dataKey, locale:$locale, context:$context\n'
+      'please check the corresponding datasources and make sure all of them has either values or formats',
+    );
+  }
   return value;
 }
 

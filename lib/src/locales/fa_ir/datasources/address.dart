@@ -1259,7 +1259,7 @@ const street_name = DataSource(
       chance: 20,
     ),
     Format(
-      '{{${DataKeys.last_name}}} {{${DataKeys.street_suffix}}}',
+      '{{${DataKeys.street_prefix}}} {{${DataKeys.last_name}}} {{${DataKeys.street_suffix}}}',
       chance: 4,
     ),
   ],
@@ -1343,8 +1343,8 @@ const building_name = DataSource(
   dataKey: DataKeys.building_name,
   locale: Locales.fa_ir,
   formats: [
-    Format('{{${DataKeys.first_name}}}', chance: 20),
-    Format('{{${DataKeys.first_name}}} #', chance: 4),
+    Format('ساختمان {{${DataKeys.first_name}}}', chance: 20),
+    Format('ساختمان {{${DataKeys.first_name}}} #', chance: 4),
   ],
   values: [],
 );

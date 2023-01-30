@@ -21,7 +21,7 @@ Future main(List<String> arguments) async {
       final resourceName = entry.key;
       final dsInfoList = entry.value;
       final resourceTestCode = dsInfoList.map((dsInfo) =>
-          'FakeIt.localized.$locale.${ReCase(resourceName).camelCase}.${ReCase(dsInfo.varName).camelCase};');
+          'FakeIt.localized.$locale.$resourceName.${ReCase(dsInfo.varName).camelCase};');
 
       final testCode = StringBuffer();
       testCode.write('for(var i=0; i<100; i++) {');

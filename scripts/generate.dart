@@ -10,6 +10,7 @@ import 'package:glob/glob.dart';
 import 'package:recase/recase.dart';
 
 import 'create_locale.dart';
+import 'ext.dart';
 import 'names.dart';
 import 'utils.dart';
 import 'lib_imports.dart';
@@ -19,6 +20,8 @@ Future main(List<String> arguments) async {
 
   final locale = args[0];
 
+  final createEmpty = args.length > 1 ? args[1].parseBool() : false;
+
   checkLocale(locale);
 
   checkValidityOfDataKeys();
@@ -27,14 +30,12 @@ Future main(List<String> arguments) async {
 
   final localizedCollectionFilePath = 'lib/src/locales/$locale/$locale.dart';
 
-  final availableDataSources =
-      await readAvailableDataSourcesForLocaleMapped(locale);
-
   await _createFakeCollectionClass(
-    dataSources: availableDataSources,
+    dataSources: await readAvailableDataSourcesForLocaleMapped(locale),
     requiredDataSources: await getRequiredDataSources(),
     locale: locale,
     savePath: localizedCollectionFilePath,
+    createEmptyClass: createEmpty,
   );
 }
 
@@ -43,6 +44,7 @@ Future _createFakeCollectionClass({
   required Map<String, List<String>> requiredDataSources,
   required String locale,
   required String savePath,
+  required bool createEmptyClass,
 }) async {
   final buffer = StringBuffer();
 
@@ -76,66 +78,68 @@ Future _createFakeCollectionClass({
 
   buffer.writeln(',);\n'); // end of super
 
-  for (var entry in requiredDataSources.entries) {
-    final resourceName = entry.key;
-    final requiredList = entry.value;
+  if (!createEmptyClass)
+    for (var entry in requiredDataSources.entries) {
+      final resourceName = entry.key;
+      final requiredList = entry.value;
 
-    final availableListDetails = dataSources[resourceName];
-    if (availableListDetails == null) {
-      throw Exception(
-        'Cannot find datasource file neither in lib/locales/$locale/datasources/$resourceName.dart nor in '
-        'global datasources lib/locales/global/datasources/$resourceName.dart\n'
-        'Please make sure the file exists and has variables of type DataSource for $resourceName in it.',
-      );
-    }
-
-    for (var dsInfo in availableListDetails) {
-      if (dsInfo.dataSource.formats.isEmpty &&
-          dsInfo.dataSource.values.isEmpty) {
+      final availableListDetails = dataSources[resourceName];
+      if (availableListDetails == null) {
         throw Exception(
-          'DataSource ${dsInfo.varName} defined in locales/$locale/datasources/${dsInfo.resourceName}.dart '
-          'has neither any item in its values or formats. Please provide either values or formats or both',
-        );
-      }
-    }
-
-    final availableList =
-        dataSources[resourceName]?.map((e) => e.varName).toList();
-
-    if (availableList != null) {
-      if (!availableList.containsAll(requiredList)) {
-        throw Exception(
-          'Provided datasources for $resourceName is missing required a required DataSource\n'
-          'required list of DataSources for resource $resourceName is $requiredList But provided list of DataSources '
-          'is $availableList please make sure you have provided all the required datasources with the correct '
-          'variable name and key in locales/$locale/datasources/$resourceName.dart\n',
+          'Cannot find datasource file neither in lib/locales/$locale/datasources/$resourceName.dart nor in '
+          'global datasources lib/locales/global/datasources/$resourceName.dart\n'
+          'Please make sure the file exists and has variables of type DataSource for $resourceName in it.',
         );
       }
 
-      if (availableList.length > requiredList.length) {
-        final baseResClassName = ReCase(resourceName).pascalCase;
-        final resClassName = ReCase(locale).pascalCase + baseResClassName;
-        buffer.writeln('@override');
-        buffer.writeln(
-            '$resClassName get $resourceName => $resClassName(locale);\n');
+      for (var dsInfo in availableListDetails) {
+        if (dsInfo.dataSource.formats.isEmpty &&
+            dsInfo.dataSource.values.isEmpty) {
+          throw Exception(
+            'DataSource ${dsInfo.varName} defined in locales/$locale/datasources/${dsInfo.resourceName}.dart '
+            'has neither any item in its values or formats. Please provide either values or formats or both',
+          );
+        }
+      }
 
-        final classBuffer = StringBuffer();
-        classBuffer.writeln('class $resClassName extends $baseResClassName {');
-        classBuffer.writeln('final FakeItLocale locale;\n');
-        classBuffer.writeln('$resClassName(this.locale) : super(locale);\n');
+      final availableList =
+          dataSources[resourceName]?.map((e) => e.varName).toList();
 
-        for (var dataSourceName in availableList) {
-          if (!requiredList.contains(dataSourceName))
-            classBuffer.writeln(
-                'String get ${ReCase(dataSourceName).camelCase} => provide(DataKeys.$dataSourceName,locale);');
+      if (availableList != null) {
+        if (!availableList.containsAll(requiredList)) {
+          throw Exception(
+            'Provided datasources for $resourceName is missing required a required DataSource\n'
+            'required list of DataSources for resource $resourceName is $requiredList But provided list of DataSources '
+            'is $availableList please make sure you have provided all the required datasources with the correct '
+            'variable name and key in locales/$locale/datasources/$resourceName.dart\n',
+          );
         }
 
-        classBuffer.writeln('}\n');
+        if (availableList.length > requiredList.length) {
+          final baseResClassName = ReCase(resourceName).pascalCase;
+          final resClassName = ReCase(locale).pascalCase + baseResClassName;
+          buffer.writeln('@override');
+          buffer.writeln(
+              '$resClassName get $resourceName => $resClassName(locale);\n');
 
-        localizedClasses.add(classBuffer.toString());
+          final classBuffer = StringBuffer();
+          classBuffer
+              .writeln('class $resClassName extends $baseResClassName {');
+          classBuffer.writeln('final FakeItLocale locale;\n');
+          classBuffer.writeln('$resClassName(this.locale) : super(locale);\n');
+
+          for (var dataSourceName in availableList) {
+            if (!requiredList.contains(dataSourceName))
+              classBuffer.writeln(
+                  'String get ${ReCase(dataSourceName).camelCase} => provide(DataKeys.$dataSourceName,locale);');
+          }
+
+          classBuffer.writeln('}\n');
+
+          localizedClasses.add(classBuffer.toString());
+        }
       }
     }
-  }
 
   buffer.writeln('}'); // end of class
 

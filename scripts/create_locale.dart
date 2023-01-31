@@ -30,7 +30,7 @@ Future main(List<String> arguments) async {
   // create datasources from templates/datasources for given locale and copy to lib/src/locales/$locale/datasources/
   await _createDataSources(locale);
 
-  await generate.main([locale]);
+  await generate.main([locale, 'true']);
 }
 
 Future _createDataSources(String locale) async {

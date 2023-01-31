@@ -28,5 +28,11 @@ jobs:
       - name: Analyze project source
         run: dart analyze
 
+      - name: Analyze project source
+        run: 
+          - dart script/regenerate_base_classes.dart
+          - dart script/generate_all.dart
+          - dart script/create_tests.dart
+
       - name: Run tests
         run: dart test

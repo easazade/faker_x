@@ -10,7 +10,8 @@ class FakeCollection {
   })  : lorem = Lorem(locale),
         job = Job(locale),
         person = Person(locale),
-        address = Address(locale) {
+        address = Address(locale),
+        image = Image(locale) {
     for (var dataSource in dataSources) {
       registerDataSource(dataSource);
     }
@@ -20,6 +21,7 @@ class FakeCollection {
   final Job job;
   final Person person;
   final Address address;
+  final Image image;
 
   final Extra extra = EmptyExtra();
 }

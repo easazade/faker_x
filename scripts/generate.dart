@@ -27,8 +27,11 @@ Future main(List<String> arguments) async {
 
   final localizedCollectionFilePath = 'lib/src/locales/$locale/$locale.dart';
 
+  final availableDataSources =
+      await readAvailableDataSourcesForLocaleMapped(locale);
+
   await _createFakeCollectionClass(
-    dataSources: await readAvailableDataSourcesForLocaleMapped(locale),
+    dataSources: availableDataSources,
     requiredDataSources: await getRequiredDataSources(),
     locale: locale,
     savePath: localizedCollectionFilePath,
@@ -77,11 +80,12 @@ Future _createFakeCollectionClass({
     final resourceName = entry.key;
     final requiredList = entry.value;
 
-    final availableListDetails = dataSources[resourceName]?.toList();
+    final availableListDetails = dataSources[resourceName];
     if (availableListDetails == null) {
       throw Exception(
-        'Cannot find datasource file in lib/locales/$locale/datasources/$resourceName.dart\n'
-        'Please make sure the file exists and has variables of type DataSource in it',
+        'Cannot find datasource file neither in lib/locales/$locale/datasources/$resourceName.dart nor in '
+        'global datasources lib/locales/global/datasources/$resourceName.dart\n'
+        'Please make sure the file exists and has variables of type DataSource for $resourceName in it.',
       );
     }
 

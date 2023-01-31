@@ -11,6 +11,7 @@ import 'package:fake_it/src/locales/en_us/datasources/job.dart';
 import 'package:fake_it/src/locales/en_us/datasources/person.dart';
 import 'package:fake_it/src/locales/en_us/datasources/lorem.dart';
 import 'package:fake_it/src/locales/en_us/en_us.dart';
+import 'package:fake_it/src/locales/global/datasources/image.dart';
 import 'package:fake_it/src/base/base.dart';
 import 'package:fake_it/src/base/provider.dart';
 import 'package:fake_it/src/base/format.dart';

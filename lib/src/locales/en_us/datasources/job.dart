@@ -71,7 +71,6 @@ const job_title = DataSource(
     Format('{{${DataKeys.job_title}}} {{${DataKeys.job_suffix}}}'),
   ],
   values: [
-    //TODO: these job titles should be changed.
     'Supervisor',
     'Associate',
     'Executive',

@@ -55,3 +55,11 @@ class Address {
 
   String get buildingNumber => provide(DataKeys.building_number, _locale);
 }
+
+class Image {
+  const Image(this._locale);
+
+  final FakeItLocale _locale;
+
+  String get image => provide(DataKeys.image, _locale);
+}

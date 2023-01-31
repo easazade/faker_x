@@ -4,6 +4,7 @@ import 'package:fake_it/src/locales/fa_ir/datasources/address.dart' as address1;
 import 'package:fake_it/src/locales/fa_ir/datasources/job.dart' as job1;
 import 'package:fake_it/src/locales/fa_ir/datasources/person.dart' as person1;
 import 'package:fake_it/src/locales/fa_ir/datasources/lorem.dart' as lorem1;
+import 'package:fake_it/src/locales/global/datasources/image.dart' as image1;
 
 class FaIrCollection extends FakeCollection {
   final FakeItLocale locale;
@@ -33,6 +34,7 @@ class FaIrCollection extends FakeCollection {
             person1.first_name,
             lorem1.sentence,
             lorem1.word,
+            image1.image,
           ],
         );
 

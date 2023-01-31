@@ -29,4 +29,6 @@ class DataKeys {
   static const building_name = 'building_name';
   static const secondary_address = 'secondary_address';
   static const alley = 'alley';
+
+  static const image = 'image';
 }

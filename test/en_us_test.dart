@@ -47,4 +47,10 @@ void main() {
       assertFakeValue(FakeIt.localized.en_us.lorem.word);
     }
   });
+
+  test("en_us image test", () async {
+    for (var i = 0; i < 100; i++) {
+      assertFakeValue(FakeIt.localized.en_us.image.image);
+    }
+  });
 }

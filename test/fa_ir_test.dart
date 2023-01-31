@@ -43,4 +43,10 @@ void main() {
       assertFakeValue(FakeIt.localized.fa_ir.lorem.word);
     }
   });
+
+  test("fa_ir image test", () async {
+    for (var i = 0; i < 100; i++) {
+      assertFakeValue(FakeIt.localized.fa_ir.image.image);
+    }
+  });
 }

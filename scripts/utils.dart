@@ -81,7 +81,7 @@ void checkLocale(String locale) {
 Future<List<String>> getAvaialableLocalesInProject() async {
   final dir = Directory('lib/src/locales/');
   final List<FileSystemEntity> entities = await dir.list().toList();
-  return entities.map((e) => e.path.split('/').last).toList();
+  return entities.map((e) => e.path.split('/').last).toList()..remove('global');
 }
 
 Future<Map<String, List<String>>> getRequiredDataSources() async {
@@ -119,9 +119,72 @@ Future<Map<String, List<String>>> getRequiredDataSources() async {
 
 Future<Map<String, List<DataSourceInfo>>>
     readAvailableDataSourcesForLocaleMapped(
+  String locale, {
+  bool includeGlobals = true,
+}) async {
+  final list = await readAvailableDataSourcesForLocale(locale);
+  Map<String, List<DataSourceInfo>> map = {};
+  for (var item in list) {
+    if (map[item.resourceName] == null) {
+      map[item.resourceName] = [];
+    }
+    map[item.resourceName]!.add(item);
+  }
+
+  // reading global datasouces and adding them if there is no localized datasource for that resource
+  final globalDataSources = await readGlobalDataSourcesMapped();
+
+  for (var resource in globalDataSources.keys) {
+    if (map[resource] == null) {
+      map[resource] = globalDataSources[resource]!;
+    }
+  }
+
+  return map;
+}
+
+Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
   String locale,
 ) async {
-  final list = await readAvailableDataSourcesForLocale(locale);
+  final dataSourceGlobe =
+      Glob('package:fake_it/src/locales/$locale/datasources/*.dart');
+
+  final mirrors = currentMirrorSystem()
+      .libraries
+      .values
+      .where((mirror) => dataSourceGlobe.matches(mirror.uri.toString()))
+      .toList();
+
+  final dataSourceInfoList = <DataSourceInfo>[];
+
+  for (var mirror in mirrors) {
+    for (var varMirrorOnDataSource in mirror.declarations.values
+        .whereType<VariableMirror>()
+        .where((element) => element.isTopLevel)) {
+      final instanceMirror = mirror.getField(varMirrorOnDataSource.simpleName);
+
+      if (instanceMirror.reflectee is DataSource) {
+        final dataSource = instanceMirror.reflectee as DataSource;
+        checkDataKeyValidity(dataSource.dataKey);
+
+        final varName = MirrorSystem.getName(varMirrorOnDataSource.simpleName);
+
+        dataSourceInfoList.add(
+          DataSourceInfo(
+            fileUri: mirror.uri.toString(),
+            varName: varName,
+            dataSource: dataSource,
+          ),
+        );
+      }
+    }
+  }
+
+  return dataSourceInfoList;
+}
+
+Future<Map<String, List<DataSourceInfo>>> readGlobalDataSourcesMapped() async {
+  final list = await readGlobalDataSources();
   Map<String, List<DataSourceInfo>> map = {};
   for (var item in list) {
     if (map[item.resourceName] == null) {
@@ -132,11 +195,9 @@ Future<Map<String, List<DataSourceInfo>>>
   return map;
 }
 
-Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
-  String locale,
-) async {
+Future<List<DataSourceInfo>> readGlobalDataSources() async {
   final dataSourceGlobe =
-      Glob('package:fake_it/src/locales/$locale/datasources/*.dart');
+      Glob('package:fake_it/src/locales/global/datasources/*.dart');
 
   final mirrors = currentMirrorSystem()
       .libraries

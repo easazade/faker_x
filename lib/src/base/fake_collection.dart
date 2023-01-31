@@ -13,7 +13,7 @@ class FakeCollection {
         address = Address(locale),
         image = Image(locale) {
     for (var dataSource in dataSources) {
-      registerDataSource(dataSource);
+      registerDataSource(dataSource.copyWith(locale: locale));
     }
   }
 

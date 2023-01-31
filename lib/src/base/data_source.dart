@@ -12,4 +12,18 @@ class DataSource {
   final FakeItLocale locale;
   final List<Format> formats;
   final List<String> values;
+
+  DataSource copyWith({
+    String? dataKey,
+    FakeItLocale? locale,
+    List<Format>? formats,
+    List<String>? values,
+  }) {
+    return DataSource(
+      dataKey: dataKey ?? this.dataKey,
+      locale: locale ?? this.locale,
+      values: values ?? this.values,
+      formats: formats ?? this.formats,
+    );
+  }
 }

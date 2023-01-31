@@ -136,7 +136,9 @@ Future<Map<String, List<DataSourceInfo>>>
 
   for (var resource in globalDataSources.keys) {
     if (map[resource] == null) {
-      map[resource] = globalDataSources[resource]!;
+      map[resource] = globalDataSources[resource]!
+          .map((e) => e.changeLocale(locale))
+          .toList();
     }
   }
 
@@ -373,6 +375,13 @@ class DataSourceInfo {
   String get fileName => fileUri.split('/').last;
 
   String get resourceName => fileName.split('.').first;
+
+  DataSourceInfo changeLocale(String locale) => DataSourceInfo(
+        fileUri: fileUri,
+        varName: varName,
+        dataSource:
+            dataSource.copyWith(locale: FakeItLocale.fromString(locale)),
+      );
 
   @override
   String toString() {

@@ -22,4 +22,9 @@ class FakeItLocale {
 
   @override
   String toString() => '${languageCode}_$countryCode';
+
+  static FakeItLocale fromString(String locale) {
+    final splits = locale.split('_');
+    return FakeItLocale(splits[0], splits.length > 1 ? splits[1] : '');
+  }
 }

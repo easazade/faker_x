@@ -26,13 +26,16 @@ String provide(
 
   if (dataSource.formats.isNotEmpty && useFormats) {
     final format = dataSource.formats.randomItem;
+
     if (format != null) {
       final keys = format.keys;
+
       final providedValues = keys.map((e) {
         final newContext = ProviderContext(
             dataKey: e, locale: locale, previousContext: context);
         return provide(e, locale, context: newContext);
       }).toList();
+
       final parsedValue = format.parse(providedValues);
 
       if (value != null) {

@@ -1,6 +1,6 @@
 // ignore_for_file: unused_import
 
-import 'utils.dart';
+import 'utils/utils.dart';
 import 'generate.dart' as generate;
 import 'lib_imports.dart';
 

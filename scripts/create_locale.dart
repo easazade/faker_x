@@ -4,8 +4,8 @@ import 'dart:io';
 
 import 'package:recase/recase.dart';
 
-import 'names.dart';
-import 'utils.dart';
+import 'utils/names.dart';
+import 'utils/utils.dart';
 import 'lib_imports.dart';
 
 import 'generate.dart' as generate;

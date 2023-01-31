@@ -6,7 +6,7 @@ import 'package:fake_it/fake_it.dart';
 import 'package:glob/glob.dart';
 import 'package:mustache_template/mustache_template.dart';
 import 'package:recase/recase.dart';
-import 'lib_imports.dart';
+import '../lib_imports.dart';
 import 'names.dart';
 
 /// only use for debug & testing purposes

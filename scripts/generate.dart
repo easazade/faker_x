@@ -10,9 +10,9 @@ import 'package:glob/glob.dart';
 import 'package:recase/recase.dart';
 
 import 'create_locale.dart';
-import 'ext.dart';
-import 'names.dart';
-import 'utils.dart';
+import 'utils/ext.dart';
+import 'utils/names.dart';
+import 'utils/utils.dart';
 import 'lib_imports.dart';
 
 Future main(List<String> arguments) async {

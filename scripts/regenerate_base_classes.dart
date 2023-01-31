@@ -2,8 +2,8 @@
 
 import 'dart:io';
 
-import 'names.dart';
-import 'utils.dart';
+import 'utils/names.dart';
+import 'utils/utils.dart';
 import 'lib_imports.dart';
 
 Future main(List<String> arguments) async {

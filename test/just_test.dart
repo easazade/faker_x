@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('description', () {
-    final image_custom = DataSource<ImageArgs>.withBuilder(
+    final image_custom = DataSource.withBuilder(
       dataKey: DataKeys.image_custom,
       locale: Locales.en_us,
       builder: (ImageArgs args) => 'genrated link',
@@ -16,3 +16,5 @@ void main() {
     print(image_custom.locale);
   });
 }
+
+

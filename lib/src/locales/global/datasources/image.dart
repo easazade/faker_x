@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:fake_it/src/base/base.dart';
 
-class ImageArgs extends BaseArgs {
+class ImageArgs {
   final int width;
   final int height;
   final List<String> keywords;
@@ -28,7 +28,7 @@ const image = DataSource(
   ],
 );
 
-final image_custom = DataSource<ImageArgs>.withBuilder(
+final image_custom = DataSource.withBuilder(
   dataKey: DataKeys.image_custom,
   locale: Locales.en_us,
   builder: (ImageArgs args) {

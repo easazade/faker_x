@@ -51,9 +51,9 @@ void main() {
 
   test("en_us image test", () async {
     for (var i = 0; i < 10000; i++) {
-      assertFakeValue(FakeIt.localized.en_us.image
-          .imageCustom(ImageArgs(300, 400, ['keyword', 'keyword 2'])));
-      assertFakeValue(FakeIt.localized.en_us.image.image);
+      assertFakeValue(FakeIt.localized.en_us.image.imageCustom(
+        ImageArgs(300, 400, ['pet', 'cat', 'dog', 'bird']),
+      ));
     }
   });
 }

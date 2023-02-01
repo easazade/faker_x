@@ -1,7 +1,6 @@
 import 'package:fake_it/src/base/base.dart';
 
-
-class DataSource<T extends BaseArgs> {
+class DataSource {
   const DataSource._({
     required this.dataKey,
     required this.locale,
@@ -20,7 +19,7 @@ class DataSource<T extends BaseArgs> {
   factory DataSource.withBuilder({
     required String dataKey,
     required FakeItLocale locale,
-    required dynamic builder,
+    required Function builder,
   }) =>
       DataSource._(
         dataKey: dataKey,
@@ -34,16 +33,16 @@ class DataSource<T extends BaseArgs> {
   final FakeItLocale locale;
   final List<Format> formats;
   final List<String> values;
-  final String Function(T args)? builder;
+  final Function? builder;
 
   DataSource copyWith({
     String? dataKey,
     FakeItLocale? locale,
     List<Format>? formats,
     List<String>? values,
-    String Function(T args)? builder,
+    Function? builder,
   }) {
-    return DataSource<T>._(
+    return DataSource._(
       dataKey: dataKey ?? this.dataKey,
       locale: locale ?? this.locale,
       values: values ?? this.values,
@@ -52,7 +51,7 @@ class DataSource<T extends BaseArgs> {
     );
   }
 
-  String build(T? args) {
+  String build(dynamic args) {
     if (args == null) {
       throw Exception(
         'null args were passed to DataSource with DataKey = $dataKey',
@@ -67,5 +66,3 @@ class DataSource<T extends BaseArgs> {
     return builder!(args);
   }
 }
-
-abstract class BaseArgs {}

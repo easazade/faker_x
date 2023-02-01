@@ -7,7 +7,7 @@ String provide(
   String dataKey,
   FakeItLocale locale, {
   ProviderContext? context,
-  BaseArgs? args,
+  dynamic args,
 }) {
   context ??= ProviderContext(dataKey: dataKey, locale: locale);
 
@@ -62,17 +62,17 @@ String provide(
   }
 }
 
-void registerDataSource(DataSource<BaseArgs> dataSource) {
+void registerDataSource(DataSource dataSource) {
   // retriving the dataSources registered for the given locale
-  Map<String, DataSource<BaseArgs>>? dataSources =
+  Map<String, DataSource>? dataSources =
       _localizedProvidersMap[dataSource.locale];
 
   if (dataSources == null) {
-    _localizedProvidersMap[dataSource.locale] = <String, DataSource<BaseArgs>>{};
+    _localizedProvidersMap[dataSource.locale] = <String, DataSource>{};
     dataSources = _localizedProvidersMap[dataSource.locale];
   }
 
   dataSources![dataSource.dataKey] = dataSource;
 }
 
-final Map<FakeItLocale, Map<String, DataSource<BaseArgs>>> _localizedProvidersMap = {};
+final Map<FakeItLocale, Map<String, DataSource>> _localizedProvidersMap = {};

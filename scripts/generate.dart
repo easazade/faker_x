@@ -83,8 +83,8 @@ Future _createFakeCollectionClass({
       final resourceName = entry.key;
       final requiredList = entry.value;
 
-      final availableListDetails = dataSources[resourceName];
-      if (availableListDetails == null) {
+      final availableDsInfosOnResource = dataSources[resourceName];
+      if (availableDsInfosOnResource == null) {
         throw Exception(
           'Cannot find datasource file neither in lib/locales/$locale/datasources/$resourceName.dart nor in '
           'global datasources lib/locales/global/datasources/$resourceName.dart\n'
@@ -92,30 +92,37 @@ Future _createFakeCollectionClass({
         );
       }
 
-      for (var dsInfo in availableListDetails) {
-        if (dsInfo.dataSource.formats.isEmpty &&
-            dsInfo.dataSource.values.isEmpty) {
+      for (var dsInfo in availableDsInfosOnResource) {
+        // final ds = dsInfo.dataSource;
+        // print(
+        // '${ds.values.length} - ${ds.dataKey} - ${ds.locale} - ${ds.builder}');
+
+        if ((dsInfo.dataSource.formats.isEmpty &&
+                dsInfo.dataSource.values.isEmpty) &&
+            !dsInfo.hasBuilder) {
           throw Exception(
             'DataSource ${dsInfo.varName} defined in locales/$locale/datasources/${dsInfo.resourceName}.dart '
-            'has neither any item in its values or formats. Please provide either values or formats or both',
+            'has not any item neither in its values nor formats. Please provide either values or formats or both '
+            'or alternatively provide a builder property to be used instead of values and formats properties to generate '
+            'fake values',
           );
         }
       }
 
-      final availableList =
+      final availableDsNamesForOnResource =
           dataSources[resourceName]?.map((e) => e.varName).toList();
 
-      if (availableList != null) {
-        if (!availableList.containsAll(requiredList)) {
+      if (availableDsNamesForOnResource != null) {
+        if (!availableDsNamesForOnResource.containsAll(requiredList)) {
           throw Exception(
             'Provided datasources for $resourceName is missing required a required DataSource\n'
             'required list of DataSources for resource $resourceName is $requiredList But provided list of DataSources '
-            'is $availableList please make sure you have provided all the required datasources with the correct '
+            'is $availableDsNamesForOnResource please make sure you have provided all the required datasources with the correct '
             'variable name and key in locales/$locale/datasources/$resourceName.dart\n',
           );
         }
 
-        if (availableList.length > requiredList.length) {
+        if (availableDsNamesForOnResource.length > requiredList.length) {
           final baseResClassName = ReCase(resourceName).pascalCase;
           final resClassName = ReCase(locale).pascalCase + baseResClassName;
           buffer.writeln('@override');
@@ -128,10 +135,16 @@ Future _createFakeCollectionClass({
           classBuffer.writeln('final FakeItLocale locale;\n');
           classBuffer.writeln('$resClassName(this.locale) : super(locale);\n');
 
-          for (var dataSourceName in availableList) {
-            if (!requiredList.contains(dataSourceName))
-              classBuffer.writeln(
-                  'String get ${ReCase(dataSourceName).camelCase} => provide(DataKeys.$dataSourceName,locale);');
+          for (var dsInfo in availableDsInfosOnResource) {
+            if (!requiredList.contains(dsInfo.varName)) {
+              if (!dsInfo.hasBuilder) {
+                classBuffer.writeln(
+                    'String get ${ReCase(dsInfo.varName).camelCase} => provide(DataKeys.${dsInfo.varName},locale);');
+              } else {
+                classBuffer.writeln(
+                    'String ${ReCase(dsInfo.varName).camelCase}(${resourceName}1.${dsInfo.builderArgsType} args) => provide(DataKeys.${dsInfo.varName}, locale, args: args);');
+              }
+            }
           }
 
           classBuffer.writeln('}\n');

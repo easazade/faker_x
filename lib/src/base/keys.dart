@@ -31,4 +31,5 @@ class DataKeys {
   static const alley = 'alley';
 
   static const image = 'image';
+  static const image_custom = 'image_custom';
 }

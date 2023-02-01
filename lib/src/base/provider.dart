@@ -62,17 +62,17 @@ String provide(
   }
 }
 
-void registerDataSource(DataSource dataSource) {
+void registerDataSource(DataSource<BaseArgs> dataSource) {
   // retriving the dataSources registered for the given locale
-  Map<String, DataSource>? dataSources =
+  Map<String, DataSource<BaseArgs>>? dataSources =
       _localizedProvidersMap[dataSource.locale];
 
   if (dataSources == null) {
-    _localizedProvidersMap[dataSource.locale] = <String, DataSource>{};
+    _localizedProvidersMap[dataSource.locale] = <String, DataSource<BaseArgs>>{};
     dataSources = _localizedProvidersMap[dataSource.locale];
   }
 
   dataSources![dataSource.dataKey] = dataSource;
 }
 
-final Map<FakeItLocale, Map<String, DataSource>> _localizedProvidersMap = {};
+final Map<FakeItLocale, Map<String, DataSource<BaseArgs>>> _localizedProvidersMap = {};

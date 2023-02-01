@@ -10,11 +10,30 @@ class ImageArgs extends BaseArgs {
   ImageArgs(this.width, this.height, this.keywords);
 }
 
-final image = DataSource<ImageArgs>.builder(
+const image = DataSource(
   dataKey: DataKeys.image,
   locale: Locales.en_us,
-  builder: (ImageArgs args) =>
-      _imageUrl(args.width, args.height, args.keywords),
+  formats: [],
+  values: [
+    'https://pexels.com/imageurl1.png',
+    'https://pexels.com/imageurl2.png',
+    'https://pexels.com/imageurl3.png',
+    'https://pexels.com/imageurl4.png',
+    'https://pexels.com/imageurl5.png',
+    'https://pexels.com/imageurl6.png',
+    'https://pexels.com/imageurl7.png',
+    'https://pexels.com/imageurl8.png',
+    'https://pexels.com/imageurl9.png',
+    'https://pexels.com/imageurl10.png',
+  ],
+);
+
+final image_custom = DataSource<ImageArgs>.withBuilder(
+  dataKey: DataKeys.image_custom,
+  locale: Locales.en_us,
+  builder: (ImageArgs args) {
+    return _imageUrl(args.width, args.height, args.keywords);
+  },
 );
 
 String _imageUrl(int width, int height, List<String> keywords) {

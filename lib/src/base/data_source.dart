@@ -1,5 +1,6 @@
 import 'package:fake_it/src/base/base.dart';
 
+
 class DataSource<T extends BaseArgs> {
   const DataSource._({
     required this.dataKey,
@@ -16,10 +17,10 @@ class DataSource<T extends BaseArgs> {
     List<Format> formats,
   }) = DataSource._;
 
-  factory DataSource.builder({
+  factory DataSource.withBuilder({
     required String dataKey,
     required FakeItLocale locale,
-    required String Function(T args) builder,
+    required dynamic builder,
   }) =>
       DataSource._(
         dataKey: dataKey,
@@ -40,12 +41,14 @@ class DataSource<T extends BaseArgs> {
     FakeItLocale? locale,
     List<Format>? formats,
     List<String>? values,
+    String Function(T args)? builder,
   }) {
-    return DataSource(
+    return DataSource<T>._(
       dataKey: dataKey ?? this.dataKey,
       locale: locale ?? this.locale,
       values: values ?? this.values,
       formats: formats ?? this.formats,
+      builder: builder ?? this.builder,
     );
   }
 

@@ -1,11 +1,12 @@
 import 'package:fake_it/fake_it.dart';
+import 'package:fake_it/src/locales/global/datasources/image.dart';
 import 'package:test/test.dart';
 
 import 'utils.dart';
 
 void main() {
   test("en_us address test", () async {
-    for (var i = 0; i < 1000; i++) {
+    for (var i = 0; i < 10000; i++) {
       assertFakeValue(FakeIt.localized.en_us.address.stateAbbr);
       assertFakeValue(FakeIt.localized.en_us.address.state);
       assertFakeValue(FakeIt.localized.en_us.address.address);
@@ -24,7 +25,7 @@ void main() {
   });
 
   test("en_us job test", () async {
-    for (var i = 0; i < 1000; i++) {
+    for (var i = 0; i < 10000; i++) {
       assertFakeValue(FakeIt.localized.en_us.job.jobSuffix);
       assertFakeValue(FakeIt.localized.en_us.job.jobTitle);
       assertFakeValue(FakeIt.localized.en_us.job.jobPrefix);
@@ -32,7 +33,7 @@ void main() {
   });
 
   test("en_us person test", () async {
-    for (var i = 0; i < 1000; i++) {
+    for (var i = 0; i < 10000; i++) {
       assertFakeValue(FakeIt.localized.en_us.person.firstNameMale);
       assertFakeValue(FakeIt.localized.en_us.person.fullName);
       assertFakeValue(FakeIt.localized.en_us.person.firstNameFemale);
@@ -42,14 +43,16 @@ void main() {
   });
 
   test("en_us lorem test", () async {
-    for (var i = 0; i < 1000; i++) {
+    for (var i = 0; i < 10000; i++) {
       assertFakeValue(FakeIt.localized.en_us.lorem.sentence);
       assertFakeValue(FakeIt.localized.en_us.lorem.word);
     }
   });
 
   test("en_us image test", () async {
-    for (var i = 0; i < 1000; i++) {
+    for (var i = 0; i < 10000; i++) {
+      assertFakeValue(FakeIt.localized.en_us.image
+          .imageCustom(ImageArgs(300, 400, ['keyword', 'keyword 2'])));
       assertFakeValue(FakeIt.localized.en_us.image.image);
     }
   });

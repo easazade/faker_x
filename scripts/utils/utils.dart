@@ -47,9 +47,21 @@ Future<String> render(
 }
 
 /// creates a file in the given [path] and writes given [content] to it.
-Future writeFile({required String content, required String path}) async {
-  final file = await File(path).create(recursive: true);
-  await file.writeAsString(content);
+///
+/// [overrideContent] set to true by default. if set to false file and file exists file
+/// will not be changed. meaning new [content] will not be written to file
+Future writeFile({
+  required String content,
+  required String path,
+  bool overrideContent = true,
+}) async {
+  final file = File(path);
+  if (!file.existsSync()) {
+    file.createSync(recursive: true);
+  }
+  if (overrideContent || file.readAsStringSync().isBlank) {
+    file.writeAsStringSync(content);
+  }
 }
 
 void checkDataKeyValidity(dataKey) {

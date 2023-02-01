@@ -3,6 +3,7 @@
 import 'dart:io';
 import 'dart:mirrors';
 
+import 'package:collection/collection.dart';
 import 'package:glob/glob.dart';
 import 'package:recase/recase.dart';
 
@@ -16,12 +17,29 @@ Future main(List<String> arguments) async {
   for (var locale in locales) {
     final map = await readAvailableDataSourcesForLocaleMapped(locale);
     final testCodes = <String>[];
+    final manualTests = <String, String>{};
 
     for (var entry in map.entries) {
       final resourceName = entry.key;
       final dsInfoList = entry.value;
-      final resourceTestCode = dsInfoList.map((dsInfo) =>
-          '$assertFunctionName(FakeIt.localized.$locale.$resourceName.${ReCase(dsInfo.varName).camelCase});');
+      var resourceTestCode = await Future.wait(dsInfoList.map((dsInfo) async {
+        final code =
+            '$assertFunctionName(FakeIt.localized.$locale.$resourceName.${ReCase(dsInfo.varName).camelCase});';
+        if (dsInfo.dataSource.builder == null) {
+          return code;
+        } else {
+          manualTests['test/manual/${locale}_${dsInfo.varName}_test.dart'] =
+              await render(
+            'templates/manual_test_file.mustache',
+            values: {
+              'name': '$locale ${dsInfo.varName} test',
+              'description':
+                  '//TODO: please write test manually to test ${dsInfo.varName}',
+            },
+          );
+          return null;
+        }
+      })).then((list) => list.whereNotNull());
 
       final testCode = StringBuffer();
 
@@ -46,5 +64,12 @@ Future main(List<String> arguments) async {
     );
 
     await writeFile(content: content, path: 'test/${locale}_test.dart');
+
+    for (var entry in manualTests.entries) {
+      final path = entry.key;
+      final content = entry.value;
+
+      await writeFile(content: content, path: path, overrideContent: false);
+    }
   }
 }

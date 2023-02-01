@@ -9,6 +9,7 @@ void main() {
       locale: Locales.en_us,
       builder: (ImageArgs args) => 'genrated link',
     );
+
     print(image_custom.builder!.call(ImageArgs(340, 440, ['awd'])));
     print(image_custom.formats);
     print(image_custom.values);

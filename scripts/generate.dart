@@ -83,6 +83,8 @@ Future _createFakeCollectionClass({
       final resourceName = entry.key;
       final requiredList = entry.value;
 
+      print('resourceName $resourceName');
+
       final availableDsInfosOnResource = dataSources[resourceName];
       if (availableDsInfosOnResource == null) {
         throw Exception(
@@ -109,20 +111,22 @@ Future _createFakeCollectionClass({
         }
       }
 
-      final availableDsNamesForOnResource =
+      final availableDsNamesOnResource =
           dataSources[resourceName]?.map((e) => e.varName).toList();
 
-      if (availableDsNamesForOnResource != null) {
-        if (!availableDsNamesForOnResource.containsAll(requiredList)) {
+      if (availableDsNamesOnResource != null) {
+        print(availableDsInfosOnResource.map((e) => e.resourceName));
+
+        if (!availableDsNamesOnResource.containsAll(requiredList)) {
           throw Exception(
             'Provided datasources for $resourceName is missing required a required DataSource\n'
             'required list of DataSources for resource $resourceName is $requiredList But provided list of DataSources '
-            'is $availableDsNamesForOnResource please make sure you have provided all the required datasources with the correct '
+            'is $availableDsNamesOnResource please make sure you have provided all the required datasources with the correct '
             'variable name and key in locales/$locale/datasources/$resourceName.dart\n',
           );
         }
 
-        if (availableDsNamesForOnResource.length > requiredList.length) {
+        if (availableDsNamesOnResource.length > requiredList.length) {
           final baseResClassName = ReCase(resourceName).pascalCase;
           final resClassName = ReCase(locale).pascalCase + baseResClassName;
           buffer.writeln('@override');

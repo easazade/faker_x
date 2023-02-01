@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:fake_it/src/base/base.dart';
 
 abstract class Extra {}
@@ -60,6 +62,4 @@ class Image {
   const Image(this._locale);
 
   final FakeItLocale _locale;
-
-  String get image => provide(DataKeys.image, _locale);
 }

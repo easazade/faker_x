@@ -34,16 +34,12 @@ class FaIrCollection extends FakeCollection {
             person1.first_name,
             lorem1.sentence,
             lorem1.word,
-            image1.image_custom,
             image1.image,
           ],
         );
 
   @override
   FaIrAddress get address => FaIrAddress(locale);
-
-  @override
-  FaIrImage get image => FaIrImage(locale);
 
   @override
   FaIrPerson get person => FaIrPerson(locale);
@@ -58,15 +54,6 @@ class FaIrAddress extends Address {
   String get streetSuffix => provide(DataKeys.street_suffix, locale);
   String get alley => provide(DataKeys.alley, locale);
   String get streetPrefix => provide(DataKeys.street_prefix, locale);
-}
-
-class FaIrImage extends Image {
-  final FakeItLocale locale;
-
-  FaIrImage(this.locale) : super(locale);
-
-  String imageCustom(image1.ImageArgs args) =>
-      provide(DataKeys.image_custom, locale, args: args);
 }
 
 class FaIrPerson extends Person {

@@ -38,16 +38,12 @@ class EnUsCollection extends FakeCollection {
             person1.first_name,
             lorem1.sentence,
             lorem1.word,
-            image1.image_custom,
             image1.image,
           ],
         );
 
   @override
   EnUsAddress get address => EnUsAddress(locale);
-
-  @override
-  EnUsImage get image => EnUsImage(locale);
 
   @override
   EnUsPerson get person => EnUsPerson(locale);
@@ -66,15 +62,6 @@ class EnUsAddress extends Address {
   String get postcodeFormat => provide(DataKeys.postcode_format, locale);
   String get cityPrefix => provide(DataKeys.city_prefix, locale);
   String get secondaryAddress => provide(DataKeys.secondary_address, locale);
-}
-
-class EnUsImage extends Image {
-  final FakeItLocale locale;
-
-  EnUsImage(this.locale) : super(locale);
-
-  String imageCustom(image1.ImageArgs args) =>
-      provide(DataKeys.image_custom, locale, args: args);
 }
 
 class EnUsPerson extends Person {

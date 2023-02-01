@@ -7,6 +7,7 @@ String provide(
   String dataKey,
   FakeItLocale locale, {
   ProviderContext? context,
+  BaseArgs? args,
 }) {
   context ??= ProviderContext(dataKey: dataKey, locale: locale);
 
@@ -20,40 +21,45 @@ String provide(
     throw Exception('There are no $dataKey values available for $locale');
   }
 
-  String? value = dataSource.values.randomItem;
+  if (dataSource.builder == null) {
+    String? value = dataSource.values.randomItem;
 
-  final useFormats = !context.hasDuplicateKeyWithPreviousContexts;
+    final useFormats = !context.hasDuplicateKeyWithPreviousContexts;
 
-  if (dataSource.formats.isNotEmpty && useFormats) {
-    final format = dataSource.formats.randomItem;
+    if (dataSource.formats.isNotEmpty && useFormats) {
+      final format = dataSource.formats.randomItem;
 
-    if (format != null) {
-      final keys = format.keys;
+      if (format != null) {
+        final keys = format.keys;
 
-      final providedValues = keys.map((e) {
-        final newContext = ProviderContext(
-            dataKey: e, locale: locale, previousContext: context);
-        return provide(e, locale, context: newContext);
-      }).toList();
+        final providedValues = keys.map((e) {
+          final newContext = ProviderContext(
+              dataKey: e, locale: locale, previousContext: context);
+          return provide(e, locale, context: newContext);
+        }).toList();
 
-      final parsedValue = format.parse(providedValues);
+        final parsedValue = format.parse(providedValues);
 
-      if (value != null) {
-        value = coinToss(value, parsedValue);
-      } else {
-        value = parsedValue;
+        if (value != null) {
+          value = coinToss(value, parsedValue);
+        } else {
+          value = parsedValue;
+        }
       }
     }
-  }
 
-  if (value == null) {
-    throw Exception(
-      'could not provide a value for dataKey:$dataKey, locale:$locale, context:$context\n'
-      'please check the corresponding datasources and make sure all of them has either values or formats',
-    );
-  }
+    if (value == null) {
+      throw Exception(
+        'could not provide a value for dataKey:$dataKey, locale:$locale, context:$context\n'
+        'please check the corresponding datasources and make sure all of them has either values or formats '
+        'or if a builder method is provided make sure it is generating a value',
+      );
+    }
 
-  return value;
+    return value;
+  } else {
+    return dataSource.build(args);
+  }
 }
 
 void registerDataSource(DataSource dataSource) {

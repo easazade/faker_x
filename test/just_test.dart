@@ -16,5 +16,3 @@ void main() {
     print(image_custom.locale);
   });
 }
-
-

@@ -175,7 +175,6 @@ Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
           DataSourceInfo(
             fileUri: mirror.uri.toString(),
             varName: varName,
-            hasBuilder: instanceMirror.getField(#builder).reflectee != null,
             builderArgsType: instanceMirror
                 .type.typeArguments.first.reflectedType
                 .toString(),
@@ -225,13 +224,12 @@ Future<List<DataSourceInfo>> readGlobalDataSources() async {
 
         final varName = MirrorSystem.getName(varMirrorOnDataSource.simpleName);
 
-        print('builder is ${instanceMirror.getField(#builder).reflectee}');
-        print(instanceMirror.type.typeArguments.first.reflectedType);
+        // print('builder is ${instanceMirror.getField(#builder).reflectee}');
+        // print(instanceMirror.type.typeArguments.first.reflectedType);
         dataSourceInfoList.add(
           DataSourceInfo(
             fileUri: mirror.uri.toString(),
             varName: varName,
-            hasBuilder: instanceMirror.getField(#builder).reflectee != null,
             builderArgsType: instanceMirror
                 .type.typeArguments.first.reflectedType
                 .toString(),
@@ -368,7 +366,6 @@ class DataSourceInfo {
     required this.fileUri,
     required this.varName,
     required this.builderArgsType,
-    required this.hasBuilder,
     required this.dataSource,
   }) {
     if (varName != dataSource.dataKey) {
@@ -383,7 +380,6 @@ class DataSourceInfo {
   final String fileUri;
   final String varName;
   final String builderArgsType;
-  final bool hasBuilder;
   final DataSource dataSource;
 
   String get fileName => fileUri.split('/').last;
@@ -394,7 +390,6 @@ class DataSourceInfo {
         fileUri: fileUri,
         varName: varName,
         builderArgsType: builderArgsType,
-        hasBuilder: hasBuilder,
         dataSource:
             dataSource.copyWith(locale: FakeItLocale.fromString(locale)),
       );

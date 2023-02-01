@@ -1,6 +1,6 @@
 import 'package:fake_it/src/base/base.dart';
 
-class DataSource {
+class DataSource<T> {
   const DataSource._({
     required this.dataKey,
     required this.locale,

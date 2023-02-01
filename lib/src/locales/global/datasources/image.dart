@@ -28,7 +28,7 @@ const image = DataSource(
   ],
 );
 
-final image_custom = DataSource.withBuilder(
+final image_custom = DataSource<ImageArgs>.withBuilder(
   dataKey: DataKeys.image_custom,
   locale: Locales.en_us,
   builder: (ImageArgs args) {

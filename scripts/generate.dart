@@ -99,7 +99,7 @@ Future _createFakeCollectionClass({
 
         if ((dsInfo.dataSource.formats.isEmpty &&
                 dsInfo.dataSource.values.isEmpty) &&
-            !dsInfo.hasBuilder) {
+            dsInfo.dataSource.builder == null) {
           throw Exception(
             'DataSource ${dsInfo.varName} defined in locales/$locale/datasources/${dsInfo.resourceName}.dart '
             'has not any item neither in its values nor formats. Please provide either values or formats or both '
@@ -137,7 +137,7 @@ Future _createFakeCollectionClass({
 
           for (var dsInfo in availableDsInfosOnResource) {
             if (!requiredList.contains(dsInfo.varName)) {
-              if (!dsInfo.hasBuilder) {
+              if (dsInfo.dataSource.builder == null) {
                 classBuffer.writeln(
                     'String get ${ReCase(dsInfo.varName).camelCase} => provide(DataKeys.${dsInfo.varName},locale);');
               } else {

@@ -24,7 +24,7 @@ Future main(List<String> arguments) async {
           '$assertFunctionName(FakeIt.localized.$locale.$resourceName.${ReCase(dsInfo.varName).camelCase});');
 
       final testCode = StringBuffer();
-      testCode.write('for(var i=0; i<100; i++) {');
+      testCode.write('for(var i=0; i<10000; i++) {');
       testCode.writeln(resourceTestCode.join('\n'));
       testCode.writeln('}');
 

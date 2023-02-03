@@ -35,6 +35,10 @@ Future main(List<String> arguments) async {
 
 Future _createDataSources(String locale) async {
   final requriedDataSources = await getRequiredDataSources();
+  final globalDataSources = await readGlobalDataSourcesMapped();
+  for (var entry in globalDataSources.entries) {
+    requriedDataSources.remove(entry.key);
+  }
 
   for (var resource in requriedDataSources.keys) {
     final buffer =

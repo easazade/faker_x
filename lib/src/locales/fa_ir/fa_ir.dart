@@ -43,6 +43,9 @@ class FaIrCollection extends FakeCollection {
 
   @override
   FaIrPerson get person => FaIrPerson(locale);
+
+  @override
+  FaIrImage get image => FaIrImage(locale);
 }
 
 class FaIrAddress extends Address {
@@ -63,4 +66,13 @@ class FaIrPerson extends Person {
 
   String get firstNameMale => provide(DataKeys.first_name_male, locale);
   String get firstNameFemale => provide(DataKeys.first_name_female, locale);
+}
+
+class FaIrImage extends Image {
+  final FakeItLocale locale;
+
+  FaIrImage(this.locale) : super(locale);
+
+  String image(image1.ImageArgs args) =>
+      provide(DataKeys.image, locale, args: args);
 }

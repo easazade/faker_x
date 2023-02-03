@@ -47,6 +47,9 @@ class EnUsCollection extends FakeCollection {
 
   @override
   EnUsPerson get person => EnUsPerson(locale);
+
+  @override
+  EnUsImage get image => EnUsImage(locale);
 }
 
 class EnUsAddress extends Address {
@@ -71,4 +74,13 @@ class EnUsPerson extends Person {
 
   String get firstNameMale => provide(DataKeys.first_name_male, locale);
   String get firstNameFemale => provide(DataKeys.first_name_female, locale);
+}
+
+class EnUsImage extends Image {
+  final FakeItLocale locale;
+
+  EnUsImage(this.locale) : super(locale);
+
+  String image(image1.ImageArgs args) =>
+      provide(DataKeys.image, locale, args: args);
 }

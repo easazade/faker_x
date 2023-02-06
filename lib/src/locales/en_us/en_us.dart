@@ -1,3 +1,5 @@
+// ignore_for_file: annotate_overrides
+
 import 'package:fake_it/src/base/base.dart';
 
 import 'package:fake_it/src/locales/en_us/datasources/address.dart' as address1;
@@ -42,13 +44,10 @@ class EnUsCollection extends FakeCollection {
           ],
         );
 
-  @override
   EnUsAddress get address => EnUsAddress(locale);
 
-  @override
   EnUsPerson get person => EnUsPerson(locale);
 
-  @override
   EnUsImage get image => EnUsImage(locale);
 }
 

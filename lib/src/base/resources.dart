@@ -2,10 +2,6 @@
 
 import 'package:fake_it/src/base/base.dart';
 
-abstract class Extra {}
-
-class EmptyExtra extends Extra {}
-
 class Job {
   Job(this._locale);
 
@@ -60,6 +56,12 @@ class Address {
 
 class Image {
   const Image(this._locale);
+
+  final FakeItLocale _locale;
+}
+
+class Extra {
+  Extra(this._locale);
 
   final FakeItLocale _locale;
 }

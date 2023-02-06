@@ -51,7 +51,10 @@ Future _createFakeCollectionClass({
   final localizedClasses = <String>[];
 
   // writing directives
-  buffer.writeln('import \'package:fake_it/src/base/base.dart\';\n');
+  buffer.writeln(
+    '// ignore_for_file: annotate_overrides\n\n'
+    'import \'package:fake_it/src/base/base.dart\';\n',
+  );
 
   for (var entry in dataSources.entries.map((e) => e)) {
     final uri = entry.value.first.fileUri;
@@ -134,9 +137,11 @@ Future _createFakeCollectionClass({
       if (availableDsNamesOnResource.length > requiredList.length) {
         final baseResClassName = ReCase(resourceName).pascalCase;
         final resClassName = ReCase(locale).pascalCase + baseResClassName;
-        buffer.writeln('@override');
+        print('${requiredDataSources.keys} ==== $resourceName');
+
         buffer.writeln(
-            '$resClassName get $resourceName => $resClassName(locale);\n');
+          '$resClassName get $resourceName => $resClassName(locale);\n',
+        );
 
         final classBuffer = StringBuffer();
         classBuffer.writeln('class $resClassName extends $baseResClassName {');

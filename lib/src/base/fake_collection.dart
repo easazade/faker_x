@@ -22,6 +22,4 @@ class FakeCollection {
   final Person person;
   final Address address;
   final Image image;
-
-  final Extra extra = EmptyExtra();
 }

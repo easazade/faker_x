@@ -32,4 +32,6 @@ class DataKeys {
 
   static const image = 'image';
   static const image_custom = 'image_custom';
+
+  static const meow = 'meow';
 }

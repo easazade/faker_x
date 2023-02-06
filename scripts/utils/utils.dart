@@ -289,7 +289,7 @@ Future createImports() async {
   if (!libImportsFile.existsSync()) {
     await libImportsFile.create(recursive: true);
   }
-  final oldContent = await libImportsFile.readAsString();
+  final oldLines = await libImportsFile.readAsLines();
 
   final libDir = Directory('lib');
   final allFiles = libDir
@@ -299,14 +299,22 @@ Future createImports() async {
 
   final buffer = StringBuffer('// ignore_for_file: unused_import\n\n');
 
+  final newLines = <String>[];
+
   for (var file in allFiles) {
     final uri = file.uri.toString().replaceFirst('lib/', 'package:fake_it/');
-    buffer.writeln('import \'$uri\';');
+    final importPhrase = 'import \'$uri\';';
+    newLines.add(importPhrase);
+    buffer.writeln(importPhrase);
   }
 
   await libImportsFile.writeAsString(buffer.toString());
 
-  if (oldContent != buffer.toString()) {
+  newLines.removeWhere((element) => element.isBlank);
+
+  if (!oldLines.containsAll(newLines)) {
+    printRed(oldLines);
+    printGreen(buffer.toString());
     printBlue('scripts/lib_imports.dart updated !!');
     printYellow('PLEASE Run command again');
     exit(-1);

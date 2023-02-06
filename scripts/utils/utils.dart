@@ -289,6 +289,7 @@ Future createImports() async {
   if (!libImportsFile.existsSync()) {
     await libImportsFile.create(recursive: true);
   }
+  final oldContent = await libImportsFile.readAsString();
 
   final libDir = Directory('lib');
   final allFiles = libDir
@@ -304,6 +305,12 @@ Future createImports() async {
   }
 
   await libImportsFile.writeAsString(buffer.toString());
+
+  if (oldContent != buffer.toString()) {
+    printBlue('scripts/lib_imports.dart updated !!');
+    printYellow('PLEASE Run command again');
+    exit(-1);
+  }
 }
 
 Future generateLocaleFile(List<String> locales) async {
@@ -410,4 +417,32 @@ class DataSourceInfo {
   String toString() {
     return 'DataSourceInfo( fileUri = $fileUri | varName = $varName | dataSource = \n$dataSource\n';
   }
+}
+
+printRed(text) {
+  print('\x1B[31m${text.toString()}\x1B[0m');
+}
+
+printGreen(text) {
+  print('\x1B[32m${text.toString()}\x1B[0m');
+}
+
+printYellow(text) {
+  print('\x1B[33m${text.toString()}\x1B[0m');
+}
+
+printBlue(text) {
+  print('\x1B[34m${text.toString()}\x1B[0m');
+}
+
+printMagenta(text) {
+  print('\x1B[35m${text.toString()}\x1B[0m');
+}
+
+printCyan(text) {
+  print('\x1B[36m${text.toString()}\x1B[0m');
+}
+
+printWhite(text) {
+  print('\x1B[37m${text.toString()}\x1B[0m');
 }

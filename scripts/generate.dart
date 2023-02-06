@@ -87,8 +87,6 @@ Future _createFakeCollectionClass({
       final resourceName = entry.key;
       final requiredList = entry.value;
 
-      print('resourceName $resourceName');
-
       final availableDsInfosOnResource = dataSources[resourceName];
       if (availableDsInfosOnResource == null) {
         throw Exception(
@@ -137,7 +135,6 @@ Future _createFakeCollectionClass({
       if (availableDsNamesOnResource.length > requiredList.length) {
         final baseResClassName = ReCase(resourceName).pascalCase;
         final resClassName = ReCase(locale).pascalCase + baseResClassName;
-        print('${requiredDataSources.keys} ==== $resourceName');
 
         buffer.writeln(
           '$resClassName get $resourceName => $resClassName(locale);\n',

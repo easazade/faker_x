@@ -56,10 +56,12 @@ Future _createFakeCollectionClass({
     'import \'package:fake_it/src/base/base.dart\';\n',
   );
 
-  for (var entry in dataSources.entries.map((e) => e)) {
-    final uri = entry.value.first.fileUri;
-    final ref = '${entry.key}1';
-    buffer.writeln('import \'$uri\' as $ref;');
+  final processedFileUris = <String>[];
+  for (var dsInfo in dataSources.values.flattened) {
+    if (!processedFileUris.contains(dsInfo.fileUri)) {
+      processedFileUris.add(dsInfo.fileUri);
+      buffer.writeln(dsInfo.importCodePhrase);
+    }
   }
 
   final className = createCollectionClassName(locale);
@@ -75,7 +77,7 @@ Future _createFakeCollectionClass({
 
   buffer.writeln('dataSources: [');
   for (var item in dataSources.values.reduceToList) {
-    buffer.writeln('${item.resourceName}1.${item.varName},');
+    buffer.writeln('${item.directiveRef}.${item.varName},');
   }
   buffer.writeln(']');
 
@@ -158,7 +160,7 @@ Future _createFakeCollectionClass({
                   'String get ${ReCase(dsInfo.varName).camelCase} => provide(DataKeys.${dsInfo.varName},locale);');
             } else {
               classBuffer.writeln(
-                  'String ${ReCase(dsInfo.varName).camelCase}(${resourceName}1.${dsInfo.builderArgsType} args) => provide(DataKeys.${dsInfo.varName}, locale, args: args);');
+                  'String ${ReCase(dsInfo.varName).camelCase}(${dsInfo.directiveRef}.${dsInfo.builderArgsType} args) => provide(DataKeys.${dsInfo.varName}, locale, args: args);');
             }
           }
         }

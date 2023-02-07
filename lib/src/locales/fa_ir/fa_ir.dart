@@ -2,16 +2,18 @@
 
 import 'package:fake_it/src/base/base.dart';
 
-import 'package:fake_it/src/locales/fa_ir/datasources/address.dart' as address1;
-import 'package:fake_it/src/locales/fa_ir/datasources/job.dart' as job1;
-import 'package:fake_it/src/locales/fa_ir/datasources/person.dart' as person1;
+import 'package:fake_it/src/locales/fa_ir/datasources/address.dart'
+    as address_664;
+import 'package:fake_it/src/locales/fa_ir/datasources/job.dart' as job_527;
+import 'package:fake_it/src/locales/fa_ir/datasources/person.dart' as person_87;
 import 'package:fake_it/src/locales/fa_ir/datasources/automotive.dart'
-    as automotive1;
-import 'package:fake_it/src/locales/global/datasources/color.dart' as color1;
-import 'package:fake_it/src/locales/fa_ir/datasources/color.dart' as color2;
-import 'package:fake_it/src/locales/fa_ir/datasources/lorem.dart' as lorem1;
-import 'package:fake_it/src/locales/fa_ir/datasources/vehicle.dart' as vehicle1;
-import 'package:fake_it/src/locales/global/datasources/image.dart' as image1;
+    as automotive_714;
+import 'package:fake_it/src/locales/global/datasources/color.dart' as color_525;
+import 'package:fake_it/src/locales/fa_ir/datasources/color.dart' as color_81;
+import 'package:fake_it/src/locales/fa_ir/datasources/lorem.dart' as lorem_857;
+import 'package:fake_it/src/locales/fa_ir/datasources/vehicle.dart'
+    as vehicle_894;
+import 'package:fake_it/src/locales/global/datasources/image.dart' as image_375;
 
 class FaIrCollection extends FakeCollection {
   final FakeItLocale locale;
@@ -21,31 +23,31 @@ class FaIrCollection extends FakeCollection {
         super(
           locale: Locales.fa_ir,
           dataSources: [
-            address1.building_name,
-            address1.street_suffix,
-            address1.state,
-            address1.address,
-            address1.city_name,
-            address1.postcode,
-            address1.building_number,
-            address1.street_name,
-            address1.alley,
-            address1.street_prefix,
-            job1.job_suffix,
-            job1.job_title,
-            job1.job_prefix,
-            person1.first_name_male,
-            person1.full_name,
-            person1.first_name_female,
-            person1.last_name,
-            person1.first_name,
-            automotive1.license_plate,
-            color1.color_hex,
-            color2.color_name,
-            lorem1.sentence,
-            lorem1.word,
-            vehicle1.car,
-            image1.image,
+            address_664.building_name,
+            address_664.street_suffix,
+            address_664.state,
+            address_664.address,
+            address_664.city_name,
+            address_664.postcode,
+            address_664.building_number,
+            address_664.street_name,
+            address_664.alley,
+            address_664.street_prefix,
+            job_527.job_suffix,
+            job_527.job_title,
+            job_527.job_prefix,
+            person_87.first_name_male,
+            person_87.full_name,
+            person_87.first_name_female,
+            person_87.last_name,
+            person_87.first_name,
+            automotive_714.license_plate,
+            color_525.color_hex,
+            color_81.color_name,
+            lorem_857.sentence,
+            lorem_857.word,
+            vehicle_894.car,
+            image_375.image,
           ],
         );
 
@@ -101,6 +103,6 @@ class FaIrImage extends Image {
 
   FaIrImage(this.locale) : super(locale);
 
-  String image(image1.ImageArgs args) =>
+  String image(image_375.ImageArgs args) =>
       provide(DataKeys.image, locale, args: args);
 }

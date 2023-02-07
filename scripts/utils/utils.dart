@@ -426,6 +426,10 @@ class DataSourceInfo {
 
   String get resourceName => fileName.split('.').first;
 
+  String get directiveRef => '${resourceName}_${fileUri.hashCode ~/ 1100000}';
+
+  String get importCodePhrase => 'import \'$fileUri\' as $directiveRef;';
+
   DataSourceInfo changeLocale(String locale) => DataSourceInfo(
         fileUri: fileUri,
         varName: varName,

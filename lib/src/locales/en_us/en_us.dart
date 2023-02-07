@@ -2,15 +2,19 @@
 
 import 'package:fake_it/src/base/base.dart';
 
-import 'package:fake_it/src/locales/en_us/datasources/address.dart' as address1;
-import 'package:fake_it/src/locales/en_us/datasources/job.dart' as job1;
-import 'package:fake_it/src/locales/en_us/datasources/person.dart' as person1;
+import 'package:fake_it/src/locales/en_us/datasources/address.dart'
+    as address_917;
+import 'package:fake_it/src/locales/en_us/datasources/job.dart' as job_319;
+import 'package:fake_it/src/locales/en_us/datasources/person.dart'
+    as person_833;
 import 'package:fake_it/src/locales/en_us/datasources/automotive.dart'
-    as automotive1;
-import 'package:fake_it/src/locales/en_us/datasources/color.dart' as color1;
-import 'package:fake_it/src/locales/en_us/datasources/lorem.dart' as lorem1;
-import 'package:fake_it/src/locales/en_us/datasources/vehicle.dart' as vehicle1;
-import 'package:fake_it/src/locales/global/datasources/image.dart' as image1;
+    as automotive_673;
+import 'package:fake_it/src/locales/global/datasources/color.dart' as color_525;
+import 'package:fake_it/src/locales/en_us/datasources/color.dart' as color_48;
+import 'package:fake_it/src/locales/en_us/datasources/lorem.dart' as lorem_77;
+import 'package:fake_it/src/locales/en_us/datasources/vehicle.dart'
+    as vehicle_719;
+import 'package:fake_it/src/locales/global/datasources/image.dart' as image_375;
 
 class EnUsCollection extends FakeCollection {
   final FakeItLocale locale;
@@ -20,35 +24,35 @@ class EnUsCollection extends FakeCollection {
         super(
           locale: Locales.en_us,
           dataSources: [
-            address1.state_abbr,
-            address1.state,
-            address1.address,
-            address1.city_name,
-            address1.neighborhood,
-            address1.building_number,
-            address1.city_suffix,
-            address1.street_suffix,
-            address1.street_address,
-            address1.postcode,
-            address1.street_name,
-            address1.postcode_format,
-            address1.city_prefix,
-            address1.secondary_address,
-            job1.job_suffix,
-            job1.job_title,
-            job1.job_prefix,
-            person1.first_name_male,
-            person1.full_name,
-            person1.first_name_female,
-            person1.last_name,
-            person1.first_name,
-            automotive1.license_plate,
-            color1.color_hex,
-            color1.color_name,
-            lorem1.sentence,
-            lorem1.word,
-            vehicle1.car,
-            image1.image,
+            address_917.state_abbr,
+            address_917.state,
+            address_917.address,
+            address_917.city_name,
+            address_917.neighborhood,
+            address_917.building_number,
+            address_917.city_suffix,
+            address_917.street_suffix,
+            address_917.street_address,
+            address_917.postcode,
+            address_917.street_name,
+            address_917.postcode_format,
+            address_917.city_prefix,
+            address_917.secondary_address,
+            job_319.job_suffix,
+            job_319.job_title,
+            job_319.job_prefix,
+            person_833.first_name_male,
+            person_833.full_name,
+            person_833.first_name_female,
+            person_833.last_name,
+            person_833.first_name,
+            automotive_673.license_plate,
+            color_525.color_hex,
+            color_48.color_name,
+            lorem_77.sentence,
+            lorem_77.word,
+            vehicle_719.car,
+            image_375.image,
           ],
         );
 
@@ -98,6 +102,6 @@ class EnUsImage extends Image {
 
   EnUsImage(this.locale) : super(locale);
 
-  String image(image1.ImageArgs args) =>
+  String image(image_375.ImageArgs args) =>
       provide(DataKeys.image, locale, args: args);
 }

@@ -21,4 +21,3 @@ extension ListExt<T> on Iterable<T> {
 extension StringExt on String {
   bool get isBlank => trim().isEmpty;
 }
-

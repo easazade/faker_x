@@ -16,12 +16,11 @@ List<String> checkArgs(List<String> args) {
   if (args.isEmpty && _testArgs.isNotEmpty) {
     return _testArgs;
   }
-
   if (args.isEmpty) {
-    throw Exception('\n\nPlease pass locale as argument\nEG: en_us\n\n');
-  } else {
-    return args;
+    exitWithMsg(error: 'Please pass locale as argument\nEG: en_us');
   }
+
+  return args;
 }
 
 /// reads and renders mustache template from the given [filePath] with provided [values]
@@ -64,9 +63,11 @@ Future writeFile({
 
 void checkDataKeyValidity(dataKey) {
   if (dataKey is! String) {
-    throw Exception('retreived dataKey is not of type String');
+    exitWithMsg(error: 'retreived dataKey is not of type String');
   }
-  if (dataKey.isBlank) throw Exception('data key cannot be an empty String');
+  if ((dataKey as String).isBlank) {
+    exitWithMsg(error: 'data key cannot be an empty String');
+  }
 }
 
 /// checks given [locale] to see whether it is in correct format or not
@@ -290,10 +291,11 @@ void checkValidityOfDataKeys() {
     final value =
         classMirrorOnDataKey.getField(varMirror.simpleName).reflectee as String;
     if (varName != value) {
-      throw Exception(
-        'Found a data key in ${libMirror.uri} with unequal value and variable name\n'
-        'eg: $varName != $value\n'
-        'Please Fix that first, then run the command again',
+      exitWithMsg(
+        error:
+            'Found a data key in ${libMirror.uri} with unequal value and variable name\n'
+            'eg: $varName != $value\n'
+            'Please Fix that first, then run the command again',
       );
     }
   }
@@ -409,10 +411,11 @@ class DataSourceInfo {
     required this.dataSource,
   }) {
     if (varName != dataSource.dataKey) {
-      throw Exception(
-        'when defining DataSource variables, name of the variable should be the same as its dataKey value '
-        'But variable with name $varName has dataKey with value ${dataSource.dataKey}\n'
-        'check file $fileUri\n',
+      exitWithMsg(
+        error:
+            'when defining DataSource variables, name of the variable should be the same as its dataKey value '
+            'But variable with name $varName has dataKey with value ${dataSource.dataKey}\n'
+            'check file $fileUri\n',
       );
     }
   }
@@ -470,4 +473,13 @@ printCyan(text) {
 
 printWhite(text) {
   print('\x1B[37m${text.toString()}\x1B[0m');
+}
+
+exitWithMsg({String? error, String? warning}) {
+  if (error != null) printRed('❌ $error');
+  if (warning != null) printYellow('📜! $warning');
+
+  print('\nSTACK TRACE WAS:');
+  printBlue(StackTrace.current);
+  exit(-1);
 }

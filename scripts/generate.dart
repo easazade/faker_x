@@ -91,22 +91,24 @@ Future _createFakeCollectionClass({
 
       final availableDsInfosOnResource = dataSources[resourceName];
       if (availableDsInfosOnResource == null) {
-        throw Exception(
-          'Cannot find datasource file neither in lib/locales/$locale/datasources/$resourceName.dart nor in '
-          'global datasources lib/locales/global/datasources/$resourceName.dart\n'
-          'Please make sure the file exists and has variables of type DataSource for $resourceName in it.',
+        exitWithMsg(
+          error:
+              'Cannot find datasource file neither in lib/locales/$locale/datasources/$resourceName.dart nor in '
+              'global datasources lib/locales/global/datasources/$resourceName.dart\n'
+              'Please make sure the file exists and has variables of type DataSource for required by resource "$resourceName" in it.',
         );
       }
 
-      for (var dsInfo in availableDsInfosOnResource) {
+      for (var dsInfo in availableDsInfosOnResource!) {
         if ((dsInfo.dataSource.formats.isEmpty &&
                 dsInfo.dataSource.values.isEmpty) &&
             dsInfo.dataSource.builder == null) {
-          throw Exception(
-            'DataSource ${dsInfo.varName} defined in locales/$locale/datasources/${dsInfo.resourceName}.dart '
-            'has not any item neither in its values nor formats. Please provide either values or formats or both '
-            'or alternatively provide a builder property to be used instead of values and formats properties to generate '
-            'fake values',
+          exitWithMsg(
+            error:
+                'DataSource ${dsInfo.varName} defined in locales/$locale/datasources/${dsInfo.resourceName}.dart '
+                'has not any item neither in its values nor formats. Please provide either values or formats or both '
+                'or alternatively provide a builder property to be used instead of values and formats properties to generate '
+                'fake values',
           );
         }
       }
@@ -115,11 +117,12 @@ Future _createFakeCollectionClass({
           dataSources[resourceName]?.map((e) => e.varName).toList();
 
       if (availableDsNamesOnResource?.containsAll(requiredList) == false) {
-        throw Exception(
-          'Provided datasources for $resourceName is missing required a required DataSource\n'
-          'required list of DataSources for resource $resourceName is $requiredList But provided list of DataSources '
-          'is $availableDsNamesOnResource please make sure you have provided all the required datasources with the correct '
-          'variable name and key in locales/$locale/datasources/$resourceName.dart\n',
+        exitWithMsg(
+          error:
+              'Provided datasources for $resourceName is missing required a required DataSource\n'
+              'required list of DataSources for resource $resourceName is $requiredList But provided list of DataSources '
+              'is $availableDsNamesOnResource please make sure you have provided all the required datasources with the correct '
+              'variable name and key in locales/$locale/datasources/$resourceName.dart',
         );
       }
     }

@@ -5,6 +5,7 @@ import 'package:fake_it/src/locales/fa_ir/datasources/address.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/job.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/person.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/automotive.dart';
+import 'package:fake_it/src/locales/fa_ir/datasources/color.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/lorem.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/vehicle.dart';
 import 'package:fake_it/src/locales/fa_ir/fa_ir.dart';

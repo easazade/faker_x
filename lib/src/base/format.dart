@@ -18,8 +18,10 @@ class Format {
   }
 
   String parse(List<String> values) {
-    final _format =
+    var _format =
         format.replaceAllMapped('#', (_) => randomOneDigitInt.toString());
+
+    _format = _format.replaceAllMapped('?', (match) => randomLetter);
 
     final regex = RegExp('{{(.*?)}}', caseSensitive: false);
     final keysWithBraces = regex

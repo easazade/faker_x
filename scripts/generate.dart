@@ -132,7 +132,10 @@ Future _createFakeCollectionClass({
       final availableDsNamesOnResource =
           entry.value.map((e) => e.varName).toList();
 
-      if (availableDsNamesOnResource.length > requiredList.length) {
+      final contatinsDataSourceWithBuilderMethod =
+          entry.value.any((dsInfo) => dsInfo.dataSource.builder != null);
+      if (availableDsNamesOnResource.length > requiredList.length ||
+          contatinsDataSourceWithBuilderMethod) {
         final baseResClassName = ReCase(resourceName).pascalCase;
         final resClassName = ReCase(locale).pascalCase + baseResClassName;
 
@@ -146,8 +149,11 @@ Future _createFakeCollectionClass({
         classBuffer.writeln('$resClassName(this.locale) : super(locale);\n');
 
         for (var dsInfo in availableDsInfosOnResource) {
-          if (!requiredList.contains(dsInfo.varName)) {
-            if (dsInfo.dataSource.builder == null) {
+          printYellow(dsInfo.varName);
+          if (!requiredList.contains(dsInfo.varName) ||
+              dsInfo.dataSource.builder != null) {
+            if (dsInfo.dataSource.builder == null ||
+                dsInfo.builderArgsType == 'dynamic') {
               classBuffer.writeln(
                   'String get ${ReCase(dsInfo.varName).camelCase} => provide(DataKeys.${dsInfo.varName},locale);');
             } else {

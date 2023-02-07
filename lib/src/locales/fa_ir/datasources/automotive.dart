@@ -44,7 +44,7 @@ final _persianLetters = [
 final license_plate = DataSource.withBuilder(
   dataKey: DataKeys.license_plate,
   locale: Locales.fa_ir,
-  builder: () {
+  builder: (_) {
     var plate = '#####';
 
     plate = plate.replaceAllMapped('#',

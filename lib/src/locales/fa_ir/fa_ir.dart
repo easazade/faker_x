@@ -49,6 +49,8 @@ class FaIrCollection extends FakeCollection {
 
   FaIrPerson get person => FaIrPerson(locale);
 
+  FaIrAutomotive get automotive => FaIrAutomotive(locale);
+
   FaIrImage get image => FaIrImage(locale);
 }
 
@@ -70,6 +72,14 @@ class FaIrPerson extends Person {
 
   String get firstNameMale => provide(DataKeys.first_name_male, locale);
   String get firstNameFemale => provide(DataKeys.first_name_female, locale);
+}
+
+class FaIrAutomotive extends Automotive {
+  final FakeItLocale locale;
+
+  FaIrAutomotive(this.locale) : super(locale);
+
+  String get licensePlate => provide(DataKeys.license_plate, locale);
 }
 
 class FaIrImage extends Image {

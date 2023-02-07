@@ -4,9 +4,9 @@ import 'package:test/test.dart';
 import '../utils.dart';
 
 void main() {
-  test("en_us color_hex test", () async {
+  test("fa_ir color_hex test", () async {
     for (var i = 0; i < testRepeatCount; i++) {
-      assertFakeValue(FakeIt.localized.en_us.color.colorHex);
+      assertFakeValue(FakeIt.localized.fa_ir.color.colorHex);
     }
   });
 }

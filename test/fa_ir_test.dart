@@ -5,7 +5,7 @@ import 'utils.dart';
 
 void main() {
   test("fa_ir address test", () async {
-    for (var i = 0; i < 10000; i++) {
+    for (var i = 0; i < testRepeatCount; i++) {
       assertFakeValue(FakeIt.localized.fa_ir.address.buildingName);
       assertFakeValue(FakeIt.localized.fa_ir.address.streetSuffix);
       assertFakeValue(FakeIt.localized.fa_ir.address.state);
@@ -20,7 +20,7 @@ void main() {
   });
 
   test("fa_ir job test", () async {
-    for (var i = 0; i < 10000; i++) {
+    for (var i = 0; i < testRepeatCount; i++) {
       assertFakeValue(FakeIt.localized.fa_ir.job.jobSuffix);
       assertFakeValue(FakeIt.localized.fa_ir.job.jobTitle);
       assertFakeValue(FakeIt.localized.fa_ir.job.jobPrefix);
@@ -28,7 +28,7 @@ void main() {
   });
 
   test("fa_ir person test", () async {
-    for (var i = 0; i < 10000; i++) {
+    for (var i = 0; i < testRepeatCount; i++) {
       assertFakeValue(FakeIt.localized.fa_ir.person.firstNameMale);
       assertFakeValue(FakeIt.localized.fa_ir.person.fullName);
       assertFakeValue(FakeIt.localized.fa_ir.person.firstNameFemale);
@@ -38,23 +38,29 @@ void main() {
   });
 
   test("fa_ir automotive test", () async {
-    for (var i = 0; i < 10000; i++) {}
+    for (var i = 0; i < testRepeatCount; i++) {}
+  });
+
+  test("fa_ir color test", () async {
+    for (var i = 0; i < testRepeatCount; i++) {
+      assertFakeValue(FakeIt.localized.fa_ir.color.colorName);
+    }
   });
 
   test("fa_ir lorem test", () async {
-    for (var i = 0; i < 10000; i++) {
+    for (var i = 0; i < testRepeatCount; i++) {
       assertFakeValue(FakeIt.localized.fa_ir.lorem.sentence);
       assertFakeValue(FakeIt.localized.fa_ir.lorem.word);
     }
   });
 
   test("fa_ir vehicle test", () async {
-    for (var i = 0; i < 10000; i++) {
+    for (var i = 0; i < testRepeatCount; i++) {
       assertFakeValue(FakeIt.localized.fa_ir.vehicle.car);
     }
   });
 
   test("fa_ir image test", () async {
-    for (var i = 0; i < 10000; i++) {}
+    for (var i = 0; i < testRepeatCount; i++) {}
   });
 }

@@ -6,7 +6,7 @@ import '../utils.dart';
 
 void main() {
   test("en_us image test", () async {
-    for (var i = 0; i < 10000; i++) {
+    for (var i = 0; i < testRepeatCount; i++) {
       assertFakeValue(FakeIt.localized.en_us.image
           .image(ImageArgs(300, 400, ['pet', 'dog'])));
     }

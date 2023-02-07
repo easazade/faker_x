@@ -5,3 +5,5 @@ void assertFakeValue(String? value) {
   expect(value, isNotEmpty);
   print(value);
 }
+
+const testRepeatCount = 10000;

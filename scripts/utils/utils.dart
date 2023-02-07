@@ -149,14 +149,26 @@ Future<Map<String, List<DataSourceInfo>>>
   }
 
   // reading global datasouces and adding them if there is no localized datasource for that resource
-  final globalDataSources = await readGlobalDataSourcesMapped();
+  final globalDataSourcesMap = await readGlobalDataSourcesMapped();
 
-  for (var resource in globalDataSources.keys) {
-    if (map[resource] == null) {
-      map[resource] = globalDataSources[resource]!
-          .map((e) => e.changeLocale(locale))
-          .toList();
+  for (var resource in globalDataSourcesMap.keys) {
+    final globalDataSources = globalDataSourcesMap[resource] ?? [];
+
+    final localDataSources = map[resource] ?? [];
+
+    final availableDataSources = <DataSourceInfo>[...localDataSources];
+    for (var ds in globalDataSources) {
+      final thereIsNoLocalDataSourceAvailable = localDataSources
+          .where((localDs) => localDs.varName == ds.varName)
+          .isEmpty;
+
+      if (thereIsNoLocalDataSourceAvailable) {
+        availableDataSources.add(ds);
+      }
     }
+    map[resource] = [...globalDataSources, ...localDataSources]
+        .map((e) => e.changeLocale(locale))
+        .toList();
   }
 
   return map;

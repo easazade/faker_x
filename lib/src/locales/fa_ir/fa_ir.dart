@@ -7,6 +7,8 @@ import 'package:fake_it/src/locales/fa_ir/datasources/job.dart' as job1;
 import 'package:fake_it/src/locales/fa_ir/datasources/person.dart' as person1;
 import 'package:fake_it/src/locales/fa_ir/datasources/automotive.dart'
     as automotive1;
+import 'package:fake_it/src/locales/global/datasources/color.dart' as color1;
+import 'package:fake_it/src/locales/fa_ir/datasources/color.dart' as color2;
 import 'package:fake_it/src/locales/fa_ir/datasources/lorem.dart' as lorem1;
 import 'package:fake_it/src/locales/fa_ir/datasources/vehicle.dart' as vehicle1;
 import 'package:fake_it/src/locales/global/datasources/image.dart' as image1;
@@ -38,6 +40,8 @@ class FaIrCollection extends FakeCollection {
             person1.last_name,
             person1.first_name,
             automotive1.license_plate,
+            color1.color_hex,
+            color2.color_name,
             lorem1.sentence,
             lorem1.word,
             vehicle1.car,
@@ -50,6 +54,8 @@ class FaIrCollection extends FakeCollection {
   FaIrPerson get person => FaIrPerson(locale);
 
   FaIrAutomotive get automotive => FaIrAutomotive(locale);
+
+  FaIrColor get color => FaIrColor(locale);
 
   FaIrImage get image => FaIrImage(locale);
 }
@@ -80,6 +86,14 @@ class FaIrAutomotive extends Automotive {
   FaIrAutomotive(this.locale) : super(locale);
 
   String get licensePlate => provide(DataKeys.license_plate, locale);
+}
+
+class FaIrColor extends Color {
+  final FakeItLocale locale;
+
+  FaIrColor(this.locale) : super(locale);
+
+  String get colorHex => provide(DataKeys.color_hex, locale);
 }
 
 class FaIrImage extends Image {

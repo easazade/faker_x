@@ -8,3 +8,9 @@ export 'provider.dart';
 export 'utils.dart';
 export 'fake_collection.dart';
 export 'resources.dart';
+
+class BaseResource {
+  const BaseResource({required this.isRequired});
+
+  final bool isRequired;
+}

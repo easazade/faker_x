@@ -10,9 +10,7 @@ import '../lib_imports.dart';
 import 'names.dart';
 
 /// only use for debug & testing purposes
-const _testArgs = <String>[
-  'en_us',
-];
+const _testArgs = <String>['xx_xx'];
 
 List<String> checkArgs(List<String> args) {
   if (args.isEmpty && _testArgs.isNotEmpty) {
@@ -108,21 +106,28 @@ Future<Map<String, List<String>>> getRequiredDataSources() async {
 
   Map<String, List<String>> requiredResources = {};
 
-  for (var entry in libMirror.declarations.entries
-      .where((element) => element.value is ClassMirror)) {
+  for (var entry in libMirror.declarations.entries.where((element) =>
+      element.value is ClassMirror &&
+      !(element.value as ClassMirror).isAbstract)) {
     final resourceName = MirrorSystem.getName(entry.key).toLowerCase();
     final mirrorOnResource = entry.value as ClassMirror;
 
-    for (var getter in mirrorOnResource.declarations.entries.where((element) =>
-        element.value is MethodMirror &&
-        !(element.value as MethodMirror).isConstructor)) {
-      final getterSymbol = getter.key;
+    final isRequiredResource =
+        mirrorOnResource.metadata.first.getField(#isRequired).reflectee as bool;
 
-      final getterName = MirrorSystem.getName(getterSymbol);
-      if (requiredResources[resourceName] == null) {
-        requiredResources[resourceName] = [];
+    if (isRequiredResource) {
+      for (var getter in mirrorOnResource.declarations.entries.where(
+          (element) =>
+              element.value is MethodMirror &&
+              !(element.value as MethodMirror).isConstructor)) {
+        final getterSymbol = getter.key;
+
+        final getterName = MirrorSystem.getName(getterSymbol);
+        if (requiredResources[resourceName] == null) {
+          requiredResources[resourceName] = [];
+        }
+        requiredResources[resourceName]!.add(ReCase(getterName).snakeCase);
       }
-      requiredResources[resourceName]!.add(ReCase(getterName).snakeCase);
     }
   }
 

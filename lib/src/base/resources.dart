@@ -2,6 +2,7 @@
 
 import 'package:fake_it/src/base/base.dart';
 
+@BaseResource(isRequired: true)
 class Job {
   Job(this._locale);
 
@@ -14,8 +15,9 @@ class Job {
   String get jobPrefix => provide(DataKeys.job_prefix, _locale);
 }
 
+@BaseResource(isRequired: true)
 class Lorem {
-  const Lorem(this._locale);
+  Lorem(this._locale);
 
   final FakeItLocale _locale;
 
@@ -24,8 +26,9 @@ class Lorem {
   String get sentence => provide(DataKeys.sentence, _locale);
 }
 
+@BaseResource(isRequired: true)
 class Person {
-  const Person(this._locale);
+  Person(this._locale);
 
   final FakeItLocale _locale;
 
@@ -36,8 +39,9 @@ class Person {
   String get fullName => provide(DataKeys.full_name, _locale);
 }
 
+@BaseResource(isRequired: true)
 class Address {
-  const Address(this._locale);
+  Address(this._locale);
 
   final FakeItLocale _locale;
 
@@ -54,12 +58,23 @@ class Address {
   String get buildingNumber => provide(DataKeys.building_number, _locale);
 }
 
+@BaseResource(isRequired: false)
 class Image {
-  const Image(this._locale);
+  Image(this._locale);
 
   final FakeItLocale _locale;
 }
 
+@BaseResource(isRequired: false)
+class Automotive {
+  Automotive(this._locale);
+
+  final FakeItLocale _locale;
+
+  String get licensePlate => provide(DataKeys.license_plate, _locale);
+}
+
+@BaseResource(isRequired: false)
 class Extra {
   Extra(this._locale);
 

@@ -52,17 +52,17 @@ class DataSource<T> {
   }
 
   String build(dynamic args) {
-    if (args == null) {
-      throw Exception(
-        'null args were passed to DataSource with DataKey = $dataKey',
-      );
-    }
+    // if (args == null) {
+    //   throw Exception(
+    //     'null args were passed to DataSource with DataKey = $dataKey',
+    //   );
+    // }
     if (builder == null) {
       throw Exception(
         'You cannot call build method on this DataSource since no builder was provided in this DataSource '
         'with DataKey=$dataKey',
       );
     }
-    return builder!(args);
+    return builder!();
   }
 }

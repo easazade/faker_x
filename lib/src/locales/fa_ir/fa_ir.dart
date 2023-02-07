@@ -5,7 +5,10 @@ import 'package:fake_it/src/base/base.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/address.dart' as address1;
 import 'package:fake_it/src/locales/fa_ir/datasources/job.dart' as job1;
 import 'package:fake_it/src/locales/fa_ir/datasources/person.dart' as person1;
+import 'package:fake_it/src/locales/fa_ir/datasources/automotive.dart'
+    as automotive1;
 import 'package:fake_it/src/locales/fa_ir/datasources/lorem.dart' as lorem1;
+import 'package:fake_it/src/locales/fa_ir/datasources/vehicle.dart' as vehicle1;
 import 'package:fake_it/src/locales/global/datasources/image.dart' as image1;
 
 class FaIrCollection extends FakeCollection {
@@ -34,8 +37,10 @@ class FaIrCollection extends FakeCollection {
             person1.first_name_female,
             person1.last_name,
             person1.first_name,
+            automotive1.license_plate,
             lorem1.sentence,
             lorem1.word,
+            vehicle1.car,
             image1.image,
           ],
         );

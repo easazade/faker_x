@@ -37,10 +37,20 @@ void main() {
     }
   });
 
+  test("fa_ir automotive test", () async {
+    for (var i = 0; i < 10000; i++) {}
+  });
+
   test("fa_ir lorem test", () async {
     for (var i = 0; i < 10000; i++) {
       assertFakeValue(FakeIt.localized.fa_ir.lorem.sentence);
       assertFakeValue(FakeIt.localized.fa_ir.lorem.word);
+    }
+  });
+
+  test("fa_ir vehicle test", () async {
+    for (var i = 0; i < 10000; i++) {
+      assertFakeValue(FakeIt.localized.fa_ir.vehicle.car);
     }
   });
 

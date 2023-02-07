@@ -9,9 +9,7 @@ class Job {
   final FakeItLocale _locale;
 
   String get jobTitle => provide(DataKeys.job_title, _locale);
-
   String get jobSuffix => provide(DataKeys.job_suffix, _locale);
-
   String get jobPrefix => provide(DataKeys.job_prefix, _locale);
 }
 
@@ -22,7 +20,6 @@ class Lorem {
   final FakeItLocale _locale;
 
   String get word => provide(DataKeys.word, _locale);
-
   String get sentence => provide(DataKeys.sentence, _locale);
 }
 
@@ -33,9 +30,7 @@ class Person {
   final FakeItLocale _locale;
 
   String get firstName => provide(DataKeys.first_name, _locale);
-
   String get lastName => provide(DataKeys.last_name, _locale);
-
   String get fullName => provide(DataKeys.full_name, _locale);
 }
 
@@ -46,15 +41,10 @@ class Address {
   final FakeItLocale _locale;
 
   String get cityName => provide(DataKeys.city_name, _locale);
-
   String get state => provide(DataKeys.state, _locale);
-
   String get address => provide(DataKeys.address, _locale);
-
   String get streetName => provide(DataKeys.street_name, _locale);
-
   String get postcode => provide(DataKeys.postcode, _locale);
-
   String get buildingNumber => provide(DataKeys.building_number, _locale);
 }
 
@@ -90,8 +80,29 @@ class Color {
   final FakeItLocale _locale;
 
   String get colorName => provide(DataKeys.color_name, _locale);
-
   String get colorHex => provide(DataKeys.color_hex, _locale);
+}
+
+@BaseResource(isRequired: true)
+class Internet {
+  Internet(this._locale);
+
+  final FakeItLocale _locale;
+
+  String get email => provide(DataKeys.email, _locale);
+  String get disposableEmail => provide(DataKeys.disposable_email, _locale);
+  String get freeEmail => provide(DataKeys.free_email, _locale);
+  String get safeEmail => provide(DataKeys.safe_email, _locale);
+  String get domainName => provide(DataKeys.domain_name, _locale);
+  String get httpUrl => provide(DataKeys.http_url, _locale);
+  String get httpsUrl => provide(DataKeys.https_url, _locale);
+  String get ipv4Address => provide(DataKeys.ipv4_address, _locale);
+  String get ipv6Address => provide(DataKeys.ipv6_address, _locale);
+  String get macAddress => provide(DataKeys.mac_address, _locale);
+  String get password => provide(DataKeys.password, _locale);
+  String get userAgent => provide(DataKeys.user_agent, _locale);
+  String get avatarUri => provide(DataKeys.avatar_uri, _locale);
+  String get emoji => provide(DataKeys.emoji, _locale);
 }
 
 @BaseResource(isRequired: false)
@@ -100,3 +111,16 @@ class Extra {
 
   final FakeItLocale _locale;
 }
+
+/// TODO: Resources to add
+/// animals
+/// currency
+/// internet (faker js),
+/// food
+/// location
+/// jwt
+/// phone-number
+/// music
+/// bank (faker js) [account type], [credit card number], [transaction type], [https://github.com/joke2k/faker/blob/master/faker/providers/bank/__init__.py]
+/// airline [airlines, airports, airplanes]
+/// numbers [number of digits], [number of decimals], [from pattern]

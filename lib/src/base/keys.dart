@@ -38,4 +38,19 @@ class DataKeys {
 
   static const color_name = 'color_name';
   static const color_hex = 'color_hex';
+
+  static const email = 'email';
+  static const disposable_email = 'disposable_email';
+  static const free_email = 'free_email';
+  static const safe_email = 'safe_email';
+  static const domain_name = 'domain_name';
+  static const http_url = 'http_url';
+  static const https_url = 'https_url';
+  static const ipv4_address = 'ipv4_address';
+  static const ipv6_address = 'ipv6_address';
+  static const mac_address = 'mac_address';
+  static const password = 'password';
+  static const user_agent = 'user_agent';
+  static const avatar_uri = 'avatar_uri';
+  static const emoji = 'emoji';
 }

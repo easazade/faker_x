@@ -65,13 +65,22 @@ class Image {
   final FakeItLocale _locale;
 }
 
-@BaseResource(isRequired: false)
+@BaseResource(isRequired: true)
 class Automotive {
   Automotive(this._locale);
 
   final FakeItLocale _locale;
 
   String get licensePlate => provide(DataKeys.license_plate, _locale);
+}
+
+@BaseResource(isRequired: true)
+class Vehicle {
+  Vehicle(this._locale);
+
+  final FakeItLocale _locale;
+
+  String get car => provide(DataKeys.car, _locale);
 }
 
 @BaseResource(isRequired: false)

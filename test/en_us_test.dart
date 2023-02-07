@@ -41,10 +41,22 @@ void main() {
     }
   });
 
+  test("en_us automotive test", () async {
+    for (var i = 0; i < 10000; i++) {
+      assertFakeValue(FakeIt.localized.en_us.automotive.licensePlate);
+    }
+  });
+
   test("en_us lorem test", () async {
     for (var i = 0; i < 10000; i++) {
       assertFakeValue(FakeIt.localized.en_us.lorem.sentence);
       assertFakeValue(FakeIt.localized.en_us.lorem.word);
+    }
+  });
+
+  test("en_us vehicle test", () async {
+    for (var i = 0; i < 10000; i++) {
+      assertFakeValue(FakeIt.localized.en_us.vehicle.car);
     }
   });
 

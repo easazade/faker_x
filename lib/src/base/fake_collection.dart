@@ -11,7 +11,9 @@ class FakeCollection {
         job = Job(locale),
         person = Person(locale),
         address = Address(locale),
-        image = Image(locale) {
+        image = Image(locale),
+        automotive = Automotive(locale),
+        vehicle = Vehicle(locale) {
     for (var dataSource in dataSources) {
       registerDataSource(dataSource.copyWith(locale: locale));
     }
@@ -22,4 +24,6 @@ class FakeCollection {
   final Person person;
   final Address address;
   final Image image;
+  final Automotive automotive;
+  final Vehicle vehicle;
 }

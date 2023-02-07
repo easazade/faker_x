@@ -10,3 +10,5 @@ comes to
 notes for later to be used in docs :
 
 should run regenerate_base_classes when added a new datasoure file.
+
+make read me nice look at https://www.npmjs.com/package/@faker-js/faker

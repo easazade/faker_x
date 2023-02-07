@@ -241,8 +241,6 @@ Future<List<DataSourceInfo>> readGlobalDataSources() async {
 
         final varName = MirrorSystem.getName(varMirrorOnDataSource.simpleName);
 
-        // print('builder is ${instanceMirror.getField(#builder).reflectee}');
-        // print(instanceMirror.type.typeArguments.first.reflectedType);
         dataSourceInfoList.add(
           DataSourceInfo(
             fileUri: mirror.uri.toString(),
@@ -318,8 +316,6 @@ Future createImports() async {
   newLines.removeWhere((element) => element.isBlank);
 
   if (!oldLines.containsAll(newLines)) {
-    printRed(oldLines);
-    printGreen(buffer.toString());
     printBlue('scripts/lib_imports.dart updated !!');
     printYellow('PLEASE Run command again');
     exit(-1);

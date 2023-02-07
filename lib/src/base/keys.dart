@@ -34,4 +34,5 @@ class DataKeys {
   static const image_custom = 'image_custom';
 
   static const license_plate = 'license_plate';
+  static const car = 'car';
 }

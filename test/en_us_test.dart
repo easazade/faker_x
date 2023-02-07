@@ -47,6 +47,12 @@ void main() {
     }
   });
 
+  test("en_us color test", () async {
+    for (var i = 0; i < 10000; i++) {
+      assertFakeValue(FakeIt.localized.en_us.color.colorName);
+    }
+  });
+
   test("en_us lorem test", () async {
     for (var i = 0; i < 10000; i++) {
       assertFakeValue(FakeIt.localized.en_us.lorem.sentence);

@@ -35,4 +35,7 @@ class DataKeys {
 
   static const license_plate = 'license_plate';
   static const car = 'car';
+
+  static const color_name = 'color_name';
+  static const color_hex = 'color_hex';
 }

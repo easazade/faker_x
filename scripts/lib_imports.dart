@@ -12,6 +12,7 @@ import 'package:fake_it/src/locales/en_us/datasources/address.dart';
 import 'package:fake_it/src/locales/en_us/datasources/job.dart';
 import 'package:fake_it/src/locales/en_us/datasources/person.dart';
 import 'package:fake_it/src/locales/en_us/datasources/automotive.dart';
+import 'package:fake_it/src/locales/en_us/datasources/color.dart';
 import 'package:fake_it/src/locales/en_us/datasources/lorem.dart';
 import 'package:fake_it/src/locales/en_us/datasources/vehicle.dart';
 import 'package:fake_it/src/locales/en_us/en_us.dart';

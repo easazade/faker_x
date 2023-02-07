@@ -5,10 +5,11 @@ import 'package:fake_it/src/base/base.dart';
 import 'package:fake_it/src/locales/en_us/datasources/address.dart' as address1;
 import 'package:fake_it/src/locales/en_us/datasources/job.dart' as job1;
 import 'package:fake_it/src/locales/en_us/datasources/person.dart' as person1;
-import 'package:fake_it/src/locales/en_us/datasources/vehicle.dart' as vehicle1;
 import 'package:fake_it/src/locales/en_us/datasources/automotive.dart'
     as automotive1;
+import 'package:fake_it/src/locales/en_us/datasources/color.dart' as color1;
 import 'package:fake_it/src/locales/en_us/datasources/lorem.dart' as lorem1;
+import 'package:fake_it/src/locales/en_us/datasources/vehicle.dart' as vehicle1;
 import 'package:fake_it/src/locales/global/datasources/image.dart' as image1;
 
 class EnUsCollection extends FakeCollection {
@@ -41,10 +42,12 @@ class EnUsCollection extends FakeCollection {
             person1.first_name_female,
             person1.last_name,
             person1.first_name,
-            vehicle1.car,
             automotive1.license_plate,
+            color1.color_hex,
+            color1.color_name,
             lorem1.sentence,
             lorem1.word,
+            vehicle1.car,
             image1.image,
           ],
         );
@@ -52,6 +55,8 @@ class EnUsCollection extends FakeCollection {
   EnUsAddress get address => EnUsAddress(locale);
 
   EnUsPerson get person => EnUsPerson(locale);
+
+  EnUsColor get color => EnUsColor(locale);
 
   EnUsImage get image => EnUsImage(locale);
 }
@@ -78,6 +83,14 @@ class EnUsPerson extends Person {
 
   String get firstNameMale => provide(DataKeys.first_name_male, locale);
   String get firstNameFemale => provide(DataKeys.first_name_female, locale);
+}
+
+class EnUsColor extends Color {
+  final FakeItLocale locale;
+
+  EnUsColor(this.locale) : super(locale);
+
+  String get colorHex => provide(DataKeys.color_hex, locale);
 }
 
 class EnUsImage extends Image {

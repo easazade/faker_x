@@ -83,6 +83,17 @@ class Vehicle {
   String get car => provide(DataKeys.car, _locale);
 }
 
+@BaseResource(isRequired: true)
+class Color {
+  Color(this._locale);
+
+  final FakeItLocale _locale;
+
+  String get colorName => provide(DataKeys.color_name, _locale);
+
+  String get colorHex => provide(DataKeys.color_hex, _locale);
+}
+
 @BaseResource(isRequired: false)
 class Extra {
   Extra(this._locale);

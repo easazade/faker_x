@@ -40,7 +40,7 @@ final _persianLetters = [
 final license_plate = DataSource.withBuilder(
   dataKey: DataKeys.license_plate,
   locale: Locales.fa_ir,
-  builder: (_) {
+  builder: (_, __) {
     var plate = '#####';
 
     plate = plate.replaceAllMapped('#', (match) => _persianNumbers.randomItem!);

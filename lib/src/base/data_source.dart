@@ -63,8 +63,9 @@ class DataSource<T> {
         'with DataKey=$dataKey',
       );
     }
+    builder is Function;
 
-    final result = builder!(args);
+    final result = builder!(args, locale);
 
     if (result is Format) {
       return StringOrFormat.format(result);

@@ -22,7 +22,7 @@ final _hexColorValues = [
 final color_hex = DataSource.withBuilder(
   dataKey: DataKeys.color_hex,
   locale: Locales.en_us,
-  builder: (_) {
+  builder: (_, __) {
     var value = List<String>.generate(
       6,
       (index) => _hexColorValues.randomItem.toString(),

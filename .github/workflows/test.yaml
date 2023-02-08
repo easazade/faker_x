@@ -38,4 +38,4 @@ jobs:
         run: dart scripts/create_tests.dart
         
       - name: Run tests
-        run: dart test
+        run: dart test --chain-stack-traces

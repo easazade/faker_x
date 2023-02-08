@@ -18,10 +18,10 @@ class UsernameArgs {
 final email = DataSource<EmailArgs>.withBuilder(
   dataKey: DataKeys.email,
   locale: Locales.en_us,
-  builder: (EmailArgs args) {
+  builder: (EmailArgs args, FakeItLocale locale) {
     final userName = provide(
       DataKeys.user_name_from,
-      Locales.en_us,
+      locale,
       args: UsernameArgs(firstName: args.firstName, lastName: args.lastName),
     );
 
@@ -32,7 +32,7 @@ final email = DataSource<EmailArgs>.withBuilder(
 final user_name = DataSource.withBuilder(
   dataKey: DataKeys.user_name,
   locale: Locales.en_us,
-  builder: (_) {
+  builder: (_, __) {
     return const [
       Format('{{${DataKeys.first_name_en}}}{{${DataKeys.last_name_en}}}'),
       Format('{{${DataKeys.first_name_en}}}_{{${DataKeys.last_name_en}}}'),
@@ -53,7 +53,7 @@ final user_name = DataSource.withBuilder(
 final user_name_from = DataSource<UsernameArgs>.withBuilder(
   dataKey: DataKeys.user_name_from,
   locale: Locales.en_us,
-  builder: (UsernameArgs args) {
+  builder: (UsernameArgs args, FakeItLocale locale) {
     final formats = <Format>[];
 
     if (args.firstName != null && args.lastName != null) {

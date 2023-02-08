@@ -13,7 +13,7 @@ class ImageArgs {
 final image = DataSource<ImageArgs>.withBuilder(
   dataKey: DataKeys.image,
   locale: Locales.en_us,
-  builder: (ImageArgs args) {
+  builder: (ImageArgs args, FakeItLocale locale) {
     return _imageUrl(args.width, args.height, args.keywords);
   },
 );

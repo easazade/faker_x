@@ -28,11 +28,19 @@ printWhite(text) {
   print('\x1B[37m${text.toString()}\x1B[0m');
 }
 
-exitWithMsg({String? error, String? warning}) {
+exitWithMsg({
+  String? error,
+  String? warning,
+  String? info,
+  bool printStackTrace = true,
+}) {
   if (error != null) printRed('❌ $error');
   if (warning != null) printYellow('📜! $warning');
+  if (info != null) printBlue('📜! $info');
 
-  print('\nSTACK TRACE WAS:');
-  printBlue(StackTrace.current);
+  if (printStackTrace) {
+    print('\nSTACK TRACE WAS:');
+    printBlue(StackTrace.current);
+  }
   exit(-1);
 }

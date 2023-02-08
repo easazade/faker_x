@@ -33,6 +33,8 @@ void main() {
 
   test("en_us person test", () async {
     for (var i = 0; i < testRepeatCount; i++) {
+      assertFakeValue(FakeIt.localized.en_us.person.lastNameEn);
+      assertFakeValue(FakeIt.localized.en_us.person.firstNameEn);
       assertFakeValue(FakeIt.localized.en_us.person.firstNameMale);
       assertFakeValue(FakeIt.localized.en_us.person.fullName);
       assertFakeValue(FakeIt.localized.en_us.person.firstNameFemale);

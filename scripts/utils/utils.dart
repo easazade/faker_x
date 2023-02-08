@@ -331,9 +331,11 @@ Future createImports() async {
   newLines.removeWhere((element) => element.isBlank);
 
   if (!oldLines.containsAll(newLines)) {
-    printBlue('scripts/lib_imports.dart updated !!');
-    printYellow('PLEASE Run command again');
-    exit(-1);
+    exitWithMsg(
+      warning: 'PLEASE Run command again',
+      info: 'scripts/lib_imports.dart updated !!',
+      printStackTrace: false,
+    );
   }
 }
 

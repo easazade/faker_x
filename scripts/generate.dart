@@ -155,7 +155,6 @@ Future _createFakeCollectionClass({
         classBuffer.writeln('$resClassName(this.locale) : super(locale);\n');
 
         for (var dsInfo in availableDsInfosOnResource) {
-          printYellow(dsInfo.varName);
           if (!requiredList.contains(dsInfo.varName) ||
               dsInfo.dataSource.builder != null) {
             if (dsInfo.dataSource.builder == null ||

@@ -430,7 +430,8 @@ class DataSourceInfo {
 
   String get resourceName => fileName.split('.').first;
 
-  String get directiveRef => '${resourceName}_${fileUri.hashCode ~/ 1100000}';
+  String get directiveRef =>
+      '${resourceName}_${(fileUri.hashCode ~/ 1100000).abs()}';
 
   String get importCodePhrase => 'import \'$fileUri\' as $directiveRef;';
 

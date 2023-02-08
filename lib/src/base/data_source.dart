@@ -51,7 +51,7 @@ class DataSource<T> {
     );
   }
 
-  String build(dynamic args) {
+  StringOrFormat build(dynamic args) {
     // if (args == null) {
     //   throw Exception(
     //     'null args were passed to DataSource with DataKey = $dataKey',
@@ -63,6 +63,25 @@ class DataSource<T> {
         'with DataKey=$dataKey',
       );
     }
-    return builder!(args);
+
+    final result = builder!(args);
+
+    if (result is Format) {
+      return StringOrFormat.format(result);
+    } else {
+      return StringOrFormat.string(result.toString());
+    }
   }
+}
+
+class StringOrFormat {
+  final String? string;
+  final Format? format;
+
+  StringOrFormat.string(this.string) : format = null;
+
+  StringOrFormat.format(this.format) : string = null;
+
+  bool get isString => string != null;
+  bool get isFormat => format != null;
 }

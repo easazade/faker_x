@@ -6,6 +6,8 @@ final _random = math.Random();
 
 int get randomOneDigitInt => _random.nextInt(10);
 
+int randomInt(int max) => _random.nextInt(max);
+
 String get randomLetter => _letters[_random.nextInt(_letters.length)];
 
 T coinToss<T>(T object1, T object2) =>

@@ -1,4 +1,5 @@
 import 'package:fake_it/src/base/data_source.dart';
+import 'package:fake_it/src/base/format.dart';
 import 'package:fake_it/src/base/locale.dart';
 import 'package:fake_it/src/base/provider_context.dart';
 import 'package:fake_it/src/base/utils.dart';
@@ -30,15 +31,7 @@ String provide(
       final format = dataSource.formats.randomItem;
 
       if (format != null) {
-        final keys = format.keys;
-
-        final providedValues = keys.map((e) {
-          final newContext = ProviderContext(
-              dataKey: e, locale: locale, previousContext: context);
-          return provide(e, locale, context: newContext);
-        }).toList();
-
-        final parsedValue = format.parse(providedValues);
+        final parsedValue = parseValueFromFormat(format, locale, context);
 
         if (value != null) {
           value = coinToss(value, parsedValue);
@@ -58,8 +51,30 @@ String provide(
 
     return value;
   } else {
-    return dataSource.build(args);
+    final stringOrFormat = dataSource.build(args);
+    if (stringOrFormat.isString) {
+      return stringOrFormat.string!;
+    } else {
+      final format = stringOrFormat.format!;
+      return parseValueFromFormat(format, locale, context);
+    }
   }
+}
+
+String parseValueFromFormat(
+  Format format,
+  FakeItLocale locale,
+  ProviderContext context,
+) {
+  final keys = format.keys;
+
+  final providedValues = keys.map((e) {
+    final newContext =
+        ProviderContext(dataKey: e, locale: locale, previousContext: context);
+    return provide(e, locale, context: newContext);
+  }).toList();
+
+  return format.parse(providedValues);
 }
 
 void registerDataSource(DataSource dataSource) {

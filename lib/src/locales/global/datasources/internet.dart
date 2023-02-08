@@ -15,24 +15,85 @@ class UsernameArgs {
   UsernameArgs({this.firstName, this.lastName});
 }
 
-final email = DataSource<EmailArgs>.withBuilder(
-  dataKey: DataKeys.email,
-  locale: Locales.en_us,
-  builder: (EmailArgs args) {},
-);
+// final email = DataSource<EmailArgs>.withBuilder(
+//   dataKey: DataKeys.email,
+//   locale: Locales.en_us,
+//   builder: (EmailArgs args) {},
+// );
 
-final user_name = DataSource<UsernameArgs>.withBuilder(
+final user_name = DataSource.withBuilder(
   dataKey: DataKeys.user_name,
   locale: Locales.en_us,
+  builder: (_) {
+    return const [
+      Format('{{${DataKeys.first_name_en}}}{{${DataKeys.last_name_en}}}'),
+      Format('{{${DataKeys.first_name_en}}}_{{${DataKeys.last_name_en}}}'),
+      Format('{{${DataKeys.first_name_en}}}_{{${DataKeys.last_name_en}}}#'),
+      Format('{{${DataKeys.first_name_en}}}#_{{${DataKeys.last_name_en}}}'),
+      Format('{{${DataKeys.first_name_en}}}'),
+      Format('{{${DataKeys.first_name_en}}}#'),
+      Format('{{${DataKeys.first_name_en}}}##'),
+      Format('{{${DataKeys.first_name_en}}}_#'),
+      Format('{{${DataKeys.last_name_en}}}'),
+      Format('{{${DataKeys.last_name_en}}}#'),
+      Format('{{${DataKeys.last_name_en}}}_#'),
+      Format('{{${DataKeys.last_name_en}}}##'),
+    ].randomItem;
+  },
+);
+
+final user_name_from = DataSource<UsernameArgs>.withBuilder(
+  dataKey: DataKeys.user_name_from,
+  locale: Locales.en_us,
   builder: (UsernameArgs args) {
+    final formats = <Format>[];
+
     if (args.firstName != null && args.lastName != null) {
-      return '${args.firstName}_${args.lastName}$randomOneDigitInt';
+      formats.addAll(
+        [
+          Format('${args.firstName}${args.lastName}'),
+          Format('${args.firstName}_${args.lastName}'),
+          Format('${args.firstName}_${args.lastName}#'),
+          Format('${args.firstName}#_${args.lastName}'),
+        ],
+      );
     } else if (args.firstName != null) {
-      return '${args.firstName}$randomOneDigitInt';
+      formats.addAll(
+        [
+          Format('${args.firstName}'),
+          Format('${args.firstName}#'),
+          Format('${args.firstName}##'),
+          Format('${args.firstName}_#'),
+        ],
+      );
     } else if (args.lastName != null) {
-      return '${args.lastName}$randomOneDigitInt';
+      formats.addAll(
+        [
+          Format('${args.lastName}'),
+          Format('${args.lastName}#'),
+          Format('${args.lastName}_#'),
+          Format('${args.lastName}##'),
+        ],
+      );
     }
-    return 'simple_username';
+
+    if (formats.isEmpty) {
+      formats.addAll([
+        Format('{{${DataKeys.first_name_en}}}{{${DataKeys.last_name_en}}}'),
+        Format('{{${DataKeys.first_name_en}}}_{{${DataKeys.last_name_en}}}'),
+        Format('{{${DataKeys.first_name_en}}}_{{${DataKeys.last_name_en}}}#'),
+        Format('{{${DataKeys.first_name_en}}}#_{{${DataKeys.last_name_en}}}'),
+        Format('{{${DataKeys.first_name_en}}}'),
+        Format('{{${DataKeys.first_name_en}}}#'),
+        Format('{{${DataKeys.first_name_en}}}##'),
+        Format('{{${DataKeys.first_name_en}}}_#'),
+        Format('{{${DataKeys.last_name_en}}}'),
+        Format('{{${DataKeys.last_name_en}}}#'),
+        Format('{{${DataKeys.last_name_en}}}_#'),
+        Format('{{${DataKeys.last_name_en}}}##'),
+      ]);
+    }
+    return formats.randomItem;
   },
 );
 

@@ -62,6 +62,10 @@ void main() {
     }
   });
 
+  test("fa_ir internet test", () async {
+    for (var i = 0; i < testRepeatCount; i++) {}
+  });
+
   test("fa_ir image test", () async {
     for (var i = 0; i < testRepeatCount; i++) {}
   });

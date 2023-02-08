@@ -15,6 +15,8 @@ import 'package:fake_it/src/locales/fa_ir/datasources/color.dart' as color_81;
 import 'package:fake_it/src/locales/fa_ir/datasources/lorem.dart' as lorem_857;
 import 'package:fake_it/src/locales/fa_ir/datasources/vehicle.dart'
     as vehicle_894;
+import 'package:fake_it/src/locales/global/datasources/internet.dart'
+    as internet_555;
 import 'package:fake_it/src/locales/global/datasources/image.dart' as image_375;
 
 class FaIrCollection extends FakeCollection {
@@ -51,6 +53,8 @@ class FaIrCollection extends FakeCollection {
             lorem_857.sentence,
             lorem_857.word,
             vehicle_894.car,
+            internet_555.user_name,
+            internet_555.user_name_from,
             image_375.image,
           ],
         );
@@ -60,6 +64,8 @@ class FaIrCollection extends FakeCollection {
   FaIrAutomotive get automotive => FaIrAutomotive(locale);
 
   FaIrColor get color => FaIrColor(locale);
+
+  FaIrInternet get internet => FaIrInternet(locale);
 
   FaIrImage get image => FaIrImage(locale);
 }
@@ -89,6 +95,16 @@ class FaIrColor extends Color {
   FaIrColor(this.locale) : super(locale);
 
   String get colorHex => provide(DataKeys.color_hex, locale);
+}
+
+class FaIrInternet extends Internet {
+  final FakeItLocale locale;
+
+  FaIrInternet(this.locale) : super(locale);
+
+  String get userName => provide(DataKeys.user_name, locale);
+  String userNameFrom(internet_555.UsernameArgs args) =>
+      provide(DataKeys.user_name_from, locale, args: args);
 }
 
 class FaIrImage extends Image {

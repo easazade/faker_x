@@ -52,6 +52,7 @@ class DataKeys {
   static const ipv6_address = 'ipv6_address';
   static const mac_address = 'mac_address';
   static const user_name = 'user_name';
+  static const user_name_from = 'user_name_from';
   static const password = 'password';
   static const user_agent = 'user_agent';
   static const avatar_uri = 'avatar_uri';

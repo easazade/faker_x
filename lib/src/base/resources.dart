@@ -93,21 +93,21 @@ class Internet {
 
   final FakeItLocale _locale;
 
-  String get email => provide(DataKeys.email, _locale);
-  String get disposableEmail => provide(DataKeys.disposable_email, _locale);
-  String get freeEmail => provide(DataKeys.free_email, _locale);
-  String get safeEmail => provide(DataKeys.safe_email, _locale);
-  String get domainName => provide(DataKeys.domain_name, _locale);
-  String get httpUrl => provide(DataKeys.http_url, _locale);
-  String get httpsUrl => provide(DataKeys.https_url, _locale);
-  String get ipv4Address => provide(DataKeys.ipv4_address, _locale);
-  String get ipv6Address => provide(DataKeys.ipv6_address, _locale);
-  String get macAddress => provide(DataKeys.mac_address, _locale);
+  // String get email => provide(DataKeys.email, _locale);
+  // String get disposableEmail => provide(DataKeys.disposable_email, _locale);
+  // String get freeEmail => provide(DataKeys.free_email, _locale);
+  // String get safeEmail => provide(DataKeys.safe_email, _locale);
+  // String get domainName => provide(DataKeys.domain_name, _locale);
+  // String get httpUrl => provide(DataKeys.http_url, _locale);
+  // String get httpsUrl => provide(DataKeys.https_url, _locale);
+  // String get ipv4Address => provide(DataKeys.ipv4_address, _locale);
+  // String get ipv6Address => provide(DataKeys.ipv6_address, _locale);
+  // String get macAddress => provide(DataKeys.mac_address, _locale);
   String get userName => provide(DataKeys.user_name, _locale);
-  String get password => provide(DataKeys.password, _locale);
-  String get userAgent => provide(DataKeys.user_agent, _locale);
-  String get avatarUri => provide(DataKeys.avatar_uri, _locale);
-  String get emoji => provide(DataKeys.emoji, _locale);
+  // String get password => provide(DataKeys.password, _locale);
+  // String get userAgent => provide(DataKeys.user_agent, _locale);
+  // String get avatarUri => provide(DataKeys.avatar_uri, _locale);
+  // String get emoji => provide(DataKeys.emoji, _locale);
 }
 
 @BaseResource(isRequired: false)

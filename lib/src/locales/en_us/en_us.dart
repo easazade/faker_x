@@ -16,6 +16,8 @@ import 'package:fake_it/src/locales/en_us/datasources/color.dart' as color_48;
 import 'package:fake_it/src/locales/en_us/datasources/lorem.dart' as lorem_77;
 import 'package:fake_it/src/locales/en_us/datasources/vehicle.dart'
     as vehicle_719;
+import 'package:fake_it/src/locales/global/datasources/internet.dart'
+    as internet_555;
 import 'package:fake_it/src/locales/global/datasources/image.dart' as image_375;
 
 class EnUsCollection extends FakeCollection {
@@ -56,6 +58,8 @@ class EnUsCollection extends FakeCollection {
             lorem_77.sentence,
             lorem_77.word,
             vehicle_719.car,
+            internet_555.user_name,
+            internet_555.user_name_from,
             image_375.image,
           ],
         );
@@ -63,6 +67,8 @@ class EnUsCollection extends FakeCollection {
   EnUsAddress get address => EnUsAddress(locale);
 
   EnUsColor get color => EnUsColor(locale);
+
+  EnUsInternet get internet => EnUsInternet(locale);
 
   EnUsImage get image => EnUsImage(locale);
 }
@@ -88,6 +94,16 @@ class EnUsColor extends Color {
   EnUsColor(this.locale) : super(locale);
 
   String get colorHex => provide(DataKeys.color_hex, locale);
+}
+
+class EnUsInternet extends Internet {
+  final FakeItLocale locale;
+
+  EnUsInternet(this.locale) : super(locale);
+
+  String get userName => provide(DataKeys.user_name, locale);
+  String userNameFrom(internet_555.UsernameArgs args) =>
+      provide(DataKeys.user_name_from, locale, args: args);
 }
 
 class EnUsImage extends Image {

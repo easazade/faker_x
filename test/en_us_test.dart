@@ -68,6 +68,10 @@ void main() {
     }
   });
 
+  test("en_us internet test", () async {
+    for (var i = 0; i < testRepeatCount; i++) {}
+  });
+
   test("en_us image test", () async {
     for (var i = 0; i < testRepeatCount; i++) {}
   });

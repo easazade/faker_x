@@ -17,6 +17,7 @@ import 'package:fake_it/src/locales/en_us/datasources/color.dart';
 import 'package:fake_it/src/locales/en_us/datasources/lorem.dart';
 import 'package:fake_it/src/locales/en_us/datasources/vehicle.dart';
 import 'package:fake_it/src/locales/en_us/en_us.dart';
+import 'package:fake_it/src/locales/global/datasources/internet.dart';
 import 'package:fake_it/src/locales/global/datasources/image.dart';
 import 'package:fake_it/src/locales/global/datasources/person.dart';
 import 'package:fake_it/src/locales/global/datasources/color.dart';

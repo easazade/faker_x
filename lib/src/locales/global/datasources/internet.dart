@@ -15,11 +15,19 @@ class UsernameArgs {
   UsernameArgs({this.firstName, this.lastName});
 }
 
-// final email = DataSource<EmailArgs>.withBuilder(
-//   dataKey: DataKeys.email,
-//   locale: Locales.en_us,
-//   builder: (EmailArgs args) {},
-// );
+final email = DataSource<EmailArgs>.withBuilder(
+  dataKey: DataKeys.email,
+  locale: Locales.en_us,
+  builder: (EmailArgs args) {
+    final userName = provide(
+      DataKeys.user_name_from,
+      Locales.en_us,
+      args: UsernameArgs(firstName: args.firstName, lastName: args.lastName),
+    );
+
+    return '$userName@gmail.com'.toLowerCase();
+  },
+);
 
 final user_name = DataSource.withBuilder(
   dataKey: DataKeys.user_name,
@@ -38,7 +46,7 @@ final user_name = DataSource.withBuilder(
       Format('{{${DataKeys.last_name_en}}}#'),
       Format('{{${DataKeys.last_name_en}}}_#'),
       Format('{{${DataKeys.last_name_en}}}##'),
-    ].randomItem;
+    ].randomItem!.copyWith(transformers: [StringTransformers.toLowerCase]);
   },
 );
 

@@ -54,6 +54,7 @@ class FaIrCollection extends FakeCollection {
             lorem_857.word,
             vehicle_894.car,
             internet_555.user_name,
+            internet_555.email,
             internet_555.user_name_from,
             image_375.image,
           ],
@@ -103,6 +104,8 @@ class FaIrInternet extends Internet {
   FaIrInternet(this.locale) : super(locale);
 
   String get userName => provide(DataKeys.user_name, locale);
+  String email(internet_555.EmailArgs args) =>
+      provide(DataKeys.email, locale, args: args);
   String userNameFrom(internet_555.UsernameArgs args) =>
       provide(DataKeys.user_name_from, locale, args: args);
 }

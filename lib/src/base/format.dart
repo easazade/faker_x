@@ -1,10 +1,13 @@
 import 'package:fake_it/src/base/utils.dart';
 
+typedef StringTransformer = String Function(String);
+
 class Format {
+  const Format(this.format, {this.chance = -1, this.transformers = const []});
+
   final String format;
   final int chance;
-
-  const Format(this.format, {this.chance = -1});
+  final List<StringTransformer> transformers;
 
   List<String> get keys {
     final regex = RegExp('{{(.*?)}}', caseSensitive: false);
@@ -35,6 +38,29 @@ class Format {
     for (var i = 0; i < keysWithBraces.length; i++) {
       parsedString = parsedString.replaceFirst(keysWithBraces[i], values[i]);
     }
+    for (var transformer in transformers) {
+      parsedString = transformer(parsedString);
+    }
+
     return parsedString;
   }
+
+  Format copyWith({
+    String? format,
+    int? chance,
+    List<StringTransformer>? transformers,
+  }) =>
+      Format(
+        format ?? this.format,
+        chance: chance ?? this.chance,
+        transformers: transformers ?? this.transformers,
+      );
+}
+
+class StringTransformers {
+  StringTransformers._();
+
+  static String toLowerCase(String string) => string.toLowerCase();
+
+  static String toUpperCase(String string) => string.toUpperCase();
 }

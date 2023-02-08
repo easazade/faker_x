@@ -32,7 +32,7 @@ Future main(List<String> arguments) async {
               await render(
             'templates/manual_test_file.mustache',
             values: {
-              'name': '$locale ${dsInfo.varName} test',
+              'name': '$locale -> $resourceName -> ${dsInfo.varName} test',
               'description':
                   '//TODO: please write test manually to test ${dsInfo.varName}',
             },

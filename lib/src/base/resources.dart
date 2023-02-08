@@ -30,7 +30,11 @@ class Person {
   final FakeItLocale _locale;
 
   String get firstName => provide(DataKeys.first_name, _locale);
+  String get firstNameFemale => provide(DataKeys.first_name_female, _locale);
+  String get firstNameMale => provide(DataKeys.first_name_male, _locale);
+  String get firstNameEn => provide(DataKeys.first_name_en, _locale);
   String get lastName => provide(DataKeys.last_name, _locale);
+  String get lastNameEn => provide(DataKeys.last_name_en, _locale);
   String get fullName => provide(DataKeys.full_name, _locale);
 }
 
@@ -83,27 +87,27 @@ class Color {
   String get colorHex => provide(DataKeys.color_hex, _locale);
 }
 
-@BaseResource(isRequired: true)
-class Internet {
-  Internet(this._locale);
+// @BaseResource(isRequired: true)
+// class Internet {
+//   Internet(this._locale);
 
-  final FakeItLocale _locale;
+//   final FakeItLocale _locale;
 
-  String get email => provide(DataKeys.email, _locale);
-  String get disposableEmail => provide(DataKeys.disposable_email, _locale);
-  String get freeEmail => provide(DataKeys.free_email, _locale);
-  String get safeEmail => provide(DataKeys.safe_email, _locale);
-  String get domainName => provide(DataKeys.domain_name, _locale);
-  String get httpUrl => provide(DataKeys.http_url, _locale);
-  String get httpsUrl => provide(DataKeys.https_url, _locale);
-  String get ipv4Address => provide(DataKeys.ipv4_address, _locale);
-  String get ipv6Address => provide(DataKeys.ipv6_address, _locale);
-  String get macAddress => provide(DataKeys.mac_address, _locale);
-  String get password => provide(DataKeys.password, _locale);
-  String get userAgent => provide(DataKeys.user_agent, _locale);
-  String get avatarUri => provide(DataKeys.avatar_uri, _locale);
-  String get emoji => provide(DataKeys.emoji, _locale);
-}
+//   String get email => provide(DataKeys.email, _locale);
+//   String get disposableEmail => provide(DataKeys.disposable_email, _locale);
+//   String get freeEmail => provide(DataKeys.free_email, _locale);
+//   String get safeEmail => provide(DataKeys.safe_email, _locale);
+//   String get domainName => provide(DataKeys.domain_name, _locale);
+//   String get httpUrl => provide(DataKeys.http_url, _locale);
+//   String get httpsUrl => provide(DataKeys.https_url, _locale);
+//   String get ipv4Address => provide(DataKeys.ipv4_address, _locale);
+//   String get ipv6Address => provide(DataKeys.ipv6_address, _locale);
+//   String get macAddress => provide(DataKeys.mac_address, _locale);
+//   String get password => provide(DataKeys.password, _locale);
+//   String get userAgent => provide(DataKeys.user_agent, _locale);
+//   String get avatarUri => provide(DataKeys.avatar_uri, _locale);
+//   String get emoji => provide(DataKeys.emoji, _locale);
+// }
 
 @BaseResource(isRequired: false)
 class Extra {

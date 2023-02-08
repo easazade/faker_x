@@ -5,6 +5,8 @@ import 'package:fake_it/src/base/base.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/address.dart'
     as address_664;
 import 'package:fake_it/src/locales/fa_ir/datasources/job.dart' as job_527;
+import 'package:fake_it/src/locales/global/datasources/person.dart'
+    as person_534;
 import 'package:fake_it/src/locales/fa_ir/datasources/person.dart' as person_87;
 import 'package:fake_it/src/locales/fa_ir/datasources/automotive.dart'
     as automotive_714;
@@ -36,6 +38,8 @@ class FaIrCollection extends FakeCollection {
             job_527.job_suffix,
             job_527.job_title,
             job_527.job_prefix,
+            person_534.last_name_en,
+            person_534.first_name_en,
             person_87.first_name_male,
             person_87.full_name,
             person_87.first_name_female,
@@ -53,8 +57,6 @@ class FaIrCollection extends FakeCollection {
 
   FaIrAddress get address => FaIrAddress(locale);
 
-  FaIrPerson get person => FaIrPerson(locale);
-
   FaIrAutomotive get automotive => FaIrAutomotive(locale);
 
   FaIrColor get color => FaIrColor(locale);
@@ -71,15 +73,6 @@ class FaIrAddress extends Address {
   String get streetSuffix => provide(DataKeys.street_suffix, locale);
   String get alley => provide(DataKeys.alley, locale);
   String get streetPrefix => provide(DataKeys.street_prefix, locale);
-}
-
-class FaIrPerson extends Person {
-  final FakeItLocale locale;
-
-  FaIrPerson(this.locale) : super(locale);
-
-  String get firstNameMale => provide(DataKeys.first_name_male, locale);
-  String get firstNameFemale => provide(DataKeys.first_name_female, locale);
 }
 
 class FaIrAutomotive extends Automotive {

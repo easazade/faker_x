@@ -4,6 +4,8 @@ class DataKeys {
   static const first_name_female = 'first_name_female';
   static const first_name_male = 'first_name_male';
   static const last_name = 'last_name';
+  static const first_name_en = 'first_name_en';
+  static const last_name_en = 'last_name_en';
 
   static const word = 'word';
   static const sentence = 'sentence';

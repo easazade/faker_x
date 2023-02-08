@@ -5,6 +5,8 @@ import 'package:fake_it/src/base/base.dart';
 import 'package:fake_it/src/locales/en_us/datasources/address.dart'
     as address_917;
 import 'package:fake_it/src/locales/en_us/datasources/job.dart' as job_319;
+import 'package:fake_it/src/locales/global/datasources/person.dart'
+    as person_534;
 import 'package:fake_it/src/locales/en_us/datasources/person.dart'
     as person_833;
 import 'package:fake_it/src/locales/en_us/datasources/automotive.dart'
@@ -41,6 +43,8 @@ class EnUsCollection extends FakeCollection {
             job_319.job_suffix,
             job_319.job_title,
             job_319.job_prefix,
+            person_534.last_name_en,
+            person_534.first_name_en,
             person_833.first_name_male,
             person_833.full_name,
             person_833.first_name_female,
@@ -57,8 +61,6 @@ class EnUsCollection extends FakeCollection {
         );
 
   EnUsAddress get address => EnUsAddress(locale);
-
-  EnUsPerson get person => EnUsPerson(locale);
 
   EnUsColor get color => EnUsColor(locale);
 
@@ -78,15 +80,6 @@ class EnUsAddress extends Address {
   String get postcodeFormat => provide(DataKeys.postcode_format, locale);
   String get cityPrefix => provide(DataKeys.city_prefix, locale);
   String get secondaryAddress => provide(DataKeys.secondary_address, locale);
-}
-
-class EnUsPerson extends Person {
-  final FakeItLocale locale;
-
-  EnUsPerson(this.locale) : super(locale);
-
-  String get firstNameMale => provide(DataKeys.first_name_male, locale);
-  String get firstNameFemale => provide(DataKeys.first_name_female, locale);
 }
 
 class EnUsColor extends Color {

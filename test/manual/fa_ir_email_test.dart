@@ -6,7 +6,7 @@ import '../utils.dart';
 
 void main() {
   test("fa_ir -> internet -> email test", () async {
-    for (var i = 0; i < 100; i++) {
+    for (var i = 0; i < testRepeatCount; i++) {
       assertFakeValue(FakeIt.localized.fa_ir.internet
           .email(EmailArgs(firstName: 'alireza')));
       assertFakeValue(FakeIt.localized.fa_ir.internet.email(EmailArgs()));

@@ -89,8 +89,8 @@ Future _createFakeCollectionClass({
     for (var entry in requiredDataSources.entries) {
       final resourceName = entry.key;
       final requiredList = entry.value;
-
       final availableDsInfosOnResource = dataSources[resourceName];
+
       if (availableDsInfosOnResource == null) {
         exitWithMsg(
           error:
@@ -125,6 +125,48 @@ Future _createFakeCollectionClass({
               'is $availableDsNamesOnResource please make sure you have provided all the required datasources with the correct '
               'variable name and key in locales/$locale/datasources/$resourceName.dart',
         );
+      }
+
+      for (var dsName in requiredList) {
+        final dsInfo = availableDsInfosOnResource
+            .firstWhereOrNull((dsInfo) => dsInfo.varName == dsName);
+
+        if (dsInfo != null) {
+          if (dsInfo.dataSource.builder != null &&
+              dsInfo.builderArgsType != 'dynamic') {
+            exitWithMsg(
+              error: '''
+You cannot define a DataSource<${dsInfo.builderArgsType}> using withBuilder constructor for datasource "${dsInfo.varName}" 
+because datasource "${dsInfo.varName}" of resource class "${dsInfo.resourceName.pascalCase}" is a required datasource. 
+NOTE THAT: all the DataSources defined in Resource classes in "lib/src/base/resources.dart" are required datasources.
+
+You have 2 options to define your datasources :
+
+If you want to use a DataSource.withBuilder constructor to generate fake value but you do not need an argument passed in the builder function
+you can do so by definding your DataSource with dynamic genertic argument type like below:
+
+final $dsName = DataSource<dynamic>.withBuilder(
+  dataKey: DataKeys.$dsName,
+  locale: Locales.${dsInfo.dataSource.locale},
+  builder: (_, FakeItLocale locale) {
+    // generate your value and return
+    return '';
+  },
+);
+
+OR define your DataSource without using builder method:
+
+const $dsName = DataSource(
+  dataKey: DataKeys.$dsName,
+  locale: ${dsInfo.dataSource.locale},
+  formats:[],
+  values: [],
+);
+
+                 ''',
+            );
+          }
+        }
       }
     }
 

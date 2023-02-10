@@ -96,6 +96,22 @@ Future<List<String>> getAvaialableLocalesInProject() async {
   return entities.map((e) => e.path.split('/').last).toList()..remove('global');
 }
 
+Future<Map<String, List<String>>> getUnavailableDataSourceNames() async {
+  final unavailableDataSources = await getRequiredDataSources();
+  final globalDataSources = await readGlobalDataSourcesMapped();
+  for (var entry in globalDataSources.entries) {
+    final resouceName = entry.key;
+    final dsInfos = entry.value;
+
+    for (var dsInfo in dsInfos) {
+      unavailableDataSources[resouceName]
+          ?.removeWhere((dsName) => dsInfo.varName == dsName);
+    }
+  }
+
+  return unavailableDataSources..removeWhere((key, list) => list.isEmpty);
+}
+
 Future<Map<String, List<String>>> getRequiredDataSources() async {
   final dataSourceGlobe = Glob('package:fake_it/src/base/resources.dart');
 
@@ -332,8 +348,8 @@ Future createImports() async {
 
   if (!oldLines.containsAll(newLines)) {
     exitWithMsg(
+      info: 'scripts/lib_imports.dart needed to be updated !!',
       warning: 'PLEASE Run command again',
-      info: 'scripts/lib_imports.dart updated !!',
       printStackTrace: false,
     );
   }

@@ -24,21 +24,19 @@ Future main(List<String> arguments) async {
   // generate lib/src/base/locale.dart file
   await generateLocaleFile(locales);
 
-  // generate lib/src/base/fake_it_class.dart file
-  await generateFakeItClassFile(locales);
-
   // create datasources from templates/datasources for given locale and copy to lib/src/locales/$locale/datasources/
   await _createDataSources(locale);
+
+  await createImports();
+
+  // generate lib/src/base/fake_it_class.dart file
+  await generateFakeItClassFile(locales);
 
   await generate.main([locale, 'true']);
 }
 
 Future _createDataSources(String locale) async {
-  final requriedDataSources = await getRequiredDataSources();
-  final globalDataSources = await readGlobalDataSourcesMapped();
-  for (var entry in globalDataSources.entries) {
-    requriedDataSources.remove(entry.key);
-  }
+  final requriedDataSources = await getUnavailableDataSourceNames();
 
   for (var resource in requriedDataSources.keys) {
     final buffer =

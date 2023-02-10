@@ -34,9 +34,9 @@ exitWithMsg({
   String? info,
   bool printStackTrace = true,
 }) {
+  if (info != null) printBlue('📜! $info');
   if (error != null) printRed('❌ $error');
   if (warning != null) printYellow('📜! $warning');
-  if (info != null) printBlue('📜! $info');
 
   if (printStackTrace) {
     print('\nSTACK TRACE WAS:');

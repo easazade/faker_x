@@ -42,6 +42,9 @@ class DataKeys {
   static const color_hex = 'color_hex';
 
   static const email = 'email';
+  static const email_from = 'email_from';
+  static const mail_provider = 'mail_provider';
+  static const disposable_mail_provider = 'disposable_mail_provider';
   static const disposable_email = 'disposable_email';
   static const free_email = 'free_email';
   static const safe_email = 'safe_email';

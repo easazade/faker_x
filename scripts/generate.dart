@@ -123,10 +123,10 @@ Future _createFakeCollectionClass({
             if (dsInfo.dataSource.builder == null ||
                 dsInfo.builderArgsType == 'dynamic') {
               classBuffer.writeln(
-                  'String get ${ReCase(dsInfo.varName).camelCase} => provide(DataKeys.${dsInfo.varName},locale);');
+                  'String get ${ReCase(dsInfo.varName).camelCase} => provide(DataKeys.${dsInfo.varName},locale);\n');
             } else {
               classBuffer.writeln(
-                  'String ${ReCase(dsInfo.varName).camelCase}(${dsInfo.directiveRef}.${dsInfo.builderArgsType} args) => provide(DataKeys.${dsInfo.varName}, locale, args: args);');
+                  'String ${ReCase(dsInfo.varName).camelCase}(${dsInfo.directiveRef}.${dsInfo.builderArgsType} args) => provide(DataKeys.${dsInfo.varName}, locale, args: args);\n');
             }
           }
         }

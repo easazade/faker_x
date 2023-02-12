@@ -1,5 +1,28 @@
 import 'package:fake_it/src/base/base.dart';
 
+const mail_provider = DataSource(
+  dataKey: DataKeys.mail_provider,
+  locale: Locales.en_us,
+  values: [
+    'gmail.com',
+    'yahoo.com',
+    'outlook.com',
+    'hotmail.com',
+  ],
+);
+
+const disposable_mail_provider = DataSource(
+  dataKey: DataKeys.disposable_mail_provider,
+  locale: Locales.en_us,
+  values: [
+    'mailinator.com',
+    'suremail.info',
+    'spamherelots.com',
+    'binkmail.com',
+    'safetymail.info'
+  ],
+);
+
 class EmailArgs {
   final String? firstName;
   final String? lastName;
@@ -15,8 +38,8 @@ class UsernameArgs {
   UsernameArgs({this.firstName, this.lastName});
 }
 
-final email = DataSource<EmailArgs>.withBuilder(
-  dataKey: DataKeys.email,
+final email_from = DataSource<EmailArgs>.withBuilder(
+  dataKey: DataKeys.email_from,
   locale: Locales.en_us,
   builder: (EmailArgs args, FakeItLocale locale) {
     final userName = provide(
@@ -25,8 +48,23 @@ final email = DataSource<EmailArgs>.withBuilder(
       args: UsernameArgs(firstName: args.firstName, lastName: args.lastName),
     );
 
-    return '$userName@gmail.com'.toLowerCase();
+    return Format(
+      '$userName@{{${DataKeys.mail_provider}}}.com',
+      transformers: [StringTransformers.toLowerCase],
+    );
   },
+);
+
+final email = DataSource(
+  dataKey: DataKeys.email,
+  locale: Locales.en_us,
+  formats: [
+    Format(
+      '{{${DataKeys.user_name}}}@{{${DataKeys.mail_provider}}}.com',
+      transformers: [StringTransformers.toLowerCase],
+    ),
+  ],
+  values: [],
 );
 
 final user_name = DataSource.withBuilder(

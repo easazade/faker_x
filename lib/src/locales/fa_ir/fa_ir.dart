@@ -53,8 +53,11 @@ class FaIrCollection extends FakeCollection {
             lorem_857.sentence,
             lorem_857.word,
             vehicle_894.car,
-            internet_555.user_name,
             internet_555.email,
+            internet_555.email_from,
+            internet_555.mail_provider,
+            internet_555.user_name,
+            internet_555.disposable_mail_provider,
             internet_555.user_name_from,
             image_375.image,
           ],
@@ -77,8 +80,11 @@ class FaIrAddress extends Address {
   FaIrAddress(this.locale) : super(locale);
 
   String get buildingName => provide(DataKeys.building_name, locale);
+
   String get streetSuffix => provide(DataKeys.street_suffix, locale);
+
   String get alley => provide(DataKeys.alley, locale);
+
   String get streetPrefix => provide(DataKeys.street_prefix, locale);
 }
 
@@ -103,9 +109,11 @@ class FaIrInternet extends Internet {
 
   FaIrInternet(this.locale) : super(locale);
 
+  String emailFrom(internet_555.EmailArgs args) =>
+      provide(DataKeys.email_from, locale, args: args);
+
   String get userName => provide(DataKeys.user_name, locale);
-  String email(internet_555.EmailArgs args) =>
-      provide(DataKeys.email, locale, args: args);
+
   String userNameFrom(internet_555.UsernameArgs args) =>
       provide(DataKeys.user_name_from, locale, args: args);
 }

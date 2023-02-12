@@ -58,8 +58,11 @@ class EnUsCollection extends FakeCollection {
             lorem_77.sentence,
             lorem_77.word,
             vehicle_719.car,
-            internet_555.user_name,
             internet_555.email,
+            internet_555.email_from,
+            internet_555.mail_provider,
+            internet_555.user_name,
+            internet_555.disposable_mail_provider,
             internet_555.user_name_from,
             image_375.image,
           ],
@@ -80,12 +83,19 @@ class EnUsAddress extends Address {
   EnUsAddress(this.locale) : super(locale);
 
   String get stateAbbr => provide(DataKeys.state_abbr, locale);
+
   String get neighborhood => provide(DataKeys.neighborhood, locale);
+
   String get citySuffix => provide(DataKeys.city_suffix, locale);
+
   String get streetSuffix => provide(DataKeys.street_suffix, locale);
+
   String get streetAddress => provide(DataKeys.street_address, locale);
+
   String get postcodeFormat => provide(DataKeys.postcode_format, locale);
+
   String get cityPrefix => provide(DataKeys.city_prefix, locale);
+
   String get secondaryAddress => provide(DataKeys.secondary_address, locale);
 }
 
@@ -102,9 +112,11 @@ class EnUsInternet extends Internet {
 
   EnUsInternet(this.locale) : super(locale);
 
+  String emailFrom(internet_555.EmailArgs args) =>
+      provide(DataKeys.email_from, locale, args: args);
+
   String get userName => provide(DataKeys.user_name, locale);
-  String email(internet_555.EmailArgs args) =>
-      provide(DataKeys.email, locale, args: args);
+
   String userNameFrom(internet_555.UsernameArgs args) =>
       provide(DataKeys.user_name_from, locale, args: args);
 }

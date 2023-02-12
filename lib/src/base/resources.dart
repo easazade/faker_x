@@ -93,7 +93,10 @@ class Internet {
 
   final FakeItLocale _locale;
 
-  // String get email => provide(DataKeys.email, _locale);
+  String get email => provide(DataKeys.email, _locale);
+  String get mail_provider => provide(DataKeys.mail_provider, _locale);
+  String get disposable_mail_provider =>
+      provide(DataKeys.disposable_mail_provider, _locale);
   // String get disposableEmail => provide(DataKeys.disposable_email, _locale);
   // String get freeEmail => provide(DataKeys.free_email, _locale);
   // String get safeEmail => provide(DataKeys.safe_email, _locale);

@@ -1,5 +1,26 @@
 import 'package:fake_it/src/base/base.dart';
 
+class EmailArgs {
+  final String? firstName;
+  final String? lastName;
+  final String? provider;
+
+  EmailArgs({this.firstName, this.lastName, this.provider});
+}
+
+class UsernameArgs {
+  final String? firstName;
+  final String? lastName;
+
+  UsernameArgs({this.firstName, this.lastName});
+}
+
+class UriArgs {
+  final String protocol;
+
+  UriArgs(this.protocol);
+}
+
 const mail_provider = DataSource(
   dataKey: DataKeys.mail_provider,
   locale: Locales.en_us,
@@ -23,21 +44,6 @@ const disposable_mail_provider = DataSource(
   ],
 );
 
-class EmailArgs {
-  final String? firstName;
-  final String? lastName;
-  final String? provider;
-
-  EmailArgs({this.firstName, this.lastName, this.provider});
-}
-
-class UsernameArgs {
-  final String? firstName;
-  final String? lastName;
-
-  UsernameArgs({this.firstName, this.lastName});
-}
-
 final email_from = DataSource<EmailArgs>.withBuilder(
   dataKey: DataKeys.email_from,
   locale: Locales.en_us,
@@ -48,8 +54,10 @@ final email_from = DataSource<EmailArgs>.withBuilder(
       args: UsernameArgs(firstName: args.firstName, lastName: args.lastName),
     );
 
+    final provider = args.provider ?? '{{${DataKeys.mail_provider}}}';
+
     return Format(
-      '$userName@{{${DataKeys.mail_provider}}}.com',
+      '$userName@$provider.com',
       transformers: [StringTransformers.toLowerCase],
     );
   },
@@ -66,6 +74,8 @@ final email = DataSource(
   ],
   values: [],
 );
+
+final safe_email = email.copyWith(dataKey: DataKeys.safe_email);
 
 final user_name = DataSource.withBuilder(
   dataKey: DataKeys.user_name,
@@ -140,6 +150,60 @@ final user_name_from = DataSource<UsernameArgs>.withBuilder(
       ]);
     }
     return formats.randomItem;
+  },
+);
+
+const domain_suffixes = DataSource(
+  dataKey: DataKeys.domain_suffixes,
+  locale: Locales.en_us,
+  values: ['com', 'co.uk', 'gov', 'info', 'io', 'dev', 'tv'],
+);
+
+final domain_name = DataSource(
+  dataKey: DataKeys.domain_name,
+  locale: Locales.en_us,
+  formats: [
+    Format('{{${DataKeys.last_name_en}}}.{{${DataKeys.domain_suffixes}}}'),
+  ],
+  values: [],
+);
+
+final disposable_email = DataSource(
+  dataKey: DataKeys.disposable_email,
+  locale: Locales.en_us,
+  formats: [
+    Format(
+      '{{${DataKeys.user_name}}}@{{${DataKeys.disposable_mail_provider}}}.com',
+      transformers: [
+        StringTransformers.toLowerCase,
+        StringTransformers.deleteUrlUnsafeCharacters
+      ],
+    ),
+  ],
+  values: [],
+);
+
+final uri = DataSource<UriArgs>.withBuilder(
+  dataKey: DataKeys.uri,
+  locale: Locales.en_us,
+  builder: (UriArgs args, _) {
+    return Format('${args.protocol}://{{${DataKeys.domain_name}}}');
+  },
+);
+
+final http_url = DataSource.withBuilder(
+  dataKey: DataKeys.http_url,
+  locale: Locales.en_us,
+  builder: (_, __) {
+    return uri.build(UriArgs('http'));
+  },
+);
+
+final https_url = DataSource.withBuilder(
+  dataKey: DataKeys.https_url,
+  locale: Locales.en_us,
+  builder: (_, __) {
+    return uri.build(UriArgs('https'));
   },
 );
 

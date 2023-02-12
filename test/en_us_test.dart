@@ -51,6 +51,7 @@ void main() {
 
   test("en_us color test", () async {
     for (var i = 0; i < testRepeatCount; i++) {
+      assertFakeValue(FakeIt.localized.en_us.color.colorHex);
       assertFakeValue(FakeIt.localized.en_us.color.colorName);
     }
   });
@@ -69,7 +70,18 @@ void main() {
   });
 
   test("en_us internet test", () async {
-    for (var i = 0; i < testRepeatCount; i++) {}
+    for (var i = 0; i < testRepeatCount; i++) {
+      assertFakeValue(FakeIt.localized.en_us.internet.httpUrl);
+      assertFakeValue(FakeIt.localized.en_us.internet.email);
+      assertFakeValue(FakeIt.localized.en_us.internet.httpsUrl);
+      assertFakeValue(FakeIt.localized.en_us.internet.safeEmail);
+      assertFakeValue(FakeIt.localized.en_us.internet.domainSuffixes);
+      assertFakeValue(FakeIt.localized.en_us.internet.userName);
+      assertFakeValue(FakeIt.localized.en_us.internet.disposableEmail);
+      assertFakeValue(FakeIt.localized.en_us.internet.mailProvider);
+      assertFakeValue(FakeIt.localized.en_us.internet.domainName);
+      assertFakeValue(FakeIt.localized.en_us.internet.disposableMailProvider);
+    }
   });
 
   test("en_us image test", () async {

@@ -58,10 +58,17 @@ class EnUsCollection extends FakeCollection {
             lorem_77.sentence,
             lorem_77.word,
             vehicle_719.car,
+            internet_555.http_url,
             internet_555.email,
+            internet_555.https_url,
+            internet_555.safe_email,
+            internet_555.domain_suffixes,
+            internet_555.user_name,
+            internet_555.uri,
+            internet_555.disposable_email,
             internet_555.email_from,
             internet_555.mail_provider,
-            internet_555.user_name,
+            internet_555.domain_name,
             internet_555.disposable_mail_provider,
             internet_555.user_name_from,
             image_375.image,
@@ -112,10 +119,17 @@ class EnUsInternet extends Internet {
 
   EnUsInternet(this.locale) : super(locale);
 
-  String emailFrom(internet_555.EmailArgs args) =>
-      provide(DataKeys.email_from, locale, args: args);
+  String get httpUrl => provide(DataKeys.http_url, locale);
+
+  String get httpsUrl => provide(DataKeys.https_url, locale);
 
   String get userName => provide(DataKeys.user_name, locale);
+
+  String uri(internet_555.UriArgs args) =>
+      provide(DataKeys.uri, locale, args: args);
+
+  String emailFrom(internet_555.EmailArgs args) =>
+      provide(DataKeys.email_from, locale, args: args);
 
   String userNameFrom(internet_555.UsernameArgs args) =>
       provide(DataKeys.user_name_from, locale, args: args);

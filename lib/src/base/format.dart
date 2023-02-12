@@ -61,6 +61,8 @@ class StringTransformers {
   StringTransformers._();
 
   static String toLowerCase(String string) => string.toLowerCase();
+  static String deleteUrlUnsafeCharacters(String string) =>
+      string.replaceAll(RegExp(r'[^a-z0-9\-]'), '');
 
   static String toUpperCase(String string) => string.toUpperCase();
 }

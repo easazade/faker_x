@@ -25,7 +25,8 @@ Future main(List<String> arguments) async {
       var resourceTestCode = await Future.wait(dsInfoList.map((dsInfo) async {
         final code =
             '$assertFunctionName(FakeIt.localized.$locale.$resourceName.${ReCase(dsInfo.varName).camelCase});';
-        if (dsInfo.dataSource.builder == null) {
+        if (dsInfo.dataSource.builder == null ||
+            dsInfo.builderArgsType == 'dynamic') {
           return code;
         } else {
           manualTests['test/manual/${locale}_${dsInfo.varName}_test.dart'] =
@@ -34,7 +35,7 @@ Future main(List<String> arguments) async {
             values: {
               'name': '$locale -> $resourceName -> ${dsInfo.varName} test',
               'description':
-                  '//TODO: please write test manually to test ${dsInfo.varName}',
+                  '// TODO: please write test manually to test FakeIe.localized.$locale.$resourceName.${dsInfo.varName}(args)',
             },
           );
           return null;

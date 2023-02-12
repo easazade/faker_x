@@ -44,6 +44,7 @@ class DataKeys {
   static const email = 'email';
   static const email_from = 'email_from';
   static const mail_provider = 'mail_provider';
+  static const uri = 'uri';
   static const disposable_mail_provider = 'disposable_mail_provider';
   static const disposable_email = 'disposable_email';
   static const free_email = 'free_email';
@@ -60,4 +61,5 @@ class DataKeys {
   static const user_agent = 'user_agent';
   static const avatar_uri = 'avatar_uri';
   static const emoji = 'emoji';
+  static const domain_suffixes = 'domain_suffixes';
 }

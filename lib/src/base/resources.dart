@@ -94,15 +94,15 @@ class Internet {
   final FakeItLocale _locale;
 
   String get email => provide(DataKeys.email, _locale);
-  String get mail_provider => provide(DataKeys.mail_provider, _locale);
-  String get disposable_mail_provider =>
+  String get mailProvider => provide(DataKeys.mail_provider, _locale);
+  String get disposableMailProvider =>
       provide(DataKeys.disposable_mail_provider, _locale);
-  // String get disposableEmail => provide(DataKeys.disposable_email, _locale);
-  // String get freeEmail => provide(DataKeys.free_email, _locale);
-  // String get safeEmail => provide(DataKeys.safe_email, _locale);
-  // String get domainName => provide(DataKeys.domain_name, _locale);
-  // String get httpUrl => provide(DataKeys.http_url, _locale);
-  // String get httpsUrl => provide(DataKeys.https_url, _locale);
+  String get disposableEmail => provide(DataKeys.disposable_email, _locale);
+  String get safeEmail => provide(DataKeys.safe_email, _locale);
+  String get domainName => provide(DataKeys.domain_name, _locale);
+  String get domainSuffixes => provide(DataKeys.domain_suffixes, _locale);
+  String get httpUrl => provide(DataKeys.http_url, _locale);
+  String get httpsUrl => provide(DataKeys.https_url, _locale);
   // String get ipv4Address => provide(DataKeys.ipv4_address, _locale);
   // String get ipv6Address => provide(DataKeys.ipv6_address, _locale);
   // String get macAddress => provide(DataKeys.mac_address, _locale);

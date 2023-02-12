@@ -40,11 +40,14 @@ void main() {
   });
 
   test("fa_ir automotive test", () async {
-    for (var i = 0; i < testRepeatCount; i++) {}
+    for (var i = 0; i < testRepeatCount; i++) {
+      assertFakeValue(FakeIt.localized.fa_ir.automotive.licensePlate);
+    }
   });
 
   test("fa_ir color test", () async {
     for (var i = 0; i < testRepeatCount; i++) {
+      assertFakeValue(FakeIt.localized.fa_ir.color.colorHex);
       assertFakeValue(FakeIt.localized.fa_ir.color.colorName);
     }
   });
@@ -63,7 +66,18 @@ void main() {
   });
 
   test("fa_ir internet test", () async {
-    for (var i = 0; i < testRepeatCount; i++) {}
+    for (var i = 0; i < testRepeatCount; i++) {
+      assertFakeValue(FakeIt.localized.fa_ir.internet.httpUrl);
+      assertFakeValue(FakeIt.localized.fa_ir.internet.email);
+      assertFakeValue(FakeIt.localized.fa_ir.internet.httpsUrl);
+      assertFakeValue(FakeIt.localized.fa_ir.internet.safeEmail);
+      assertFakeValue(FakeIt.localized.fa_ir.internet.domainSuffixes);
+      assertFakeValue(FakeIt.localized.fa_ir.internet.userName);
+      assertFakeValue(FakeIt.localized.fa_ir.internet.disposableEmail);
+      assertFakeValue(FakeIt.localized.fa_ir.internet.mailProvider);
+      assertFakeValue(FakeIt.localized.fa_ir.internet.domainName);
+      assertFakeValue(FakeIt.localized.fa_ir.internet.disposableMailProvider);
+    }
   });
 
   test("fa_ir image test", () async {

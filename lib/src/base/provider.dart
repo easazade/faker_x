@@ -27,11 +27,13 @@ String provide(
 
     final useFormats = !context.hasDuplicateKeyWithPreviousContexts;
 
-    if (dataSource.formats.isNotEmpty && useFormats) {
+    if (dataSource is DataSource &&
+        dataSource.formats.isNotEmpty &&
+        useFormats) {
       final format = dataSource.formats.randomItem;
 
       if (format != null) {
-        final parsedValue = parseValueFromFormat(format, locale, context);
+        final parsedValue = createFakeValueFromFormat(format, locale, context);
 
         if (value != null) {
           value = coinToss(value, parsedValue);
@@ -51,17 +53,22 @@ String provide(
 
     return value;
   } else {
-    final stringOrFormat = dataSource.build(args);
-    if (stringOrFormat.isString) {
-      return stringOrFormat.string!;
-    } else {
-      final format = stringOrFormat.format!;
-      return parseValueFromFormat(format, locale, context);
+    final result = dataSource.build(args);
+
+    if (result is StringOrFormat) {
+      if (result.isString) {
+        return result.string!;
+      } else {
+        final format = result.format!;
+        return createFakeValueFromFormat(format, locale, context);
+      }
     }
+
+    return result;
   }
 }
 
-String parseValueFromFormat(
+String createFakeValueFromFormat(
   Format format,
   FakeItLocale locale,
   ProviderContext context,
@@ -77,17 +84,18 @@ String parseValueFromFormat(
   return format.parse(providedValues);
 }
 
-void registerDataSource(DataSource dataSource) {
+void registerDataSource(BaseDataSource dataSource) {
   // retriving the dataSources registered for the given locale
-  Map<String, DataSource>? dataSources =
+  Map<String, BaseDataSource>? dataSources =
       _localizedProvidersMap[dataSource.locale];
 
   if (dataSources == null) {
-    _localizedProvidersMap[dataSource.locale] = <String, DataSource>{};
+    _localizedProvidersMap[dataSource.locale] = <String, BaseDataSource>{};
     dataSources = _localizedProvidersMap[dataSource.locale];
   }
 
   dataSources![dataSource.dataKey] = dataSource;
 }
 
-final Map<FakeItLocale, Map<String, DataSource>> _localizedProvidersMap = {};
+final Map<FakeItLocale, Map<String, BaseDataSource>> _localizedProvidersMap =
+    {};

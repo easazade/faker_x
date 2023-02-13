@@ -35,7 +35,7 @@ Future main(List<String> arguments) async {
             values: {
               'name': '$locale -> $resourceName -> ${dsInfo.varName} test',
               'description':
-                  '// TODO: please write test manually to test FakeIe.localized.$locale.$resourceName.${dsInfo.varName}(args)',
+                  '// TODO: please write test manually to test FakeIt.localized.$locale.$resourceName.${dsInfo.varName}(args)',
             },
           );
           return null;

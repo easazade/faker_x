@@ -1,7 +1,12 @@
+import 'package:fake_it/fake_it.dart';
+import 'package:fake_it/src/locales/global/datasources/internet.dart';
 import 'package:test/test.dart';
+
+import '../utils.dart';
 
 void main() {
   test("en_us -> internet -> uri test", () async {
-    // TODO: please write test manually to test FakeIe.localized.en_us.internet.uri(args)
+    assertFakeValue(FakeIt.localized.en_us.internet.uri(UriArgs('ftp')));
+    assertFakeValue(FakeIt.localized.en_us.internet.uri(UriArgs('https')));
   });
 }

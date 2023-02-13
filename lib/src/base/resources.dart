@@ -113,6 +113,15 @@ class Internet {
   // String get userAgent => provide(DataKeys.user_agent, _locale);
 }
 
+@BaseResource(isRequired: true)
+class Animal {
+  Animal(this._locale);
+
+  final FakeItLocale _locale;
+
+  String get animalName => provide(DataKeys.animal_name, _locale);
+}
+
 @BaseResource(isRequired: false)
 class Extra {
   Extra(this._locale);

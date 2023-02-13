@@ -59,6 +59,12 @@ void main() {
     }
   });
 
+  test("fa_ir animal test", () async {
+    for (var i = 0; i < testRepeatCount; i++) {
+      assertFakeValue(FakeIt.localized.fa_ir.animal.animalName);
+    }
+  });
+
   test("fa_ir vehicle test", () async {
     for (var i = 0; i < testRepeatCount; i++) {
       assertFakeValue(FakeIt.localized.fa_ir.vehicle.car);

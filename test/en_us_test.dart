@@ -63,6 +63,12 @@ void main() {
     }
   });
 
+  test("en_us animal test", () async {
+    for (var i = 0; i < testRepeatCount; i++) {
+      assertFakeValue(FakeIt.localized.en_us.animal.animalName);
+    }
+  });
+
   test("en_us vehicle test", () async {
     for (var i = 0; i < testRepeatCount; i++) {
       assertFakeValue(FakeIt.localized.en_us.vehicle.car);

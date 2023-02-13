@@ -15,7 +15,8 @@ class FakeCollection {
         automotive = Automotive(locale),
         vehicle = Vehicle(locale),
         color = Color(locale),
-        internet = Internet(locale) {
+        internet = Internet(locale),
+        animal = Animal(locale) {
     for (var dataSource in dataSources) {
       registerDataSource(dataSource.copyWith(locale: locale));
     }
@@ -30,4 +31,5 @@ class FakeCollection {
   final Vehicle vehicle;
   final Color color;
   final Internet internet;
+  final Animal animal;
 }

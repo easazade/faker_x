@@ -14,6 +14,7 @@ import 'package:fake_it/src/locales/en_us/datasources/automotive.dart'
 import 'package:fake_it/src/locales/global/datasources/color.dart' as color_525;
 import 'package:fake_it/src/locales/en_us/datasources/color.dart' as color_48;
 import 'package:fake_it/src/locales/en_us/datasources/lorem.dart' as lorem_77;
+import 'package:fake_it/src/locales/en_us/datasources/animal.dart' as animal_10;
 import 'package:fake_it/src/locales/en_us/datasources/vehicle.dart'
     as vehicle_719;
 import 'package:fake_it/src/locales/global/datasources/internet.dart'
@@ -57,6 +58,7 @@ class EnUsCollection extends FakeCollection {
             color_48.color_name,
             lorem_77.sentence,
             lorem_77.word,
+            animal_10.animal_name,
             vehicle_719.car,
             internet_555.http_url,
             internet_555.email,

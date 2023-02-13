@@ -13,7 +13,7 @@ int randomInt(int max) => _random.nextInt(max);
 String get randomLetter => _letters[_random.nextInt(_letters.length)];
 
 String get randomLetterOrNumber =>
-    _letters[_random.nextInt(_lettersAndNumbers.length)];
+    _lettersAndNumbers[_random.nextInt(_lettersAndNumbers.length)];
 
 String randomString(int length) =>
     List.generate(length, (index) => randomLetterOrNumber).join();

@@ -13,6 +13,8 @@ import 'package:fake_it/src/locales/fa_ir/datasources/automotive.dart'
 import 'package:fake_it/src/locales/global/datasources/color.dart' as color_525;
 import 'package:fake_it/src/locales/fa_ir/datasources/color.dart' as color_81;
 import 'package:fake_it/src/locales/fa_ir/datasources/lorem.dart' as lorem_857;
+import 'package:fake_it/src/locales/fa_ir/datasources/animal.dart'
+    as animal_845;
 import 'package:fake_it/src/locales/fa_ir/datasources/vehicle.dart'
     as vehicle_894;
 import 'package:fake_it/src/locales/global/datasources/internet.dart'
@@ -52,6 +54,7 @@ class FaIrCollection extends FakeCollection {
             color_81.color_name,
             lorem_857.sentence,
             lorem_857.word,
+            animal_845.animal_name,
             vehicle_894.car,
             internet_555.http_url,
             internet_555.email,

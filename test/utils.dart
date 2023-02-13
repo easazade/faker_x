@@ -1,8 +1,10 @@
 import 'package:test/expect.dart';
 
-void assertFakeValue(String? value) {
+void assertFakeValue(dynamic value) {
   expect(value, isNotNull);
-  expect(value, isNotEmpty);
+  if (value is String) {
+    expect(value, isNotEmpty);
+  }
   // print(value);
 }
 

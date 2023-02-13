@@ -25,7 +25,7 @@ dynamic provide(
   }
 
   if (dataSource.builder == null) {
-    String? value = dataSource.values.randomItem;
+    dynamic value = dataSource.values.randomItem;
 
     final useFormats = !context.hasDuplicateKeyWithPreviousContexts;
 

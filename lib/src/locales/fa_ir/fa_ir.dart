@@ -20,6 +20,8 @@ import 'package:fake_it/src/locales/fa_ir/datasources/vehicle.dart'
 import 'package:fake_it/src/locales/global/datasources/internet.dart'
     as internet_555;
 import 'package:fake_it/src/locales/global/datasources/image.dart' as image_375;
+import 'package:fake_it/src/locales/global/datasources/location.dart'
+    as location_950;
 
 class FaIrCollection extends FakeCollection {
   final FakeItLocale locale;
@@ -76,6 +78,7 @@ class FaIrCollection extends FakeCollection {
             internet_555.user_name_from,
             image_375.image,
             image_375.avatar_uri,
+            location_950.geo_location,
           ],
         );
 

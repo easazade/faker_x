@@ -99,4 +99,10 @@ void main() {
       assertFakeValue(FakeIt.localized.en_us.image.avatarUri);
     }
   });
+
+  test("en_us location test", () async {
+    for (var i = 0; i < testRepeatCount; i++) {
+      assertFakeValue(FakeIt.localized.en_us.location.geoLocation);
+    }
+  });
 }

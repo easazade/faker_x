@@ -122,14 +122,14 @@ class Animal {
   String get animalName => provide(DataKeys.animal_name, _locale);
 }
 
-// @BaseResource(isRequired: true)
-// class Location {
-//   Location(this._locale);
+@BaseResource(isRequired: true)
+class Location {
+  Location(this._locale);
 
-//   final FakeItLocale _locale;
+  final FakeItLocale _locale;
 
-//   GeoLocation get geoLocation => provide(DataKeys.geo_location, _locale);
-// }
+  GeoLocation get geoLocation => provide(DataKeys.geo_location, _locale);
+}
 
 @BaseResource(isRequired: false)
 class Extra {

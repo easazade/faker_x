@@ -468,27 +468,13 @@ class DataSourceInfo {
 
   String get importCodePhrase => 'import \'$fileUri\' as $directiveRef;';
 
-  DataSourceInfo changeLocale(String locale) {
-    if (dataSource is DataSource) {
-      return DataSourceInfo(
+  DataSourceInfo changeLocale(String locale) => DataSourceInfo(
         fileUri: fileUri,
         varName: varName,
         builderArgsType: builderArgsType,
-        dataSource: (dataSource as DataSource)
-            .copyWith(locale: FakeItLocale.fromString(locale)),
+        dataSource:
+            dataSource.copyWith(locale: FakeItLocale.fromString(locale)),
       );
-    } else if (dataSource is TypeDataSource) {
-      return DataSourceInfo(
-        fileUri: fileUri,
-        varName: varName,
-        builderArgsType: builderArgsType,
-        dataSource: (dataSource as DataSource)
-            .copyWith(locale: FakeItLocale.fromString(locale)),
-      );
-    } else {
-      throw Exception('Unknown DataSource type');
-    }
-  }
 
   @override
   String toString() {

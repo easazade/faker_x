@@ -46,7 +46,7 @@ class DataSource<ARG> extends BaseDataSource<String, ARG> {
 
   final List<Format> formats;
 
-  DataSource copyWith({
+  DataSource _copyWith({
     String? dataKey,
     FakeItLocale? locale,
     List<Format>? formats,
@@ -106,7 +106,7 @@ class TypeDataSource<T, ARG> extends BaseDataSource<T, ARG> {
           builder: builder,
         );
 
-  TypeDataSource copyWith({
+  TypeDataSource _copyWith({
     String? dataKey,
     FakeItLocale? locale,
     List<T>? values,
@@ -150,4 +150,32 @@ class StringOrFormat {
 
   bool get isString => string != null;
   bool get isFormat => format != null;
+}
+
+extension BaseDataSourceExt on BaseDataSource {
+  BaseDataSource copyWith({
+    String? dataKey,
+    FakeItLocale? locale,
+    List<Format>? formats,
+    List<String>? values,
+    Function? builder,
+  }) {
+    if (this is DataSource) {
+      return (this as DataSource)._copyWith(
+        dataKey: dataKey,
+        locale: locale,
+        formats: formats,
+        values: values,
+        builder: builder,
+      );
+    } else if (this is TypeDataSource) {
+      return (this as TypeDataSource)._copyWith(
+        dataKey: dataKey,
+        locale: locale,
+        values: values,
+        builder: builder,
+      );
+    }
+    throw Exception('could not clone the DataSource, Unknown Type');
+  }
 }

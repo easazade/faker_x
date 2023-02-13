@@ -6,7 +6,7 @@ import 'package:fake_it/src/base/provider.dart';
 class FakeCollection {
   FakeCollection({
     required FakeItLocale locale,
-    required List<DataSource> dataSources,
+    required List<BaseDataSource> dataSources,
   })  : lorem = Lorem(locale),
         job = Job(locale),
         person = Person(locale),
@@ -16,7 +16,8 @@ class FakeCollection {
         vehicle = Vehicle(locale),
         color = Color(locale),
         internet = Internet(locale),
-        animal = Animal(locale) {
+        animal = Animal(locale),
+        location = Location(locale) {
     for (var dataSource in dataSources) {
       registerDataSource(dataSource.copyWith(locale: locale));
     }
@@ -32,4 +33,5 @@ class FakeCollection {
   final Color color;
   final Internet internet;
   final Animal animal;
+  final Location location;
 }

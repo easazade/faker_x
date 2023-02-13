@@ -4,7 +4,7 @@ import 'package:fake_it/src/base/locale.dart';
 import 'package:fake_it/src/base/provider_context.dart';
 import 'package:fake_it/src/base/utils.dart';
 
-String provide(
+dynamic provide(
   String dataKey,
   FakeItLocale locale, {
   ProviderContext? context,
@@ -19,7 +19,9 @@ String provide(
 
   final dataSource = localizedDataSourceMap[dataKey];
   if (dataSource == null) {
-    throw Exception('There are no $dataKey values available for $locale');
+    throw Exception(
+      'There are no $dataKey values available for $locale since there are not DataSources registered for it',
+    );
   }
 
   if (dataSource.builder == null) {
@@ -78,7 +80,7 @@ String createFakeValueFromFormat(
   final providedValues = keys.map((e) {
     final newContext =
         ProviderContext(dataKey: e, locale: locale, previousContext: context);
-    return provide(e, locale, context: newContext);
+    return provide(e, locale, context: newContext) as String;
   }).toList();
 
   return format.parse(providedValues);

@@ -167,16 +167,23 @@ Future _checkAvailableDataSourcesForCodeGeneration({
     }
 
     for (var dsInfo in availableDsInfosOnResource!) {
-      if ((dsInfo.dataSource.formats.isEmpty &&
+      final msg =
+          '$dataSourceClassName ${dsInfo.varName} defined in locales/$locale/datasources/${dsInfo.resourceName}.dart '
+          'has not any item neither in its values nor formats. Please provide either values or formats or both '
+          'or alternatively provide a builder property to be used instead of values and formats properties to generate '
+          'fake values';
+
+      if (dsInfo.dataSource is DataSource &&
+          ((dsInfo.dataSource as DataSource).formats.isEmpty &&
               dsInfo.dataSource.values.isEmpty) &&
           dsInfo.dataSource.builder == null) {
         exitWithMsg(
-          error:
-              '$dataSourceClassName ${dsInfo.varName} defined in locales/$locale/datasources/${dsInfo.resourceName}.dart '
-              'has not any item neither in its values nor formats. Please provide either values or formats or both '
-              'or alternatively provide a builder property to be used instead of values and formats properties to generate '
-              'fake values',
+          error: msg,
         );
+      } else if (dsInfo.dataSource is TypeDataSource &&
+          dsInfo.dataSource.values.isEmpty &&
+          dsInfo.dataSource.builder == null) {
+        exitWithMsg(error: msg);
       }
     }
 

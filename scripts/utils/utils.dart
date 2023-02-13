@@ -2,6 +2,7 @@
 
 import 'dart:io';
 import 'dart:mirrors';
+import 'package:collection/collection.dart';
 import 'package:fake_it/fake_it.dart';
 import 'package:glob/glob.dart';
 import 'package:mustache_template/mustache_template.dart';
@@ -11,7 +12,7 @@ import 'cli.dart';
 import 'names.dart';
 
 /// only use for debug & testing purposes
-const _testArgs = <String>['xx_xx'];
+const _testArgs = <String>['en_us'];
 
 List<String> checkArgs(List<String> args) {
   if (args.isEmpty && _testArgs.isNotEmpty) {
@@ -124,9 +125,14 @@ Future<Map<String, List<String>>> readRequiredDataSources() async {
 
   Map<String, List<String>> requiredResources = {};
 
-  for (var entry in libMirror.declarations.entries.where((element) =>
-      element.value is ClassMirror &&
-      !(element.value as ClassMirror).isAbstract)) {
+  final resourcesMirrors = libMirror.declarations.entries.where((element) {
+    return element.value is ClassMirror &&
+        !(element.value as ClassMirror).isAbstract &&
+        (element.value as ClassMirror).metadata.firstOrNull != null &&
+        (element.value as ClassMirror).metadata.first.reflectee is BaseResource;
+  });
+
+  for (var entry in resourcesMirrors) {
     final resourceName = MirrorSystem.getName(entry.key).toLowerCase();
     final mirrorOnResource = entry.value as ClassMirror;
 
@@ -221,8 +227,8 @@ Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
         .where((element) => element.isTopLevel)) {
       final instanceMirror = mirror.getField(varMirrorOnDataSource.simpleName);
 
-      if (instanceMirror.reflectee is DataSource) {
-        final dataSource = instanceMirror.reflectee as DataSource;
+      if (instanceMirror.reflectee is BaseDataSource) {
+        final dataSource = instanceMirror.reflectee as BaseDataSource;
         checkDataKeyValidity(dataSource.dataKey);
 
         final varName = MirrorSystem.getName(varMirrorOnDataSource.simpleName);
@@ -232,7 +238,7 @@ Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
             fileUri: mirror.uri.toString(),
             varName: varName,
             builderArgsType: instanceMirror
-                .type.typeArguments.first.reflectedType
+                .type.superclass!.typeArguments[1].reflectedType
                 .toString(),
             dataSource: dataSource,
           ),
@@ -274,8 +280,8 @@ Future<List<DataSourceInfo>> readGlobalDataSources() async {
         .where((element) => element.isTopLevel)) {
       final instanceMirror = mirror.getField(varMirrorOnDataSource.simpleName);
 
-      if (instanceMirror.reflectee is DataSource) {
-        final dataSource = instanceMirror.reflectee as DataSource;
+      if (instanceMirror.reflectee is BaseDataSource) {
+        final dataSource = instanceMirror.reflectee as BaseDataSource;
         checkDataKeyValidity(dataSource.dataKey);
 
         final varName = MirrorSystem.getName(varMirrorOnDataSource.simpleName);
@@ -285,7 +291,7 @@ Future<List<DataSourceInfo>> readGlobalDataSources() async {
             fileUri: mirror.uri.toString(),
             varName: varName,
             builderArgsType: instanceMirror
-                .type.typeArguments.first.reflectedType
+                .type.superclass!.typeArguments[1].reflectedType
                 .toString(),
             dataSource: dataSource,
           ),
@@ -451,7 +457,7 @@ class DataSourceInfo {
   final String fileUri;
   final String varName;
   final String builderArgsType;
-  final DataSource dataSource;
+  final BaseDataSource dataSource;
 
   String get fileName => fileUri.split('/').last;
 
@@ -462,13 +468,27 @@ class DataSourceInfo {
 
   String get importCodePhrase => 'import \'$fileUri\' as $directiveRef;';
 
-  DataSourceInfo changeLocale(String locale) => DataSourceInfo(
+  DataSourceInfo changeLocale(String locale) {
+    if (dataSource is DataSource) {
+      return DataSourceInfo(
         fileUri: fileUri,
         varName: varName,
         builderArgsType: builderArgsType,
-        dataSource:
-            dataSource.copyWith(locale: FakeItLocale.fromString(locale)),
+        dataSource: (dataSource as DataSource)
+            .copyWith(locale: FakeItLocale.fromString(locale)),
       );
+    } else if (dataSource is TypeDataSource) {
+      return DataSourceInfo(
+        fileUri: fileUri,
+        varName: varName,
+        builderArgsType: builderArgsType,
+        dataSource: (dataSource as DataSource)
+            .copyWith(locale: FakeItLocale.fromString(locale)),
+      );
+    } else {
+      throw Exception('Unknown DataSource type');
+    }
+  }
 
   @override
   String toString() {

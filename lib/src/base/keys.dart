@@ -64,4 +64,6 @@ class DataKeys {
   static const domain_suffixes = 'domain_suffixes';
 
   static const animal_name = 'animal_name';
+
+  static const geo_location = 'geo_location';
 }

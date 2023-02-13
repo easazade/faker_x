@@ -122,6 +122,15 @@ class Animal {
   String get animalName => provide(DataKeys.animal_name, _locale);
 }
 
+// @BaseResource(isRequired: true)
+// class Location {
+//   Location(this._locale);
+
+//   final FakeItLocale _locale;
+
+//   GeoLocation get geoLocation => provide(DataKeys.geo_location, _locale);
+// }
+
 @BaseResource(isRequired: false)
 class Extra {
   Extra(this._locale);
@@ -130,6 +139,7 @@ class Extra {
 }
 
 /// TODO: Resources to add
+
 /// location
 /// jwt
 /// phone-number
@@ -137,3 +147,16 @@ class Extra {
 /// bank (faker js) [account type], [credit card number], [transaction type], [https://github.com/joke2k/faker/blob/master/faker/providers/bank/__init__.py]
 /// airline [airlines, airports, airplanes]
 /// numbers [number of digits], [number of decimals], [from pattern]
+
+/// #####################################################################################
+/// #####################################################################################
+/// #####################################################################################
+/// #####################################################################################
+/// #####################################################################################
+
+class GeoLocation {
+  final double latitude;
+  final double longitude;
+
+  GeoLocation(this.latitude, this.longitude);
+}

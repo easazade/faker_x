@@ -67,8 +67,8 @@ Future _createFakeCollectionClass({
 
   final className = createCollectionClassName(locale);
 
-  buffer.writeln('class $className extends FakeCollection {');
-  buffer.writeln('final FakeItLocale locale;\n');
+  buffer.writeln('class $className extends $fakeCollectionClassName {');
+  buffer.writeln('final $fakeItLocaleClassName locale;\n');
 
   buffer.writeln('$className()');
   buffer.writeln(': locale = Locales.$locale,');
@@ -114,7 +114,7 @@ Future _createFakeCollectionClass({
 
         final classBuffer = StringBuffer();
         classBuffer.writeln('class $resClassName extends $baseResClassName {');
-        classBuffer.writeln('final FakeItLocale locale;\n');
+        classBuffer.writeln('final $fakeItLocaleClassName locale;\n');
         classBuffer.writeln('$resClassName(this.locale) : super(locale);\n');
 
         for (var dsInfo in availableDsInfosOnResource) {
@@ -123,10 +123,10 @@ Future _createFakeCollectionClass({
             if (dsInfo.dataSource.builder == null ||
                 dsInfo.builderArgsType == 'dynamic') {
               classBuffer.writeln(
-                  'String get ${ReCase(dsInfo.varName).camelCase} => provide(DataKeys.${dsInfo.varName},locale);\n');
+                  'String get ${ReCase(dsInfo.varName).camelCase} => provide($dataKeysClassName.${dsInfo.varName},locale);\n');
             } else {
               classBuffer.writeln(
-                  'String ${ReCase(dsInfo.varName).camelCase}(${dsInfo.directiveRef}.${dsInfo.builderArgsType} args) => provide(DataKeys.${dsInfo.varName}, locale, args: args);\n');
+                  'String ${ReCase(dsInfo.varName).camelCase}(${dsInfo.directiveRef}.${dsInfo.builderArgsType} args) => provide($dataKeysClassName.${dsInfo.varName}, locale, args: args);\n');
             }
           }
         }
@@ -162,7 +162,7 @@ Future _checkAvailableDataSourcesForCodeGeneration({
         error:
             'Cannot find datasource file neither in lib/locales/$locale/datasources/$resourceName.dart nor in '
             'global datasources lib/locales/global/datasources/$resourceName.dart\n'
-            'Please make sure the file exists and has variables of type DataSource for required by resource "$resourceName" in it.',
+            'Please make sure the file exists and has variables of type $dataSourceClassName for required by resource "$resourceName" in it.',
       );
     }
 
@@ -172,7 +172,7 @@ Future _checkAvailableDataSourcesForCodeGeneration({
           dsInfo.dataSource.builder == null) {
         exitWithMsg(
           error:
-              'DataSource ${dsInfo.varName} defined in locales/$locale/datasources/${dsInfo.resourceName}.dart '
+              '$dataSourceClassName ${dsInfo.varName} defined in locales/$locale/datasources/${dsInfo.resourceName}.dart '
               'has not any item neither in its values nor formats. Please provide either values or formats or both '
               'or alternatively provide a builder property to be used instead of values and formats properties to generate '
               'fake values',
@@ -186,8 +186,8 @@ Future _checkAvailableDataSourcesForCodeGeneration({
     if (availableDsNamesOnResource?.containsAll(requiredList) == false) {
       exitWithMsg(
         error:
-            'Provided datasources for $resourceName is missing required a required DataSource\n'
-            'required list of DataSources for resource $resourceName is $requiredList But provided list of DataSources '
+            'Provided datasources for $resourceName is missing required a required $dataSourceClassName\n'
+            'required list of ${dataSourceClassName}s for resource $resourceName is $requiredList But provided list of ${dataSourceClassName}s '
             'is $availableDsNamesOnResource please make sure you have provided all the required datasources with the correct '
             'variable name and key in locales/$locale/datasources/$resourceName.dart',
       );
@@ -202,28 +202,28 @@ Future _checkAvailableDataSourcesForCodeGeneration({
             dsInfo.builderArgsType != 'dynamic') {
           exitWithMsg(
             error: '''
-You cannot define a DataSource<${dsInfo.builderArgsType}> using withBuilder constructor for datasource "${dsInfo.varName}" 
+You cannot define a $dataSourceClassName<${dsInfo.builderArgsType}> using withBuilder constructor for datasource "${dsInfo.varName}" 
 because datasource "${dsInfo.varName}" of resource class "${dsInfo.resourceName.pascalCase}" is a required datasource. 
-NOTE THAT: all the DataSources defined in Resource classes in "$resourcesAddress" are required datasources.
+NOTE THAT: all the ${dataSourceClassName}s defined in Resource classes in "$resourcesAddress" are required datasources.
 
 You have 2 options to define your datasources :
 
-If you want to use a DataSource.withBuilder constructor to generate fake value but you do not need an argument passed in the builder function
-you can do so by definding your DataSource with dynamic genertic argument type like below:
+If you want to use a $dataSourceClassName.withBuilder constructor to generate fake value but you do not need an argument passed in the builder function
+you can do so by definding your $dataSourceClassName with dynamic genertic argument type like below:
 
-final $dsName = DataSource<dynamic>.withBuilder(
-  dataKey: DataKeys.$dsName,
+final $dsName = $dataSourceClassName<dynamic>.withBuilder(
+  dataKey: $dataKeysClassName.$dsName,
   locale: Locales.${dsInfo.dataSource.locale},
-  builder: (_, FakeItLocale locale) {
+  builder: (_, $fakeItLocaleClassName locale) {
     // generate your value and return
     return '';
   },
 );
 
-OR define your DataSource without using builder method:
+OR define your $dataSourceClassName without using builder method:
 
-const $dsName = DataSource(
-  dataKey: DataKeys.$dsName,
+const $dsName = $dataSourceClassName(
+  dataKey: $dataKeysClassName.$dsName,
   locale: ${dsInfo.dataSource.locale},
   formats:[],
   values: [],

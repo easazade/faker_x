@@ -369,7 +369,7 @@ Future generateLocaleFile(List<String> locales) async {
     'locales': locales.map(
       (locale) {
         final parts = locale.split('_');
-        return "static const $locale = FakeItLocale('${parts[0]}', '${(parts.length > 1 ? parts[1] : '')}');";
+        return "static const $locale = $fakeItLocaleClassName('${parts[0]}', '${(parts.length > 1 ? parts[1] : '')}');";
       },
     ),
   });

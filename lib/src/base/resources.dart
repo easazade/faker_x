@@ -130,10 +130,6 @@ class Extra {
 }
 
 /// TODO: Resources to add
-/// animals
-/// currency
-/// internet (faker js),
-/// food
 /// location
 /// jwt
 /// phone-number

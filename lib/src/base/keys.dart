@@ -52,8 +52,8 @@ class DataKeys {
   static const domain_name = 'domain_name';
   static const http_url = 'http_url';
   static const https_url = 'https_url';
-  static const ipv4_address = 'ipv4_address';
-  static const ipv6_address = 'ipv6_address';
+  static const ipv4 = 'ipv4';
+  static const ipv6 = 'ipv6';
   static const mac_address = 'mac_address';
   static const user_name = 'user_name';
   static const user_name_from = 'user_name_from';

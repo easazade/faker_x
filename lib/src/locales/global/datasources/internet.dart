@@ -21,6 +21,13 @@ class UriArgs {
   UriArgs(this.protocol);
 }
 
+class PasswordArgs {
+  final int length;
+  final bool onlyNumeric;
+
+  PasswordArgs({this.length = 10, this.onlyNumeric = false});
+}
+
 const mail_provider = DataSource(
   dataKey: DataKeys.mail_provider,
   locale: Locales.en_us,
@@ -207,8 +214,167 @@ final https_url = DataSource.withBuilder(
   },
 );
 
-// final disposable_email = ;
-// final free_email = ;
+final ipv4 = DataSource.withBuilder(
+  dataKey: DataKeys.ipv4,
+  locale: Locales.en_us,
+  builder: (_, __) => List.generate(4, (_) => randomInt(255)).join('.'),
+);
+
+final ipv6 = DataSource.withBuilder(
+  dataKey: DataKeys.ipv6,
+  locale: Locales.en_us,
+  builder: (_, __) =>
+      List.generate(8, (_) => randomInt(65535).toRadixString(16)).join(':'),
+);
+
+final mac_address = DataSource.withBuilder(
+  dataKey: DataKeys.mac_address,
+  locale: Locales.en_us,
+  builder: (_, __) =>
+      List.generate(6, (_) => randomInt(0xff).toRadixString(16).padLeft(2, '0'))
+          .join(':'),
+);
+
+final password = DataSource<PasswordArgs>.withBuilder(
+  dataKey: DataKeys.password,
+  locale: Locales.en_us,
+  builder: (PasswordArgs args, __) {
+    if (args.onlyNumeric) {
+      return List.generate(args.length, (_) => randomOneDigitInt).join();
+    } else {
+      return randomString(args.length);
+    }
+  },
+);
+
+final emoji = DataSource(
+  dataKey: DataKeys.emoji,
+  locale: Locales.en_us,
+  values: [
+    '😀',
+    '😃',
+    '😄',
+    '😁',
+    '😆',
+    '😅',
+    '😂',
+    '🤣',
+    '🥲',
+    '🥹',
+    '😊',
+    '😇',
+    '🙂',
+    '🙃',
+    '😉',
+    '😌',
+    '😍',
+    '🥰',
+    '😘',
+    '😗',
+    '😙',
+    '😚',
+    '😋',
+    '😛',
+    '😝',
+    '😜',
+    '🤪',
+    '🤨',
+    '🧐',
+    '🤓',
+    '😎',
+    '🥸',
+    '🤩',
+    '🥳',
+    '😏',
+    '😒',
+    '😞',
+    '😔',
+    '😟',
+    '😕',
+    '🙁',
+    '😣',
+    '😖',
+    '😫',
+    '😩',
+    '🥺',
+    '😢',
+    '😭',
+    '😮‍💨',
+    '😤',
+    '😠',
+    '😡',
+    '🤬',
+    '🤯',
+    '😳',
+    '🥵',
+    '🥶',
+    '😱',
+    '😨',
+    '😰',
+    '😥',
+    '😓',
+    '🫣',
+    '🤗',
+    '🫡',
+    '🤔',
+    '🫢',
+    '🤭',
+    '🤫',
+    '🤥',
+    '😶',
+    '😶‍🌫️',
+    '😐',
+    '😑',
+    '😬',
+    '🫠',
+    '🙄',
+    '😯',
+    '😦',
+    '😧',
+    '😮',
+    '😲',
+    '🥱',
+    '😴',
+    '🤤',
+    '😪',
+    '😵',
+    '😵‍💫',
+    '🫥',
+    '🤐',
+    '🥴',
+    '🤢',
+    '🤮',
+    '🤧',
+    '😷',
+    '🤒',
+    '🤕',
+    '🤑',
+    '🤠',
+    '😈',
+    '👿',
+    '👹',
+    '👺',
+    '🤡',
+    '💩',
+    '👻',
+    '💀',
+    '☠️',
+    '👽',
+    '👾',
+    '🤖',
+    '🎃',
+    '😺',
+    '😸',
+    '😹',
+    '😻',
+    '😼',
+    '😽',
+    '🙀',
+    '😿',
+    '😾',
+  ],
+);
+
 // final safe_email = ;
 // final domain_name = ;
 // final http_url = ;

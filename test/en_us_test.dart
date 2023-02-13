@@ -75,9 +75,13 @@ void main() {
       assertFakeValue(FakeIt.localized.en_us.internet.email);
       assertFakeValue(FakeIt.localized.en_us.internet.httpsUrl);
       assertFakeValue(FakeIt.localized.en_us.internet.safeEmail);
+      assertFakeValue(FakeIt.localized.en_us.internet.ipv4);
       assertFakeValue(FakeIt.localized.en_us.internet.domainSuffixes);
       assertFakeValue(FakeIt.localized.en_us.internet.userName);
       assertFakeValue(FakeIt.localized.en_us.internet.disposableEmail);
+      assertFakeValue(FakeIt.localized.en_us.internet.macAddress);
+      assertFakeValue(FakeIt.localized.en_us.internet.emoji);
+      assertFakeValue(FakeIt.localized.en_us.internet.ipv6);
       assertFakeValue(FakeIt.localized.en_us.internet.mailProvider);
       assertFakeValue(FakeIt.localized.en_us.internet.domainName);
       assertFakeValue(FakeIt.localized.en_us.internet.disposableMailProvider);
@@ -85,6 +89,8 @@ void main() {
   });
 
   test("en_us image test", () async {
-    for (var i = 0; i < testRepeatCount; i++) {}
+    for (var i = 0; i < testRepeatCount; i++) {
+      assertFakeValue(FakeIt.localized.en_us.image.avatarUri);
+    }
   });
 }

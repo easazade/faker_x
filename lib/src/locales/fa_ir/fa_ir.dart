@@ -56,17 +56,23 @@ class FaIrCollection extends FakeCollection {
             internet_555.http_url,
             internet_555.email,
             internet_555.https_url,
+            internet_555.password,
             internet_555.safe_email,
+            internet_555.ipv4,
             internet_555.domain_suffixes,
             internet_555.user_name,
             internet_555.uri,
             internet_555.disposable_email,
+            internet_555.mac_address,
+            internet_555.emoji,
             internet_555.email_from,
+            internet_555.ipv6,
             internet_555.mail_provider,
             internet_555.domain_name,
             internet_555.disposable_mail_provider,
             internet_555.user_name_from,
             image_375.image,
+            image_375.avatar_uri,
           ],
         );
 
@@ -120,13 +126,22 @@ class FaIrInternet extends Internet {
 
   String get httpsUrl => provide(DataKeys.https_url, locale);
 
+  String password(internet_555.PasswordArgs args) =>
+      provide(DataKeys.password, locale, args: args);
+
+  String get ipv4 => provide(DataKeys.ipv4, locale);
+
   String get userName => provide(DataKeys.user_name, locale);
 
   String uri(internet_555.UriArgs args) =>
       provide(DataKeys.uri, locale, args: args);
 
+  String get macAddress => provide(DataKeys.mac_address, locale);
+
   String emailFrom(internet_555.EmailArgs args) =>
       provide(DataKeys.email_from, locale, args: args);
+
+  String get ipv6 => provide(DataKeys.ipv6, locale);
 
   String userNameFrom(internet_555.UsernameArgs args) =>
       provide(DataKeys.user_name_from, locale, args: args);
@@ -139,4 +154,6 @@ class FaIrImage extends Image {
 
   String image(image_375.ImageArgs args) =>
       provide(DataKeys.image, locale, args: args);
+
+  String get avatarUri => provide(DataKeys.avatar_uri, locale);
 }

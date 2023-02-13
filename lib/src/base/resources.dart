@@ -57,6 +57,8 @@ class Image {
   Image(this._locale);
 
   final FakeItLocale _locale;
+
+  String get avatarUri => provide(DataKeys.avatar_uri, _locale);
 }
 
 @BaseResource(isRequired: true)
@@ -103,14 +105,12 @@ class Internet {
   String get domainSuffixes => provide(DataKeys.domain_suffixes, _locale);
   String get httpUrl => provide(DataKeys.http_url, _locale);
   String get httpsUrl => provide(DataKeys.https_url, _locale);
-  // String get ipv4Address => provide(DataKeys.ipv4_address, _locale);
-  // String get ipv6Address => provide(DataKeys.ipv6_address, _locale);
-  // String get macAddress => provide(DataKeys.mac_address, _locale);
+  String get ipv4 => provide(DataKeys.ipv4, _locale);
+  String get ipv6 => provide(DataKeys.ipv6, _locale);
+  String get macAddress => provide(DataKeys.mac_address, _locale);
   String get userName => provide(DataKeys.user_name, _locale);
-  // String get password => provide(DataKeys.password, _locale);
+  String get emoji => provide(DataKeys.emoji, _locale);
   // String get userAgent => provide(DataKeys.user_agent, _locale);
-  // String get avatarUri => provide(DataKeys.avatar_uri, _locale);
-  // String get emoji => provide(DataKeys.emoji, _locale);
 }
 
 @BaseResource(isRequired: false)

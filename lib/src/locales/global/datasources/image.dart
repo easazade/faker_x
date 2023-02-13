@@ -18,6 +18,13 @@ final image = DataSource<ImageArgs>.withBuilder(
   },
 );
 
+final avatar_uri = DataSource.withBuilder(
+  dataKey: DataKeys.avatar_uri,
+  locale: Locales.en_us,
+  builder: (_, __) =>
+      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${randomInt(1249)}.jpg',
+);
+
 String _imageUrl(int width, int height, List<String> keywords) {
   var url = 'https://source.unsplash.com';
 

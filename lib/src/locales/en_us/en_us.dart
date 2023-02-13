@@ -93,6 +93,8 @@ class EnUsCollection extends FakeCollection {
   EnUsInternet get internet => EnUsInternet(locale);
 
   EnUsImage get image => EnUsImage(locale);
+
+  EnUsLocation get location => EnUsLocation(locale);
 }
 
 class EnUsAddress extends Address {
@@ -164,4 +166,12 @@ class EnUsImage extends Image {
       provide(DataKeys.image, locale, args: args);
 
   String get avatarUri => provide(DataKeys.avatar_uri, locale);
+}
+
+class EnUsLocation extends Location {
+  final FakeItLocale locale;
+
+  EnUsLocation(this.locale) : super(locale);
+
+  GeoLocation get geoLocation => provide(DataKeys.geo_location, locale);
 }

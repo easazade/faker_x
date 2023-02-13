@@ -91,6 +91,8 @@ class FaIrCollection extends FakeCollection {
   FaIrInternet get internet => FaIrInternet(locale);
 
   FaIrImage get image => FaIrImage(locale);
+
+  FaIrLocation get location => FaIrLocation(locale);
 }
 
 class FaIrAddress extends Address {
@@ -162,4 +164,12 @@ class FaIrImage extends Image {
       provide(DataKeys.image, locale, args: args);
 
   String get avatarUri => provide(DataKeys.avatar_uri, locale);
+}
+
+class FaIrLocation extends Location {
+  final FakeItLocale locale;
+
+  FaIrLocation(this.locale) : super(locale);
+
+  GeoLocation get geoLocation => provide(DataKeys.geo_location, locale);
 }

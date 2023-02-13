@@ -10,6 +10,9 @@ int get randomOneDigitInt => _random.nextInt(10);
 
 int randomInt(int max) => _random.nextInt(max);
 
+double randomDouble({num range = 1, num min = 0}) =>
+    _random.nextDouble() * range + min;
+
 String get randomLetter => _letters[_random.nextInt(_letters.length)];
 
 String get randomLetterOrNumber =>

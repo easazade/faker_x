@@ -233,13 +233,14 @@ Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
 
         final varName = MirrorSystem.getName(varMirrorOnDataSource.simpleName);
 
+        final typeArgs = instanceMirror.type.superclass!.typeArguments;
+
         dataSourceInfoList.add(
           DataSourceInfo(
             fileUri: mirror.uri.toString(),
             varName: varName,
-            builderArgsType: instanceMirror
-                .type.superclass!.typeArguments[1].reflectedType
-                .toString(),
+            generatedValueType: typeArgs[0].reflectedType.toString(),
+            builderArgsType: typeArgs[1].reflectedType.toString(),
             dataSource: dataSource,
           ),
         );
@@ -286,13 +287,14 @@ Future<List<DataSourceInfo>> readGlobalDataSources() async {
 
         final varName = MirrorSystem.getName(varMirrorOnDataSource.simpleName);
 
+        final typeArgs = instanceMirror.type.superclass!.typeArguments;
+
         dataSourceInfoList.add(
           DataSourceInfo(
             fileUri: mirror.uri.toString(),
             varName: varName,
-            builderArgsType: instanceMirror
-                .type.superclass!.typeArguments[1].reflectedType
-                .toString(),
+            generatedValueType: typeArgs[0].reflectedType.toString(),
+            builderArgsType: typeArgs[1].reflectedType.toString(),
             dataSource: dataSource,
           ),
         );
@@ -443,6 +445,7 @@ class DataSourceInfo {
     required this.varName,
     required this.builderArgsType,
     required this.dataSource,
+    required this.generatedValueType,
   }) {
     if (varName != dataSource.dataKey) {
       exitWithMsg(
@@ -458,6 +461,7 @@ class DataSourceInfo {
   final String varName;
   final String builderArgsType;
   final BaseDataSource dataSource;
+  final String generatedValueType;
 
   String get fileName => fileUri.split('/').last;
 
@@ -472,6 +476,7 @@ class DataSourceInfo {
         fileUri: fileUri,
         varName: varName,
         builderArgsType: builderArgsType,
+        generatedValueType: generatedValueType,
         dataSource:
             dataSource.copyWith(locale: FakeItLocale.fromString(locale)),
       );

@@ -97,7 +97,7 @@ Future<List<String>> getAvaialableLocalesInProject() async {
 }
 
 Future<Map<String, List<String>>> getUnavailableDataSourceNames() async {
-  final unavailableDataSources = await getRequiredDataSources();
+  final unavailableDataSources = await readRequiredDataSources();
   final globalDataSources = await readGlobalDataSourcesMapped();
   for (var entry in globalDataSources.entries) {
     final resouceName = entry.key;
@@ -112,7 +112,7 @@ Future<Map<String, List<String>>> getUnavailableDataSourceNames() async {
   return unavailableDataSources..removeWhere((key, list) => list.isEmpty);
 }
 
-Future<Map<String, List<String>>> getRequiredDataSources() async {
+Future<Map<String, List<String>>> readRequiredDataSources() async {
   final dataSourceGlobe = Glob('package:fake_it/src/base/resources.dart');
 
   final libMirror = currentMirrorSystem()
@@ -144,7 +144,16 @@ Future<Map<String, List<String>>> getRequiredDataSources() async {
         if (requiredResources[resourceName] == null) {
           requiredResources[resourceName] = [];
         }
-        requiredResources[resourceName]!.add(ReCase(getterName).snakeCase);
+
+        if (getterName != getterName.camelCase) {
+          exitWithMsg(
+            error:
+                'All getter methods for resource classes defined in $resourcesAddress should have their methods names '
+                'in camel case notation but getter method "$getterName" isn\'t. please fix that and try again',
+          );
+        }
+
+        requiredResources[resourceName]!.add(getterName.snakeCase);
       }
     }
   }

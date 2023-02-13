@@ -33,7 +33,7 @@ Future main(List<String> arguments) async {
 
   await _createFakeCollectionClass(
     dataSources: await readAvailableDataSourcesForLocaleMapped(locale),
-    requiredDataSources: await getRequiredDataSources(),
+    requiredDataSources: await readRequiredDataSources(),
     locale: locale,
     savePath: localizedCollectionFilePath,
     createEmptyClass: createEmpty,
@@ -87,7 +87,7 @@ Future _createFakeCollectionClass({
   if (!createEmptyClass) {
     await _checkAvailableDataSourcesForCodeGeneration(
       dataSources: await readAvailableDataSourcesForLocaleMapped(locale),
-      requiredDataSources: await getRequiredDataSources(),
+      requiredDataSources: await readRequiredDataSources(),
       locale: locale,
     );
 
@@ -204,7 +204,7 @@ Future _checkAvailableDataSourcesForCodeGeneration({
             error: '''
 You cannot define a DataSource<${dsInfo.builderArgsType}> using withBuilder constructor for datasource "${dsInfo.varName}" 
 because datasource "${dsInfo.varName}" of resource class "${dsInfo.resourceName.pascalCase}" is a required datasource. 
-NOTE THAT: all the DataSources defined in Resource classes in "lib/src/base/resources.dart" are required datasources.
+NOTE THAT: all the DataSources defined in Resource classes in "$resourcesAddress" are required datasources.
 
 You have 2 options to define your datasources :
 

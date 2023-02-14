@@ -8,7 +8,14 @@ final _random = math.Random();
 
 int get randomOneDigitInt => _random.nextInt(10);
 
-int randomInt(int max) => _random.nextInt(max);
+int randomNonZeroInt(int max) => randomInt(max, min: 1);
+
+int randomInt(int max, {int min = 0}) {
+  if (min > max) {
+    throw Exception('min cannot be greater than max');
+  }
+  return min + _random.nextInt(max - min);
+}
 
 double randomDouble({num range = 1, num min = 0}) =>
     _random.nextDouble() * range + min;

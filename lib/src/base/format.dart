@@ -9,9 +9,10 @@ class Format {
   final int chance;
   final List<StringTransformer> transformers;
 
+  static final _regex = RegExp('{{(.*?)}}', caseSensitive: false);
+
   List<String> get keys {
-    final regex = RegExp('{{(.*?)}}', caseSensitive: false);
-    final matches = regex.allMatches(format);
+    final matches = _regex.allMatches(format);
 
     return matches
         .map((e) => e.group(1))
@@ -26,8 +27,7 @@ class Format {
 
     _format = _format.replaceAllMapped('?', (match) => randomLetter);
 
-    final regex = RegExp('{{(.*?)}}', caseSensitive: false);
-    final keysWithBraces = regex
+    final keysWithBraces = _regex
         .allMatches(_format)
         .map((e) => e.group(0))
         .where((element) => element != null)

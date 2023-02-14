@@ -15,5 +15,7 @@ Future main(List<String> arguments) async {
   // generate lib/src/base/fake_it_class.dart file
   await generateFakeItClassFile(locales);
 
+  await generateFakeCollectionFile();
+
   await createImports();
 }

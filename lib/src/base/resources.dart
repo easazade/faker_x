@@ -2,7 +2,7 @@
 
 import 'package:fake_it/src/base/base.dart';
 
-@BaseResource(isRequired: true)
+@BaseResource()
 class Job {
   Job(this._locale);
 
@@ -13,7 +13,7 @@ class Job {
   String get jobPrefix => provide(DataKeys.job_prefix, _locale);
 }
 
-@BaseResource(isRequired: true)
+@BaseResource()
 class Lorem {
   Lorem(this._locale);
 
@@ -23,7 +23,7 @@ class Lorem {
   String get sentence => provide(DataKeys.sentence, _locale);
 }
 
-@BaseResource(isRequired: true)
+@BaseResource()
 class Person {
   Person(this._locale);
 
@@ -38,7 +38,7 @@ class Person {
   String get fullName => provide(DataKeys.full_name, _locale);
 }
 
-@BaseResource(isRequired: true)
+@BaseResource()
 class Address {
   Address(this._locale);
 
@@ -61,7 +61,7 @@ class Image {
   String get avatarUri => provide(DataKeys.avatar_uri, _locale);
 }
 
-@BaseResource(isRequired: true)
+@BaseResource()
 class Automotive {
   Automotive(this._locale);
 
@@ -70,7 +70,7 @@ class Automotive {
   String get licensePlate => provide(DataKeys.license_plate, _locale);
 }
 
-@BaseResource(isRequired: true)
+@BaseResource()
 class Vehicle {
   Vehicle(this._locale);
 
@@ -79,7 +79,7 @@ class Vehicle {
   String get car => provide(DataKeys.car, _locale);
 }
 
-@BaseResource(isRequired: true)
+@BaseResource()
 class Color {
   Color(this._locale);
 
@@ -89,7 +89,7 @@ class Color {
   String get colorHex => provide(DataKeys.color_hex, _locale);
 }
 
-@BaseResource(isRequired: true)
+@BaseResource()
 class Internet {
   Internet(this._locale);
 
@@ -113,7 +113,7 @@ class Internet {
   // String get userAgent => provide(DataKeys.user_agent, _locale);
 }
 
-@BaseResource(isRequired: true)
+@BaseResource()
 class Animal {
   Animal(this._locale);
 
@@ -122,13 +122,25 @@ class Animal {
   String get animalName => provide(DataKeys.animal_name, _locale);
 }
 
-@BaseResource(isRequired: true)
+@BaseResource()
 class Location {
   Location(this._locale);
 
   final FakeItLocale _locale;
 
   GeoLocation get geoLocation => provide(DataKeys.geo_location, _locale);
+}
+
+@BaseResource()
+class Phone {
+  Phone(this._locale);
+
+  final FakeItLocale _locale;
+
+  String get phoneNumber => provide(DataKeys.phone_number, _locale);
+
+  String get internationalPhoneNumber =>
+      provide(DataKeys.international_phone_number, _locale);
 }
 
 @BaseResource(isRequired: false)
@@ -140,8 +152,6 @@ class Extra {
 
 /// TODO: Resources to add
 
-/// location
-/// jwt
 /// phone-number
 /// music
 /// bank (faker js) [account type], [credit card number], [transaction type], [https://github.com/joke2k/faker/blob/master/faker/providers/bank/__init__.py]

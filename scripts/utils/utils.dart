@@ -436,6 +436,29 @@ Future generateLocaleFile(List<String> locales) async {
   await writeFile(path: 'lib/src/base/locale.dart', content: localesContent);
 }
 
+Future generateFakeCollectionFile() async {
+  final requiredResources =
+      await readRequiredDataSources().then((e) => e.keys.toList());
+
+  final assignings = requiredResources
+      .map((res) =>
+          '${res.camelCase} = ${res.pascalCase}(locale)${res != requiredResources.last ? "," : ""}')
+      .join();
+
+  final fields = requiredResources
+      .map((res) => 'final ${res.pascalCase} ${res.camelCase};');
+
+  final fakeCollectionClassFile = await render(
+    'templates/fake_collection_file.mustache',
+    values: {'assignings': assignings, 'fields': fields},
+  );
+
+  await writeFile(
+    path: 'lib/src/base/fake_collection.dart',
+    content: fakeCollectionClassFile,
+  );
+}
+
 Future generateFakeItClassFile(List<String> locales) async {
   final buffer = StringBuffer();
 

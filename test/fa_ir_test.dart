@@ -4,6 +4,13 @@ import 'package:test/test.dart';
 import 'utils.dart';
 
 void main() {
+  test("fa_ir phone test", () async {
+    for (var i = 0; i < testRepeatCount; i++) {
+      assertFakeValue(FakeIt.localized.fa_ir.phone.phoneNumber);
+      assertFakeValue(FakeIt.localized.fa_ir.phone.internationalPhoneNumber);
+    }
+  });
+
   test("fa_ir address test", () async {
     for (var i = 0; i < testRepeatCount; i++) {
       assertFakeValue(FakeIt.localized.fa_ir.address.buildingName);

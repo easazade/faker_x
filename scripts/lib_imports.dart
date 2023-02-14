@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import
 
 import 'package:fake_it/fake_it.dart';
+import 'package:fake_it/src/locales/fa_ir/datasources/phone.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/address.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/job.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/person.dart';
@@ -10,6 +11,7 @@ import 'package:fake_it/src/locales/fa_ir/datasources/lorem.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/animal.dart';
 import 'package:fake_it/src/locales/fa_ir/datasources/vehicle.dart';
 import 'package:fake_it/src/locales/fa_ir/fa_ir.dart';
+import 'package:fake_it/src/locales/en_us/datasources/phone.dart';
 import 'package:fake_it/src/locales/en_us/datasources/address.dart';
 import 'package:fake_it/src/locales/en_us/datasources/job.dart';
 import 'package:fake_it/src/locales/en_us/datasources/person.dart';

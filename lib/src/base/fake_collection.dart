@@ -7,31 +7,31 @@ class FakeCollection {
   FakeCollection({
     required FakeItLocale locale,
     required List<DataSource> dataSources,
-  })  : lorem = Lorem(locale),
-        job = Job(locale),
-        person = Person(locale),
-        address = Address(locale),
-        image = Image(locale),
-        automotive = Automotive(locale),
-        vehicle = Vehicle(locale),
-        color = Color(locale),
-        internet = Internet(locale),
+  })  : address = Address(locale),
         animal = Animal(locale),
-        location = Location(locale) {
+        color = Color(locale),
+        person = Person(locale),
+        location = Location(locale),
+        vehicle = Vehicle(locale),
+        job = Job(locale),
+        automotive = Automotive(locale),
+        internet = Internet(locale),
+        lorem = Lorem(locale),
+        phone = Phone(locale) {
     for (var dataSource in dataSources) {
       registerDataSource(dataSource.copyWith(locale: locale));
     }
   }
 
-  final Lorem lorem;
-  final Job job;
-  final Person person;
   final Address address;
-  final Image image;
-  final Automotive automotive;
-  final Vehicle vehicle;
-  final Color color;
-  final Internet internet;
   final Animal animal;
+  final Color color;
+  final Person person;
   final Location location;
+  final Vehicle vehicle;
+  final Job job;
+  final Automotive automotive;
+  final Internet internet;
+  final Lorem lorem;
+  final Phone phone;
 }

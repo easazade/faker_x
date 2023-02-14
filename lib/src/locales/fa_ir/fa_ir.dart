@@ -2,6 +2,7 @@
 
 import 'package:fake_it/src/base/base.dart';
 
+import 'package:fake_it/src/locales/fa_ir/datasources/phone.dart' as phone_852;
 import 'package:fake_it/src/locales/fa_ir/datasources/address.dart'
     as address_664;
 import 'package:fake_it/src/locales/fa_ir/datasources/job.dart' as job_527;
@@ -31,6 +32,8 @@ class FaIrCollection extends FakeCollection {
         super(
           locale: Locales.fa_ir,
           dataSources: [
+            phone_852.phone_number,
+            phone_852.international_phone_number,
             address_664.building_name,
             address_664.street_suffix,
             address_664.state,

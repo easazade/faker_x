@@ -66,4 +66,7 @@ class DataKeys {
   static const animal_name = 'animal_name';
 
   static const geo_location = 'geo_location';
+
+  static const phone_number = 'phone_number';
+  static const international_phone_number = 'international_phone_number';
 }

@@ -27,6 +27,8 @@ Future main(List<String> arguments) async {
 
   checkValidityOfDataKeys();
 
+  await generateFakeCollectionFile();
+
   await createImports();
 
   final localizedCollectionFilePath = 'lib/src/locales/$locale/$locale.dart';

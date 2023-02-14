@@ -10,7 +10,7 @@ export 'fake_collection.dart';
 export 'resources.dart';
 
 class BaseResource {
-  const BaseResource({required this.isRequired});
+  const BaseResource({this.isRequired = true});
 
   final bool isRequired;
 }

@@ -2,6 +2,7 @@
 
 import 'package:fake_it/src/base/base.dart';
 
+import 'package:fake_it/src/locales/en_us/datasources/phone.dart' as phone_504;
 import 'package:fake_it/src/locales/en_us/datasources/address.dart'
     as address_917;
 import 'package:fake_it/src/locales/en_us/datasources/job.dart' as job_319;
@@ -31,6 +32,8 @@ class EnUsCollection extends FakeCollection {
         super(
           locale: Locales.en_us,
           dataSources: [
+            phone_504.phone_number,
+            phone_504.international_phone_number,
             address_917.state_abbr,
             address_917.state,
             address_917.address,

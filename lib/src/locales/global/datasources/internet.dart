@@ -55,10 +55,8 @@ final email_from = StringDataSource<EmailArgs>.withBuilder(
   dataKey: DataKeys.email_from,
   locale: Locales.en_us,
   builder: (EmailArgs args, FakeItLocale locale) {
-    final userName = provide(
-      DataKeys.user_name_from,
-      locale,
-      args: UsernameArgs(firstName: args.firstName, lastName: args.lastName),
+    final userName = user_name_from.build(
+      UsernameArgs(firstName: args.firstName, lastName: args.lastName),
     );
 
     final provider = args.provider ?? '{{${DataKeys.mail_provider}}}';
@@ -90,16 +88,11 @@ final user_name = StringDataSource.withBuilder(
   builder: (_, __) {
     return const [
       Format('{{${DataKeys.first_name_en}}}{{${DataKeys.last_name_en}}}'),
-      Format('{{${DataKeys.first_name_en}}}_{{${DataKeys.last_name_en}}}'),
-      Format('{{${DataKeys.first_name_en}}}_{{${DataKeys.last_name_en}}}#'),
-      Format('{{${DataKeys.first_name_en}}}#_{{${DataKeys.last_name_en}}}'),
+      Format('{{${DataKeys.first_name_en}}}.{{${DataKeys.last_name_en}}}'),
       Format('{{${DataKeys.first_name_en}}}'),
       Format('{{${DataKeys.first_name_en}}}#'),
       Format('{{${DataKeys.first_name_en}}}##'),
-      Format('{{${DataKeys.first_name_en}}}_#'),
       Format('{{${DataKeys.last_name_en}}}'),
-      Format('{{${DataKeys.last_name_en}}}#'),
-      Format('{{${DataKeys.last_name_en}}}_#'),
       Format('{{${DataKeys.last_name_en}}}##'),
     ].randomItem!.copyWith(transformers: [StringTransformers.toLowerCase]);
   },
@@ -371,15 +364,3 @@ final emoji = StringDataSource(
     '😾',
   ],
 );
-
-// final safe_email = ;
-// final domain_name = ;
-// final http_url = ;
-// final https_url = ;
-// final ipv4_address = ;
-// final ipv6_address = ;
-// final mac_address = ;
-// final password = ;
-// final user_agent = ;
-// final avatar_uri = ;
-// final emoji = ;

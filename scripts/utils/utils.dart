@@ -1,5 +1,6 @@
 // ignore_for_file: unused_import
 
+import 'dart:convert';
 import 'dart:io';
 import 'dart:mirrors';
 import 'package:collection/collection.dart';
@@ -67,6 +68,7 @@ void checkDataKeyValidity(dataKey) {
   if (dataKey is! String) {
     exitWithMsg(error: 'retreived dataKey is not of type String');
   }
+
   if ((dataKey as String).isBlank) {
     exitWithMsg(error: 'data key cannot be an empty String');
   }
@@ -234,6 +236,27 @@ Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
         final varName = MirrorSystem.getName(varMirrorOnDataSource.simpleName);
 
         final typeArgs = instanceMirror.type.superclass!.typeArguments;
+        final builderArgDeclarationMirror = typeArgs[1].originalDeclaration;
+
+        final builderArgFields = <MethodArguemnt>[];
+
+        if (builderArgDeclarationMirror is ClassMirror) {
+          final constructorParameters = builderArgDeclarationMirror
+              .declarations.values
+              .whereType<MethodMirror>()
+              .first
+              .parameters;
+
+          for (var param in constructorParameters) {
+            builderArgFields.add(MethodArguemnt(
+              type: param.type.reflectedType.toString(),
+              name: MirrorSystem.getName(param.simpleName),
+              isRequired: !param.isOptional,
+              defaultValue:
+                  param.hasDefaultValue ? param.defaultValue!.reflectee : null,
+            ));
+          }
+        }
 
         dataSourceInfoList.add(
           DataSourceInfo(
@@ -242,6 +265,7 @@ Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
             generatedValueType: typeArgs[0].reflectedType.toString(),
             builderArgsType: typeArgs[1].reflectedType.toString(),
             dataSource: dataSource,
+            builderArgTypeFields: builderArgFields,
           ),
         );
       }
@@ -288,6 +312,32 @@ Future<List<DataSourceInfo>> readGlobalDataSources() async {
         final varName = MirrorSystem.getName(varMirrorOnDataSource.simpleName);
 
         final typeArgs = instanceMirror.type.superclass!.typeArguments;
+        final builderArgDeclarationMirror = typeArgs[1].originalDeclaration;
+
+        final builderArgFields = <MethodArguemnt>[];
+
+        if (builderArgDeclarationMirror is ClassMirror) {
+          final constructorParameters = builderArgDeclarationMirror
+              .declarations.values
+              .whereType<MethodMirror>()
+              .first
+              .parameters;
+
+          for (var param in constructorParameters) {
+            final hasNonNullableAnnotation =
+                (param.metadata.firstOrNull != null)
+                    ? param.metadata.firstOrNull!.reflectee == nonNullable
+                    : false;
+
+            builderArgFields.add(MethodArguemnt(
+              type: param.type.reflectedType.toString(),
+              name: MirrorSystem.getName(param.simpleName),
+              isRequired: !param.isOptional || hasNonNullableAnnotation,
+              defaultValue:
+                  param.hasDefaultValue ? param.defaultValue!.reflectee : null,
+            ));
+          }
+        }
 
         dataSourceInfoList.add(
           DataSourceInfo(
@@ -296,6 +346,7 @@ Future<List<DataSourceInfo>> readGlobalDataSources() async {
             generatedValueType: typeArgs[0].reflectedType.toString(),
             builderArgsType: typeArgs[1].reflectedType.toString(),
             dataSource: dataSource,
+            builderArgTypeFields: builderArgFields,
           ),
         );
       }
@@ -446,6 +497,7 @@ class DataSourceInfo {
     required this.builderArgsType,
     required this.dataSource,
     required this.generatedValueType,
+    required this.builderArgTypeFields,
   }) {
     if (varName != dataSource.dataKey) {
       exitWithMsg(
@@ -462,6 +514,7 @@ class DataSourceInfo {
   final String builderArgsType;
   final DataSource dataSource;
   final String generatedValueType;
+  final List<MethodArguemnt> builderArgTypeFields;
 
   String get fileName => fileUri.split('/').last;
 
@@ -477,6 +530,7 @@ class DataSourceInfo {
         varName: varName,
         builderArgsType: builderArgsType,
         generatedValueType: generatedValueType,
+        builderArgTypeFields: builderArgTypeFields,
         dataSource:
             dataSource.copyWith(locale: FakeItLocale.fromString(locale)),
       );
@@ -485,4 +539,18 @@ class DataSourceInfo {
   String toString() {
     return 'DataSourceInfo( fileUri = $fileUri | varName = $varName | dataSource = \n$dataSource\n';
   }
+}
+
+class MethodArguemnt {
+  final String type;
+  final String name;
+  final bool isRequired;
+  final dynamic defaultValue;
+
+  MethodArguemnt({
+    required this.type,
+    required this.name,
+    required this.isRequired,
+    this.defaultValue,
+  });
 }

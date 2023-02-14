@@ -9,6 +9,7 @@ const fakeItLocaleClassName = 'FakeItLocale';
 const dataKeysClassName = 'DataKeys';
 const stringDataSourceClassName = 'StringDataSource';
 const dataSourceClassName = 'DataSource';
+const argumentFieldAnnotationName = 'ArgumentField';
 
 const resourcesAddress = 'lib/src/base/resources.dart';
 

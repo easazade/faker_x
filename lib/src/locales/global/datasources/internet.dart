@@ -18,7 +18,7 @@ class UsernameArgs {
 class UriArgs {
   final String protocol;
 
-  UriArgs(this.protocol);
+  UriArgs({@nonNullable required this.protocol});
 }
 
 class PasswordArgs {
@@ -199,7 +199,7 @@ final http_url = StringDataSource.withBuilder(
   dataKey: DataKeys.http_url,
   locale: Locales.en_us,
   builder: (_, __) {
-    return uri.build(UriArgs('http'));
+    return uri.build(UriArgs(protocol: 'http'));
   },
 );
 
@@ -207,7 +207,7 @@ final https_url = StringDataSource.withBuilder(
   dataKey: DataKeys.https_url,
   locale: Locales.en_us,
   builder: (_, __) {
-    return uri.build(UriArgs('https'));
+    return uri.build(UriArgs(protocol: 'https'));
   },
 );
 

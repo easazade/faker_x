@@ -125,8 +125,31 @@ Future _createFakeCollectionClass({
               classBuffer.writeln(
                   '${dsInfo.generatedValueType} get ${ReCase(dsInfo.varName).camelCase} => provide($dataKeysClassName.${dsInfo.varName},locale);\n');
             } else {
+              final argsBuffer = StringBuffer('{');
+
+              for (var arg in dsInfo.builderArgTypeFields) {
+                if (arg.isRequired) argsBuffer.write(' required ');
+                argsBuffer.write(' ${arg.type}');
+                argsBuffer.write(
+                  (arg.isRequired || arg.defaultValue != null) ? ' ' : '? ',
+                );
+
+                argsBuffer.write(arg.name);
+                argsBuffer.write((arg.defaultValue != null)
+                    ? '= ${arg.defaultValue},'
+                    : ', ');
+              }
+
+              final argObject = StringBuffer(
+                  '${dsInfo.directiveRef}.${dsInfo.builderArgsType}(');
+              for (var arg in dsInfo.builderArgTypeFields) {
+                argObject.write('${arg.name}:${arg.name}, ');
+              }
+              argObject.write('),');
+
+              argsBuffer.write('}');
               classBuffer.writeln(
-                  '${dsInfo.generatedValueType} ${ReCase(dsInfo.varName).camelCase}(${dsInfo.directiveRef}.${dsInfo.builderArgsType} args) => provide($dataKeysClassName.${dsInfo.varName}, locale, args: args);\n');
+                  '${dsInfo.generatedValueType} ${ReCase(dsInfo.varName).camelCase}(${argsBuffer.toString()}) => provide($dataKeysClassName.${dsInfo.varName}, locale, args: $argObject );\n');
             }
           }
         }
@@ -198,6 +221,18 @@ Future _checkAvailableDataSourcesForCodeGeneration({
             'is $availableDsNamesOnResource please make sure you have provided all the required datasources with the correct '
             'variable name and key in locales/$locale/datasources/$resourceName.dart',
       );
+    }
+
+    for (var dsInfo in dataSources.values.flattened) {
+      if (!dsInfo.builderArgsType.endsWith('Args') &&
+          !dsInfo.builderArgsType.endsWith('Arguments') &&
+          dsInfo.builderArgsType != 'dynamic') {
+        exitWithMsg(
+          error:
+              'Argument type defined for a datasource should have its name ended with Args or Arguments but '
+              '${dsInfo.builderArgsType} in file ${dsInfo.fileUri} does not.',
+        );
+      }
     }
 
     for (var dsName in requiredList) {

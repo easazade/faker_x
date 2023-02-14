@@ -7,7 +7,11 @@ class ImageArgs {
   final int height;
   final List<String> keywords;
 
-  ImageArgs(this.width, this.height, this.keywords);
+  ImageArgs({
+    @nonNullable required this.width,
+    @nonNullable required this.height,
+    @nonNullable required this.keywords,
+  });
 }
 
 final image = StringDataSource<ImageArgs>.withBuilder(

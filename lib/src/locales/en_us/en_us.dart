@@ -136,25 +136,65 @@ class EnUsInternet extends Internet {
 
   String get httpsUrl => provide(DataKeys.https_url, locale);
 
-  String password(internet_555.PasswordArgs args) =>
-      provide(DataKeys.password, locale, args: args);
+  String password({
+    int length = 10,
+    bool onlyNumeric = false,
+  }) =>
+      provide(
+        DataKeys.password,
+        locale,
+        args: internet_555.PasswordArgs(
+          length: length,
+          onlyNumeric: onlyNumeric,
+        ),
+      );
 
   String get ipv4 => provide(DataKeys.ipv4, locale);
 
   String get userName => provide(DataKeys.user_name, locale);
 
-  String uri(internet_555.UriArgs args) =>
-      provide(DataKeys.uri, locale, args: args);
+  String uri({
+    required String protocol,
+  }) =>
+      provide(
+        DataKeys.uri,
+        locale,
+        args: internet_555.UriArgs(
+          protocol: protocol,
+        ),
+      );
 
   String get macAddress => provide(DataKeys.mac_address, locale);
 
-  String emailFrom(internet_555.EmailArgs args) =>
-      provide(DataKeys.email_from, locale, args: args);
+  String emailFrom({
+    String? firstName,
+    String? lastName,
+    String? provider,
+  }) =>
+      provide(
+        DataKeys.email_from,
+        locale,
+        args: internet_555.EmailArgs(
+          firstName: firstName,
+          lastName: lastName,
+          provider: provider,
+        ),
+      );
 
   String get ipv6 => provide(DataKeys.ipv6, locale);
 
-  String userNameFrom(internet_555.UsernameArgs args) =>
-      provide(DataKeys.user_name_from, locale, args: args);
+  String userNameFrom({
+    String? firstName,
+    String? lastName,
+  }) =>
+      provide(
+        DataKeys.user_name_from,
+        locale,
+        args: internet_555.UsernameArgs(
+          firstName: firstName,
+          lastName: lastName,
+        ),
+      );
 }
 
 class EnUsImage extends Image {
@@ -162,8 +202,20 @@ class EnUsImage extends Image {
 
   EnUsImage(this.locale) : super(locale);
 
-  String image(image_375.ImageArgs args) =>
-      provide(DataKeys.image, locale, args: args);
+  String image({
+    required int width,
+    required int height,
+    required List<String> keywords,
+  }) =>
+      provide(
+        DataKeys.image,
+        locale,
+        args: image_375.ImageArgs(
+          width: width,
+          height: height,
+          keywords: keywords,
+        ),
+      );
 
   String get avatarUri => provide(DataKeys.avatar_uri, locale);
 }

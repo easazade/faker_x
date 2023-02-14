@@ -7,6 +7,7 @@ const _lettersAndNumbers =
 final _random = math.Random();
 
 int get randomOneDigitInt => _random.nextInt(10);
+int get randomOneDigitNonZeroInt => randomInt(10, min: 1);
 
 int randomNonZeroInt(int max) => randomInt(max, min: 1);
 

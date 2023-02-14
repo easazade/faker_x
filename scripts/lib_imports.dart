@@ -34,6 +34,7 @@ import 'package:fake_it/src/base/keys.dart';
 import 'package:fake_it/src/base/fake_it_class.dart';
 import 'package:fake_it/src/base/data_source.dart';
 import 'package:fake_it/src/base/resources.dart';
+import 'package:fake_it/src/base/numbers.dart';
 import 'package:fake_it/src/base/locale.dart';
 import 'package:fake_it/src/base/fake_collection.dart';
 import 'package:fake_it/src/base/provider_context.dart';

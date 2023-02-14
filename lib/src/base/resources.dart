@@ -152,11 +152,7 @@ class Extra {
 
 /// TODO: Resources to add
 
-/// phone-number
-/// music
 /// bank (faker js) [account type], [credit card number], [transaction type], [https://github.com/joke2k/faker/blob/master/faker/providers/bank/__init__.py]
-/// airline [airlines, airports, airplanes]
-/// numbers [number of digits], [number of decimals], [from pattern]
 
 /// #####################################################################################
 /// #####################################################################################

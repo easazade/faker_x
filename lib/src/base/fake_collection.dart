@@ -1,4 +1,5 @@
 import 'package:fake_it/src/base/data_source.dart';
+import 'package:fake_it/src/base/numbers.dart';
 import 'package:fake_it/src/base/resources.dart';
 import 'package:fake_it/src/base/locale.dart';
 import 'package:fake_it/src/base/provider.dart';
@@ -7,7 +8,8 @@ class FakeCollection {
   FakeCollection({
     required FakeItLocale locale,
     required List<DataSource> dataSources,
-  })  : address = Address(locale),
+  })  : number = Numbers(),
+        address = Address(locale),
         animal = Animal(locale),
         color = Color(locale),
         person = Person(locale),
@@ -23,6 +25,7 @@ class FakeCollection {
     }
   }
 
+  final Numbers number;
   final Address address;
   final Animal animal;
   final Color color;

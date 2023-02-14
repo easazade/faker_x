@@ -5,7 +5,7 @@ void assertFakeValue(dynamic value) {
   if (value is String) {
     expect(value, isNotEmpty);
   }
-  // print(value);
+  print(value);
 }
 
 const testRepeatCount = 10000;

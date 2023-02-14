@@ -180,11 +180,8 @@ final disposable_email = StringDataSource(
   locale: Locales.en_us,
   formats: [
     Format(
-      '{{${DataKeys.user_name}}}@{{${DataKeys.disposable_mail_provider}}}.com',
-      transformers: [
-        StringTransformers.toLowerCase,
-        StringTransformers.deleteUrlUnsafeCharacters
-      ],
+      '{{${DataKeys.user_name}}}@{{${DataKeys.disposable_mail_provider}}}',
+      transformers: [StringTransformers.toLowerCase],
     ),
   ],
   values: [],

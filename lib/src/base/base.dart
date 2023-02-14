@@ -15,4 +15,4 @@ class BaseResource {
   final bool isRequired;
 }
 
-const nonNullable = 'isRequired';
+const nonNullable = 'nonNullable';

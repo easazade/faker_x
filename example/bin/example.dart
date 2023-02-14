@@ -50,4 +50,6 @@ void main(List<String> arguments) {
       'disposableMailProvider = ${FakeIt.localized.en_us.internet.disposableMailProvider}');
   print('avatarUri = ${FakeIt.localized.en_us.image.avatarUri}');
   print('geoLocation = ${FakeIt.localized.en_us.location.geoLocation}');
+  print(
+      'geoLocation = ${FakeIt.localized.en_us.internet.emailFrom(lastName: 'easazade')}');
 }

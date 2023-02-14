@@ -64,7 +64,7 @@ final email_from = StringDataSource<EmailArgs>.withBuilder(
     final provider = args.provider ?? '{{${DataKeys.mail_provider}}}';
 
     return Format(
-      '$userName@$provider.com',
+      '$userName@$provider',
       transformers: [StringTransformers.toLowerCase],
     );
   },
@@ -75,7 +75,7 @@ final email = StringDataSource(
   locale: Locales.en_us,
   formats: [
     Format(
-      '{{${DataKeys.user_name}}}@{{${DataKeys.mail_provider}}}.com',
+      '{{${DataKeys.user_name}}}@{{${DataKeys.mail_provider}}}',
       transformers: [StringTransformers.toLowerCase],
     ),
   ],

@@ -1,3 +1,11 @@
+## 0.3.1
+
+- Remove the need to create Args object to pass arguments to methods of FakeIt to generate fake value. (flatten FakeIt generator methods arguments)
+- Fix bug in internet.disposableMail method not being generated correctly 
+- Add example app
+- Add location resource
+- Add a TypeDataSource to make possible generating non string fake values
+
 ## 0.2.1
 
 - Add automotive resource

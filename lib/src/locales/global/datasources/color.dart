@@ -19,7 +19,7 @@ final _hexColorValues = [
   'F'
 ];
 
-final color_hex = DataSource.withBuilder(
+final color_hex = StringDataSource.withBuilder(
   dataKey: DataKeys.color_hex,
   locale: Locales.en_us,
   builder: (_, __) {

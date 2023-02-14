@@ -28,7 +28,7 @@ class PasswordArgs {
   PasswordArgs({this.length = 10, this.onlyNumeric = false});
 }
 
-const mail_provider = DataSource(
+const mail_provider = StringDataSource(
   dataKey: DataKeys.mail_provider,
   locale: Locales.en_us,
   values: [
@@ -39,7 +39,7 @@ const mail_provider = DataSource(
   ],
 );
 
-const disposable_mail_provider = DataSource(
+const disposable_mail_provider = StringDataSource(
   dataKey: DataKeys.disposable_mail_provider,
   locale: Locales.en_us,
   values: [
@@ -51,7 +51,7 @@ const disposable_mail_provider = DataSource(
   ],
 );
 
-final email_from = DataSource<EmailArgs>.withBuilder(
+final email_from = StringDataSource<EmailArgs>.withBuilder(
   dataKey: DataKeys.email_from,
   locale: Locales.en_us,
   builder: (EmailArgs args, FakeItLocale locale) {
@@ -70,7 +70,7 @@ final email_from = DataSource<EmailArgs>.withBuilder(
   },
 );
 
-final email = DataSource(
+final email = StringDataSource(
   dataKey: DataKeys.email,
   locale: Locales.en_us,
   formats: [
@@ -84,7 +84,7 @@ final email = DataSource(
 
 final safe_email = email.copyWith(dataKey: DataKeys.safe_email);
 
-final user_name = DataSource.withBuilder(
+final user_name = StringDataSource.withBuilder(
   dataKey: DataKeys.user_name,
   locale: Locales.en_us,
   builder: (_, __) {
@@ -105,7 +105,7 @@ final user_name = DataSource.withBuilder(
   },
 );
 
-final user_name_from = DataSource<UsernameArgs>.withBuilder(
+final user_name_from = StringDataSource<UsernameArgs>.withBuilder(
   dataKey: DataKeys.user_name_from,
   locale: Locales.en_us,
   builder: (UsernameArgs args, FakeItLocale locale) {
@@ -160,13 +160,13 @@ final user_name_from = DataSource<UsernameArgs>.withBuilder(
   },
 );
 
-const domain_suffixes = DataSource(
+const domain_suffixes = StringDataSource(
   dataKey: DataKeys.domain_suffixes,
   locale: Locales.en_us,
   values: ['com', 'co.uk', 'gov', 'info', 'io', 'dev', 'tv'],
 );
 
-final domain_name = DataSource(
+final domain_name = StringDataSource(
   dataKey: DataKeys.domain_name,
   locale: Locales.en_us,
   formats: [
@@ -175,7 +175,7 @@ final domain_name = DataSource(
   values: [],
 );
 
-final disposable_email = DataSource(
+final disposable_email = StringDataSource(
   dataKey: DataKeys.disposable_email,
   locale: Locales.en_us,
   formats: [
@@ -190,7 +190,7 @@ final disposable_email = DataSource(
   values: [],
 );
 
-final uri = DataSource<UriArgs>.withBuilder(
+final uri = StringDataSource<UriArgs>.withBuilder(
   dataKey: DataKeys.uri,
   locale: Locales.en_us,
   builder: (UriArgs args, _) {
@@ -198,7 +198,7 @@ final uri = DataSource<UriArgs>.withBuilder(
   },
 );
 
-final http_url = DataSource.withBuilder(
+final http_url = StringDataSource.withBuilder(
   dataKey: DataKeys.http_url,
   locale: Locales.en_us,
   builder: (_, __) {
@@ -206,7 +206,7 @@ final http_url = DataSource.withBuilder(
   },
 );
 
-final https_url = DataSource.withBuilder(
+final https_url = StringDataSource.withBuilder(
   dataKey: DataKeys.https_url,
   locale: Locales.en_us,
   builder: (_, __) {
@@ -214,20 +214,20 @@ final https_url = DataSource.withBuilder(
   },
 );
 
-final ipv4 = DataSource.withBuilder(
+final ipv4 = StringDataSource.withBuilder(
   dataKey: DataKeys.ipv4,
   locale: Locales.en_us,
   builder: (_, __) => List.generate(4, (_) => randomInt(255)).join('.'),
 );
 
-final ipv6 = DataSource.withBuilder(
+final ipv6 = StringDataSource.withBuilder(
   dataKey: DataKeys.ipv6,
   locale: Locales.en_us,
   builder: (_, __) =>
       List.generate(8, (_) => randomInt(65535).toRadixString(16)).join(':'),
 );
 
-final mac_address = DataSource.withBuilder(
+final mac_address = StringDataSource.withBuilder(
   dataKey: DataKeys.mac_address,
   locale: Locales.en_us,
   builder: (_, __) =>
@@ -235,7 +235,7 @@ final mac_address = DataSource.withBuilder(
           .join(':'),
 );
 
-final password = DataSource<PasswordArgs>.withBuilder(
+final password = StringDataSource<PasswordArgs>.withBuilder(
   dataKey: DataKeys.password,
   locale: Locales.en_us,
   builder: (PasswordArgs args, __) {
@@ -247,7 +247,7 @@ final password = DataSource<PasswordArgs>.withBuilder(
   },
 );
 
-final emoji = DataSource(
+final emoji = StringDataSource(
   dataKey: DataKeys.emoji,
   locale: Locales.en_us,
   values: [

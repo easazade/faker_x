@@ -7,6 +7,7 @@ const fakeItClassName = 'FakeIt';
 const fakeCollectionClassName = 'FakeCollection';
 const fakeItLocaleClassName = 'FakeItLocale';
 const dataKeysClassName = 'DataKeys';
+const stringDataSourceClassName = 'StringDataSource';
 const dataSourceClassName = 'DataSource';
 
 const resourcesAddress = 'lib/src/base/resources.dart';

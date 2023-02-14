@@ -1,6 +1,6 @@
 import 'package:fake_it/src/base/base.dart';
 
-const color_name = DataSource(
+const color_name = StringDataSource(
   locale: Locales.en_us,
   dataKey: DataKeys.color_name,
   values: [

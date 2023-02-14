@@ -1,7 +1,7 @@
 import 'package:fake_it/src/base/base.dart';
 
-abstract class BaseDataSource<T, ARG> {
-  const BaseDataSource({
+abstract class DataSource<T, ARG> {
+  const DataSource({
     required this.dataKey,
     required this.locale,
     required this.values,
@@ -16,22 +16,22 @@ abstract class BaseDataSource<T, ARG> {
   dynamic build(dynamic args);
 }
 
-class DataSource<ARG> extends BaseDataSource<String, ARG> {
-  const DataSource({
+class StringDataSource<ARG> extends DataSource<String, ARG> {
+  const StringDataSource({
     required String dataKey,
     required FakeItLocale locale,
     required List<String> values,
     this.formats = const [],
   }) : super(dataKey: dataKey, locale: locale, values: values, builder: null);
 
-  DataSource.withBuilder({
+  StringDataSource.withBuilder({
     required String dataKey,
     required FakeItLocale locale,
     required Function builder,
   })  : formats = const [],
         super(dataKey: dataKey, locale: locale, values: [], builder: builder);
 
-  DataSource._({
+  StringDataSource._({
     required String dataKey,
     required FakeItLocale locale,
     required List<String> values,
@@ -46,14 +46,14 @@ class DataSource<ARG> extends BaseDataSource<String, ARG> {
 
   final List<Format> formats;
 
-  DataSource _copyWith({
+  StringDataSource _copyWith({
     String? dataKey,
     FakeItLocale? locale,
     List<Format>? formats,
     List<String>? values,
     Function? builder,
   }) {
-    return DataSource._(
+    return StringDataSource._(
       dataKey: dataKey ?? this.dataKey,
       locale: locale ?? this.locale,
       values: values ?? this.values,
@@ -81,7 +81,7 @@ class DataSource<ARG> extends BaseDataSource<String, ARG> {
   }
 }
 
-class TypeDataSource<T, ARG> extends BaseDataSource<T, ARG> {
+class TypeDataSource<T, ARG> extends DataSource<T, ARG> {
   const TypeDataSource({
     required String dataKey,
     required FakeItLocale locale,
@@ -152,16 +152,16 @@ class StringOrFormat {
   bool get isFormat => format != null;
 }
 
-extension BaseDataSourceExt on BaseDataSource {
-  BaseDataSource copyWith({
+extension BaseDataSourceExt on DataSource {
+  DataSource copyWith({
     String? dataKey,
     FakeItLocale? locale,
     List<Format>? formats,
     List<String>? values,
     Function? builder,
   }) {
-    if (this is DataSource) {
-      return (this as DataSource)._copyWith(
+    if (this is StringDataSource) {
+      return (this as StringDataSource)._copyWith(
         dataKey: dataKey,
         locale: locale,
         formats: formats,

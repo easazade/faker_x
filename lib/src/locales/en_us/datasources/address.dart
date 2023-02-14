@@ -1,6 +1,6 @@
 import 'package:fake_it/src/base/base.dart';
 
-const city_suffix = DataSource(
+const city_suffix = StringDataSource(
   dataKey: DataKeys.city_suffix,
   locale: Locales.en_us,
   values: [
@@ -26,13 +26,13 @@ const city_suffix = DataSource(
   ],
 );
 
-const city_prefix = DataSource(
+const city_prefix = StringDataSource(
   dataKey: DataKeys.city_prefix,
   locale: Locales.en_us,
   values: ['North', 'East', 'West', 'South', 'New', 'Lake', 'Port'],
 );
 
-const city_name = DataSource(
+const city_name = StringDataSource(
   dataKey: DataKeys.city_name,
   locale: Locales.en_us,
   formats: [
@@ -45,7 +45,7 @@ const city_name = DataSource(
   values: [],
 );
 
-const street_name = DataSource(
+const street_name = StringDataSource(
   dataKey: DataKeys.street_name,
   locale: Locales.en_us,
   formats: [
@@ -55,7 +55,7 @@ const street_name = DataSource(
   values: [],
 );
 
-const street_suffix = DataSource(
+const street_suffix = StringDataSource(
   dataKey: DataKeys.street_suffix,
   locale: Locales.en_us,
   values: [
@@ -287,7 +287,7 @@ const street_suffix = DataSource(
   ],
 );
 
-const state = DataSource(
+const state = StringDataSource(
   dataKey: DataKeys.state,
   locale: Locales.en_us,
   values: [
@@ -344,35 +344,35 @@ const state = DataSource(
   ],
 );
 
-const postcode_format = DataSource(
+const postcode_format = StringDataSource(
   dataKey: DataKeys.postcode_format,
   locale: Locales.en_us,
   formats: [Format('#####-####'), Format('#####')],
   values: [],
 );
 
-const postcode = DataSource(
+const postcode = StringDataSource(
   dataKey: DataKeys.postcode,
   locale: Locales.en_us,
   formats: [Format('#####')],
   values: [],
 );
 
-const secondary_address = DataSource(
+const secondary_address = StringDataSource(
   dataKey: DataKeys.secondary_address,
   locale: Locales.en_us,
   formats: [Format('Apt. ###'), Format('Suite ###')],
   values: [],
 );
 
-const building_number = DataSource(
+const building_number = StringDataSource(
   dataKey: DataKeys.building_number,
   locale: Locales.en_us,
   formats: [Format('###'), Format('####'), Format('#####')],
   values: [],
 );
 
-const street_address = DataSource(
+const street_address = StringDataSource(
   dataKey: DataKeys.street_address,
   locale: Locales.en_us,
   formats: [
@@ -384,7 +384,7 @@ const street_address = DataSource(
   values: [],
 );
 
-const address = DataSource(
+const address = StringDataSource(
   dataKey: DataKeys.address,
   locale: Locales.en_us,
   formats: [
@@ -395,7 +395,7 @@ const address = DataSource(
   values: [],
 );
 
-const state_abbr = DataSource(
+const state_abbr = StringDataSource(
   dataKey: DataKeys.state_abbr,
   locale: Locales.en_us,
   formats: [],
@@ -454,7 +454,7 @@ const state_abbr = DataSource(
   ],
 );
 
-const neighborhood = DataSource(
+const neighborhood = StringDataSource(
   dataKey: DataKeys.neighborhood,
   locale: Locales.en_us,
   values: [

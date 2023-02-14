@@ -1,6 +1,6 @@
 import 'package:fake_it/src/base/base.dart';
 
-const car = DataSource(
+const car = StringDataSource(
   dataKey: DataKeys.car,
   locale: Locales.fa_ir,
   values: [

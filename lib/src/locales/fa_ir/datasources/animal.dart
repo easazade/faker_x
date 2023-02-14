@@ -1,6 +1,6 @@
 import 'package:fake_it/fake_it.dart';
 
-const animal_name = DataSource(
+const animal_name = StringDataSource(
   dataKey: DataKeys.animal_name,
   locale: Locales.en_us,
   values: [

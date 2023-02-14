@@ -1,6 +1,6 @@
 import 'package:fake_it/src/base/base.dart';
 
-const word = DataSource(
+const word = StringDataSource(
   locale: Locales.fa_ir,
   dataKey: DataKeys.word,
   values: [
@@ -207,7 +207,7 @@ const word = DataSource(
   ],
 );
 
-const sentence = DataSource(
+const sentence = StringDataSource(
   locale: Locales.fa_ir,
   dataKey: DataKeys.sentence,
   values: [

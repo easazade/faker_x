@@ -37,7 +37,7 @@ final _persianLetters = [
   'ی',
 ];
 
-final license_plate = DataSource.withBuilder(
+final license_plate = StringDataSource.withBuilder(
   dataKey: DataKeys.license_plate,
   locale: Locales.fa_ir,
   builder: (_, __) {

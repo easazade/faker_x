@@ -10,7 +10,7 @@ class ImageArgs {
   ImageArgs(this.width, this.height, this.keywords);
 }
 
-final image = DataSource<ImageArgs>.withBuilder(
+final image = StringDataSource<ImageArgs>.withBuilder(
   dataKey: DataKeys.image,
   locale: Locales.en_us,
   builder: (ImageArgs args, FakeItLocale locale) {
@@ -18,7 +18,7 @@ final image = DataSource<ImageArgs>.withBuilder(
   },
 );
 
-final avatar_uri = DataSource.withBuilder(
+final avatar_uri = StringDataSource.withBuilder(
   dataKey: DataKeys.avatar_uri,
   locale: Locales.en_us,
   builder: (_, __) =>

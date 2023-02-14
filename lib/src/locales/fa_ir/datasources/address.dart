@@ -1,6 +1,6 @@
 import 'package:fake_it/src/base/base.dart';
 
-const city_name = DataSource(
+const city_name = StringDataSource(
   dataKey: DataKeys.city_name,
   locale: Locales.fa_ir,
   formats: [],
@@ -1248,7 +1248,7 @@ const city_name = DataSource(
   ],
 );
 
-const street_name = DataSource(
+const street_name = StringDataSource(
   dataKey: DataKeys.street_name,
   locale: Locales.fa_ir,
   formats: [
@@ -1264,7 +1264,7 @@ const street_name = DataSource(
   values: [],
 );
 
-const street_suffix = DataSource(
+const street_suffix = StringDataSource(
   dataKey: DataKeys.street_suffix,
   locale: Locales.fa_ir,
   values: [
@@ -1285,13 +1285,13 @@ const street_suffix = DataSource(
   ],
 );
 
-const street_prefix = DataSource(
+const street_prefix = StringDataSource(
   dataKey: DataKeys.street_prefix,
   locale: Locales.fa_ir,
   values: ['خیابان', 'کمربندی', 'بزرگراه'],
 );
 
-const state = DataSource(
+const state = StringDataSource(
   dataKey: DataKeys.state,
   locale: Locales.fa_ir,
   values: [
@@ -1330,14 +1330,14 @@ const state = DataSource(
   ],
 );
 
-const postcode = DataSource(
+const postcode = StringDataSource(
   dataKey: DataKeys.postcode,
   locale: Locales.fa_ir,
   formats: [Format('##########')],
   values: [],
 );
 
-const building_name = DataSource(
+const building_name = StringDataSource(
   dataKey: DataKeys.building_name,
   locale: Locales.fa_ir,
   formats: [
@@ -1347,14 +1347,14 @@ const building_name = DataSource(
   values: [],
 );
 
-const building_number = DataSource(
+const building_number = StringDataSource(
   dataKey: DataKeys.building_number,
   locale: Locales.fa_ir,
   formats: [Format('##'), Format('###')],
   values: [],
 );
 
-const address = DataSource(
+const address = StringDataSource(
   dataKey: DataKeys.address,
   locale: Locales.fa_ir,
   formats: [
@@ -1368,7 +1368,7 @@ const address = DataSource(
   values: [],
 );
 
-const alley = DataSource(
+const alley = StringDataSource(
   dataKey: DataKeys.alley,
   locale: Locales.fa_ir,
   formats: [

@@ -227,8 +227,8 @@ Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
         .where((element) => element.isTopLevel)) {
       final instanceMirror = mirror.getField(varMirrorOnDataSource.simpleName);
 
-      if (instanceMirror.reflectee is BaseDataSource) {
-        final dataSource = instanceMirror.reflectee as BaseDataSource;
+      if (instanceMirror.reflectee is DataSource) {
+        final dataSource = instanceMirror.reflectee as DataSource;
         checkDataKeyValidity(dataSource.dataKey);
 
         final varName = MirrorSystem.getName(varMirrorOnDataSource.simpleName);
@@ -281,8 +281,8 @@ Future<List<DataSourceInfo>> readGlobalDataSources() async {
         .where((element) => element.isTopLevel)) {
       final instanceMirror = mirror.getField(varMirrorOnDataSource.simpleName);
 
-      if (instanceMirror.reflectee is BaseDataSource) {
-        final dataSource = instanceMirror.reflectee as BaseDataSource;
+      if (instanceMirror.reflectee is DataSource) {
+        final dataSource = instanceMirror.reflectee as DataSource;
         checkDataKeyValidity(dataSource.dataKey);
 
         final varName = MirrorSystem.getName(varMirrorOnDataSource.simpleName);
@@ -460,7 +460,7 @@ class DataSourceInfo {
   final String fileUri;
   final String varName;
   final String builderArgsType;
-  final BaseDataSource dataSource;
+  final DataSource dataSource;
   final String generatedValueType;
 
   String get fileName => fileUri.split('/').last;

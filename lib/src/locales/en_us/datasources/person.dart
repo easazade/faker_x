@@ -1,6 +1,6 @@
 import 'package:fake_it/src/base/base.dart';
 
-const full_name = DataSource(
+const full_name = StringDataSource(
   dataKey: DataKeys.full_name,
   locale: Locales.en_us,
   formats: [
@@ -10,7 +10,7 @@ const full_name = DataSource(
   values: [],
 );
 
-const first_name = DataSource(
+const first_name = StringDataSource(
   dataKey: DataKeys.first_name,
   locale: Locales.en_us,
   formats: [
@@ -20,7 +20,7 @@ const first_name = DataSource(
   values: [],
 );
 
-const first_name_female = DataSource(
+const first_name_female = StringDataSource(
   dataKey: DataKeys.first_name_female,
   locale: Locales.en_us,
   values: [
@@ -408,7 +408,7 @@ const first_name_female = DataSource(
   ],
 );
 
-const first_name_male = DataSource(
+const first_name_male = StringDataSource(
   dataKey: DataKeys.first_name_male,
   locale: Locales.en_us,
   values: [
@@ -737,7 +737,7 @@ const first_name_male = DataSource(
   ],
 );
 
-const last_name = DataSource(
+const last_name = StringDataSource(
   dataKey: DataKeys.last_name,
   locale: Locales.en_us,
   formats: [],

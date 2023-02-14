@@ -6,7 +6,7 @@ import 'package:fake_it/src/base/provider.dart';
 class FakeCollection {
   FakeCollection({
     required FakeItLocale locale,
-    required List<BaseDataSource> dataSources,
+    required List<DataSource> dataSources,
   })  : lorem = Lorem(locale),
         job = Job(locale),
         person = Person(locale),

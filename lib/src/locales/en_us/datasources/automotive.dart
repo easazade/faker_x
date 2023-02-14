@@ -1,6 +1,6 @@
 import 'package:fake_it/src/base/base.dart';
 
-const license_plate = DataSource(
+const license_plate = StringDataSource(
   dataKey: DataKeys.license_plate,
   locale: Locales.en_us,
   values: [],

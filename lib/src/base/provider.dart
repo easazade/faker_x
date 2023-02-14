@@ -29,7 +29,7 @@ dynamic provide(
 
     final useFormats = !context.hasDuplicateKeyWithPreviousContexts;
 
-    if (dataSource is DataSource &&
+    if (dataSource is StringDataSource &&
         dataSource.formats.isNotEmpty &&
         useFormats) {
       final format = dataSource.formats.randomItem;
@@ -86,18 +86,17 @@ String createFakeValueFromFormat(
   return format.parse(providedValues);
 }
 
-void registerDataSource(BaseDataSource dataSource) {
+void registerDataSource(DataSource dataSource) {
   // retriving the dataSources registered for the given locale
-  Map<String, BaseDataSource>? dataSources =
+  Map<String, DataSource>? dataSources =
       _localizedProvidersMap[dataSource.locale];
 
   if (dataSources == null) {
-    _localizedProvidersMap[dataSource.locale] = <String, BaseDataSource>{};
+    _localizedProvidersMap[dataSource.locale] = <String, DataSource>{};
     dataSources = _localizedProvidersMap[dataSource.locale];
   }
 
   dataSources![dataSource.dataKey] = dataSource;
 }
 
-final Map<FakeItLocale, Map<String, BaseDataSource>> _localizedProvidersMap =
-    {};
+final Map<FakeItLocale, Map<String, DataSource>> _localizedProvidersMap = {};

@@ -173,8 +173,8 @@ Future _checkAvailableDataSourcesForCodeGeneration({
           'or alternatively provide a builder property to be used instead of values and formats properties to generate '
           'fake values';
 
-      if (dsInfo.dataSource is DataSource &&
-          ((dsInfo.dataSource as DataSource).formats.isEmpty &&
+      if (dsInfo.dataSource is StringDataSource &&
+          ((dsInfo.dataSource as StringDataSource).formats.isEmpty &&
               dsInfo.dataSource.values.isEmpty) &&
           dsInfo.dataSource.builder == null) {
         exitWithMsg(
@@ -209,7 +209,7 @@ Future _checkAvailableDataSourcesForCodeGeneration({
             dsInfo.builderArgsType != 'dynamic') {
           exitWithMsg(
             error: '''
-You cannot define a $dataSourceClassName<${dsInfo.builderArgsType}> using withBuilder constructor for datasource "${dsInfo.varName}" 
+You cannot define a $dataSourceClassName with ARG type ${dsInfo.builderArgsType} using withBuilder constructor for datasource "${dsInfo.varName}" 
 because datasource "${dsInfo.varName}" of resource class "${dsInfo.resourceName.pascalCase}" is a required datasource. 
 NOTE THAT: all the ${dataSourceClassName}s defined in Resource classes in "$resourcesAddress" are required datasources.
 
@@ -218,7 +218,7 @@ You have 2 options to define your datasources :
 If you want to use a $dataSourceClassName.withBuilder constructor to generate fake value but you do not need an argument passed in the builder function
 you can do so by definding your $dataSourceClassName with dynamic genertic argument type like below:
 
-final $dsName = $dataSourceClassName<dynamic>.withBuilder(
+final $dsName = $stringDataSourceClassName<dynamic>.withBuilder(
   dataKey: $dataKeysClassName.$dsName,
   locale: Locales.${dsInfo.dataSource.locale},
   builder: (_, $fakeItLocaleClassName locale) {
@@ -229,12 +229,14 @@ final $dsName = $dataSourceClassName<dynamic>.withBuilder(
 
 OR define your $dataSourceClassName without using builder method:
 
-const $dsName = $dataSourceClassName(
+const $dsName = $stringDataSourceClassName(
   dataKey: $dataKeysClassName.$dsName,
   locale: ${dsInfo.dataSource.locale},
   formats:[],
   values: [],
 );
+
+
 
                  ''',
           );

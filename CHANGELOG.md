@@ -1,3 +1,9 @@
+## 0.4.2
+
+- Fix internet.emails not being generated with correct provider names
+- Add Number resource
+- Add Phone resource 
+
 ## 0.3.1
 
 - Remove the need to create Args object to pass arguments to methods of FakeIt to generate fake value. (flatten FakeIt generator methods arguments)

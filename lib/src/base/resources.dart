@@ -97,7 +97,8 @@ class Internet {
 
   String get email => provide(DataKeys.email, _locale);
   String get mailProvider => provide(DataKeys.mail_provider, _locale);
-  String get disposableMailProvider => provide(DataKeys.disposable_mail_provider, _locale);
+  String get disposableMailProvider =>
+      provide(DataKeys.disposable_mail_provider, _locale);
   String get disposableEmail => provide(DataKeys.disposable_email, _locale);
   String get safeEmail => provide(DataKeys.safe_email, _locale);
   String get domainName => provide(DataKeys.domain_name, _locale);
@@ -138,7 +139,8 @@ class Phone {
 
   String get phoneNumber => provide(DataKeys.phone_number, _locale);
 
-  String get internationalPhoneNumber => provide(DataKeys.international_phone_number, _locale);
+  String get internationalPhoneNumber =>
+      provide(DataKeys.international_phone_number, _locale);
 }
 
 @BaseResource(isRequired: false)

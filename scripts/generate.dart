@@ -49,6 +49,8 @@ Future _createFakeCollectionClass({
   required String savePath,
   required bool createEmptyClass,
 }) async {
+  printGreen('Generating ${createCollectionClassName(locale)} class');
+
   final buffer = StringBuffer();
 
   final localizedClasses = <String>[];
@@ -176,6 +178,8 @@ Future _checkAvailableDataSourcesForCodeGeneration({
   required Map<String, List<String>> requiredDataSources,
   required String locale,
 }) async {
+  printGreen('Reading codes to make sure it is ready to be generated from');
+
   // checking provided data before generating code
   for (var entry in requiredDataSources.entries) {
     final resourceName = entry.key;

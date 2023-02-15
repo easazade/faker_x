@@ -8,6 +8,7 @@ import 'utils/names.dart';
 import 'utils/utils.dart';
 
 Future main(List<String> args) async {
+  printGreen('Generating code in example project');
   final buffer = StringBuffer(
       'import "package:faker_x/faker_x.dart";\n Future main(List<String> args) async {');
 

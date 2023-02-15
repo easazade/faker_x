@@ -3,9 +3,11 @@
 import 'package:faker_x/faker_x.dart';
 
 import 'lib_imports.dart';
+import 'utils/cli.dart';
 import 'utils/utils.dart';
 
 Future main(List<String> args) async {
+  printYellow('Generating README.md file');
   final buffer = StringBuffer();
   final locales = await getAvaialableLocalesInProject();
 

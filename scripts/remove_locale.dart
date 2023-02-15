@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'utils/cli.dart';
 import 'utils/names.dart';
 import 'utils/utils.dart';
 import 'lib_imports.dart';
@@ -12,6 +13,8 @@ Future main(List<String> arguments) async {
   final locale = args[0].toLowerCase();
 
   checkLocale(locale);
+
+  printRed('Removing all files and code available for locale [$locale]');
 
   var locales = await getAvaialableLocalesInProject();
   locales.remove(locale);

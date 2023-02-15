@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:recase/recase.dart';
 
+import 'utils/cli.dart';
 import 'utils/names.dart';
 import 'utils/utils.dart';
 import 'lib_imports.dart';
@@ -17,6 +18,8 @@ Future main(List<String> arguments) async {
 
   checkLocale(locale);
 
+  printGreen('Creating new files for new locale [$locale]');
+
   var locales = await getAvaialableLocalesInProject();
   locales.add(locale);
   locales = locales.toSet().toList();
@@ -25,6 +28,8 @@ Future main(List<String> arguments) async {
   await generateLocaleFile(locales);
 
   // create datasources from templates/datasources for given locale and copy to lib/src/locales/$locale/datasources/
+  printGreen(
+      'Creating required Datasource files in lib/src/locales/$locale/datasources to be filled');
   await _createDataSources(locale);
 
   await createImports();

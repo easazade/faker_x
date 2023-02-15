@@ -1,91 +1,92 @@
 // ignore_for_file: annotate_overrides
 
-import 'package:fake_it/src/base/base.dart';
+import 'package:faker_x/src/base/base.dart';
 
-import 'package:fake_it/src/locales/en_us/datasources/phone.dart' as phone_504;
-import 'package:fake_it/src/locales/en_us/datasources/address.dart'
-    as address_917;
-import 'package:fake_it/src/locales/en_us/datasources/job.dart' as job_319;
-import 'package:fake_it/src/locales/global/datasources/person.dart'
-    as person_534;
-import 'package:fake_it/src/locales/en_us/datasources/person.dart'
-    as person_833;
-import 'package:fake_it/src/locales/en_us/datasources/automotive.dart'
-    as automotive_673;
-import 'package:fake_it/src/locales/global/datasources/color.dart' as color_525;
-import 'package:fake_it/src/locales/en_us/datasources/color.dart' as color_48;
-import 'package:fake_it/src/locales/en_us/datasources/lorem.dart' as lorem_77;
-import 'package:fake_it/src/locales/en_us/datasources/animal.dart' as animal_10;
-import 'package:fake_it/src/locales/en_us/datasources/vehicle.dart'
-    as vehicle_719;
-import 'package:fake_it/src/locales/global/datasources/internet.dart'
-    as internet_555;
-import 'package:fake_it/src/locales/global/datasources/image.dart' as image_375;
-import 'package:fake_it/src/locales/global/datasources/location.dart'
-    as location_950;
+import 'package:faker_x/src/locales/en_us/datasources/phone.dart' as phone_59;
+import 'package:faker_x/src/locales/en_us/datasources/address.dart'
+    as address_237;
+import 'package:faker_x/src/locales/en_us/datasources/job.dart' as job_914;
+import 'package:faker_x/src/locales/global/datasources/person.dart'
+    as person_886;
+import 'package:faker_x/src/locales/en_us/datasources/person.dart'
+    as person_873;
+import 'package:faker_x/src/locales/en_us/datasources/automotive.dart'
+    as automotive_744;
+import 'package:faker_x/src/locales/global/datasources/color.dart' as color_257;
+import 'package:faker_x/src/locales/en_us/datasources/color.dart' as color_180;
+import 'package:faker_x/src/locales/en_us/datasources/lorem.dart' as lorem_915;
+import 'package:faker_x/src/locales/en_us/datasources/animal.dart'
+    as animal_354;
+import 'package:faker_x/src/locales/en_us/datasources/vehicle.dart'
+    as vehicle_661;
+import 'package:faker_x/src/locales/global/datasources/internet.dart'
+    as internet_824;
+import 'package:faker_x/src/locales/global/datasources/image.dart' as image_121;
+import 'package:faker_x/src/locales/global/datasources/location.dart'
+    as location_711;
 
 class EnUsCollection extends FakeCollection {
-  final FakeItLocale locale;
+  final FakerXLocale locale;
 
   EnUsCollection()
       : locale = Locales.en_us,
         super(
           locale: Locales.en_us,
           dataSources: [
-            phone_504.phone_number,
-            phone_504.international_phone_number,
-            address_917.state_abbr,
-            address_917.state,
-            address_917.address,
-            address_917.city_name,
-            address_917.neighborhood,
-            address_917.building_number,
-            address_917.city_suffix,
-            address_917.street_suffix,
-            address_917.street_address,
-            address_917.postcode,
-            address_917.street_name,
-            address_917.postcode_format,
-            address_917.city_prefix,
-            address_917.secondary_address,
-            job_319.job_suffix,
-            job_319.job_title,
-            job_319.job_prefix,
-            person_534.last_name_en,
-            person_534.first_name_en,
-            person_833.first_name_male,
-            person_833.full_name,
-            person_833.first_name_female,
-            person_833.last_name,
-            person_833.first_name,
-            automotive_673.license_plate,
-            color_525.color_hex,
-            color_48.color_name,
-            lorem_77.sentence,
-            lorem_77.word,
-            animal_10.animal_name,
-            vehicle_719.car,
-            internet_555.http_url,
-            internet_555.email,
-            internet_555.https_url,
-            internet_555.password,
-            internet_555.safe_email,
-            internet_555.ipv4,
-            internet_555.domain_suffixes,
-            internet_555.user_name,
-            internet_555.uri,
-            internet_555.disposable_email,
-            internet_555.mac_address,
-            internet_555.emoji,
-            internet_555.email_from,
-            internet_555.ipv6,
-            internet_555.mail_provider,
-            internet_555.domain_name,
-            internet_555.disposable_mail_provider,
-            internet_555.user_name_from,
-            image_375.image,
-            image_375.avatar_uri,
-            location_950.geo_location,
+            phone_59.phone_number,
+            phone_59.international_phone_number,
+            address_237.state_abbr,
+            address_237.state,
+            address_237.address,
+            address_237.city_name,
+            address_237.neighborhood,
+            address_237.building_number,
+            address_237.city_suffix,
+            address_237.street_suffix,
+            address_237.street_address,
+            address_237.postcode,
+            address_237.street_name,
+            address_237.postcode_format,
+            address_237.city_prefix,
+            address_237.secondary_address,
+            job_914.job_suffix,
+            job_914.job_title,
+            job_914.job_prefix,
+            person_886.last_name_en,
+            person_886.first_name_en,
+            person_873.first_name_male,
+            person_873.full_name,
+            person_873.first_name_female,
+            person_873.last_name,
+            person_873.first_name,
+            automotive_744.license_plate,
+            color_257.color_hex,
+            color_180.color_name,
+            lorem_915.sentence,
+            lorem_915.word,
+            animal_354.animal_name,
+            vehicle_661.car,
+            internet_824.http_url,
+            internet_824.email,
+            internet_824.https_url,
+            internet_824.password,
+            internet_824.safe_email,
+            internet_824.ipv4,
+            internet_824.domain_suffixes,
+            internet_824.user_name,
+            internet_824.uri,
+            internet_824.disposable_email,
+            internet_824.mac_address,
+            internet_824.emoji,
+            internet_824.email_from,
+            internet_824.ipv6,
+            internet_824.mail_provider,
+            internet_824.domain_name,
+            internet_824.disposable_mail_provider,
+            internet_824.user_name_from,
+            image_121.image,
+            image_121.avatar_uri,
+            location_711.geo_location,
           ],
         );
 
@@ -101,7 +102,7 @@ class EnUsCollection extends FakeCollection {
 }
 
 class EnUsAddress extends Address {
-  final FakeItLocale locale;
+  final FakerXLocale locale;
 
   EnUsAddress(this.locale) : super(locale);
 
@@ -123,7 +124,7 @@ class EnUsAddress extends Address {
 }
 
 class EnUsColor extends Color {
-  final FakeItLocale locale;
+  final FakerXLocale locale;
 
   EnUsColor(this.locale) : super(locale);
 
@@ -131,7 +132,7 @@ class EnUsColor extends Color {
 }
 
 class EnUsInternet extends Internet {
-  final FakeItLocale locale;
+  final FakerXLocale locale;
 
   EnUsInternet(this.locale) : super(locale);
 
@@ -146,7 +147,7 @@ class EnUsInternet extends Internet {
       provide(
         DataKeys.password,
         locale,
-        args: internet_555.PasswordArgs(
+        args: internet_824.PasswordArgs(
           length: length,
           onlyNumeric: onlyNumeric,
         ),
@@ -162,7 +163,7 @@ class EnUsInternet extends Internet {
       provide(
         DataKeys.uri,
         locale,
-        args: internet_555.UriArgs(
+        args: internet_824.UriArgs(
           protocol: protocol,
         ),
       );
@@ -177,7 +178,7 @@ class EnUsInternet extends Internet {
       provide(
         DataKeys.email_from,
         locale,
-        args: internet_555.EmailArgs(
+        args: internet_824.EmailArgs(
           firstName: firstName,
           lastName: lastName,
           provider: provider,
@@ -193,7 +194,7 @@ class EnUsInternet extends Internet {
       provide(
         DataKeys.user_name_from,
         locale,
-        args: internet_555.UsernameArgs(
+        args: internet_824.UsernameArgs(
           firstName: firstName,
           lastName: lastName,
         ),
@@ -201,7 +202,7 @@ class EnUsInternet extends Internet {
 }
 
 class EnUsImage extends Image {
-  final FakeItLocale locale;
+  final FakerXLocale locale;
 
   EnUsImage(this.locale) : super(locale);
 
@@ -213,7 +214,7 @@ class EnUsImage extends Image {
       provide(
         DataKeys.image,
         locale,
-        args: image_375.ImageArgs(
+        args: image_121.ImageArgs(
           width: width,
           height: height,
           keywords: keywords,
@@ -224,7 +225,7 @@ class EnUsImage extends Image {
 }
 
 class EnUsLocation extends Location {
-  final FakeItLocale locale;
+  final FakerXLocale locale;
 
   EnUsLocation(this.locale) : super(locale);
 

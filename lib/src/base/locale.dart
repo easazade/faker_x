@@ -1,19 +1,19 @@
-const kDefaultFakeItLocale = Locales.en_us;
+const kDefaultFakerXLocale = Locales.en_us;
 
 class Locales {
-  static const fa_ir = FakeItLocale('fa', 'ir');
-  static const en_us = FakeItLocale('en', 'us');
+  static const fa_ir = FakerXLocale('fa', 'ir');
+  static const en_us = FakerXLocale('en', 'us');
 }
 
-class FakeItLocale {
+class FakerXLocale {
   final String languageCode;
   final String countryCode;
 
-  const FakeItLocale(this.languageCode, this.countryCode);
+  const FakerXLocale(this.languageCode, this.countryCode);
 
   @override
   bool operator ==(Object other) =>
-      other is FakeItLocale &&
+      other is FakerXLocale &&
       other.languageCode == languageCode &&
       other.countryCode == countryCode;
 
@@ -23,8 +23,8 @@ class FakeItLocale {
   @override
   String toString() => '${languageCode}_$countryCode';
 
-  static FakeItLocale fromString(String locale) {
+  static FakerXLocale fromString(String locale) {
     final splits = locale.split('_');
-    return FakeItLocale(splits[0], splits.length > 1 ? splits[1] : '');
+    return FakerXLocale(splits[0], splits.length > 1 ? splits[1] : '');
   }
 }

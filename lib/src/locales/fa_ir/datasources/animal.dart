@@ -1,4 +1,4 @@
-import 'package:fake_it/fake_it.dart';
+import 'package:faker_x/faker_x.dart';
 
 const animal_name = StringDataSource(
   dataKey: DataKeys.animal_name,

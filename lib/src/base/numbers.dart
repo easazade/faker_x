@@ -1,4 +1,4 @@
-import 'package:fake_it/src/base/utils.dart' as utils;
+import 'package:faker_x/src/base/utils.dart' as utils;
 
 class Numbers {
   const Numbers();

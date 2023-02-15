@@ -1,12 +1,12 @@
 // ignore_for_file: unused_field
 
-import 'package:fake_it/src/base/base.dart';
+import 'package:faker_x/src/base/base.dart';
 
 @BaseResource()
 class Job {
   Job(this._locale);
 
-  final FakeItLocale _locale;
+  final FakerXLocale _locale;
 
   String get jobTitle => provide(DataKeys.job_title, _locale);
   String get jobSuffix => provide(DataKeys.job_suffix, _locale);
@@ -17,7 +17,7 @@ class Job {
 class Lorem {
   Lorem(this._locale);
 
-  final FakeItLocale _locale;
+  final FakerXLocale _locale;
 
   String get word => provide(DataKeys.word, _locale);
   String get sentence => provide(DataKeys.sentence, _locale);
@@ -27,7 +27,7 @@ class Lorem {
 class Person {
   Person(this._locale);
 
-  final FakeItLocale _locale;
+  final FakerXLocale _locale;
 
   String get firstName => provide(DataKeys.first_name, _locale);
   String get firstNameFemale => provide(DataKeys.first_name_female, _locale);
@@ -42,7 +42,7 @@ class Person {
 class Address {
   Address(this._locale);
 
-  final FakeItLocale _locale;
+  final FakerXLocale _locale;
 
   String get cityName => provide(DataKeys.city_name, _locale);
   String get state => provide(DataKeys.state, _locale);
@@ -56,7 +56,7 @@ class Address {
 class Image {
   Image(this._locale);
 
-  final FakeItLocale _locale;
+  final FakerXLocale _locale;
 
   String get avatarUri => provide(DataKeys.avatar_uri, _locale);
 }
@@ -65,7 +65,7 @@ class Image {
 class Automotive {
   Automotive(this._locale);
 
-  final FakeItLocale _locale;
+  final FakerXLocale _locale;
 
   String get licensePlate => provide(DataKeys.license_plate, _locale);
 }
@@ -74,7 +74,7 @@ class Automotive {
 class Vehicle {
   Vehicle(this._locale);
 
-  final FakeItLocale _locale;
+  final FakerXLocale _locale;
 
   String get car => provide(DataKeys.car, _locale);
 }
@@ -83,7 +83,7 @@ class Vehicle {
 class Color {
   Color(this._locale);
 
-  final FakeItLocale _locale;
+  final FakerXLocale _locale;
 
   String get colorName => provide(DataKeys.color_name, _locale);
   String get colorHex => provide(DataKeys.color_hex, _locale);
@@ -93,7 +93,7 @@ class Color {
 class Internet {
   Internet(this._locale);
 
-  final FakeItLocale _locale;
+  final FakerXLocale _locale;
 
   String get email => provide(DataKeys.email, _locale);
   String get mailProvider => provide(DataKeys.mail_provider, _locale);
@@ -117,7 +117,7 @@ class Internet {
 class Animal {
   Animal(this._locale);
 
-  final FakeItLocale _locale;
+  final FakerXLocale _locale;
 
   String get animalName => provide(DataKeys.animal_name, _locale);
 }
@@ -126,7 +126,7 @@ class Animal {
 class Location {
   Location(this._locale);
 
-  final FakeItLocale _locale;
+  final FakerXLocale _locale;
 
   GeoLocation get geoLocation => provide(DataKeys.geo_location, _locale);
 }
@@ -135,7 +135,7 @@ class Location {
 class Phone {
   Phone(this._locale);
 
-  final FakeItLocale _locale;
+  final FakerXLocale _locale;
 
   String get phoneNumber => provide(DataKeys.phone_number, _locale);
 
@@ -147,7 +147,7 @@ class Phone {
 class Extra {
   Extra(this._locale);
 
-  final FakeItLocale _locale;
+  final FakerXLocale _locale;
 }
 
 class GeoLocation {

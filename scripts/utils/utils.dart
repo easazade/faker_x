@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:mirrors';
 import 'package:collection/collection.dart';
-import 'package:fake_it/fake_it.dart';
+import 'package:faker_x/faker_x.dart';
 import 'package:glob/glob.dart';
 import 'package:mustache_template/mustache_template.dart';
 import 'package:recase/recase.dart';
@@ -92,7 +92,7 @@ void checkLocale(String locale) {
 }
 
 /// reads the project and if there is a locale in our project that there is support for it will be returned
-/// eg: if right now fake_it has multilingual support for 10 locales like en_us, fa_ir etc they will be returned
+/// eg: if right now faker_x has multilingual support for 10 locales like en_us, fa_ir etc they will be returned
 Future<List<String>> getAvaialableLocalesInProject() async {
   final dir = Directory('lib/src/locales/');
   final List<FileSystemEntity> entities = await dir.list().toList();
@@ -116,7 +116,7 @@ Future<Map<String, List<String>>> getUnavailableDataSourceNames() async {
 }
 
 Future<Map<String, List<String>>> readRequiredDataSources() async {
-  final dataSourceGlobe = Glob('package:fake_it/src/base/resources.dart');
+  final dataSourceGlobe = Glob('package:faker_x/src/base/resources.dart');
 
   final libMirror = currentMirrorSystem()
       .libraries
@@ -213,7 +213,7 @@ Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
   String locale,
 ) async {
   final dataSourceGlobe =
-      Glob('package:fake_it/src/locales/$locale/datasources/*.dart');
+      Glob('package:faker_x/src/locales/$locale/datasources/*.dart');
 
   final mirrors = currentMirrorSystem()
       .libraries
@@ -289,7 +289,7 @@ Future<Map<String, List<DataSourceInfo>>> readGlobalDataSourcesMapped() async {
 
 Future<List<DataSourceInfo>> readGlobalDataSources() async {
   final dataSourceGlobe =
-      Glob('package:fake_it/src/locales/global/datasources/*.dart');
+      Glob('package:faker_x/src/locales/global/datasources/*.dart');
 
   final mirrors = currentMirrorSystem()
       .libraries
@@ -357,7 +357,7 @@ Future<List<DataSourceInfo>> readGlobalDataSources() async {
 }
 
 void checkValidityOfDataKeys() {
-  final dataSourceGlobe = Glob('package:fake_it/src/base/keys.dart');
+  final dataSourceGlobe = Glob('package:faker_x/src/base/keys.dart');
 
   final libMirror = currentMirrorSystem()
       .libraries
@@ -404,7 +404,7 @@ Future createImports() async {
   final newLines = <String>[];
 
   for (var file in allFiles) {
-    final uri = file.uri.toString().replaceFirst('lib/', 'package:fake_it/');
+    final uri = file.uri.toString().replaceFirst('lib/', 'package:faker_x/');
     final importPhrase = 'import \'$uri\';';
     newLines.add(importPhrase);
     buffer.writeln(importPhrase);
@@ -428,7 +428,7 @@ Future generateLocaleFile(List<String> locales) async {
     'locales': locales.map(
       (locale) {
         final parts = locale.split('_');
-        return "static const $locale = $fakeItLocaleClassName('${parts[0]}', '${(parts.length > 1 ? parts[1] : '')}');";
+        return "static const $locale = $fakerXLocaleClassName('${parts[0]}', '${(parts.length > 1 ? parts[1] : '')}');";
       },
     ),
   });
@@ -459,17 +459,17 @@ Future generateFakeCollectionFile() async {
   );
 }
 
-Future generateFakeItClassFile(List<String> locales) async {
+Future generateFakerXClassFile(List<String> locales) async {
   final buffer = StringBuffer();
 
   for (var locale in locales) {
     buffer.writeln(
-        'import \'package:fake_it/src/locales/$locale/$locale.dart\';');
+        'import \'package:faker_x/src/locales/$locale/$locale.dart\';');
   }
 
-  // write class FakeIt
-  buffer.writeln('class $fakeItClassName {');
-  buffer.writeln('$fakeItClassName._();\n');
+  // write class FakerX
+  buffer.writeln('class $fakerXClassName {');
+  buffer.writeln('$fakerXClassName._();\n');
 
   buffer.writeln('static late final defaultInstance = EnUsCollection();');
   buffer.writeln('static late final localized = _Localized();');
@@ -487,7 +487,7 @@ Future generateFakeItClassFile(List<String> locales) async {
   buffer.writeln('}');
 
   await writeFile(
-      path: 'lib/src/base/fake_it_class.dart', content: buffer.toString());
+      path: 'lib/src/base/faker_x_class.dart', content: buffer.toString());
 }
 
 extension IterableExtensions<T> on Iterable<Iterable<T>> {
@@ -555,7 +555,7 @@ class DataSourceInfo {
         generatedValueType: generatedValueType,
         builderArgTypeFields: builderArgTypeFields,
         dataSource:
-            dataSource.copyWith(locale: FakeItLocale.fromString(locale)),
+            dataSource.copyWith(locale: FakerXLocale.fromString(locale)),
       );
 
   @override

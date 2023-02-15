@@ -1,12 +1,12 @@
-import 'package:fake_it/src/base/data_source.dart';
-import 'package:fake_it/src/base/format.dart';
-import 'package:fake_it/src/base/locale.dart';
-import 'package:fake_it/src/base/provider_context.dart';
-import 'package:fake_it/src/base/utils.dart';
+import 'package:faker_x/src/base/data_source.dart';
+import 'package:faker_x/src/base/format.dart';
+import 'package:faker_x/src/base/locale.dart';
+import 'package:faker_x/src/base/provider_context.dart';
+import 'package:faker_x/src/base/utils.dart';
 
 dynamic provide(
   String dataKey,
-  FakeItLocale locale, {
+  FakerXLocale locale, {
   ProviderContext? context,
   dynamic args,
 }) {
@@ -72,7 +72,7 @@ dynamic provide(
 
 String createFakeValueFromFormat(
   Format format,
-  FakeItLocale locale,
+  FakerXLocale locale,
   ProviderContext context,
 ) {
   final keys = format.keys;
@@ -99,4 +99,4 @@ void registerDataSource(DataSource dataSource) {
   dataSources![dataSource.dataKey] = dataSource;
 }
 
-final Map<FakeItLocale, Map<String, DataSource>> _localizedProvidersMap = {};
+final Map<FakerXLocale, Map<String, DataSource>> _localizedProvidersMap = {};

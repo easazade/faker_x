@@ -3,9 +3,9 @@ import 'package:recase/recase.dart';
 const assertFunctionName = 'assertFakeValue';
 const testRepeatCountVarName = 'testRepeatCount';
 
-const fakeItClassName = 'FakeIt';
+const fakerXClassName = 'FakerX';
 const fakeCollectionClassName = 'FakeCollection';
-const fakeItLocaleClassName = 'FakeItLocale';
+const fakerXLocaleClassName = 'FakerXLocale';
 const dataKeysClassName = 'DataKeys';
 const stringDataSourceClassName = 'StringDataSource';
 const dataSourceClassName = 'DataSource';

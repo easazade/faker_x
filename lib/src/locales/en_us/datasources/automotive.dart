@@ -1,4 +1,4 @@
-import 'package:fake_it/src/base/base.dart';
+import 'package:faker_x/src/base/base.dart';
 
 const license_plate = StringDataSource(
   dataKey: DataKeys.license_plate,

@@ -1,4 +1,4 @@
-import 'package:fake_it/fake_it.dart';
+import 'package:faker_x/faker_x.dart';
 import 'package:test/test.dart';
 
 import '../utils.dart';
@@ -6,7 +6,7 @@ import '../utils.dart';
 void main() {
   test("en_us color_hex test", () async {
     for (var i = 0; i < testRepeatCount; i++) {
-      assertFakeValue(FakeIt.localized.en_us.color.colorHex);
+      assertFakeValue(FakerX.localized.en_us.color.colorHex);
     }
   });
 }

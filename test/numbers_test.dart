@@ -1,4 +1,4 @@
-import 'package:fake_it/fake_it.dart';
+import 'package:faker_x/faker_x.dart';
 import 'package:test/test.dart';
 
 import 'utils.dart';
@@ -6,19 +6,19 @@ import 'utils.dart';
 void main() {
   test("number test doubleFromPattern", () async {
     for (var i = 0; i < 100; i++) {
-      assertFakeValue(FakeIt.defaultInstance.number.doubleFromPattern('####'));
+      assertFakeValue(FakerX.defaultInstance.number.doubleFromPattern('####'));
     }
   });
 
   test("number test intFromPattern", () async {
     for (var i = 0; i < 100; i++) {
-      assertFakeValue(FakeIt.defaultInstance.number.intFromPattern('##'));
+      assertFakeValue(FakerX.defaultInstance.number.intFromPattern('##'));
     }
   });
 
   test("number test intFromPattern", () async {
     for (var i = 0; i < 100; i++) {
-      assertFakeValue(FakeIt.defaultInstance.number.intFromPattern('##'));
+      assertFakeValue(FakerX.defaultInstance.number.intFromPattern('##'));
     }
   });
 }

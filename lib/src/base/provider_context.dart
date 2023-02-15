@@ -1,4 +1,4 @@
-import 'package:fake_it/src/base/locale.dart';
+import 'package:faker_x/src/base/locale.dart';
 
 class ProviderContext {
   ProviderContext({
@@ -8,7 +8,7 @@ class ProviderContext {
   });
 
   final String dataKey;
-  final FakeItLocale locale;
+  final FakerXLocale locale;
   final ProviderContext? previousContext;
 
   bool get hasDuplicateKeyWithPreviousContexts {

@@ -1,4 +1,4 @@
-import 'package:fake_it/src/base/base.dart';
+import 'package:faker_x/src/base/base.dart';
 
 abstract class DataSource<T, ARG> {
   const DataSource({
@@ -9,7 +9,7 @@ abstract class DataSource<T, ARG> {
   });
 
   final String dataKey;
-  final FakeItLocale locale;
+  final FakerXLocale locale;
   final List<T> values;
   final Function? builder;
 
@@ -19,21 +19,21 @@ abstract class DataSource<T, ARG> {
 class StringDataSource<ARG> extends DataSource<String, ARG> {
   const StringDataSource({
     required String dataKey,
-    required FakeItLocale locale,
+    required FakerXLocale locale,
     required List<String> values,
     this.formats = const [],
   }) : super(dataKey: dataKey, locale: locale, values: values, builder: null);
 
   StringDataSource.withBuilder({
     required String dataKey,
-    required FakeItLocale locale,
+    required FakerXLocale locale,
     required Function builder,
   })  : formats = const [],
         super(dataKey: dataKey, locale: locale, values: [], builder: builder);
 
   StringDataSource._({
     required String dataKey,
-    required FakeItLocale locale,
+    required FakerXLocale locale,
     required List<String> values,
     Function? builder,
     this.formats = const [],
@@ -48,7 +48,7 @@ class StringDataSource<ARG> extends DataSource<String, ARG> {
 
   StringDataSource _copyWith({
     String? dataKey,
-    FakeItLocale? locale,
+    FakerXLocale? locale,
     List<Format>? formats,
     List<String>? values,
     Function? builder,
@@ -84,19 +84,19 @@ class StringDataSource<ARG> extends DataSource<String, ARG> {
 class TypeDataSource<T, ARG> extends DataSource<T, ARG> {
   const TypeDataSource({
     required String dataKey,
-    required FakeItLocale locale,
+    required FakerXLocale locale,
     required List<T> values,
   }) : super(dataKey: dataKey, locale: locale, values: values, builder: null);
 
   TypeDataSource.withBuilder({
     required String dataKey,
-    required FakeItLocale locale,
+    required FakerXLocale locale,
     required Function builder,
   }) : super(dataKey: dataKey, locale: locale, values: [], builder: builder);
 
   TypeDataSource._({
     required String dataKey,
-    required FakeItLocale locale,
+    required FakerXLocale locale,
     required List<T> values,
     Function? builder,
   }) : super(
@@ -108,7 +108,7 @@ class TypeDataSource<T, ARG> extends DataSource<T, ARG> {
 
   TypeDataSource _copyWith({
     String? dataKey,
-    FakeItLocale? locale,
+    FakerXLocale? locale,
     List<T>? values,
     Function? builder,
   }) {
@@ -155,7 +155,7 @@ class StringOrFormat {
 extension BaseDataSourceExt on DataSource {
   DataSource copyWith({
     String? dataKey,
-    FakeItLocale? locale,
+    FakerXLocale? locale,
     List<Format>? formats,
     List<String>? values,
     Function? builder,

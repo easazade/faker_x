@@ -1,4 +1,4 @@
-import 'package:fake_it/src/base/base.dart';
+import 'package:faker_x/src/base/base.dart';
 
 final geo_location = TypeDataSource<GeoLocation, dynamic>.withBuilder(
   dataKey: DataKeys.geo_location,

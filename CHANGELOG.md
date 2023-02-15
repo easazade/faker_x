@@ -1,3 +1,6 @@
+## 0.4.3
+
+- Changed package name to **faker_x**
 ## 0.4.2
 
 - Fix internet.emails not being generated with correct provider names
@@ -6,7 +9,7 @@
 
 ## 0.3.1
 
-- Remove the need to create Args object to pass arguments to methods of FakeIt to generate fake value. (flatten FakeIt generator methods arguments)
+- Remove the need to create Args object to pass arguments to methods of FakerX to generate fake value. (flatten FakerX generator methods arguments)
 - Fix bug in internet.disposableMail method not being generated correctly 
 - Add example app
 - Add location resource

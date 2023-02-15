@@ -1,13 +1,13 @@
 {{=<% %>=}}
-import 'package:fake_it/src/base/data_source.dart';
-import 'package:fake_it/src/base/numbers.dart';
-import 'package:fake_it/src/base/resources.dart';
-import 'package:fake_it/src/base/locale.dart';
-import 'package:fake_it/src/base/provider.dart';
+import 'package:faker_x/src/base/data_source.dart';
+import 'package:faker_x/src/base/numbers.dart';
+import 'package:faker_x/src/base/resources.dart';
+import 'package:faker_x/src/base/locale.dart';
+import 'package:faker_x/src/base/provider.dart';
 
 class FakeCollection {
   FakeCollection({
-    required FakeItLocale locale,
+    required FakerXLocale locale,
     required List<DataSource> dataSources,
   })  :      number = Numbers(),
   <%assignings%>

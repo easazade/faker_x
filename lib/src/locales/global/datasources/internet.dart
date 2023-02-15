@@ -1,4 +1,4 @@
-import 'package:fake_it/src/base/base.dart';
+import 'package:faker_x/src/base/base.dart';
 
 class EmailArgs {
   final String? firstName;
@@ -54,7 +54,7 @@ const disposable_mail_provider = StringDataSource(
 final email_from = StringDataSource<EmailArgs>.withBuilder(
   dataKey: DataKeys.email_from,
   locale: Locales.en_us,
-  builder: (EmailArgs args, FakeItLocale locale) {
+  builder: (EmailArgs args, FakerXLocale locale) {
     final userName = user_name_from.build(
       UsernameArgs(firstName: args.firstName, lastName: args.lastName),
     );
@@ -101,7 +101,7 @@ final user_name = StringDataSource.withBuilder(
 final user_name_from = StringDataSource<UsernameArgs>.withBuilder(
   dataKey: DataKeys.user_name_from,
   locale: Locales.en_us,
-  builder: (UsernameArgs args, FakeItLocale locale) {
+  builder: (UsernameArgs args, FakerXLocale locale) {
     final formats = <Format>[];
 
     if (args.firstName != null && args.lastName != null) {

@@ -1,4 +1,4 @@
-import 'package:fake_it/src/base/utils.dart';
+import 'package:faker_x/src/base/utils.dart';
 
 typedef StringTransformer = String Function(String);
 

@@ -5,7 +5,7 @@ import 'dart:io';
 import 'dart:mirrors';
 
 import 'package:collection/collection.dart';
-import 'package:fake_it/fake_it.dart';
+import 'package:faker_x/faker_x.dart';
 import 'package:glob/glob.dart';
 import 'package:recase/recase.dart';
 
@@ -56,7 +56,7 @@ Future _createFakeCollectionClass({
   // writing directives
   buffer.writeln(
     '// ignore_for_file: annotate_overrides\n\n'
-    'import \'package:fake_it/src/base/base.dart\';\n',
+    'import \'package:faker_x/src/base/base.dart\';\n',
   );
 
   final processedFileUris = <String>[];
@@ -70,7 +70,7 @@ Future _createFakeCollectionClass({
   final className = createCollectionClassName(locale);
 
   buffer.writeln('class $className extends $fakeCollectionClassName {');
-  buffer.writeln('final $fakeItLocaleClassName locale;\n');
+  buffer.writeln('final $fakerXLocaleClassName locale;\n');
 
   buffer.writeln('$className()');
   buffer.writeln(': locale = Locales.$locale,');
@@ -116,7 +116,7 @@ Future _createFakeCollectionClass({
 
         final classBuffer = StringBuffer();
         classBuffer.writeln('class $resClassName extends $baseResClassName {');
-        classBuffer.writeln('final $fakeItLocaleClassName locale;\n');
+        classBuffer.writeln('final $fakerXLocaleClassName locale;\n');
         classBuffer.writeln('$resClassName(this.locale) : super(locale);\n');
 
         for (var dsInfo in availableDsInfosOnResource) {
@@ -258,7 +258,7 @@ you can do so by definding your $dataSourceClassName with dynamic genertic argum
 final $dsName = $stringDataSourceClassName<dynamic>.withBuilder(
   dataKey: $dataKeysClassName.$dsName,
   locale: Locales.${dsInfo.dataSource.locale},
-  builder: (_, $fakeItLocaleClassName locale) {
+  builder: (_, $fakerXLocaleClassName locale) {
     // generate your value and return
     return '';
   },

@@ -1,5 +1,5 @@
-import 'package:fake_it/fake_it.dart';
-import 'package:fake_it/src/locales/en_us/datasources/person.dart' as person;
+import 'package:faker_x/faker_x.dart';
+import 'package:faker_x/src/locales/en_us/datasources/person.dart' as person;
 
 final first_name_en = StringDataSource(
   dataKey: DataKeys.first_name_en,

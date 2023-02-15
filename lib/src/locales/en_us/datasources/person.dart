@@ -1,4 +1,4 @@
-import 'package:fake_it/src/base/base.dart';
+import 'package:faker_x/src/base/base.dart';
 
 const full_name = StringDataSource(
   dataKey: DataKeys.full_name,

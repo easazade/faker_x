@@ -12,8 +12,8 @@ Future main(List<String> arguments) async {
   // generate lib/src/base/locale.dart file
   await generateLocaleFile(locales);
 
-  // generate lib/src/base/fake_it_class.dart file
-  await generateFakeItClassFile(locales);
+  // generate lib/src/base/faker_x_class.dart file
+  await generateFakerXClassFile(locales);
 
   await generateFakeCollectionFile();
 

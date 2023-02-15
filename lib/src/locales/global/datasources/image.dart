@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:fake_it/src/base/base.dart';
+import 'package:faker_x/src/base/base.dart';
 
 class ImageArgs {
   final int width;
@@ -17,7 +17,7 @@ class ImageArgs {
 final image = StringDataSource<ImageArgs>.withBuilder(
   dataKey: DataKeys.image,
   locale: Locales.en_us,
-  builder: (ImageArgs args, FakeItLocale locale) {
+  builder: (ImageArgs args, FakerXLocale locale) {
     return _imageUrl(args.width, args.height, args.keywords);
   },
 );

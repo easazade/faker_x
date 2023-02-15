@@ -1,8 +1,8 @@
-import 'package:fake_it/src/locales/fa_ir/fa_ir.dart';
-import 'package:fake_it/src/locales/en_us/en_us.dart';
+import 'package:faker_x/src/locales/fa_ir/fa_ir.dart';
+import 'package:faker_x/src/locales/en_us/en_us.dart';
 
-class FakeIt {
-  FakeIt._();
+class FakerX {
+  FakerX._();
 
   static late final defaultInstance = EnUsCollection();
   static late final localized = _Localized();

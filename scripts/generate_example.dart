@@ -9,7 +9,7 @@ import 'utils/utils.dart';
 
 Future main(List<String> args) async {
   final buffer = StringBuffer(
-      'import "package:fake_it/fake_it.dart";\n Future main(List<String> args) async {');
+      'import "package:faker_x/faker_x.dart";\n Future main(List<String> args) async {');
 
   final locales = await getAvaialableLocalesInProject();
   for (var locale in locales) {
@@ -21,7 +21,7 @@ Future main(List<String> args) async {
       for (var dsInfo in dsInfoList) {
         if (dsInfo.builderArgTypeFields.isEmpty) {
           buffer.writeln(
-              'print("${dsInfo.varName} = \${$fakeItClassName.localized.$locale.$resourceName.${dsInfo.varName.camelCase}}");');
+              'print("${dsInfo.varName} = \${$fakerXClassName.localized.$locale.$resourceName.${dsInfo.varName.camelCase}}");');
         }
       }
     }

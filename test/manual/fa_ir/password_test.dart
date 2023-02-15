@@ -1,7 +1,7 @@
 import 'package:faker_x/faker_x.dart';
 import 'package:test/test.dart';
 
-import '../utils.dart';
+import '../../utils.dart';
 
 void main() {
   test("fa_ir -> internet -> password test", () async {

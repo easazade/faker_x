@@ -1,7 +1,7 @@
 import 'package:faker_x/src/base/faker_x_class.dart';
 import 'package:test/test.dart';
 
-import '../utils.dart';
+import '../../utils.dart';
 
 void main() {
   test("fa_ir user_name_from test", () async {

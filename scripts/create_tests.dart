@@ -29,8 +29,9 @@ Future main(List<String> arguments) async {
             dsInfo.builderArgsType == 'dynamic') {
           return code;
         } else {
-          manualTests['test/manual/${locale}_${dsInfo.varName}_test.dart'] =
-              await render(
+          final path = 'test/manual/$locale/${dsInfo.varName}_test.dart';
+
+          manualTests[path] = await render(
             'templates/manual_test_file.mustache',
             values: {
               'name': '$locale -> $resourceName -> ${dsInfo.varName} test',

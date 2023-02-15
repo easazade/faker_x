@@ -192,13 +192,13 @@ Future<Map<String, List<DataSourceInfo>>>
     final localDataSources = map[resource] ?? [];
 
     final availableDataSources = <DataSourceInfo>[...localDataSources];
-    for (var ds in globalDataSources) {
+    for (var globalDs in globalDataSources) {
       final thereIsNoLocalDataSourceAvailable = localDataSources
-          .where((localDs) => localDs.varName == ds.varName)
+          .where((localDs) => localDs.varName == globalDs.varName)
           .isEmpty;
 
       if (thereIsNoLocalDataSourceAvailable) {
-        availableDataSources.add(ds);
+        availableDataSources.add(globalDs);
       }
     }
     map[resource] = [...globalDataSources, ...localDataSources]

@@ -10,7 +10,6 @@ comes to
 
 
 notes for later to be used in docs :
-
 should run regenerate_base_classes when added a new datasoure file.
 
 make read me nice look at https://www.npmjs.com/package/@faker-js/faker
@@ -21,3 +20,6 @@ like a new fake value to a his/her locale it will be easy. since we support loca
 Add contribution guide to add a new fake value (datasource) to a locale or all locales
 
 add fancy tags to readme
+
+
+test.md

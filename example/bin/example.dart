@@ -5,6 +5,7 @@ Future main(List<String> args) async {
   print("phone_number = ${FakerX.localized.fa_ir.phone.phoneNumber}");
   print(
       "international_phone_number = ${FakerX.localized.fa_ir.phone.internationalPhoneNumber}");
+
 // fa_ir - address
   print("building_name = ${FakerX.localized.fa_ir.address.buildingName}");
   print("street_suffix = ${FakerX.localized.fa_ir.address.streetSuffix}");

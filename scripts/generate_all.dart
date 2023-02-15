@@ -12,4 +12,5 @@ Future main(List<String> arguments) async {
   for (var locale in locales) {
     await generate.main([locale]);
   }
+  printSeparator();
 }

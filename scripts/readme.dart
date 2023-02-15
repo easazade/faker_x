@@ -8,16 +8,19 @@ import 'utils/utils.dart';
 
 Future main(List<String> args) async {
   printYellow('Generating README.md file');
-  final buffer = StringBuffer();
+  final tableOfLocales = StringBuffer(
+      'Fake value generators marked in [<span style="color:black">black</span>] are available for all locales and generate the value differently according to that locale.\n '
+      'Fake value generators marked in [<span style="color:green">green</span>] are globally shared between different locales and generate values using same methods for all locales.\n'
+      'Fake value generator marked in [<span style="color:blue">blue</span>] are the ones that are only available for that locale\n');
   final locales = await getAvaialableLocalesInProject();
 
   final globalDsInfos = await readGlobalDataSourcesMapped();
   final requiredDsInfos = await readRequiredDataSources();
 
-  buffer.writeln('<table>');
+  tableOfLocales.writeln('<table>');
 
   for (var locale in locales) {
-    buffer.writeln('<tr>');
+    tableOfLocales.writeln('<tr>');
 
     final availableDsInfos =
         await readAvailableDataSourcesForLocaleMapped(locale);
@@ -51,24 +54,29 @@ Future main(List<String> args) async {
 
     final firstEntry = availableDsInfos.entries.first;
 
-    buffer.writeln(
+    tableOfLocales.writeln(
         '<th rowspan="${availableDsInfos.length}" scope="row">$locale</th>');
-    buffer.writeln(
+    tableOfLocales.writeln(
         '<td><small>${firstEntry.key}(${firstEntry.value.length}) </small></td>');
-    buffer.writeln(
-        '<td><small>${firstEntry.value.map((e) => "<span style='color:${colorFor(e.resourceName, e.varName)}'>${e.varName}</span>").join(', ')} </small></td>');
-    buffer.writeln('</tr>');
+    tableOfLocales.writeln(
+        '<td><small>${firstEntry.value.map((e) => "<span style='color:${colorFor(e.resourceName, e.varName)}'>${e.varName.replaceAll('_', ' ')}</span>").join(' | ')} </small></td>');
+    tableOfLocales.writeln('</tr>');
 
     for (var entry in availableDsInfos.entries.toList().sublist(1)) {
-      buffer.writeln('<tr>');
-      buffer.writeln(
+      tableOfLocales.writeln('<tr>');
+      tableOfLocales.writeln(
           '<td><small>${entry.key}(${entry.value.length}) </small></td>');
-      buffer.writeln(
-          '<td><small>${entry.value.map((e) => "<span style='color:${colorFor(e.resourceName, e.varName)}'>${e.varName}</span>").join(', ')}</small></td>');
-      buffer.writeln('</tr>');
+      tableOfLocales.writeln(
+          '<td><small>${entry.value.map((e) => "<span style='color:${colorFor(e.resourceName, e.varName)}'>${e.varName.replaceAll('_', ' ')}</span>").join(' | ')}</small></td>');
+      tableOfLocales.writeln('</tr>');
     }
   }
-  buffer.writeln('</table>');
+  tableOfLocales.writeln('</table>');
 
-  await writeFile(content: buffer.toString(), path: 'test.md');
+  final readMe = await render('templates/docs/readme.md', values: {
+    'table_of_locales': tableOfLocales.toString(),
+  });
+
+  await writeFile(content: readMe, path: 'README.md');
+  printSeparator();
 }

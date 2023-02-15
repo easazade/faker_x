@@ -49,6 +49,7 @@ Future _createFakeCollectionClass({
   required String savePath,
   required bool createEmptyClass,
 }) async {
+  printSeparator();
   printGreen('Generating ${createCollectionClassName(locale)} class');
 
   final buffer = StringBuffer();

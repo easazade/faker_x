@@ -1,5 +1,9 @@
 import 'dart:io';
 
+printSeparator() {
+  print('----------------------------------------------------------------');
+}
+
 printRed(text) {
   print('\x1B[31m${text.toString()}\x1B[0m');
 }

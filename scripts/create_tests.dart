@@ -7,11 +7,13 @@ import 'package:collection/collection.dart';
 import 'package:glob/glob.dart';
 import 'package:recase/recase.dart';
 
+import 'utils/cli.dart';
 import 'utils/names.dart';
 import 'utils/utils.dart';
 import 'lib_imports.dart';
 
 Future main(List<String> arguments) async {
+  printYellow('Generating tests');
   final locales = await getAvaialableLocalesInProject();
 
   for (var locale in locales) {

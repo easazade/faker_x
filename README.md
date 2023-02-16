@@ -1,6 +1,6 @@
 faker_x
 
-⚡️🚀📦🪄💎🌏✨
+## ⚡️ 🚀 📦 🪄 💎 🌏 ✨ Modules
 
 Basically this is a library to generate fake data for dart language with ease.
 The main reason I'm creating this library is to create a library that is very easy/fast to contribute when it 

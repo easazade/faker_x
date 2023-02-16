@@ -10,8 +10,8 @@ Future main(List<String> args) async {
   printYellow('Generating README.md file');
   final tableOfLocales = StringBuffer(
       'Fake value generators marked in [<span style="color:black">black</span>] are available for all locales and generate the value differently according to that locale.\n '
-      'Fake value generators marked in [<span style="color:green">green</span>] are globally shared between different locales and generate values using same methods for all locales.\n'
-      'Fake value generator marked in [<span style="color:blue">blue</span>] are the ones that are only available for that locale\n');
+      'Fake value generators marked in [<span style="color:green">green</span>]🟢 are globally shared between different locales and generate values using same methods for all locales.\n'
+      'Fake value generator marked in [<span style="color:blue">blue</span>]🔵 are the ones that are only available for that locale\n');
   final locales = await getAvaialableLocalesInProject();
 
   final globalDsInfos = await readGlobalDataSourcesMapped();
@@ -52,6 +52,30 @@ Future main(List<String> args) async {
       }
     }
 
+    String circleFor(String resource, String data) {
+      final isGlobal =
+          globalDsInfos[resource]?.where((e) => e.varName == data).isNotEmpty ??
+              false;
+
+      final isRequired =
+          requiredDsInfos[resource]?.where((e) => e == data).isNotEmpty ??
+              false;
+
+      final isLocalized =
+          localDsInfos[resource]?.where((e) => e.varName == data).isNotEmpty ??
+              false;
+
+      if (isGlobal) {
+        return '🟢';
+      } else if (isRequired) {
+        return '';
+      } else if (isLocalized) {
+        return '🔵';
+      } else {
+        return '';
+      }
+    }
+
     final firstEntry = availableDsInfos.entries.first;
 
     tableOfLocales.writeln(
@@ -66,8 +90,16 @@ Future main(List<String> args) async {
       tableOfLocales.writeln('<tr>');
       tableOfLocales.writeln(
           '<td><small>${entry.key}(${entry.value.length}) </small></td>');
-      tableOfLocales.writeln(
-          '<td><small>${entry.value.map((e) => "<span style='color:${colorFor(e.resourceName, e.varName)}'>${e.varName.replaceAll('_', ' ')}</span>").join(' | ')}</small></td>');
+
+      final fakeGenerators = entry.value.map((e) {
+        final color = colorFor(e.resourceName, e.varName);
+        var name = e.varName.replaceAll('_', ' ');
+        final circle = circleFor(e.resourceName, e.varName);
+        if (!circle.isBlank) name += ' $circle';
+        return "<span style='color:$color'>$name</span>";
+      }).join(' | ');
+
+      tableOfLocales.writeln('<td><small>$fakeGenerators</small></td>');
       tableOfLocales.writeln('</tr>');
     }
   }

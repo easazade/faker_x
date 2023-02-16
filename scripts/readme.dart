@@ -1,5 +1,7 @@
 // ignore_for_file: unused_import
 
+import 'dart:io';
+
 import 'package:faker_x/faker_x.dart';
 
 import 'lib_imports.dart';
@@ -105,10 +107,15 @@ Future main(List<String> args) async {
   }
   tableOfLocales.writeln('</table>');
 
-  final readMe = await render('templates/docs/readme.md', values: {
-    'table_of_locales': tableOfLocales.toString(),
-  });
+  // 🤷 for some reason rendering mustache when there are emojis in it fails and gets messed up. fix later if needed.
+  // final content = await render('templates/docs/readme.md', values: {
+  //   'table_of_locales': tableOfLocales.toString(),
+  // });
 
-  await writeFile(content: readMe, path: 'README.md');
+  final file = File('templates/docs/readme.md');
+  var content = await file.readAsString();
+  content = content.replaceAll('{table_of_locales}', tableOfLocales.toString());
+
+  await writeFile(content: content, path: 'README.md');
   printSeparator();
 }

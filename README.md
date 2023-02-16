@@ -1,6 +1,7 @@
 faker_x
 
-No Docs yet:
+⚡️🚀📦🪄💎🌏✨
+
 Basically this is a library to generate fake data for dart language with ease.
 The main reason I'm creating this library is to create a library that is very easy/fast to contribute when it 
 comes to 
@@ -21,7 +22,7 @@ Add contribution guide to add a new fake value (datasource) to a locale or all l
 
 add fancy tags to readme
 
-Fake value generators marked in [<span style="color:black">black</span>] are available for all locales and generate the value differently according to that locale.<br> Fake value generators marked in [<span style="color:green">green</span>]🟢 are globally shared between different locales and generate values using same methods for all locales.<br>Fake value generator marked in [<span style="color:blue">blue</span>]🔵 are the ones that are only available for that locale<br><table>
+{Fake value generators marked in [<span style="color:black">black</span>] are available for all locales and generate the value differently according to that locale.<br> Fake value generators marked in [<span style="color:green">green</span>]🟢 are globally shared between different locales and generate values using same methods for all locales.<br>Fake value generator marked in [<span style="color:blue">blue</span>]🔵 are the ones that are only available for that locale<br><table>
 <tr>
 <th rowspan="12" scope="row">fa_ir</th>
 <td><small>phone(2) </small></td>
@@ -121,3 +122,4 @@ Fake value generators marked in [<span style="color:black">black</span>] are ava
 <td><small><span style='color:green'>geo location 🟢</span></small></td>
 </tr>
 </table>
+}

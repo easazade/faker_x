@@ -1,3 +1,7 @@
+## 0.4.4
+
+- Update scripts
+
 ## 0.4.3
 
 - Changed package name to **faker_x**

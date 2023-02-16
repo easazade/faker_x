@@ -9,9 +9,9 @@ import 'utils/utils.dart';
 Future main(List<String> args) async {
   printYellow('Generating README.md file');
   final tableOfLocales = StringBuffer(
-      'Fake value generators marked in [<span style="color:black">black</span>] are available for all locales and generate the value differently according to that locale.\n '
-      'Fake value generators marked in [<span style="color:green">green</span>]🟢 are globally shared between different locales and generate values using same methods for all locales.\n'
-      'Fake value generator marked in [<span style="color:blue">blue</span>]🔵 are the ones that are only available for that locale\n');
+      'Fake value generators marked in [<span style="color:black">black</span>] are available for all locales and generate the value differently according to that locale.<br> '
+      'Fake value generators marked in [<span style="color:green">green</span>]🟢 are globally shared between different locales and generate values using same methods for all locales.<br>'
+      'Fake value generator marked in [<span style="color:blue">blue</span>]🔵 are the ones that are only available for that locale<br>');
   final locales = await getAvaialableLocalesInProject();
 
   final globalDsInfos = await readGlobalDataSourcesMapped();

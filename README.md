@@ -1,6 +1,31 @@
-faker_x
+# faker_x
+BEST faker package available for dart that generates fake data you need.
 
-## ⚡️ 🚀 📦 🪄 💎 🌏 ✨ Modules
+<img src="https://img.shields.io/github/actions/workflow/status/easazade/faker_x/test.yaml?branch=master&style=flat-square">
+
+<img src="https://img.shields.io/badge/pub-0.4.8-blue?style=flat-square">
+
+<img alt="Pub Popularity" src="https://img.shields.io/pub/popularity/faker_x?style=flat-square">
+
+<img alt="Pub Likes" src="https://img.shields.io/pub/likes/faker_x?style=flat-square">
+
+<img alt="Pub Points" src="https://img.shields.io/pub/points/faker_x?style=flat-square">
+
+<img alt="Pub Publisher" src="https://img.shields.io/pub/publisher/faker_x?style=flat-square">
+
+<img alt="GitHub" src="https://img.shields.io/github/license/easazade/faker_x?style=flat-square">
+
+
+
+### 🚀 Before you start
+
+### 📦 Install
+
+### 🪄 Usage
+
+### 💎 Resources
+
+### 📜 Contribution Guide
 
 Basically this is a library to generate fake data for dart language with ease.
 The main reason I'm creating this library is to create a library that is very easy/fast to contribute when it 
@@ -22,7 +47,13 @@ Add contribution guide to add a new fake value (datasource) to a locale or all l
 
 add fancy tags to readme
 
-{Fake value generators marked in [<span style="color:black">black</span>] are available for all locales and generate the value differently according to that locale.<br> Fake value generators marked in [<span style="color:green">green</span>]🟢 are globally shared between different locales and generate values using same methods for all locales.<br>Fake value generator marked in [<span style="color:blue">blue</span>]🔵 are the ones that are only available for that locale<br><table>
+### 🌏 Localizations
+
+Below you can see a table of all the locales and all the resource and values that are available for them.<br><br>
+- Fake value generators marked in [<span style="color:black">black</span>] are available for all locales and generate the value differently according to that locale.<br>
+ - Fake value generators marked in [<span style="color:green">green</span>]🟢 are globally shared between different locales and generate values using same methods for all locales.<br>
+- Fake value generator marked in [<span style="color:blue">blue</span>]🔵 are the ones that are only available for that locale<br>
+<table>
 <tr>
 <th rowspan="12" scope="row">fa_ir</th>
 <td><small>phone(2) </small></td>
@@ -122,4 +153,3 @@ add fancy tags to readme
 <td><small><span style='color:green'>geo location 🟢</span></small></td>
 </tr>
 </table>
-}

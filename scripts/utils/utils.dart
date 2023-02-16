@@ -8,6 +8,7 @@ import 'package:faker_x/faker_x.dart';
 import 'package:glob/glob.dart';
 import 'package:mustache_template/mustache_template.dart';
 import 'package:recase/recase.dart';
+import 'package:yaml/yaml.dart';
 import '../lib_imports.dart';
 import 'cli.dart';
 import 'names.dart';
@@ -488,6 +489,47 @@ Future generateFakerXClassFile(List<String> locales) async {
 
   await writeFile(
       path: 'lib/src/base/faker_x_class.dart', content: buffer.toString());
+}
+
+/// reads a the content of a json/yaml file and returns it as a [Map<String,dynamic>]
+/// the method samrtly :D differs yaml files from json files
+///
+/// if the provided file is not json or yaml or the content is not valid an [UnsupportedFileException] will be thrown
+Future<Map<String, dynamic>> readJsonOrYamlFile(File file) async {
+  try {
+    var fileContent = await file.readAsString();
+    return _readJsonOrYaml(fileContent);
+  } catch (e, _) {
+    exitWithMsg(
+      error: 'Unsupported File: make sure the file '
+          'content is in correct json or yaml format',
+      info: 'file path is ${file.path}',
+    );
+    exit(-1); // this is unreachable
+  }
+}
+
+Map<String, dynamic> readJsonOrYaml(String content) {
+  try {
+    return _readJsonOrYaml(content);
+  } catch (e, _) {
+    exitWithMsg(
+      error: 'Unsupported File: make sure the file '
+          'content is in correct json or yaml format',
+    );
+    exit(-1); // this is unreachable
+  }
+}
+
+Map<String, dynamic> _readJsonOrYaml(String content) {
+  if (content.startsWith('{')) {
+    var json = jsonDecode(content);
+    return json;
+  } else {
+    YamlMap yaml = loadYaml(content);
+    var map = jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>;
+    return map;
+  }
 }
 
 extension IterableExtensions<T> on Iterable<Iterable<T>> {

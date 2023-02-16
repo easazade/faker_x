@@ -172,6 +172,8 @@ Future _createFakeCollectionClass({
   }
 
   await writeFile(content: buffer.toString(), path: savePath);
+
+  printGreen('Writing generated code into files');
 }
 
 Future _checkAvailableDataSourcesForCodeGeneration({

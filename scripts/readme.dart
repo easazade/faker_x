@@ -11,9 +11,10 @@ import 'utils/utils.dart';
 Future main(List<String> args) async {
   printYellow('Generating README.md file');
   final tableOfLocales = StringBuffer(
-      'Fake value generators marked in [<span style="color:black">black</span>] are available for all locales and generate the value differently according to that locale.<br> '
-      'Fake value generators marked in [<span style="color:green">green</span>]🟢 are globally shared between different locales and generate values using same methods for all locales.<br>'
-      'Fake value generator marked in [<span style="color:blue">blue</span>]🔵 are the ones that are only available for that locale<br>');
+      'Below you can see a table of all the locales and all the resource and values that are available for them.<br><br>\n'
+      '- Fake value generators marked in [<span style="color:black">black</span>] are available for all locales and generate the value differently according to that locale.<br>\n '
+      '- Fake value generators marked in [<span style="color:green">green</span>]🟢 are globally shared between different locales and generate values using same methods for all locales.<br>\n'
+      '- Fake value generator marked in [<span style="color:blue">blue</span>]🔵 are the ones that are only available for that locale<br>\n');
   final locales = await getAvaialableLocalesInProject();
 
   final globalDsInfos = await readGlobalDataSourcesMapped();
@@ -114,8 +115,34 @@ Future main(List<String> args) async {
 
   final file = File('templates/docs/readme.md');
   var content = await file.readAsString();
-  content = content.replaceAll('{table_of_locales}', tableOfLocales.toString());
+  content = content.replaceAll('{{tags}}', await tags());
+  content =
+      content.replaceAll('{{table_of_locales}}', tableOfLocales.toString());
 
   await writeFile(content: content, path: 'README.md');
   printSeparator();
+}
+
+Future<String> tags() async {
+  final pubspec = await readJsonOrYamlFile(File('pubspec.yaml'));
+  final version = pubspec['version'];
+
+  final style = 'flat-square'; // flat, flat-square, for-the-badge
+
+  return '''
+<img src="https://img.shields.io/github/actions/workflow/status/easazade/faker_x/test.yaml?branch=master&style=$style">
+
+<img src="https://img.shields.io/badge/pub-$version-blue?style=$style">
+
+<img alt="Pub Popularity" src="https://img.shields.io/pub/popularity/faker_x?style=$style">
+
+<img alt="Pub Likes" src="https://img.shields.io/pub/likes/faker_x?style=$style">
+
+<img alt="Pub Points" src="https://img.shields.io/pub/points/faker_x?style=$style">
+
+<img alt="Pub Publisher" src="https://img.shields.io/pub/publisher/faker_x?style=$style">
+
+<img alt="GitHub" src="https://img.shields.io/github/license/easazade/faker_x?style=$style">
+
+''';
 }

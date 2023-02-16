@@ -1,6 +1,17 @@
-faker_x
+# faker_x
+BEST faker package available for dart that generates fake data you need.
 
-## ⚡️ 🚀 📦 🪄 💎 🌏 ✨ Modules
+{{tags}}
+
+### 🚀 Before you start
+
+### 📦 Install
+
+### 🪄 Usage
+
+### 💎 Resources
+
+### 📜 Contribution Guide
 
 Basically this is a library to generate fake data for dart language with ease.
 The main reason I'm creating this library is to create a library that is very easy/fast to contribute when it 
@@ -21,5 +32,7 @@ like a new fake value to a his/her locale it will be easy. since we support loca
 Add contribution guide to add a new fake value (datasource) to a locale or all locales
 
 add fancy tags to readme
+
+### 🌏 Localizations
 
 {{table_of_locales}}

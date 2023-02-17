@@ -132,9 +132,9 @@ Future<String> tags() async {
   return '''
 <p align="center">
 
-<img src="https://img.shields.io/github/actions/workflow/status/easazade/faker_x/test.yaml?branch=master&style=$style">
+<img alt="CI Build Checks" src="https://img.shields.io/github/actions/workflow/status/easazade/faker_x/test.yaml?branch=master&style=$style">
 
-<img src="https://img.shields.io/badge/pub-$version-blue?style=$style">
+<img alt="Package Version" src="https://img.shields.io/badge/pub-$version-blue?style=$style">
 
 <img alt="Pub Popularity" src="https://img.shields.io/pub/popularity/faker_x?style=$style">
 

@@ -130,6 +130,8 @@ Future<String> tags() async {
   final style = 'flat-square'; // flat, flat-square, for-the-badge
 
   return '''
+<p align="center">
+
 <img src="https://img.shields.io/github/actions/workflow/status/easazade/faker_x/test.yaml?branch=master&style=$style">
 
 <img src="https://img.shields.io/badge/pub-$version-blue?style=$style">
@@ -138,11 +140,14 @@ Future<String> tags() async {
 
 <img alt="Pub Likes" src="https://img.shields.io/pub/likes/faker_x?style=$style">
 
+<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/easazade/faker_x?style=$style">
+
 <img alt="Pub Points" src="https://img.shields.io/pub/points/faker_x?style=$style">
 
 <img alt="Pub Publisher" src="https://img.shields.io/pub/publisher/faker_x?style=$style">
 
 <img alt="GitHub" src="https://img.shields.io/github/license/easazade/faker_x?style=$style">
 
+</p>
 ''';
 }

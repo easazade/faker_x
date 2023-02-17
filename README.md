@@ -9,6 +9,8 @@ BEST faker package available for dart that generates fake data you need.
 
 <img alt="Pub Likes" src="https://img.shields.io/pub/likes/faker_x?style=flat-square">
 
+<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/easazade/faker_x?style=flat-square">
+
 <img alt="Pub Points" src="https://img.shields.io/pub/points/faker_x?style=flat-square">
 
 <img alt="Pub Publisher" src="https://img.shields.io/pub/publisher/faker_x?style=flat-square">

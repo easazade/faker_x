@@ -1,4 +1,4 @@
-import 'package:faker_x/faker_x.dart';
+import 'package:faker_x/src/base/base.dart';
 
 final phone_number = StringDataSource(
   dataKey: DataKeys.phone_number,

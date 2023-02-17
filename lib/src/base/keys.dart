@@ -69,4 +69,6 @@ class DataKeys {
 
   static const phone_number = 'phone_number';
   static const international_phone_number = 'international_phone_number';
+
+  static const cat_image = 'cat_image';
 }

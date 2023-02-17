@@ -1,11 +1,12 @@
 include: package:lints/recommended.yaml
 
 analyzer:
-  #  strong-mode:
-  #    implicit-dynamic: false
-  #    implicit-casts: false
 
-  errors:
+
+
+linter:
+  rules:
+    avoid_void_async: true
     unused_import: error
     dead_code: error
     prefer_final_locals: warning
@@ -15,7 +16,3 @@ analyzer:
     avoid_print: ignore
     non_constant_identifier_names: ignore
     constant_identifier_names: ignore
-
-linter:
-  rules:
-    - avoid_void_async

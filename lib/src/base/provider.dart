@@ -32,7 +32,7 @@ dynamic provide(
     if (dataSource is StringDataSource &&
         dataSource.formats.isNotEmpty &&
         useFormats) {
-      final format = dataSource.formats.randomItem;
+      final format = dataSource.formats.randomFormatBaseOnChance;
 
       if (format != null) {
         final parsedValue = createFakeValueFromFormat(format, locale, context);

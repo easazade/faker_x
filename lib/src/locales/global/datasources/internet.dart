@@ -94,7 +94,9 @@ final user_name = StringDataSource.withBuilder(
       Format('{{${DataKeys.first_name_en}}}##'),
       Format('{{${DataKeys.last_name_en}}}'),
       Format('{{${DataKeys.last_name_en}}}##'),
-    ].randomItem!.copyWith(transformers: [StringTransformers.toLowerCase]);
+    ]
+        .randomFormatBaseOnChance!
+        .copyWith(transformers: [StringTransformers.toLowerCase]);
   },
 );
 
@@ -149,7 +151,7 @@ final user_name_from = StringDataSource<UsernameArgs>.withBuilder(
         Format('{{${DataKeys.last_name_en}}}##'),
       ]);
     }
-    return formats.randomItem;
+    return formats.randomFormatBaseOnChance;
   },
 );
 

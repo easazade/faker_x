@@ -1,5 +1,7 @@
 import 'dart:math' as math;
 
+import 'package:faker_x/src/base/base.dart';
+
 const _letters = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
 const _lettersAndNumbers =
     'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
@@ -37,6 +39,25 @@ extension ListExt<T> on Iterable<T> {
     if (length == 0) return null;
     return elementAt(_random.nextInt(length));
   }
+}
+
+extension FormatListExt on List<Format> {
+  Format? get randomFormatBaseOnChance {
+    if (isEmpty) return null;
+
+    final chances = <int>[];
+    for (var i = 0; i < length; i++) {
+      final format = this[i];
+      chances.addAll(List.filled(format.chance, i));
+    }
+
+    final randomIndex = chances.randomItem!;
+    return this[randomIndex];
+  }
+}
+
+extension FormatIterableExt on Iterable<Format> {
+  Format? get randomFormatBaseOnChance => toList().randomFormatBaseOnChance;
 }
 
 extension StringExt on String {

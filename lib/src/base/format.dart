@@ -3,7 +3,7 @@ import 'package:faker_x/src/base/utils.dart';
 typedef StringTransformer = String Function(String);
 
 class Format {
-  const Format(this.format, {this.chance = -1, this.transformers = const []});
+  const Format(this.format, {this.chance = 1, this.transformers = const []});
 
   final String format;
   final int chance;

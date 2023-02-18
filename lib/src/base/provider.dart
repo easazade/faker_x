@@ -7,10 +7,10 @@ import 'package:faker_x/src/base/utils.dart';
 dynamic provide(
   String dataKey,
   FakerXLocale locale, {
-  ProviderContext? context,
+  ProvideContext? context,
   dynamic args,
 }) {
-  context ??= ProviderContext(dataKey: dataKey, locale: locale);
+  context ??= ProvideContext(dataKey: dataKey, locale: locale);
 
   final localizedDataSourceMap = _localizedProvidersMap[locale];
   if (localizedDataSourceMap == null) {
@@ -73,13 +73,13 @@ dynamic provide(
 String createFakeValueFromFormat(
   Format format,
   FakerXLocale locale,
-  ProviderContext context,
+  ProvideContext context,
 ) {
   final keys = format.keys;
 
   final providedValues = keys.map((e) {
     final newContext =
-        ProviderContext(dataKey: e, locale: locale, previousContext: context);
+        ProvideContext(dataKey: e, locale: locale, previousContext: context);
     return provide(e, locale, context: newContext) as String;
   }).toList();
 

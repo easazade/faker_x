@@ -1,33 +1,8 @@
 import 'package:faker_x/src/base/base.dart';
 
-const job_prefix = StringDataSource(
-  locale: Locales.fa_ir,
-  dataKey: DataKeys.job_prefix,
-  values: [
-    'سر',
-    //TODO: add more
-  ],
-);
-
-const job_suffix = StringDataSource(
-  locale: Locales.fa_ir,
-  dataKey: DataKeys.job_suffix,
-  values: [
-    'ارشد',
-    'داخلی',
-    //TODO: add more
-  ],
-);
-
 const job_title = StringDataSource(
   locale: Locales.fa_ir,
   dataKey: DataKeys.job_title,
-  formats: [
-    Format(
-        '{{${DataKeys.job_prefix}}} {{${DataKeys.job_title}}} {{${DataKeys.job_suffix}}}'),
-    Format('{{${DataKeys.job_prefix}}} {{${DataKeys.job_title}}}'),
-    Format('{{${DataKeys.job_title}}} {{${DataKeys.job_suffix}}}'),
-  ],
   values: [
     'حسابدار',
     'منشی',

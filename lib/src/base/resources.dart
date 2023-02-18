@@ -9,8 +9,6 @@ class Job {
   final FakerXLocale _locale;
 
   String get jobTitle => provide(DataKeys.job_title, _locale);
-  String get jobSuffix => provide(DataKeys.job_suffix, _locale);
-  String get jobPrefix => provide(DataKeys.job_prefix, _locale);
 }
 
 @BaseResource()

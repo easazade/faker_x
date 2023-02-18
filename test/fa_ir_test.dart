@@ -28,9 +28,7 @@ void main() {
 
   test("fa_ir job test", () async {
     for (var i = 0; i < testRepeatCount; i++) {
-      assertFakeValue(FakerX.localized.fa_ir.job.jobSuffix);
       assertFakeValue(FakerX.localized.fa_ir.job.jobTitle);
-      assertFakeValue(FakerX.localized.fa_ir.job.jobPrefix);
     }
   });
 

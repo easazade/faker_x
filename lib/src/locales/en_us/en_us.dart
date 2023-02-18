@@ -92,6 +92,8 @@ class EnUsCollection extends FakeCollection {
 
   EnUsAddress get address => EnUsAddress(locale);
 
+  EnUsJob get job => EnUsJob(locale);
+
   EnUsColor get color => EnUsColor(locale);
 
   EnUsInternet get internet => EnUsInternet(locale);
@@ -121,6 +123,16 @@ class EnUsAddress extends Address {
   String get cityPrefix => provide(DataKeys.city_prefix, locale);
 
   String get secondaryAddress => provide(DataKeys.secondary_address, locale);
+}
+
+class EnUsJob extends Job {
+  final FakerXLocale locale;
+
+  EnUsJob(this.locale) : super(locale);
+
+  String get jobSuffix => provide(DataKeys.job_suffix, locale);
+
+  String get jobPrefix => provide(DataKeys.job_prefix, locale);
 }
 
 class EnUsColor extends Color {

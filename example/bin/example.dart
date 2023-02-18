@@ -19,9 +19,7 @@ Future main(List<String> args) async {
   print("street_prefix = ${FakerX.localized.fa_ir.address.streetPrefix}");
 
 // fa_ir - job
-  print("job_suffix = ${FakerX.localized.fa_ir.job.jobSuffix}");
   print("job_title = ${FakerX.localized.fa_ir.job.jobTitle}");
-  print("job_prefix = ${FakerX.localized.fa_ir.job.jobPrefix}");
 
 // fa_ir - person
   print("last_name_en = ${FakerX.localized.fa_ir.person.lastNameEn}");

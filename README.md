@@ -79,8 +79,8 @@ Below you can see a table of all the locales and all the resource and values tha
 <td><small><span style='color:blue'>building name 🔵</span> | <span style='color:blue'>street suffix 🔵</span> | <span style='color:black'>state</span> | <span style='color:black'>address</span> | <span style='color:black'>city name</span> | <span style='color:black'>postcode</span> | <span style='color:black'>building number</span> | <span style='color:black'>street name</span> | <span style='color:blue'>alley 🔵</span> | <span style='color:blue'>street prefix 🔵</span></small></td>
 </tr>
 <tr>
-<td><small>job(3) </small></td>
-<td><small><span style='color:black'>job suffix</span> | <span style='color:black'>job title</span> | <span style='color:black'>job prefix</span></small></td>
+<td><small>job(1) </small></td>
+<td><small><span style='color:black'>job title</span></small></td>
 </tr>
 <tr>
 <td><small>person(7) </small></td>
@@ -129,7 +129,7 @@ Below you can see a table of all the locales and all the resource and values tha
 </tr>
 <tr>
 <td><small>job(3) </small></td>
-<td><small><span style='color:black'>job suffix</span> | <span style='color:black'>job title</span> | <span style='color:black'>job prefix</span></small></td>
+<td><small><span style='color:blue'>job suffix 🔵</span> | <span style='color:black'>job title</span> | <span style='color:blue'>job prefix 🔵</span></small></td>
 </tr>
 <tr>
 <td><small>person(7) </small></td>

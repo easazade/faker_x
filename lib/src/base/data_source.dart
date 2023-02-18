@@ -73,7 +73,13 @@ class StringDataSource<ARG> extends DataSource<String, ARG> {
 
     final result = builder!(args, locale);
 
-    if (result is Format) {
+    if (result is StringOrFormat) {
+      if (result.isFormat) {
+        return StringOrFormat.format(result.format);
+      } else {
+        return StringOrFormat.string(result.string);
+      }
+    } else if (result is Format) {
       return StringOrFormat.format(result);
     } else {
       return StringOrFormat.string(result.toString());

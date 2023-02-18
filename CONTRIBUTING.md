@@ -306,5 +306,4 @@ Let's say we want to add a new locale that does not exists in our library and so
 - then when you're done adding values you only need to run the generate command again.
 
 `$ bash generate_and_test.sh`
-
 **NOTE:** read the console logs it might tell you to run it again.

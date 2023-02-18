@@ -67,7 +67,11 @@ Future main(List<String> arguments) async {
       values: {'code': testCodes.join('\n\n')},
     );
 
-    await writeFile(content: content, path: 'test/${locale}_test.dart');
+    await writeFile(
+      content: content,
+      path: 'test/${locale}_test.dart',
+      header: doNotModifyByHandHeader,
+    );
 
     for (var entry in manualTests.entries) {
       final path = entry.key;

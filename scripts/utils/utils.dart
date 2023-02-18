@@ -55,12 +55,16 @@ Future writeFile({
   required String content,
   required String path,
   bool overrideContent = true,
+  String? header,
 }) async {
   final file = File(path);
   if (!file.existsSync()) {
     file.createSync(recursive: true);
   }
   if (overrideContent || file.readAsStringSync().isBlank) {
+    if (header != null) {
+      content = header + content;
+    }
     file.writeAsStringSync(content);
   }
 }
@@ -411,7 +415,8 @@ Future createImports() async {
     buffer.writeln(importPhrase);
   }
 
-  await libImportsFile.writeAsString(buffer.toString());
+  await libImportsFile
+      .writeAsString(doNotModifyByHandHeader + buffer.toString());
 
   newLines.removeWhere((element) => element.isBlank);
 
@@ -434,7 +439,11 @@ Future generateLocaleFile(List<String> locales) async {
     ),
   });
 
-  await writeFile(path: 'lib/src/base/locale.dart', content: localesContent);
+  await writeFile(
+    path: 'lib/src/base/locale.dart',
+    content: localesContent,
+    header: doNotModifyByHandHeader,
+  );
 }
 
 Future generateFakeCollectionFile() async {
@@ -457,6 +466,7 @@ Future generateFakeCollectionFile() async {
   await writeFile(
     path: 'lib/src/base/fake_collection.dart',
     content: fakeCollectionClassFile,
+    header: doNotModifyByHandHeader,
   );
 }
 
@@ -488,7 +498,10 @@ Future generateFakerXClassFile(List<String> locales) async {
   buffer.writeln('}');
 
   await writeFile(
-      path: 'lib/src/base/faker_x_class.dart', content: buffer.toString());
+    path: 'lib/src/base/faker_x_class.dart',
+    content: buffer.toString(),
+    header: doNotModifyByHandHeader,
+  );
 }
 
 /// reads a the content of a json/yaml file and returns it as a [Map<String,dynamic>]

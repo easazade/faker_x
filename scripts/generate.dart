@@ -171,7 +171,11 @@ Future _createFakeCollectionClass({
     buffer.writeln(cls);
   }
 
-  await writeFile(content: buffer.toString(), path: savePath);
+  await writeFile(
+    content: buffer.toString(),
+    path: savePath,
+    header: doNotModifyByHandHeader,
+  );
 
   printGreen('Writing generated code into files');
 }

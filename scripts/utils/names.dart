@@ -15,3 +15,13 @@ const resourcesAddress = 'lib/src/base/resources.dart';
 
 String createCollectionClassName(String locale) =>
     '${ReCase(locale).pascalCase}Collection';
+
+String doNotModifyByHandHeader = '''
+/// !!!! DO NOY MODIFY MANUALLY !!!!
+///
+/// This file is generated using scripts in scripts directory. any changes you make 
+/// to this file will be removed when code generation takes effect.
+/// 
+/// NOTE: Some part of some of the generated files are generated using mustache
+/// templates in templates directory.\n
+''';

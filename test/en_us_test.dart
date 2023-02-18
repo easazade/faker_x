@@ -1,3 +1,11 @@
+/// !!!! DO NOY MODIFY MANUALLY !!!!
+///
+/// This file is generated using scripts in scripts directory. any changes you make
+/// to this file will be removed when code generation takes effect.
+///
+/// NOTE: Some part of some of the generated files are generated using mustache
+/// templates in templates directory.
+
 import 'package:faker_x/faker_x.dart';
 import 'package:test/test.dart';
 
@@ -85,19 +93,19 @@ void main() {
   test("en_us internet test", () async {
     for (var i = 0; i < testRepeatCount; i++) {
       assertFakeValue(FakerX.localized.en_us.internet.httpUrl);
-      // assertFakeValue(FakerX.localized.en_us.internet.email);
-      // assertFakeValue(FakerX.localized.en_us.internet.httpsUrl);
-      // assertFakeValue(FakerX.localized.en_us.internet.safeEmail);
-      // assertFakeValue(FakerX.localized.en_us.internet.ipv4);
-      // assertFakeValue(FakerX.localized.en_us.internet.domainSuffixes);
-      // assertFakeValue(FakerX.localized.en_us.internet.userName);
-      // assertFakeValue(FakerX.localized.en_us.internet.disposableEmail);
-      // assertFakeValue(FakerX.localized.en_us.internet.macAddress);
-      // assertFakeValue(FakerX.localized.en_us.internet.emoji);
-      // assertFakeValue(FakerX.localized.en_us.internet.ipv6);
-      // assertFakeValue(FakerX.localized.en_us.internet.mailProvider);
-      // assertFakeValue(FakerX.localized.en_us.internet.domainName);
-      // assertFakeValue(FakerX.localized.en_us.internet.disposableMailProvider);
+      assertFakeValue(FakerX.localized.en_us.internet.email);
+      assertFakeValue(FakerX.localized.en_us.internet.httpsUrl);
+      assertFakeValue(FakerX.localized.en_us.internet.safeEmail);
+      assertFakeValue(FakerX.localized.en_us.internet.ipv4);
+      assertFakeValue(FakerX.localized.en_us.internet.domainSuffixes);
+      assertFakeValue(FakerX.localized.en_us.internet.userName);
+      assertFakeValue(FakerX.localized.en_us.internet.disposableEmail);
+      assertFakeValue(FakerX.localized.en_us.internet.macAddress);
+      assertFakeValue(FakerX.localized.en_us.internet.emoji);
+      assertFakeValue(FakerX.localized.en_us.internet.ipv6);
+      assertFakeValue(FakerX.localized.en_us.internet.mailProvider);
+      assertFakeValue(FakerX.localized.en_us.internet.domainName);
+      assertFakeValue(FakerX.localized.en_us.internet.disposableMailProvider);
     }
   });
 

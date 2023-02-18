@@ -1,3 +1,11 @@
+/// !!!! DO NOY MODIFY MANUALLY !!!!
+///
+/// This file is generated using scripts in scripts directory. any changes you make
+/// to this file will be removed when code generation takes effect.
+///
+/// NOTE: Some part of some of the generated files are generated using mustache
+/// templates in templates directory.
+
 // ignore_for_file: unused_import
 
 import 'package:faker_x/faker_x.dart';

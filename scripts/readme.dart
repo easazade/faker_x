@@ -127,7 +127,7 @@ Future<String> tags() async {
   final pubspec = await readJsonOrYamlFile(File('pubspec.yaml'));
   final version = pubspec['version'];
 
-  final style = 'flat-square'; // flat, flat-square, for-the-badge
+  final style = 'flat'; // flat, flat-square, for-the-badge
 
   return '''
 <p align="center">

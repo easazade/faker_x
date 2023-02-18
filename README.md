@@ -1,20 +1,20 @@
 <p align="center">
 
-<img alt="CI Build Checks" src="https://img.shields.io/github/actions/workflow/status/easazade/faker_x/test.yaml?branch=master&style=flat-square">
+<img alt="CI Build Checks" src="https://img.shields.io/github/actions/workflow/status/easazade/faker_x/test.yaml?branch=master&style=flat">
 
-<img alt="Package Version" src="https://img.shields.io/badge/pub-0.4.8-blue?style=flat-square">
+<img alt="Package Version" src="https://img.shields.io/badge/pub-0.4.10-blue?style=flat">
 
-<img alt="Pub Popularity" src="https://img.shields.io/pub/popularity/faker_x?style=flat-square">
+<img alt="Pub Popularity" src="https://img.shields.io/pub/popularity/faker_x?style=flat">
 
-<img alt="Pub Likes" src="https://img.shields.io/pub/likes/faker_x?style=flat-square">
+<img alt="Pub Likes" src="https://img.shields.io/pub/likes/faker_x?style=flat">
 
-<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/easazade/faker_x?style=flat-square">
+<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/easazade/faker_x?style=flat">
 
-<img alt="Pub Points" src="https://img.shields.io/pub/points/faker_x?style=flat-square">
+<img alt="Pub Points" src="https://img.shields.io/pub/points/faker_x?style=flat">
 
-<img alt="Pub Publisher" src="https://img.shields.io/pub/publisher/faker_x?style=flat-square">
+<img alt="Pub Publisher" src="https://img.shields.io/pub/publisher/faker_x?style=flat">
 
-<img alt="GitHub" src="https://img.shields.io/github/license/easazade/faker_x?style=flat-square">
+<img alt="GitHub" src="https://img.shields.io/github/license/easazade/faker_x?style=flat">
 
 </p>
 

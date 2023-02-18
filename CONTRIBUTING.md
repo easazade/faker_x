@@ -6,7 +6,7 @@ Reading this document will help you understand:
 - How to localize global value generators. 
 - How to add support for a new locale that doesn't exist for exmple `en_uk`.
 
-##### But First Let's see a quick example:
+#### But First Let's See a Quick Example:
 let's say we want to add a new fake value generator to our `FakerX` class called `pet_name` that generates random pet names . this is going to be done in 3 steps
 
 - Define a static String key in `DataKeys` class called `pet_name`

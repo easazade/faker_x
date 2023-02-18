@@ -1,8 +1,39 @@
+# Contribution Guide
+
 Reading this document will help you understand:
 - Basic structure of the faker_x package
 - How to add a single new value generator to existing resources. for example adding `cat_image` value generator to resource `image` whether you wan to add it `globally` for all existing `locales` or just to a specific locale like `en_us`.
 - How to localize global value generators. 
 - How to add support for a new locale that doesn't exist for exmple `en_uk`.
+
+##### But First Let's see a quick example:
+let's say we want to add a new fake value generator to our `FakerX` class called `pet_name` that generates random pet names . this is going to be done in 3 steps
+
+- Define a static String key in `DataKeys` class called `pet_name`
+- Define a new datasource in the `animal.dart` resource file
+
+```dart
+const pet_name = StringDataSource(
+  locale: Locales.en_us,
+  dataKey: DataKeys.pet_name,
+  values: [
+    'Bucky',
+    'Sparky',
+    'Coco',
+    'Wolfy',
+    .
+    .
+  ]
+);  
+```
+- run `./generate_and_test.sh` script. this script will create required code, tests & docs and will format, analyze code and run tests at the end.
+
+##### DONE
+Now there will be a new getter method that generates fake pet names in our `FakerX` class.
+
+```dart
+final myPetName = FakerX.defaultInstance.animal.petName;
+```
 
 ### Understanding Package Structure
 faker_x contains a `lib/src/locales` directory; this is where changes need to be added. 
@@ -60,10 +91,12 @@ final international = FakerX.localized.en_us.phone.internationalPhoneNumber;
 
 #### Explaining DataSources
 
-There are 2 kind of `DataSource` that we have `StringDataSource`, `TypeDataSource`
+a `DataSource` is basically a fake value provider. it either provides a fake value through a list of harcoded values or a builder method (or a list of `Formats` in case of `StringDataSource`). 
+
+There are 2 kind of `DataSources` that we have `StringDataSource`, `TypeDataSource`
 each `DataSource` must contain a dataKey defiend in `DataKeys` class and a locale defined in `Locales` class.
 
-each `DataSource` can use either a list `values` or a `builder` method to generate fake values. 
+each `DataSource` can use either a list `values` or a `builder` method to provide fake values.
 
 ##### StringDataSource
 
@@ -96,6 +129,8 @@ final avatar_uri = StringDataSource.withBuilder(
       'https://cloudflare-ipfs.com/avatar/${randomInt(1249)}.jpg',
 );
 ```
+
+NOTE: multiple types can be returned from `StringDataSource` which are `String`, `Format`, `StringOrFormat`
 
 if the builder function needs to accept arguments by user, below example suits that purpose.
 
@@ -307,3 +342,28 @@ Let's say we want to add a new locale that does not exists in our library and so
 
 `$ bash generate_and_test.sh`
 **NOTE:** read the console logs it might tell you to run it again.
+
+### Side Notes :
+With DataSources that use a builder methods to generate the value we can use builder methods of other DataSources in them. for example:
+
+
+```dart
+final uri = StringDataSource<UriArgs>.withBuilder(
+  dataKey: DataKeys.uri,
+  locale: Locales.en_us,
+  builder: (UriArgs args, _) {
+    return Format('${args.protocol}://{{${DataKeys.domain_name}}}');
+  },
+);
+
+final https_url = StringDataSource.withBuilder(
+  dataKey: DataKeys.https_url,
+  locale: Locales.en_us,
+  builder: (_, __) {
+    // here we are calling build method on uri DataSource defined above 
+    // to return an https url
+    // ! NOTE: call build method not builder callback
+    return uri.build(UriArgs(protocol: 'https')),
+  }
+);
+```

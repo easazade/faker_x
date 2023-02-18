@@ -193,17 +193,13 @@ final uri = StringDataSource<UriArgs>.withBuilder(
 final http_url = StringDataSource.withBuilder(
   dataKey: DataKeys.http_url,
   locale: Locales.en_us,
-  builder: (_, __) {
-    return uri.build(UriArgs(protocol: 'http'));
-  },
+  builder: (_, __) => uri.build(UriArgs(protocol: 'http')),
 );
 
 final https_url = StringDataSource.withBuilder(
   dataKey: DataKeys.https_url,
   locale: Locales.en_us,
-  builder: (_, __) {
-    return uri.build(UriArgs(protocol: 'https'));
-  },
+  builder: (_, __) => uri.build(UriArgs(protocol: 'https')),
 );
 
 final ipv4 = StringDataSource.withBuilder(

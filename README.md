@@ -60,6 +60,7 @@ final image = FakerX.localized.en_us.image.image(
 
 
 ### 📜 Contribution Guide
+Please Read [Contribution Guide](CONTRIBUTING.md). It is written in details to avoid any confusions and help you understand what you need to do to make your contributions. If there is any confusion or question you can open an issue or ask your question on your open pull request.
 
 
 ### 💎 Resources & 🌏 Localizations

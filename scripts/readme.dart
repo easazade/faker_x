@@ -113,7 +113,7 @@ Future main(List<String> args) async {
   //   'table_of_locales': tableOfLocales.toString(),
   // });
 
-  final file = File('templates/docs/readme.md');
+  final file = File('templates/readme.md');
   var content = await file.readAsString();
   content = content.replaceAll('{{tags}}', await tags());
   content =

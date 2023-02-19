@@ -3,12 +3,12 @@
 BEST faker package available for dart that generates fake data you need.
 <br>
 
-### 🚀 Before you start
+## 🚀 Before you start
 **faker_x** was not create just to be a typicall faker library but a library that is easy to contribute and grow. 
 
 with faker libraries there are many localizations that need to be supported while each of them share many resources which fake values can be generated from, almost all of them will have different resources that only makes sence for that localization. being easy to change, contribute & maintain was one of the top metrics of development when I started creating this package. in order to give dart language a faker library it deserves while also valueing dart developers time, faker_x uses code generation to to generate its library code, so if you wish to add new resources or fake value generators, you only need focus on putting in the data instead of reading the source code and trying to figure it out (which you are free to do so if you wish). please read the contribution guide to read the step by step guide on how to change or add new values and resources to faker_x.
 
-### 🪄 Usage
+## 🪄 Usage
 
 Here is some of the values faker_x can generate. for complete details checkout Localizations
 
@@ -40,11 +40,11 @@ final image = FakerX.localized.en_us.image.image(
 ```
 
 
-### 📜 Contribution Guide
+## 📜 Contribution Guide
 Please Read [Contribution Guide](CONTRIBUTING.md). It is written in details to avoid any confusions and help you understand what you need to do to make your contributions. If there is any confusion or question you can open an issue or ask your question on your open pull request.
 
 
-### 💎 Resources & 🌏 Localizations
+## 💎 Resources & 🌏 Localizations
 
 {{table_of_locales}}
 

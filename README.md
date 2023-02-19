@@ -1,17 +1,19 @@
-<img alt="CI Build Checks" src="https://img.shields.io/github/actions/workflow/status/easazade/faker_x/test.yaml?branch=master&style=flat"> <img alt="Package Version" src="https://img.shields.io/badge/pub-0.4.12-blue?style=flat"> <img alt="Pub Popularity" src="https://img.shields.io/pub/popularity/faker_x?style=flat"> <img alt="Pub Likes" src="https://img.shields.io/pub/likes/faker_x?style=flat"> <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/easazade/faker_x?style=flat"> <img alt="Pub Points" src="https://img.shields.io/pub/points/faker_x?style=flat"> <img alt="Pub Publisher" src="https://img.shields.io/pub/publisher/faker_x?style=flat"> <img alt="GitHub" src="https://img.shields.io/github/license/easazade/faker_x?style=flat">
+<img alt="CI Build Checks" src="https://img.shields.io/github/actions/workflow/status/easazade/faker_x/test.yaml?branch=master&style=flat"> <img alt="Package Version" src="https://img.shields.io/badge/pub-0.4.13-blue?style=flat"> <img alt="Pub Popularity" src="https://img.shields.io/pub/popularity/faker_x?style=flat"> <img alt="Pub Likes" src="https://img.shields.io/pub/likes/faker_x?style=flat"> <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/easazade/faker_x?style=flat"> <img alt="Pub Points" src="https://img.shields.io/pub/points/faker_x?style=flat"> <img alt="Pub Publisher" src="https://img.shields.io/pub/publisher/faker_x?style=flat"> <img alt="GitHub" src="https://img.shields.io/github/license/easazade/faker_x?style=flat">
 
 <br>
 BEST faker package available for dart that generates fake data you need.
 <br>
 
 ## 🚀 Before you start
-**faker_x** was not create just to be a typicall faker library but a library that is easy to contribute and grow. 
+**faker_x** was not created just to be a typical faker library but a library that is easy to contribute and grow.
 
-with faker libraries there are many localizations that need to be supported while each of them share many resources which fake values can be generated from, almost all of them will have different resources that only makes sence for that localization. being easy to change, contribute & maintain was one of the top metrics of development when I started creating this package. in order to give dart language a faker library it deserves while also valueing dart developers time, faker_x uses code generation to to generate its library code, so if you wish to add new resources or fake value generators, you only need focus on putting in the data instead of reading the source code and trying to figure it out (which you are free to do so if you wish). please read the contribution guide to read the step by step guide on how to change or add new values and resources to faker_x.
+
+With faker libraries there are many localizations that need to be supported while each of them share many resources which fake values can be generated from, almost all of them will have different resources that only make sense for that localization. Being easy to change, contribute & maintain was one of the top metrics of development when I started creating this package. In order to give dart language a faker library it deserves while also valuing dart developers time, faker_x uses code generation to generate its library code, tests & documents so if you wish to add new resources or fake value generators, you only need to focus on putting in the data instead of reading the source code and trying to figure it out (which you are free to do so if you wish). Please read the contribution guide to read the step by step guide on how to change or add new values and resources to faker_x.
+
 
 ## 🪄 Usage
 
-Here is some of the values faker_x can generate. for complete details checkout Localizations
+Here are some of the values faker_x can generate. for complete details checkout Localizations.
 
 ```dart
 final phoneNumber = FakerX.localized.en_us.phone.phoneNumber;
@@ -42,12 +44,12 @@ final image = FakerX.localized.en_us.image.image(
 
 
 ## 📜 Contribution Guide
-Please Read [Contribution Guide](CONTRIBUTING.md). It is written in details to avoid any confusions and help you understand what you need to do to make your contributions. If there is any confusion or question you can open an issue or ask your question on your open pull request.
+Please Read the [Contribution Guide](CONTRIBUTING.md). It is written in detail to avoid any confusions and help you understand what you need to do to make your contributions. If there is any confusion or question you can open an issue or ask your question on your open pull request.
 
 
 ## 💎 Resources & 🌏 Localizations
 
-Below you can see a table of all the locales and all the resource and values that are available for them.<br><br>
+Below you can see a table of all the locales and all the resources and values that are available for them.<br><br>
 - Fake value generators marked in [<span style="color:black">black</span>] are available for all locales and generate the value differently according to that locale.<br>
  - Fake value generators marked in [<span style="color:green">green</span>]🟢 are globally shared between different locales and generate values using same methods for all locales.<br>
 - Fake value generator marked in [<span style="color:blue">blue</span>]🔵 are the ones that are only available for that locale<br>

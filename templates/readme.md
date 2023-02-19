@@ -1,4 +1,5 @@
-{{tags}}
+{{badges}}
+
 <br>
 BEST faker package available for dart that generates fake data you need.
 <br>

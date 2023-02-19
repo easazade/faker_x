@@ -115,7 +115,7 @@ Future main(List<String> args) async {
 
   final file = File('templates/readme.md');
   var content = await file.readAsString();
-  content = content.replaceAll('{{tags}}', await tags());
+  content = content.replaceAll('{{badges}}', await badges());
   content =
       content.replaceAll('{{table_of_locales}}', tableOfLocales.toString());
 
@@ -123,31 +123,22 @@ Future main(List<String> args) async {
   printSeparator();
 }
 
-Future<String> tags() async {
+Future<String> badges() async {
   final pubspec = await readJsonOrYamlFile(File('pubspec.yaml'));
   final version = pubspec['version'];
 
   final style = 'flat'; // flat, flat-square, for-the-badge
 
-  return '''
-<p align="center">
+  final badges = [
+    '<img alt="CI Build Checks" src="https://img.shields.io/github/actions/workflow/status/easazade/faker_x/test.yaml?branch=master&style=$style">',
+    '<img alt="Package Version" src="https://img.shields.io/badge/pub-$version-blue?style=$style">',
+    '<img alt="Pub Popularity" src="https://img.shields.io/pub/popularity/faker_x?style=$style">',
+    '<img alt="Pub Likes" src="https://img.shields.io/pub/likes/faker_x?style=$style">',
+    '<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/easazade/faker_x?style=$style">',
+    '<img alt="Pub Points" src="https://img.shields.io/pub/points/faker_x?style=$style">',
+    '<img alt="Pub Publisher" src="https://img.shields.io/pub/publisher/faker_x?style=$style">',
+    '<img alt="GitHub" src="https://img.shields.io/github/license/easazade/faker_x?style=$style">',
+  ];
 
-<img alt="CI Build Checks" src="https://img.shields.io/github/actions/workflow/status/easazade/faker_x/test.yaml?branch=master&style=$style">
-
-<img alt="Package Version" src="https://img.shields.io/badge/pub-$version-blue?style=$style">
-
-<img alt="Pub Popularity" src="https://img.shields.io/pub/popularity/faker_x?style=$style">
-
-<img alt="Pub Likes" src="https://img.shields.io/pub/likes/faker_x?style=$style">
-
-<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/easazade/faker_x?style=$style">
-
-<img alt="Pub Points" src="https://img.shields.io/pub/points/faker_x?style=$style">
-
-<img alt="Pub Publisher" src="https://img.shields.io/pub/publisher/faker_x?style=$style">
-
-<img alt="GitHub" src="https://img.shields.io/github/license/easazade/faker_x?style=$style">
-
-</p>
-''';
+  return badges.join(' ');
 }

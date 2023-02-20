@@ -19,5 +19,5 @@ Future main(List<String> arguments) async {
 
   await generateFakeCollectionFile();
 
-  await createImports();
+  await createScriptsImportsFile();
 }

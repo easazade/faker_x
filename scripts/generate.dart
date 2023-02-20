@@ -29,7 +29,7 @@ Future main(List<String> arguments) async {
 
   await generateFakeCollectionFile();
 
-  await createImports();
+  await createScriptsImportsFile();
 
   final localizedCollectionFilePath = 'lib/src/locales/$locale/$locale.dart';
 

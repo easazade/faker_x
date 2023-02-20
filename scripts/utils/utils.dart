@@ -391,7 +391,7 @@ void checkValidityOfDataKeys() {
   }
 }
 
-Future createImports() async {
+Future createScriptsImportsFile() async {
   final libImportsFile = File('scripts/lib_imports.dart');
   if (!libImportsFile.existsSync()) {
     await libImportsFile.create(recursive: true);

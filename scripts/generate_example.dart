@@ -9,25 +9,29 @@ import 'utils/utils.dart';
 
 Future main(List<String> args) async {
   printYellow('Generating example');
-  final buffer = StringBuffer(
-      'import "package:faker_x/faker_x.dart";\n Future main(List<String> args) async {');
+  final exampleFile = StringBuffer(
+    'import "package:faker_x/faker_x.dart";\n'
+    'Future main(List<String> args) async {',
+  );
 
   final locales = await getAvaialableLocalesInProject();
   for (var locale in locales) {
-    final dsInfosMap = await readAvailableDataSourcesForLocaleMapped(locale);
-    for (var entry in dsInfosMap.entries) {
+    final dataSourceInfosMap =
+        await readAvailableDataSourcesForLocaleMapped(locale);
+    for (var entry in dataSourceInfosMap.entries) {
       final resourceName = entry.key;
-      final dsInfoList = entry.value;
-      buffer.writeln('\n// $locale - $resourceName');
-      for (var dsInfo in dsInfoList) {
-        if (dsInfo.builderArgTypeFields.isEmpty) {
-          buffer.writeln(
-              'print("${dsInfo.varName} = \${$fakerXClassName.localized.$locale.$resourceName.${dsInfo.varName.camelCase}}");');
+      final dataSourceInfoList = entry.value;
+      exampleFile.writeln('\n// $locale - $resourceName');
+      for (var info in dataSourceInfoList) {
+        if (info.builderArgTypeFields.isEmpty) {
+          exampleFile.writeln(
+              'print("${info.varName} = \${$fakerXClassName.localized.$locale.$resourceName.${info.varName.camelCase}}");');
         }
       }
     }
   }
-  buffer.writeln('}');
 
-  writeFile(content: buffer.toString(), path: 'example/bin/example.dart');
+  exampleFile.writeln('}');
+
+  writeFile(content: exampleFile.toString(), path: 'example/bin/example.dart');
 }

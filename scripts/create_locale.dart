@@ -28,11 +28,12 @@ Future main(List<String> arguments) async {
   await generateLocaleFile(locales);
 
   // create datasources from templates/datasources for given locale and copy to lib/src/locales/$locale/datasources/
-  printGreen(
-      'Creating required Datasource files in lib/src/locales/$locale/datasources to be filled');
-  await _createDataSources(locale);
+  printGreen('Creating required Datasource files in '
+      'lib/src/locales/$locale/datasources to be filled');
 
-  await createImports();
+  await _createRequiredDataSources(locale);
+
+  await createScriptsImportsFile();
 
   // generate lib/src/base/faker_x_class.dart file
   await generateFakerXClassFile(locales);
@@ -40,7 +41,7 @@ Future main(List<String> arguments) async {
   await generate.main([locale, 'true']);
 }
 
-Future _createDataSources(String locale) async {
+Future _createRequiredDataSources(String locale) async {
   final requriedDataSources = await getUnavailableDataSourceNames();
 
   for (var resource in requriedDataSources.keys) {

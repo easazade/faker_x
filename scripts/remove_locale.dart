@@ -29,7 +29,7 @@ Future main(List<String> arguments) async {
   // remove generated files for given locale
   await _removeGeneratedFilesForLocale(locale);
 
-  await createImports();
+  await createScriptsImportsFile();
 }
 
 Future _removeGeneratedFilesForLocale(String locale) async {

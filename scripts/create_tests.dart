@@ -23,8 +23,9 @@ Future main(List<String> arguments) async {
 
     for (var entry in map.entries) {
       final resourceName = entry.key;
-      final dsInfoList = entry.value;
-      var resourceTestCode = await Future.wait(dsInfoList.map((dsInfo) async {
+      final dataSourceInfoList = entry.value;
+      var allDataSourcesTestCode =
+          await Future.wait(dataSourceInfoList.map((dsInfo) async {
         final code =
             '$assertFunctionName($fakerXClassName.localized.$locale.$resourceName.${ReCase(dsInfo.varName).camelCase});';
         if (dsInfo.dataSource.builder == null ||
@@ -48,7 +49,7 @@ Future main(List<String> arguments) async {
       final testCode = StringBuffer();
 
       testCode.write('for(var i=0; i<$testRepeatCountVarName; i++) {');
-      testCode.writeln(resourceTestCode.join('\n'));
+      testCode.writeln(allDataSourcesTestCode.join('\n'));
       testCode.writeln('}');
 
       testCodes.add(
@@ -62,22 +63,23 @@ Future main(List<String> arguments) async {
       );
     }
 
-    final content = await render(
+    final testFileContent = await render(
       'templates/test_file.mustache',
       values: {'code': testCodes.join('\n\n')},
     );
 
     await writeFile(
-      content: content,
+      content: testFileContent,
       path: 'test/${locale}_test.dart',
       header: doNotModifyByHandHeader,
     );
 
     for (var entry in manualTests.entries) {
       final path = entry.key;
-      final content = entry.value;
+      final manualTestFileContent = entry.value;
 
-      await writeFile(content: content, path: path, overrideContent: false);
+      await writeFile(
+          content: manualTestFileContent, path: path, overrideContent: false);
     }
   }
 }

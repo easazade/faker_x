@@ -344,7 +344,7 @@ Let's say we want to add a new locale that does not exist in our library and so 
 **NOTE:** read the console logs it might tell you to run it again.
 
 ### Side Notes :
-With DataSources that use builder methods to generate the value we can use builder methods of other DataSources in them. for example:
+**NOTE:** With DataSources that use builder methods to generate the value we can use builder methods of other DataSources in them. for example:
 
 
 ```dart
@@ -367,3 +367,7 @@ final https_url = StringDataSource.withBuilder(
   }
 );
 ```
+
+**NOTE:** There are a lot of warning and error messages to notify you if you have done something wrong and how you should fix them. so if you ever ran the generation command and saw an error or warning in the terminal just fix the code and rerun the command.
+
+**NOTE:** even though a lot of checks have been set in scripts to predict and prevent if code is going to be generated incorrectly or with syntax error messages. this might happen. if you ran a generation command and there was syntax error in generated code in `lib/` directory just silence the syntax error by commenting them out or removing them. then change your code if necessary and rerun the generation command

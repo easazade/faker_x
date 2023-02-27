@@ -124,14 +124,11 @@ Future main(List<String> args) async {
 }
 
 Future<String> badges() async {
-  final pubspec = await readJsonOrYamlFile(File('pubspec.yaml'));
-  final version = pubspec['version'];
-
   final style = 'flat-square'; // flat, flat-square, for-the-badge
 
   final badges = [
     '<img alt="CI Build Checks" src="https://img.shields.io/github/actions/workflow/status/easazade/faker_x/test.yaml?branch=master&style=$style">',
-    '<img alt="Package Version" src="https://img.shields.io/badge/pub-$version-blue?style=$style">',
+    '<img alt="Pub Version" src="https://img.shields.io/pub/v/faker_x?style=$style">',
     '<img alt="Pub Popularity" src="https://img.shields.io/pub/popularity/faker_x?style=$style">',
     '<img alt="Pub Points" src="https://img.shields.io/pub/points/faker_x?style=$style">',
     '<img alt="Pub Likes" src="https://img.shields.io/pub/likes/faker_x?style=$style">',

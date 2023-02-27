@@ -8,6 +8,7 @@ export 'provider.dart';
 export 'utils.dart';
 export 'fake_collection.dart';
 export 'resources.dart';
+export 'types.dart';
 
 class BaseResource {
   const BaseResource({this.isRequired = true});

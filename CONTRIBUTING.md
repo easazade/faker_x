@@ -224,8 +224,10 @@ final geo_location = TypeDataSource<GeoLocation, dynamic>.withBuilder(
 );
 ```
 
+define the return type in `lib/src/base/types.dart`
+
 ```dart
-// defined in lib/src/base/value_types.dart
+
 class GeoLocation {
   final double latitude;
   final double longitude;
@@ -370,4 +372,4 @@ final https_url = StringDataSource.withBuilder(
 
 **NOTE:** There are a lot of warning and error messages to notify you if you have done something wrong and how you should fix them. so if you ever ran the generation command and saw an error or warning in the terminal just fix the code and rerun the command.
 
-**NOTE:** even though a lot of checks have been set in scripts to predict and prevent if code is going to be generated incorrectly or with syntax error messages. this might happen. if you ran a generation command and there was syntax error in generated code in `lib/` directory just silence the syntax error by commenting them out or removing them. then change your code if necessary and rerun the generation command
+**NOTE:** even though a lot of checks have been set in scripts to predict and prevent if code is going to be generated incorrectly or with syntax error messages. this might happen. if you ran a generation command and there was syntax error in generated code in `lib/` directory just silence the syntax error by commenting them out or removing them so you can run generate command again without dart telling you there are syntax errors need to be fixed. doesn't matter if you change generated files manually to silence syntax errors, because they will be regenerated. then change your code if necessary and rerun the generation command.

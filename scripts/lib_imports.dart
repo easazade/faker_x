@@ -41,6 +41,7 @@ import 'package:faker_x/src/base/utils.dart';
 import 'package:faker_x/src/base/keys.dart';
 import 'package:faker_x/src/base/data_source.dart';
 import 'package:faker_x/src/base/faker_x_class.dart';
+import 'package:faker_x/src/base/types.dart';
 import 'package:faker_x/src/base/resources.dart';
 import 'package:faker_x/src/base/numbers.dart';
 import 'package:faker_x/src/base/locale.dart';

@@ -7,6 +7,8 @@ import 'utils/names.dart';
 import 'utils/utils.dart';
 import 'lib_imports.dart';
 
+/// removes all existing file, code and support for an existing locale in faker_x
+/// eg: a locale like en_us, fa_ir and etc
 Future main(List<String> arguments) async {
   final args = checkArgs(arguments);
 

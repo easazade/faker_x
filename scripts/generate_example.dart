@@ -7,6 +7,7 @@ import 'utils/cli.dart';
 import 'utils/names.dart';
 import 'utils/utils.dart';
 
+/// generates example code in example project.
 Future main(List<String> args) async {
   printYellow('Generating example');
   final exampleFile = StringBuffer(

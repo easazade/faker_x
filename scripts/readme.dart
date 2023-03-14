@@ -8,6 +8,7 @@ import 'lib_imports.dart';
 import 'utils/cli.dart';
 import 'utils/utils.dart';
 
+/// generates README.md file from templates/readme.md and project metadata
 Future main(List<String> args) async {
   printYellow('Generating README.md file');
   final tableOfLocales = StringBuffer(

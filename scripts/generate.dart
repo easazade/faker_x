@@ -16,6 +16,12 @@ import 'utils/names.dart';
 import 'utils/utils.dart';
 import 'lib_imports.dart';
 
+/// Regenerates code in written in lib/src/locales/ for the given locale
+///
+/// eg: for given locale "en_us" it will read all datasources from lib/src/locales/en_us/datasources
+/// and generates lib/src/locales/en_us/en_us.dart file which contains [EnUsCollection] class with all its
+/// localized resource classes if there is any, like [EnUsAddress] or [EnUsJob] and etc.
+///
 Future main(List<String> arguments) async {
   final args = checkArgs(arguments);
 

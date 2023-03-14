@@ -11,6 +11,11 @@ import 'lib_imports.dart';
 
 import 'generate.dart' as generate;
 
+/// adds support for a new locale to faker_x.
+///
+/// eg: if given "locale" is "fa_ir". a new directory will be added to lib/src/locales/fa_ir with all the basic
+/// file and codes that are required.
+/// NOTE: all datasources creates in lin/src/locales/fa_ir are empty and must be filled before running scripts/generate.dart
 Future main(List<String> arguments) async {
   final args = checkArgs(arguments);
 

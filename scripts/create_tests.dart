@@ -12,6 +12,8 @@ import 'utils/names.dart';
 import 'utils/utils.dart';
 import 'lib_imports.dart';
 
+/// creates test for all fake generator methods of all supported locales in faker_x.
+/// NOTE: supported locales can be found in lib/src/locales/
 Future main(List<String> arguments) async {
   printYellow('Generating tests');
   final locales = await getAvaialableLocalesInProject();
@@ -38,8 +40,8 @@ Future main(List<String> arguments) async {
             'templates/manual_test_file.mustache',
             values: {
               'name': '$locale -> $resourceName -> ${dsInfo.varName} test',
-              'description':
-                  '// TODO: please write test manually to test $fakerXClassName.localized.$locale.$resourceName.${dsInfo.varName}(args)',
+              'description': '// TODO: please write test manually to test '
+                  '$fakerXClassName.localized.$locale.$resourceName.${dsInfo.varName}(args)',
             },
           );
           return null;

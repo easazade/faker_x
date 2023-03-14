@@ -410,10 +410,7 @@ Future createScriptsImportsFile() async {
       .listSync(recursive: true)
       .whereType<File>()
       .where((file) => file.path.endsWith('.dart'))
-      .sortedBy((element) {
-    printRed(element.fileName);
-    return element.fileName;
-  });
+      .sortedBy((element) => element.uri.toString());
 
   final buffer = StringBuffer('// ignore_for_file: unused_import\n\n');
 

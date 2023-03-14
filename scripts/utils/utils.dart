@@ -134,13 +134,16 @@ Future<Map<String, List<String>>> readRequiredDataSources() async {
 
   Map<String, List<String>> requiredResources = {};
 
-  final resourcesMirrors = libMirror.declarations.entries.where((element) {
-    return element.value is ClassMirror &&
-        !(element.value as ClassMirror).isAbstract &&
-        (element.value as ClassMirror).metadata.firstOrNull != null &&
-        (element.value as ClassMirror).metadata.first.reflectee is BaseResource;
-  }).toList()
-    ..sortedBy((element) => MirrorSystem.getName(element.key));
+  final resourcesMirrors = libMirror.declarations.entries
+      .where((element) {
+        return element.value is ClassMirror &&
+            !(element.value as ClassMirror).isAbstract &&
+            (element.value as ClassMirror).metadata.firstOrNull != null &&
+            (element.value as ClassMirror).metadata.first.reflectee
+                is BaseResource;
+      })
+      .toList()
+      .sortedBy((element) => MirrorSystem.getName(element.key));
 
   for (var entry in resourcesMirrors) {
     final resourceName = MirrorSystem.getName(entry.key).toLowerCase();
@@ -150,11 +153,11 @@ Future<Map<String, List<String>>> readRequiredDataSources() async {
         mirrorOnResource.metadata.first.getField(#isRequired).reflectee as bool;
 
     if (isRequiredResource) {
-      for (var getter in mirrorOnResource.declarations.entries.where(
-          (element) =>
+      for (var getter in mirrorOnResource.declarations.entries
+          .where((element) =>
               element.value is MethodMirror &&
               !(element.value as MethodMirror).isConstructor)
-        ..sortedBy((element) => MirrorSystem.getName(element.key))) {
+          .sortedBy((element) => MirrorSystem.getName(element.key))) {
         final getterSymbol = getter.key;
 
         final getterName = MirrorSystem.getName(getterSymbol);

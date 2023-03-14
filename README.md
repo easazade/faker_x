@@ -57,7 +57,7 @@ Below you can see a table of all the locales and all the resources and values th
 <tr>
 <th rowspan="12" scope="row">fa_ir</th>
 <td><small>phone(2) </small></td>
-<td><small><span style='color:black'>phone number</span> | <span style='color:black'>international phone number</span> </small></td>
+<td><small><span style='color:black'>phone number</span> | <span style='color:black'>international phone number</span></small></td>
 </tr>
 <tr>
 <td><small>address(10) </small></td>
@@ -106,7 +106,7 @@ Below you can see a table of all the locales and all the resources and values th
 <tr>
 <th rowspan="12" scope="row">en_us</th>
 <td><small>phone(2) </small></td>
-<td><small><span style='color:black'>phone number</span> | <span style='color:black'>international phone number</span> </small></td>
+<td><small><span style='color:black'>phone number</span> | <span style='color:black'>international phone number</span></small></td>
 </tr>
 <tr>
 <td><small>address(14) </small></td>

@@ -17,87 +17,46 @@ Future main(List<String> args) async {
       '- Fake value generator marked in [<span style="color:blue">blue</span>]🔵 are the ones that are only available for that locale<br>\n');
   final locales = await getAvaialableLocalesInProject();
 
-  final globalDsInfos = await readGlobalDataSourcesMapped();
-  final requiredDsInfos = await readRequiredDataSources();
+  final globalDatasourceInfos = await readGlobalDataSourcesMapped();
+  final requiredDatasourceInfos = await readRequiredDataSources();
 
   tableOfLocales.writeln('<table>');
 
   for (var locale in locales) {
-    tableOfLocales.writeln('<tr>');
-
-    final availableDsInfos =
+    final availableDatasourceInfos =
         await readAvailableDataSourcesForLocaleMapped(locale);
 
-    final localDsInfos = await readAvailableDataSourcesForLocaleMapped(locale,
+    final localDatasourceInfos = await readAvailableDataSourcesForLocaleMapped(
+        locale,
         includeGlobals: false);
 
-    String colorFor(String resource, String data) {
-      final isGlobal =
-          globalDsInfos[resource]?.where((e) => e.varName == data).isNotEmpty ??
-              false;
-
-      final isRequired =
-          requiredDsInfos[resource]?.where((e) => e == data).isNotEmpty ??
-              false;
-
-      final isLocalized =
-          localDsInfos[resource]?.where((e) => e.varName == data).isNotEmpty ??
-              false;
-
-      if (isGlobal) {
-        return 'green';
-      } else if (isRequired) {
-        return 'black';
-      } else if (isLocalized) {
-        return 'blue';
-      } else {
-        return 'black';
-      }
-    }
-
-    String circleFor(String resource, String data) {
-      final isGlobal =
-          globalDsInfos[resource]?.where((e) => e.varName == data).isNotEmpty ??
-              false;
-
-      final isRequired =
-          requiredDsInfos[resource]?.where((e) => e == data).isNotEmpty ??
-              false;
-
-      final isLocalized =
-          localDsInfos[resource]?.where((e) => e.varName == data).isNotEmpty ??
-              false;
-
-      if (isGlobal) {
-        return '🟢';
-      } else if (isRequired) {
-        return '';
-      } else if (isLocalized) {
-        return '🔵';
-      } else {
-        return '';
-      }
-    }
-
-    final firstEntry = availableDsInfos.entries.first;
-
-    tableOfLocales.writeln(
-        '<th rowspan="${availableDsInfos.length}" scope="row">$locale</th>');
-    tableOfLocales.writeln(
-        '<td><small>${firstEntry.key}(${firstEntry.value.length}) </small></td>');
-    tableOfLocales.writeln(
-        '<td><small>${firstEntry.value.map((e) => "<span style='color:${colorFor(e.resourceName, e.varName)}'>${e.varName.replaceAll('_', ' ')}</span>").join(' | ')} </small></td>');
-    tableOfLocales.writeln('</tr>');
-
-    for (var entry in availableDsInfos.entries.toList().sublist(1)) {
+    for (var i = 0; i < availableDatasourceInfos.entries.length; i++) {
+      final entry = availableDatasourceInfos.entries.toList()[i];
       tableOfLocales.writeln('<tr>');
+
+      if (i == 0) {
+        tableOfLocales.writeln(
+            '<th rowspan="${availableDatasourceInfos.length}" scope="row">$locale</th>');
+      }
       tableOfLocales.writeln(
           '<td><small>${entry.key}(${entry.value.length}) </small></td>');
 
       final fakeGenerators = entry.value.map((e) {
-        final color = colorFor(e.resourceName, e.varName);
+        final color = colorFor(
+          resource: e.resourceName,
+          data: e.varName,
+          globalDatasourceInfos: globalDatasourceInfos,
+          requiredDatasourceInfos: requiredDatasourceInfos,
+          localDatasourceInfos: localDatasourceInfos,
+        );
         var name = e.varName.replaceAll('_', ' ');
-        final circle = circleFor(e.resourceName, e.varName);
+        final circle = circleFor(
+          resource: e.resourceName,
+          data: e.varName,
+          globalDatasourceInfos: globalDatasourceInfos,
+          requiredDatasourceInfos: requiredDatasourceInfos,
+          localDatasourceInfos: localDatasourceInfos,
+        );
         if (!circle.isBlank) name += ' $circle';
         return "<span style='color:$color'>$name</span>";
       }).join(' | ');
@@ -108,7 +67,9 @@ Future main(List<String> args) async {
   }
   tableOfLocales.writeln('</table>');
 
-  // 🤷 for some reason rendering mustache when there are emojis in it fails and gets messed up. fix later if needed.
+  // 🤷 for some reason rendering mustache when there are emojis in it fails and gets messed up.
+  // put time and fix later if needed.
+  // so we are using replaceAll() of string object instead of mustache.
   // final content = await render('templates/docs/readme.md', values: {
   //   'table_of_locales': tableOfLocales.toString(),
   // });
@@ -139,4 +100,68 @@ Future<String> badges() async {
   ];
 
   return '<p align="center"> ${badges.join(' ')} </p>';
+}
+
+String circleFor({
+  required String resource,
+  required String data,
+  required Map<String, List<DataSourceInfo>> globalDatasourceInfos,
+  required Map<String, List<DataSourceInfo>> localDatasourceInfos,
+  required Map<String, List<String>> requiredDatasourceInfos,
+}) {
+  final isGlobal = globalDatasourceInfos[resource]
+          ?.where((e) => e.varName == data)
+          .isNotEmpty ??
+      false;
+
+  final isRequired =
+      requiredDatasourceInfos[resource]?.where((e) => e == data).isNotEmpty ??
+          false;
+
+  final isLocalized = localDatasourceInfos[resource]
+          ?.where((e) => e.varName == data)
+          .isNotEmpty ??
+      false;
+
+  if (isGlobal) {
+    return '🟢';
+  } else if (isRequired) {
+    return '';
+  } else if (isLocalized) {
+    return '🔵';
+  } else {
+    return '';
+  }
+}
+
+String colorFor({
+  required String resource,
+  required String data,
+  required Map<String, List<DataSourceInfo>> globalDatasourceInfos,
+  required Map<String, List<DataSourceInfo>> localDatasourceInfos,
+  required Map<String, List<String>> requiredDatasourceInfos,
+}) {
+  final isGlobal = globalDatasourceInfos[resource]
+          ?.where((e) => e.varName == data)
+          .isNotEmpty ??
+      false;
+
+  final isRequired =
+      requiredDatasourceInfos[resource]?.where((e) => e == data).isNotEmpty ??
+          false;
+
+  final isLocalized = localDatasourceInfos[resource]
+          ?.where((e) => e.varName == data)
+          .isNotEmpty ??
+      false;
+
+  if (isGlobal) {
+    return 'green';
+  } else if (isRequired) {
+    return 'black';
+  } else if (isLocalized) {
+    return 'blue';
+  } else {
+    return 'black';
+  }
 }

@@ -75,6 +75,7 @@ Future _createFakeCollectionClass({
   buffer.writeln('class $className extends $fakeCollectionClassName {');
   buffer.writeln('final $fakerXLocaleClassName locale;\n');
 
+  // writing class constructor
   buffer.writeln('$className()');
   buffer.writeln(': locale = Locales.$locale,');
   buffer.writeln('super(');
@@ -87,8 +88,9 @@ Future _createFakeCollectionClass({
   }
   buffer.writeln(']');
 
-  buffer.writeln(',);\n'); // end of super
+  buffer.writeln(',);\n');
 
+  // adding custom getter methods for customized resource classes
   if (!createEmptyClass) {
     await _checkAvailableDataSourcesForCodeGeneration(
       dataSources: await readAvailableDataSourcesForLocaleMapped(locale),
@@ -96,19 +98,21 @@ Future _createFakeCollectionClass({
       locale: locale,
     );
 
-    // generating custom localized FakeCollection class file with its custom resource classes
     for (var entry in dataSources.entries) {
       final resourceName = entry.key;
-      final requiredList = requiredDataSources[resourceName] ?? [];
+      final requiredDataSourceInfosOnResource =
+          requiredDataSources[resourceName] ?? [];
 
-      final availableDsInfosOnResource = entry.value;
+      final availableDataSourceInfosOnResource = entry.value;
 
-      final availableDsNamesOnResource =
+      final availableDatasourceNamesOnResource =
           entry.value.map((e) => e.varName).toList();
 
       final contatinsDataSourceWithBuilderMethod =
           entry.value.any((dsInfo) => dsInfo.dataSource.builder != null);
-      if (availableDsNamesOnResource.length > requiredList.length ||
+
+      if (availableDatasourceNamesOnResource.length >
+              requiredDataSourceInfosOnResource.length ||
           contatinsDataSourceWithBuilderMethod) {
         final baseResClassName = ReCase(resourceName).pascalCase;
         final resClassName = ReCase(locale).pascalCase + baseResClassName;
@@ -117,54 +121,19 @@ Future _createFakeCollectionClass({
           '$resClassName get $resourceName => $resClassName(locale);\n',
         );
 
-        final classBuffer = StringBuffer();
-        classBuffer.writeln('class $resClassName extends $baseResClassName {');
-        classBuffer.writeln('final $fakerXLocaleClassName locale;\n');
-        classBuffer.writeln('$resClassName(this.locale) : super(locale);\n');
+        final resourceClassCode = _createCustomResourceClass(
+          resClassName: resClassName,
+          baseResClassName: baseResClassName,
+          availableDataSourceInfosOnResource:
+              availableDataSourceInfosOnResource,
+          requiredList: requiredDataSourceInfosOnResource,
+        );
 
-        for (var dsInfo in availableDsInfosOnResource) {
-          if (!requiredList.contains(dsInfo.varName) ||
-              dsInfo.dataSource.builder != null) {
-            if (dsInfo.dataSource.builder == null ||
-                dsInfo.builderArgsType == 'dynamic') {
-              classBuffer.writeln(
-                  '${dsInfo.generatedValueType} get ${ReCase(dsInfo.varName).camelCase} => provide($dataKeysClassName.${dsInfo.varName},locale);\n');
-            } else {
-              final argsBuffer = StringBuffer('{');
-
-              for (var arg in dsInfo.builderArgTypeFields) {
-                if (arg.isRequired) argsBuffer.write(' required ');
-                argsBuffer.write(' ${arg.type}');
-                argsBuffer.write(
-                  (arg.isRequired || arg.defaultValue != null) ? ' ' : '? ',
-                );
-
-                argsBuffer.write(arg.name);
-                argsBuffer.write((arg.defaultValue != null)
-                    ? '= ${arg.defaultValue},'
-                    : ', ');
-              }
-
-              final argObject = StringBuffer(
-                  '${dsInfo.directiveRef}.${dsInfo.builderArgsType}(');
-              for (var arg in dsInfo.builderArgTypeFields) {
-                argObject.write('${arg.name}:${arg.name}, ');
-              }
-              argObject.write('),');
-
-              argsBuffer.write('}');
-              classBuffer.writeln(
-                  '${dsInfo.generatedValueType} ${ReCase(dsInfo.varName).camelCase}(${argsBuffer.toString()}) => provide($dataKeysClassName.${dsInfo.varName}, locale, args: $argObject );\n');
-            }
-          }
-        }
-
-        classBuffer.writeln('}\n');
-
-        localizedClasses.add(classBuffer.toString());
+        localizedClasses.add(resourceClassCode);
       }
     }
   }
+
   buffer.writeln('}'); // end of class
 
   for (var cls in localizedClasses) {
@@ -178,6 +147,58 @@ Future _createFakeCollectionClass({
   );
 
   printGreen('Writing generated code into files');
+}
+
+String _createCustomResourceClass({
+  required String resClassName,
+  required String baseResClassName,
+  required List<DataSourceInfo> availableDataSourceInfosOnResource,
+  required List<String> requiredList,
+}) {
+  final classBuffer = StringBuffer();
+  classBuffer.writeln('class $resClassName extends $baseResClassName {');
+  classBuffer.writeln('final $fakerXLocaleClassName locale;\n');
+  classBuffer.writeln('$resClassName(this.locale) : super(locale);\n');
+
+  for (var dsInfo in availableDataSourceInfosOnResource) {
+    if (!requiredList.contains(dsInfo.varName) ||
+        dsInfo.dataSource.builder != null) {
+      if (dsInfo.dataSource.builder == null ||
+          dsInfo.builderArgsType == 'dynamic') {
+        classBuffer.writeln(
+            '${dsInfo.generatedValueType} get ${ReCase(dsInfo.varName).camelCase} => provide($dataKeysClassName.${dsInfo.varName},locale);\n');
+      } else {
+        final argsBuffer = StringBuffer('{');
+
+        for (var arg in dsInfo.builderArgTypeFields) {
+          if (arg.isRequired) argsBuffer.write(' required ');
+          argsBuffer.write(' ${arg.type}');
+          argsBuffer.write(
+            (arg.isRequired || arg.defaultValue != null) ? ' ' : '? ',
+          );
+
+          argsBuffer.write(arg.name);
+          argsBuffer.write(
+              (arg.defaultValue != null) ? '= ${arg.defaultValue},' : ', ');
+        }
+
+        final argObject =
+            StringBuffer('${dsInfo.directiveRef}.${dsInfo.builderArgsType}(');
+        for (var arg in dsInfo.builderArgTypeFields) {
+          argObject.write('${arg.name}:${arg.name}, ');
+        }
+        argObject.write('),');
+
+        argsBuffer.write('}');
+        classBuffer.writeln(
+            '${dsInfo.generatedValueType} ${ReCase(dsInfo.varName).camelCase}(${argsBuffer.toString()}) => provide($dataKeysClassName.${dsInfo.varName}, locale, args: $argObject );\n');
+      }
+    }
+  }
+
+  classBuffer.writeln('}\n');
+
+  return classBuffer.toString();
 }
 
 Future _checkAvailableDataSourcesForCodeGeneration({

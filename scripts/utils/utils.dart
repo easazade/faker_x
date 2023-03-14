@@ -410,7 +410,10 @@ Future createScriptsImportsFile() async {
       .listSync(recursive: true)
       .whereType<File>()
       .where((file) => file.path.endsWith('.dart'))
-      .sortedBy((element) => element.fileName);
+      .sortedBy((element) {
+    printRed(element.fileName);
+    return element.fileName;
+  });
 
   final buffer = StringBuffer('// ignore_for_file: unused_import\n\n');
 
@@ -577,7 +580,7 @@ extension IterableExt<T> on Iterable<T> {
 }
 
 extension FileExt on File {
-  String get fileName => path.split('/').last;
+  String get fileName => uri.toString().split('/').last;
 }
 
 class DataSourceInfo {

@@ -101,7 +101,9 @@ void checkLocale(String locale) {
 Future<List<String>> getAvaialableLocalesInProject() async {
   final dir = Directory('lib/src/locales/');
   final List<FileSystemEntity> entities = await dir.list().toList();
-  return entities.map((e) => e.path.split('/').last).toList()..remove('global');
+  return entities.map((e) => e.path.split('/').last).toList()
+    ..remove('global')
+    ..sortBy((element) => element);
 }
 
 Future<Map<String, List<String>>> getUnavailableDataSourceNames() async {
@@ -137,7 +139,8 @@ Future<Map<String, List<String>>> readRequiredDataSources() async {
         !(element.value as ClassMirror).isAbstract &&
         (element.value as ClassMirror).metadata.firstOrNull != null &&
         (element.value as ClassMirror).metadata.first.reflectee is BaseResource;
-  });
+  }).toList()
+    ..sortedBy((element) => MirrorSystem.getName(element.key));
 
   for (var entry in resourcesMirrors) {
     final resourceName = MirrorSystem.getName(entry.key).toLowerCase();
@@ -150,7 +153,8 @@ Future<Map<String, List<String>>> readRequiredDataSources() async {
       for (var getter in mirrorOnResource.declarations.entries.where(
           (element) =>
               element.value is MethodMirror &&
-              !(element.value as MethodMirror).isConstructor)) {
+              !(element.value as MethodMirror).isConstructor)
+        ..sortedBy((element) => MirrorSystem.getName(element.key))) {
         final getterSymbol = getter.key;
 
         final getterName = MirrorSystem.getName(getterSymbol);
@@ -277,7 +281,7 @@ Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
     }
   }
 
-  return dataSourceInfoList;
+  return dataSourceInfoList..sortBy((element) => element.varName);
 }
 
 Future<Map<String, List<DataSourceInfo>>> readGlobalDataSourcesMapped() async {
@@ -358,7 +362,7 @@ Future<List<DataSourceInfo>> readGlobalDataSources() async {
     }
   }
 
-  return dataSourceInfoList;
+  return dataSourceInfoList..sortBy((element) => element.varName);
 }
 
 void checkValidityOfDataKeys() {
@@ -447,8 +451,8 @@ Future generateLocaleFile(List<String> locales) async {
 }
 
 Future generateFakeCollectionFile() async {
-  final requiredResources =
-      await readRequiredDataSources().then((e) => e.keys.toList());
+  final requiredResources = await readRequiredDataSources()
+      .then((e) => e.keys.toList()..sortBy((element) => element));
 
   final assignings = requiredResources
       .map((res) =>

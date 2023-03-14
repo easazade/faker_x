@@ -9,8 +9,8 @@
 const kDefaultFakerXLocale = Locales.en_us;
 
 class Locales {
-  static const fa_ir = FakerXLocale('fa', 'ir');
   static const en_us = FakerXLocale('en', 'us');
+  static const fa_ir = FakerXLocale('fa', 'ir');
 }
 
 class FakerXLocale {

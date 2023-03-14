@@ -19,15 +19,15 @@ class FakeCollection {
   })  : number = Numbers(),
         address = Address(locale),
         animal = Animal(locale),
-        color = Color(locale),
-        person = Person(locale),
-        location = Location(locale),
-        vehicle = Vehicle(locale),
-        job = Job(locale),
         automotive = Automotive(locale),
+        color = Color(locale),
         internet = Internet(locale),
+        job = Job(locale),
+        location = Location(locale),
         lorem = Lorem(locale),
-        phone = Phone(locale) {
+        person = Person(locale),
+        phone = Phone(locale),
+        vehicle = Vehicle(locale) {
     for (var dataSource in dataSources) {
       registerDataSource(dataSource.copyWith(locale: locale));
     }
@@ -36,13 +36,13 @@ class FakeCollection {
   final Numbers number;
   final Address address;
   final Animal animal;
-  final Color color;
-  final Person person;
-  final Location location;
-  final Vehicle vehicle;
-  final Job job;
   final Automotive automotive;
+  final Color color;
   final Internet internet;
+  final Job job;
+  final Location location;
   final Lorem lorem;
+  final Person person;
   final Phone phone;
+  final Vehicle vehicle;
 }

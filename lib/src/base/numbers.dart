@@ -3,7 +3,8 @@ import 'package:faker_x/src/base/utils.dart' as utils;
 class Numbers {
   const Numbers();
 
-  int fixDigits(digits) => int.parse(List.generate(digits, (index) {
+  /// returns an integer with fixed digits
+  int fixDigits(int digits) => int.parse(List.generate(digits, (index) {
         if (index == 0) {
           return utils.randomNonZeroInt(10);
         } else {
@@ -43,7 +44,7 @@ class Numbers {
     return double.parse(charList.join());
   }
 
-  /// you can use string patterns like '##.#####' to generate doubles
+  /// you can use string patterns like '##.#####' to generate integers
   ///
   ///
   ///

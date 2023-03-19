@@ -1,3 +1,12 @@
+## 0.5.14
+- Update RAEDME
+- Fix missing method argument type in Numbers class
+- Sort metadata lists read from code so generated code will be the same on windows as well
+- Add code document for scripts
+- Clean up code
+- Add types.dart file to add new type there
+- Update CONTRIBUTING.md
+- Update README
 ## 0.4.13
 
 - Update README

@@ -49,7 +49,7 @@ Please Read the [Contribution Guide](CONTRIBUTING.md). It is written in detail t
 
 ## 💎 Resources & 🌏 Localizations
 
-Below you can see a table of all the locales and all the resources and values that are available for them.<br><br>
+Below you can see a table of all the locales and all the resources and values that are available for them. Right now faker_x supports only 2 locales which you can see in table below. more will be added soon<br><br>
 - Fake value generators marked in [<span style="color:black">black</span>] are available for all locales and generate the value differently according to that locale.<br>
  - Fake value generators marked in [<span style="color:green">green</span>]🟢 are globally shared between different locales and generate values using same methods for all locales.<br>
 - Fake value generator marked in [<span style="color:blue">blue</span>]🔵 are the ones that are only available for that locale<br>

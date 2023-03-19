@@ -11,12 +11,14 @@ import 'utils/utils.dart';
 /// generates README.md file from templates/readme.md and project metadata
 Future main(List<String> args) async {
   printYellow('Generating README.md file');
+  final locales = await getAvaialableLocalesInProject();
+
   final tableOfLocales = StringBuffer(
-      'Below you can see a table of all the locales and all the resources and values that are available for them.<br><br>\n'
+      'Below you can see a table of all the locales and all the resources and values that are available for them. '
+      'Right now faker_x supports only ${locales.length} locales which you can see in table below. more will be added soon<br><br>\n'
       '- Fake value generators marked in [<span style="color:black">black</span>] are available for all locales and generate the value differently according to that locale.<br>\n '
       '- Fake value generators marked in [<span style="color:green">green</span>]🟢 are globally shared between different locales and generate values using same methods for all locales.<br>\n'
       '- Fake value generator marked in [<span style="color:blue">blue</span>]🔵 are the ones that are only available for that locale<br>\n');
-  final locales = await getAvaialableLocalesInProject();
 
   final globalDatasourceInfos = await readGlobalDataSourcesMapped();
   final requiredDatasourceInfos = await readRequiredDataSources();

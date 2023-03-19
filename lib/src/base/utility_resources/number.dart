@@ -1,7 +1,7 @@
 import 'package:faker_x/src/base/utils.dart' as utils;
 
-class Numbers {
-  const Numbers();
+class Number {
+  const Number();
 
   /// returns an integer with fixed digits
   int fixDigits(int digits) => int.parse(List.generate(digits, (index) {

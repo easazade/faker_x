@@ -7,16 +7,18 @@
 /// templates in templates directory.
 
 import 'package:faker_x/src/base/data_source.dart';
-import 'package:faker_x/src/base/numbers.dart';
+import 'package:faker_x/src/base/utility_resources/number.dart';
 import 'package:faker_x/src/base/resources.dart';
 import 'package:faker_x/src/base/locale.dart';
 import 'package:faker_x/src/base/provider.dart';
+import 'package:faker_x/src/base/utility_resources/time.dart';
 
 class FakeCollection {
   FakeCollection({
     required FakerXLocale locale,
     required List<DataSource> dataSources,
-  })  : number = Numbers(),
+  })  : number = Number(),
+        time = Time(),
         address = Address(locale),
         animal = Animal(locale),
         automotive = Automotive(locale),
@@ -33,7 +35,8 @@ class FakeCollection {
     }
   }
 
-  final Numbers number;
+  final Number number;
+  final Time time;
   final Address address;
   final Animal animal;
   final Automotive automotive;

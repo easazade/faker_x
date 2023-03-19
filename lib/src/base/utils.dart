@@ -15,7 +15,7 @@ int randomNonZeroInt(int max) => randomInt(max, min: 1);
 
 int randomInt(int max, {int min = 0}) {
   if (min > max) {
-    throw Exception('min cannot be greater than max');
+    throw Exception('min cannot be greater than max but $min > $max');
   }
   return min + _random.nextInt(max - min);
 }
@@ -63,4 +63,9 @@ extension FormatIterableExt on Iterable<Format> {
 extension StringExt on String {
   bool get isBlank => trim().isEmpty;
   bool get isNotBlank => !isBlank;
+}
+
+extension DateTimeExt on DateTime {
+  int get minutesSinceEpoch => millisecondsSinceEpoch ~/ 60000;
+  int get secondsSinceEpoch => millisecondsSinceEpoch ~/ 1000;
 }

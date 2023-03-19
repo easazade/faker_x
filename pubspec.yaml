@@ -1,10 +1,13 @@
 name: faker_x
-description: BEST faker package available for dart that generates fake data you need. 
+description: BEST faker package available for dart. One that the Dart community deserves.
 version: 0.4.13
 homepage: https://github.com/easazade/faker_x
 
 environment:
   sdk: '>=2.14.3 <3.0.0'
+
+dependencies:
+  pointycastle: ^3.7.0  
 
 
 dev_dependencies:

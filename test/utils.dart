@@ -2,7 +2,7 @@
 import 'package:faker_x/src/base/utils.dart';
 import 'package:test/expect.dart';
 
-const testRepeatCount = 10000;
+const testRepeatCount = 20000;
 
 void assertFakeValue(dynamic value) {
   expect(value, isNotNull);

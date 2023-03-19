@@ -15,3 +15,5 @@ pubspec.lock
 
 # fvm files
 .fvm/flutter_sdk
+
+test/test.dart

@@ -2,6 +2,7 @@ import 'package:faker_x/src/base/data_source.dart';
 import 'package:faker_x/src/base/format.dart';
 import 'package:faker_x/src/base/locale.dart';
 import 'package:faker_x/src/base/provider_context.dart';
+import 'package:faker_x/src/base/registered_data_sources.dart';
 import 'package:faker_x/src/base/utils.dart';
 
 dynamic provide(
@@ -12,7 +13,7 @@ dynamic provide(
 }) {
   context ??= ProvideContext(dataKey: dataKey, locale: locale);
 
-  final localizedDataSourceMap = _localizedProvidersMap[locale];
+  final localizedDataSourceMap = registeredDataSources[locale];
   if (localizedDataSourceMap == null) {
     throw Exception('There is no localized values available for $locale');
   }
@@ -87,16 +88,14 @@ String createFakeValueFromFormat(
 }
 
 void registerDataSource(DataSource dataSource) {
-  // retriving the dataSources registered for the given locale
+  // retrieving the dataSources registered for the given locale
   Map<String, DataSource>? dataSources =
-      _localizedProvidersMap[dataSource.locale];
+      registeredDataSources[dataSource.locale];
 
   if (dataSources == null) {
-    _localizedProvidersMap[dataSource.locale] = <String, DataSource>{};
-    dataSources = _localizedProvidersMap[dataSource.locale];
+    registeredDataSources[dataSource.locale] = <String, DataSource>{};
+    dataSources = registeredDataSources[dataSource.locale];
   }
 
   dataSources![dataSource.dataKey] = dataSource;
 }
-
-final Map<FakerXLocale, Map<String, DataSource>> _localizedProvidersMap = {};

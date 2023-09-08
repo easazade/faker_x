@@ -1,8 +1,8 @@
 /// !!!! DO NOT MODIFY BY HAND !!!!
 ///
-/// This file is generated using scripts in scripts directory. any changes you make
+/// This file is generated using scripts in scripts directory. any changes you make 
 /// to this file will be removed when code generation takes effect.
-///
+/// 
 /// NOTE: Some part of some of the generated files are generated using mustache
 /// templates in templates directory.
 
@@ -18,6 +18,7 @@ import 'package:faker_x/src/base/keys.dart';
 import 'package:faker_x/src/base/locale.dart';
 import 'package:faker_x/src/base/provider.dart';
 import 'package:faker_x/src/base/provider_context.dart';
+import 'package:faker_x/src/base/registered_data_sources.dart';
 import 'package:faker_x/src/base/resources.dart';
 import 'package:faker_x/src/base/types.dart';
 import 'package:faker_x/src/base/utility_resources/number.dart';

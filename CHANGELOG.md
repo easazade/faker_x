@@ -1,3 +1,8 @@
+## 0.6.14
+- Update dependencies
+- Update sdk constraints
+- Fix emailFrom generator
+
 ## 0.5.14
 - Update RAEDME
 - Fix missing method argument type in Numbers class

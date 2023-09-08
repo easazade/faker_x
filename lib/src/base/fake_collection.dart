@@ -1,8 +1,8 @@
 /// !!!! DO NOT MODIFY BY HAND !!!!
 ///
-/// This file is generated using scripts in scripts directory. any changes you make 
+/// This file is generated using scripts in scripts directory. any changes you make
 /// to this file will be removed when code generation takes effect.
-/// 
+///
 /// NOTE: Some part of some of the generated files are generated using mustache
 /// templates in templates directory.
 
@@ -17,15 +17,19 @@ class FakeCollection {
   FakeCollection({
     required FakerXLocale locale,
     required List<DataSource> dataSources,
-  }): number = Number(),
-      time = Time(),
-  address = Address(locale),animal = Animal(locale),automotive = Automotive(locale),color = Color(locale),internet = Internet(locale),job = Job(locale),location = Location(locale),lorem = Lorem(locale),person = Person(locale),phone = Phone(locale),vehicle = Vehicle(locale)
-        
-        {
-    for (var dataSource in dataSources) {
-      registerDataSource(dataSource.copyWith(locale: locale));
-    }
-  }
+  })  : number = Number(),
+        time = Time(),
+        address = Address(locale),
+        animal = Animal(locale),
+        automotive = Automotive(locale),
+        color = Color(locale),
+        internet = Internet(locale),
+        job = Job(locale),
+        location = Location(locale),
+        lorem = Lorem(locale),
+        person = Person(locale),
+        phone = Phone(locale),
+        vehicle = Vehicle(locale);
 
   final Number number;
   final Time time;

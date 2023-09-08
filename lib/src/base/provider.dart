@@ -87,15 +87,3 @@ String createFakeValueFromFormat(
   return format.parse(providedValues);
 }
 
-void registerDataSource(DataSource dataSource) {
-  // retrieving the dataSources registered for the given locale
-  Map<String, DataSource>? dataSources =
-      registeredDataSources[dataSource.locale];
-
-  if (dataSources == null) {
-    registeredDataSources[dataSource.locale] = <String, DataSource>{};
-    dataSources = registeredDataSources[dataSource.locale];
-  }
-
-  dataSources![dataSource.dataKey] = dataSource;
-}

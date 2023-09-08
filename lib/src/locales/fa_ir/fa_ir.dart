@@ -6,7 +6,7 @@
 /// NOTE: Some part of some of the generated files are generated using mustache
 /// templates in templates directory.
 
-// ignore_for_file: annotate_overrides
+// ignore_for_file: annotate_overrides, unused_import
 
 import 'package:faker_x/src/base/base.dart';
 

@@ -64,7 +64,7 @@ Future _createFakeCollectionClass({
 
   // writing directives
   buffer.writeln(
-    '// ignore_for_file: annotate_overrides\n\n'
+    '// ignore_for_file: annotate_overrides, unused_import\n\n'
     'import \'package:faker_x/src/base/base.dart\';\n',
   );
 

@@ -15,7 +15,7 @@ import 'generate.dart' as generate;
 ///
 /// eg: if given "locale" is "fa_ir". a new directory will be added to lib/src/locales/fa_ir with all the basic
 /// file and codes that are required.
-/// NOTE: all datasources creates in lin/src/locales/fa_ir are empty and must be filled before running scripts/generate.dart
+/// NOTE: all datasources created in lin/src/locales/fa_ir are empty and must be filled before running scripts/generate.dart
 Future main(List<String> arguments) async {
   final args = checkArgs(arguments);
 
@@ -25,7 +25,7 @@ Future main(List<String> arguments) async {
 
   printGreen('Creating new files for new locale [$locale]');
 
-  var locales = await getAvaialableLocalesInProject();
+  var locales = await getAvailableLocalesInProject();
   locales.add(locale);
   locales = locales.toSet().toList();
 
@@ -47,12 +47,12 @@ Future main(List<String> arguments) async {
 }
 
 Future _createRequiredDataSources(String locale) async {
-  final requriedDataSources = await getUnavailableDataSourceNames();
+  final requiredDataSources = await getUnavailableDataSourceNames();
 
-  for (var resource in requriedDataSources.keys) {
+  for (var resource in requiredDataSources.keys) {
     final buffer =
         StringBuffer("import 'package:faker_x/src/base/base.dart';\n\n");
-    for (var datasourceName in requriedDataSources[resource]!) {
+    for (var datasourceName in requiredDataSources[resource]!) {
       buffer.writeln(
         await render(
           'templates/datasource.mustache',

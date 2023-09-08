@@ -114,12 +114,12 @@ Future _createFakeCollectionClass({
       final availableDatasourceNamesOnResource =
           entry.value.map((e) => e.varName).toList();
 
-      final contatinsDataSourceWithBuilderMethod =
+      final containsDataSourceWithBuilderMethod =
           entry.value.any((dsInfo) => dsInfo.dataSource.builder != null);
 
       if (availableDatasourceNamesOnResource.length >
               requiredDataSourceInfosOnResource.length ||
-          contatinsDataSourceWithBuilderMethod) {
+          containsDataSourceWithBuilderMethod) {
         final baseResClassName = ReCase(resourceName).pascalCase;
         final resClassName = ReCase(locale).pascalCase + baseResClassName;
 
@@ -291,7 +291,7 @@ NOTE THAT: all the ${dataSourceClassName}s defined in Resource classes in "$reso
 You have 2 options to define your datasources :
 
 If you want to use a $dataSourceClassName.withBuilder constructor to generate fake value but you do not need an argument passed in the builder function
-you can do so by definding your $dataSourceClassName with dynamic genertic argument type like below:
+you can do so by defining your $dataSourceClassName with dynamic generic argument type like below:
 
 final $dsName = $stringDataSourceClassName<dynamic>.withBuilder(
   dataKey: $dataKeysClassName.$dsName,

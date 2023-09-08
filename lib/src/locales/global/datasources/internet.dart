@@ -55,8 +55,10 @@ final email_from = StringDataSource<EmailArgs>.withBuilder(
   dataKey: DataKeys.email_from,
   locale: Locales.en_us,
   builder: (EmailArgs args, FakerXLocale locale) {
-    final userName = user_name_from.build(
-      UsernameArgs(firstName: args.firstName, lastName: args.lastName),
+    final userName = provide(
+      DataKeys.user_name_from,
+      locale,
+      args: UsernameArgs(firstName: args.firstName, lastName: args.lastName),
     );
 
     final provider = args.provider ?? '{{${DataKeys.mail_provider}}}';
@@ -193,13 +195,19 @@ final uri = StringDataSource<UriArgs>.withBuilder(
 final http_url = StringDataSource.withBuilder(
   dataKey: DataKeys.http_url,
   locale: Locales.en_us,
-  builder: (_, __) => uri.build(UriArgs(protocol: 'http')),
+  builder: (_, __) =>
+      provide(DataKeys.uri, Locales.en_us, args: UriArgs(protocol: 'http'))
+          .toString()
+          .toLowerCase(),
 );
 
 final https_url = StringDataSource.withBuilder(
   dataKey: DataKeys.https_url,
   locale: Locales.en_us,
-  builder: (_, __) => uri.build(UriArgs(protocol: 'https')),
+  builder: (_, __) =>
+      provide(DataKeys.uri, Locales.en_us, args: UriArgs(protocol: 'https'))
+          .toString()
+          .toLowerCase(),
 );
 
 final ipv4 = StringDataSource.withBuilder(

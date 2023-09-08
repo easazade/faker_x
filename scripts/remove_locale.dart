@@ -18,7 +18,7 @@ Future main(List<String> arguments) async {
 
   printRed('Removing all files and code available for locale [$locale]');
 
-  var locales = await getAvaialableLocalesInProject();
+  var locales = await getAvailableLocalesInProject();
   locales.remove(locale);
   locales = locales.toSet().toList();
 

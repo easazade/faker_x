@@ -15,7 +15,7 @@ Future main(List<String> args) async {
     'Future main(List<String> args) async {',
   );
 
-  final locales = await getAvaialableLocalesInProject();
+  final locales = await getAvailableLocalesInProject();
   for (var locale in locales) {
     final dataSourceInfosMap =
         await readAvailableDataSourcesForLocaleMapped(locale);

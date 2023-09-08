@@ -11,7 +11,7 @@ import 'utils/utils.dart';
 /// generates README.md file from templates/readme.md and project metadata
 Future main(List<String> args) async {
   printYellow('Generating README.md file');
-  final locales = await getAvaialableLocalesInProject();
+  final locales = await getAvailableLocalesInProject();
 
   final tableOfLocales = StringBuffer(
       'Below you can see a table of all the locales and all the resources and values that are available for them. '

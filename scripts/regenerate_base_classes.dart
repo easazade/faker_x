@@ -11,7 +11,7 @@ import 'lib_imports.dart';
 ///
 Future main(List<String> arguments) async {
   printBlue('Regeneating base classes');
-  var locales = await getAvaialableLocalesInProject();
+  var locales = await getAvailableLocalesInProject();
 
   // generate lib/src/base/locale.dart file
   await generateLocaleFile(locales);

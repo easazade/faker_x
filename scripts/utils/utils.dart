@@ -71,7 +71,7 @@ Future writeFile({
 
 void checkDataKeyValidity(dataKey) {
   if (dataKey is! String) {
-    exitWithMsg(error: 'retreived dataKey is not of type String');
+    exitWithMsg(error: 'retrieved dataKey is not of type String');
   }
 
   if ((dataKey as String).isBlank) {
@@ -98,7 +98,7 @@ void checkLocale(String locale) {
 
 /// reads the project and if there is a locale in our project that there is support for it will be returned
 /// eg: if right now faker_x has multilingual support for 10 locales like en_us, fa_ir etc they will be returned
-Future<List<String>> getAvaialableLocalesInProject() async {
+Future<List<String>> getAvailableLocalesInProject() async {
   final dir = Directory('lib/src/locales/');
   final List<FileSystemEntity> entities = await dir.list().toList();
   return entities.map((e) => e.path.split('/').last).toList()
@@ -110,11 +110,11 @@ Future<Map<String, List<String>>> getUnavailableDataSourceNames() async {
   final unavailableDataSources = await readRequiredDataSources();
   final globalDataSources = await readGlobalDataSourcesMapped();
   for (var entry in globalDataSources.entries) {
-    final resouceName = entry.key;
+    final resourceName = entry.key;
     final dsInfos = entry.value;
 
     for (var dsInfo in dsInfos) {
-      unavailableDataSources[resouceName]
+      unavailableDataSources[resourceName]
           ?.removeWhere((dsName) => dsInfo.varName == dsName);
     }
   }
@@ -250,7 +250,7 @@ Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
         final typeArgs = instanceMirror.type.superclass!.typeArguments;
         final builderArgDeclarationMirror = typeArgs[1].originalDeclaration;
 
-        final builderArgFields = <MethodArguemnt>[];
+        final builderArgFields = <MethodArgument>[];
 
         if (builderArgDeclarationMirror is ClassMirror) {
           final constructorParameters = builderArgDeclarationMirror
@@ -260,7 +260,7 @@ Future<List<DataSourceInfo>> readAvailableDataSourcesForLocale(
               .parameters;
 
           for (var param in constructorParameters) {
-            builderArgFields.add(MethodArguemnt(
+            builderArgFields.add(MethodArgument(
               type: param.type.reflectedType.toString(),
               name: MirrorSystem.getName(param.simpleName),
               isRequired: !param.isOptional,
@@ -326,7 +326,7 @@ Future<List<DataSourceInfo>> readGlobalDataSources() async {
         final typeArgs = instanceMirror.type.superclass!.typeArguments;
         final builderArgDeclarationMirror = typeArgs[1].originalDeclaration;
 
-        final builderArgFields = <MethodArguemnt>[];
+        final builderArgFields = <MethodArgument>[];
 
         if (builderArgDeclarationMirror is ClassMirror) {
           final constructorParameters = builderArgDeclarationMirror
@@ -341,7 +341,7 @@ Future<List<DataSourceInfo>> readGlobalDataSources() async {
                     ? param.metadata.firstOrNull!.reflectee == nonNullable
                     : false;
 
-            builderArgFields.add(MethodArguemnt(
+            builderArgFields.add(MethodArgument(
               type: param.type.reflectedType.toString(),
               name: MirrorSystem.getName(param.simpleName),
               isRequired: !param.isOptional || hasNonNullableAnnotation,
@@ -604,7 +604,7 @@ class DataSourceInfo {
   final String builderArgsType;
   final DataSource dataSource;
   final String generatedValueType;
-  final List<MethodArguemnt> builderArgTypeFields;
+  final List<MethodArgument> builderArgTypeFields;
 
   String get fileName => fileUri.split('/').last;
 
@@ -631,13 +631,13 @@ class DataSourceInfo {
   }
 }
 
-class MethodArguemnt {
+class MethodArgument {
   final String type;
   final String name;
   final bool isRequired;
   final dynamic defaultValue;
 
-  MethodArguemnt({
+  MethodArgument({
     required this.type,
     required this.name,
     required this.isRequired,

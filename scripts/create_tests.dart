@@ -16,7 +16,7 @@ import 'lib_imports.dart';
 /// NOTE: supported locales can be found in lib/src/locales/
 Future main(List<String> arguments) async {
   printYellow('Generating tests');
-  final locales = await getAvaialableLocalesInProject();
+  final locales = await getAvailableLocalesInProject();
 
   for (var locale in locales) {
     final map = await readAvailableDataSourcesForLocaleMapped(locale);

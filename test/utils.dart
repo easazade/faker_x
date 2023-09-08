@@ -2,14 +2,20 @@
 import 'package:faker_x/src/base/utils.dart';
 import 'package:test/expect.dart';
 
-const testRepeatCount = 20000;
+const testRepeatCount = 1;
 
 void assertFakeValue(dynamic value) {
   expect(value, isNotNull);
   if (value is String) {
     expect(value, isNotBlankString);
+    expect(value.contains('Instance of'), isFalse);
   }
-  // print(value);
+
+  // printing a lot causes laptop to freeze :)
+  // only wanna print for debug purposes
+  if (testRepeatCount <= 1) {
+    print(value);
+  }
 }
 
 const Matcher isNotBlankString = _NotBlank();

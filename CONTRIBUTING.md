@@ -100,7 +100,7 @@ Each `DataSource` can use either a list of `values` or a `builder` method to pro
 
 ##### StringDataSource
 
-`StringDataSource` can be used to generate string values like names, urls and so force. Below there are multiple examples of how StringDataSource can be used to generate fake string values.
+`StringDataSource` can be used to generate string values like names, urls and so forth. Below there are multiple examples of how StringDataSource can be used to generate fake string values.
 
 - Using StringDataSource to generate string values from a list of string
 

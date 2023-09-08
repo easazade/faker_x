@@ -6,18 +6,16 @@
 /// NOTE: Some part of some of the generated files are generated using mustache
 /// templates in templates directory.
 
-import 'package:faker_x/src/base/data_source.dart';
 import 'package:faker_x/src/base/utility_resources/number.dart';
 import 'package:faker_x/src/base/resources.dart';
 import 'package:faker_x/src/base/locale.dart';
-import 'package:faker_x/src/base/provider.dart';
 import 'package:faker_x/src/base/utility_resources/time.dart';
 
 class FakeCollection {
-  FakeCollection({
-    required FakerXLocale locale,
-    required List<DataSource> dataSources,
-  })  : number = Number(),
+  final FakerXLocale locale;
+
+  FakeCollection({required this.locale})
+      : number = Number(),
         time = Time(),
         address = Address(locale),
         animal = Animal(locale),

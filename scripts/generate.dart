@@ -79,22 +79,9 @@ Future _createFakeCollectionClass({
   final className = createCollectionClassName(locale);
 
   buffer.writeln('class $className extends $fakeCollectionClassName {');
-  buffer.writeln('final $fakerXLocaleClassName locale;\n');
 
-  // writing class constructor
   buffer.writeln('$className()');
-  buffer.writeln(': locale = Locales.$locale,');
-  buffer.writeln('super(');
-
-  buffer.writeln('locale: Locales.$locale,');
-
-  buffer.writeln('dataSources: [');
-  for (var item in dataSources.values.reduceToList) {
-    buffer.writeln('${item.directiveRef}.${item.varName},');
-  }
-  buffer.writeln(']');
-
-  buffer.writeln(',);\n');
+  buffer.writeln(':super(locale: Locales.$locale);\n');
 
   // adding custom getter methods for customized resource classes
   if (!createEmptyClass) {

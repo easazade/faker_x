@@ -1,24 +1,16 @@
 {{=<% %>=}}
-import 'package:faker_x/src/base/data_source.dart';
 import 'package:faker_x/src/base/utility_resources/number.dart';
 import 'package:faker_x/src/base/resources.dart';
 import 'package:faker_x/src/base/locale.dart';
-import 'package:faker_x/src/base/provider.dart';
 import 'package:faker_x/src/base/utility_resources/time.dart';
 
 class FakeCollection {
-  FakeCollection({
-    required FakerXLocale locale,
-    required List<DataSource> dataSources,
-  }): number = Number(),
+  final FakerXLocale locale;
+
+  FakeCollection({required this.locale }):
+     number = Number(),
       time = Time(),
-  <%assignings%>
-        
-        {
-    for (var dataSource in dataSources) {
-      registerDataSource(dataSource.copyWith(locale: locale));
-    }
-  }
+  <%assignings%>;
 
   final Number number;
   final Time time;

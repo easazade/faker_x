@@ -86,4 +86,3 @@ String createFakeValueFromFormat(
 
   return format.parse(providedValues);
 }
-

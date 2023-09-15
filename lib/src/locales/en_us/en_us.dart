@@ -98,13 +98,15 @@ class EnUsLorem extends Lorem {
   EnUsLorem(this.locale) : super(locale);
 
   String paragraph({
-    int maxSentences = 1,
+    int maxSentences = 3,
+    int minSentences = 1,
   }) =>
       provide(
         DataKeys.paragraph,
         locale,
         args: lorem_536.ParagraphArgs(
           maxSentences: maxSentences,
+          minSentences: minSentences,
         ),
       );
 }

@@ -7,6 +7,8 @@ import '../../utils.dart';
 
 void main() {
   test("en_us -> lorem -> paragraph test", () async {
-    // TODO: please write test manually to test FakerX.localized.en_us.lorem.paragraph(args)
+    for (var i = 0; i < testRepeatCount; i++) {
+      assertFakeValue(FakerX.localized.en_us.lorem.paragraph(maxSentences: 4));
+    }
   });
 }

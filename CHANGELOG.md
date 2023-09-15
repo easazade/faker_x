@@ -1,3 +1,7 @@
+## 0.6.15
+- Fix localized generators generating in english
+- Add lorem.paragraph generator
+
 ## 0.6.14
 - Update dependencies
 - Update sdk constraints

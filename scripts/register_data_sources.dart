@@ -57,7 +57,7 @@ import 'package:faker_x/src/base/locale.dart';
           '    // $locale.$resourceName has ${dsInfoEntry.value.length} DataSources');
       for (var dsInfo in dsInfos) {
         buffer.writeln(
-            'DataKeys.${dsInfo.dataSource.dataKey.toString()} : ${dsInfo.directiveRef}.${dsInfo.varName},');
+            'DataKeys.${dsInfo.dataSource.dataKey} : ${dsInfo.directiveRef}.${dsInfo.varName}.copyWith(locale: Locales.$locale),');
       }
     }
     buffer.writeln('},');

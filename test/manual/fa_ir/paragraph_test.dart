@@ -8,7 +8,6 @@ import '../../utils.dart';
 void main() {
   test("fa_ir -> lorem -> paragraph test", () async {
     for (var i = 0; i < testRepeatCount; i++) {
-      final sentence = FakerX.localized.fa_ir.lorem.sentence;
       assertFakeValue(FakerX.localized.fa_ir.lorem.paragraph(maxSentences: 4));
     }
   });

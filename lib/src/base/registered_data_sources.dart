@@ -25,6 +25,7 @@ import 'package:faker_x/src/locales/en_us/datasources/phone.dart' as phone_59;
 import 'package:faker_x/src/locales/en_us/datasources/job.dart' as job_914;
 import 'package:faker_x/src/locales/en_us/datasources/automotive.dart'
     as automotive_744;
+import 'package:faker_x/src/locales/global/datasources/lorem.dart' as lorem_536;
 import 'package:faker_x/src/locales/en_us/datasources/lorem.dart' as lorem_915;
 import 'package:faker_x/src/locales/global/datasources/image.dart' as image_121;
 import 'package:faker_x/src/locales/global/datasources/internet.dart'
@@ -87,7 +88,8 @@ final Map<FakerXLocale, Map<String, DataSource>> registeredDataSources = {
     DataKeys.job_title: job_914.job_title,
     // en_us.automotive has 1 DataSources
     DataKeys.license_plate: automotive_744.license_plate,
-    // en_us.lorem has 2 DataSources
+    // en_us.lorem has 3 DataSources
+    DataKeys.paragraph: lorem_536.paragraph,
     DataKeys.sentence: lorem_915.sentence,
     DataKeys.word: lorem_915.word,
     // en_us.image has 2 DataSources
@@ -149,7 +151,8 @@ final Map<FakerXLocale, Map<String, DataSource>> registeredDataSources = {
     DataKeys.job_title: job_938.job_title,
     // fa_ir.automotive has 1 DataSources
     DataKeys.license_plate: automotive_31.license_plate,
-    // fa_ir.lorem has 2 DataSources
+    // fa_ir.lorem has 3 DataSources
+    DataKeys.paragraph: lorem_536.paragraph,
     DataKeys.sentence: lorem_817.sentence,
     DataKeys.word: lorem_817.word,
     // fa_ir.image has 2 DataSources

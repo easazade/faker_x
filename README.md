@@ -88,8 +88,8 @@ Below you can see a table of all the locales and all the resources and values th
 <td><small><span style='color:black'>license plate</span></small></td>
 </tr>
 <tr>
-<td><small>lorem(2) </small></td>
-<td><small><span style='color:black'>sentence</span> | <span style='color:black'>word</span></small></td>
+<td><small>lorem(3) </small></td>
+<td><small><span style='color:green'>paragraph 🟢</span> | <span style='color:black'>sentence</span> | <span style='color:black'>word</span></small></td>
 </tr>
 <tr>
 <td><small>image(2) </small></td>
@@ -137,8 +137,8 @@ Below you can see a table of all the locales and all the resources and values th
 <td><small><span style='color:black'>license plate</span></small></td>
 </tr>
 <tr>
-<td><small>lorem(2) </small></td>
-<td><small><span style='color:black'>sentence</span> | <span style='color:black'>word</span></small></td>
+<td><small>lorem(3) </small></td>
+<td><small><span style='color:green'>paragraph 🟢</span> | <span style='color:black'>sentence</span> | <span style='color:black'>word</span></small></td>
 </tr>
 <tr>
 <td><small>image(2) </small></td>

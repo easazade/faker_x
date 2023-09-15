@@ -26,6 +26,7 @@ import 'package:faker_x/src/locales/fa_ir/datasources/phone.dart' as phone_653;
 import 'package:faker_x/src/locales/fa_ir/datasources/job.dart' as job_938;
 import 'package:faker_x/src/locales/fa_ir/datasources/automotive.dart'
     as automotive_31;
+import 'package:faker_x/src/locales/global/datasources/lorem.dart' as lorem_536;
 import 'package:faker_x/src/locales/fa_ir/datasources/lorem.dart' as lorem_817;
 import 'package:faker_x/src/locales/global/datasources/image.dart' as image_121;
 import 'package:faker_x/src/locales/global/datasources/internet.dart'
@@ -41,6 +42,8 @@ class FaIrCollection extends FakeCollection {
   FaIrColor get color => FaIrColor(locale);
 
   FaIrAutomotive get automotive => FaIrAutomotive(locale);
+
+  FaIrLorem get lorem => FaIrLorem(locale);
 
   FaIrImage get image => FaIrImage(locale);
 
@@ -77,6 +80,23 @@ class FaIrAutomotive extends Automotive {
   FaIrAutomotive(this.locale) : super(locale);
 
   String get licensePlate => provide(DataKeys.license_plate, locale);
+}
+
+class FaIrLorem extends Lorem {
+  final FakerXLocale locale;
+
+  FaIrLorem(this.locale) : super(locale);
+
+  String paragraph({
+    required int maxSentences,
+  }) =>
+      provide(
+        DataKeys.paragraph,
+        locale,
+        args: lorem_536.ParagraphArgs(
+          maxSentences: maxSentences,
+        ),
+      );
 }
 
 class FaIrImage extends Image {

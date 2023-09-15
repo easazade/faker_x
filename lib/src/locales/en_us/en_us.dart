@@ -26,6 +26,7 @@ import 'package:faker_x/src/locales/en_us/datasources/phone.dart' as phone_59;
 import 'package:faker_x/src/locales/en_us/datasources/job.dart' as job_914;
 import 'package:faker_x/src/locales/en_us/datasources/automotive.dart'
     as automotive_744;
+import 'package:faker_x/src/locales/global/datasources/lorem.dart' as lorem_536;
 import 'package:faker_x/src/locales/en_us/datasources/lorem.dart' as lorem_915;
 import 'package:faker_x/src/locales/global/datasources/image.dart' as image_121;
 import 'package:faker_x/src/locales/global/datasources/internet.dart'
@@ -41,6 +42,8 @@ class EnUsCollection extends FakeCollection {
   EnUsColor get color => EnUsColor(locale);
 
   EnUsJob get job => EnUsJob(locale);
+
+  EnUsLorem get lorem => EnUsLorem(locale);
 
   EnUsImage get image => EnUsImage(locale);
 
@@ -87,6 +90,23 @@ class EnUsJob extends Job {
   String get jobPrefix => provide(DataKeys.job_prefix, locale);
 
   String get jobSuffix => provide(DataKeys.job_suffix, locale);
+}
+
+class EnUsLorem extends Lorem {
+  final FakerXLocale locale;
+
+  EnUsLorem(this.locale) : super(locale);
+
+  String paragraph({
+    required int maxSentences,
+  }) =>
+      provide(
+        DataKeys.paragraph,
+        locale,
+        args: lorem_536.ParagraphArgs(
+          maxSentences: maxSentences,
+        ),
+      );
 }
 
 class EnUsImage extends Image {

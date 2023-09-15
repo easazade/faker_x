@@ -297,7 +297,7 @@ class DataKeys{
 }
 ```
 
-Then we the `cat_image` datasource the resource file in global directory in `lib/src/locales/global/datasources/image.dart` 
+Then we add the `cat_image` datasource the resource file in global directory in `lib/src/locales/global/datasources/image.dart` 
 ```dart
 final cat_image = StringDataSource.withBuilder(
   dataKey: DataKeys.cat_image,

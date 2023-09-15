@@ -9,6 +9,7 @@ class DataKeys {
 
   static const word = 'word';
   static const sentence = 'sentence';
+  static const paragraph = 'paragraph';
 
   static const job_title = 'job_title';
   static const job_suffix = 'job_suffix';

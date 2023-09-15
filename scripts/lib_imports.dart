@@ -48,4 +48,5 @@ import 'package:faker_x/src/locales/global/datasources/color.dart';
 import 'package:faker_x/src/locales/global/datasources/image.dart';
 import 'package:faker_x/src/locales/global/datasources/internet.dart';
 import 'package:faker_x/src/locales/global/datasources/location.dart';
+import 'package:faker_x/src/locales/global/datasources/lorem.dart';
 import 'package:faker_x/src/locales/global/datasources/person.dart';

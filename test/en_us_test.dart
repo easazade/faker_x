@@ -98,19 +98,20 @@ void main() {
 
   test("en_us internet test", () async {
     for (var i = 0; i < testRepeatCount; i++) {
-      assertFakeValue('disposableEmail:  ' +
-          FakerX.localized.en_us.internet.disposableEmail);
-      assertFakeValue('disposableMailProvider:  ' +
-          FakerX.localized.en_us.internet.disposableMailProvider);
-      assertFakeValue(
-          'domainName:  ' + FakerX.localized.en_us.internet.domainName);
-      assertFakeValue(
-          'domainSuffixes:  ' + FakerX.localized.en_us.internet.domainSuffixes);
-      assertFakeValue('email:  ' + FakerX.localized.en_us.internet.email);
-      assertFakeValue('emoji:  ' + FakerX.localized.en_us.internet.emoji);
-      assertFakeValue('httpUrl:  ' + FakerX.localized.en_us.internet.httpUrl);
-      assertFakeValue('httpsUrl:  ' + FakerX.localized.en_us.internet.httpsUrl);
-      assertFakeValue('ipv4:  ' + FakerX.localized.en_us.internet.ipv4);
+      assertFakeValue(FakerX.localized.en_us.internet.disposableEmail);
+      assertFakeValue(FakerX.localized.en_us.internet.disposableMailProvider);
+      assertFakeValue(FakerX.localized.en_us.internet.domainName);
+      assertFakeValue(FakerX.localized.en_us.internet.domainSuffixes);
+      assertFakeValue(FakerX.localized.en_us.internet.email);
+      assertFakeValue(FakerX.localized.en_us.internet.emoji);
+      assertFakeValue(FakerX.localized.en_us.internet.httpUrl);
+      assertFakeValue(FakerX.localized.en_us.internet.httpsUrl);
+      assertFakeValue(FakerX.localized.en_us.internet.ipv4);
+      assertFakeValue(FakerX.localized.en_us.internet.ipv6);
+      assertFakeValue(FakerX.localized.en_us.internet.macAddress);
+      assertFakeValue(FakerX.localized.en_us.internet.mailProvider);
+      assertFakeValue(FakerX.localized.en_us.internet.safeEmail);
+      assertFakeValue(FakerX.localized.en_us.internet.userName);
     }
   });
 

@@ -1,12 +1,14 @@
 # Contribution Guide
 
 Reading this document will help you understand:
+
 - Basic structure of the faker_x package
 - How to add a single new value generator to existing resources. for example adding `cat_image` value generator to resource `image` whether you want to add it `globally` for all existing `locales` or just to a specific locale like `en_us`.
-- How to localize global value generators. 
+- How to localize global value generators.
 - How to add support for a new locale that doesn't exist for example `en_uk`.
 
 ## (TLDR) But First Let's See a Quick Example:
+
 Let's say we want to add a new fake value generator to our `FakerX` class called `pet_name` that generates random pet names . this is going to be done in 3 steps
 
 - Define a static String key in `DataKeys` class called `pet_name`
@@ -24,11 +26,13 @@ const pet_name = StringDataSource(
     .
     .
   ]
-);  
+);
 ```
+
 - run `./generate_and_test.sh` script. this script will create required code, tests & docs and will format, analyze code and run tests at the end.
 
 ##### DONE
+
 Now there will be a new getter method that generates fake pet names in our `FakerX` class.
 
 ```dart
@@ -36,10 +40,12 @@ final myPetName = FakerX.defaultInstance.animal.petName;
 ```
 
 ### Understanding Package Structure
-faker_x contains a `lib/src/locales` directory; this is where changes need to be added. 
-in `lib/src/locales` you will find different locales like `en_us`, `fa_ir` etc including a `global`. 
+
+faker_x contains a `lib/src/locales` directory; this is where changes need to be added.
+in `lib/src/locales` you will find different locales like `en_us`, `fa_ir` etc including a `global`.
 
 in each locale directory there is structure like below. a datasources directory that contains a dart file for each `resource` like `job.dart` in each of these resource files there are one or several `DataSource` variables. these datasources are fake value generators. they will generate fake values for that resource.
+
 ```
 ├── en_us
     ├── datasources
@@ -82,7 +88,7 @@ final international_phone_number = StringDataSource(
 
 ```
 
-when we run code generation scripts result in our generated `FakerX` class will be seen like below example: 
+when we run code generation scripts result in our generated `FakerX` class will be seen like below example:
 
 ```dart
 final phoneNumber = FakerX.localized.en_us.phone.phoneNumber;
@@ -91,7 +97,7 @@ final international = FakerX.localized.en_us.phone.internationalPhoneNumber;
 
 #### Explaining DataSources
 
-a `DataSource` is basically a fake value provider. it either provides a fake value through a list of hardcoded values or a builder method (or a list of `Formats` in case of `StringDataSource`). 
+a `DataSource` is basically a fake value provider. it either provides a fake value through a list of hardcoded values or a builder method (or a list of `Formats` in case of `StringDataSource`).
 
 There are 2 kinds of `DataSources` that we have `StringDataSource`, `TypeDataSource`
 each `DataSource` must contain a dataKey defined in `DataKeys` class and a locale defined in `Locales` class.
@@ -116,7 +122,7 @@ const color_name = StringDataSource(
     .
     .
   ]
-);  
+);
 ```
 
 - Using StringDataSource to generate fake string values using builder method
@@ -156,20 +162,23 @@ final image = StringDataSource<ImageArgs>.withBuilder(
 );
 ```
 
-first an `ImageArgs` class is defined then we define our datasource class as `StringDataSource<ImageArgs>` and then in our builder method parameter we define arguments as `(ImageArgs args, FakerXLocale locale) {...}`. 
+first an `ImageArgs` class is defined then we define our datasource class as `StringDataSource<ImageArgs>` and then in our builder method parameter we define arguments as `(ImageArgs args, FakerXLocale locale) {...}`.
 
-**NOTE:** when defining an `Args` class like `ImageArgs` above 
+**NOTE:** when defining an `Args` class like `ImageArgs` above
+
+- Make sure to add the arg type as the DataSource arg type
+  eg: define data source like this `StringDataSource<ImageArg>` instead of just `StringDataSource`. if you forget to do this, you will have runtime errors, possibly shown when generated tests for this added data source will run.
 - make sure to define constructor arguments as named arguments.
-- If the argument is required make sure to add `@nonNullable` annotation on that argument. (this is because dart:mirror api does not support null safty)
+- If the argument is required make sure to add `@nonNullable` annotation on that argument. (this is because dart:mirror api does not support null safety)
 
 - Using StringDataSource to generate fake values using formats.
-alternatively you can use `formats` to generate fake values 
+  alternatively you can use `formats` to generate fake values
 
 ```dart
 
 
 
-// In formats all # characters are converted into random int and all ? characters are converted into random letters and returned for 
+// In formats all # characters are converted into random int and all ? characters are converted into random letters and returned for
 // example below format can be used to generate fake values like : 1AL3456
 
 const license_plate = StringDataSource(
@@ -188,7 +197,7 @@ const license_plate = StringDataSource(
     .
     .
   ],
-);    
+);
 
 ```
 
@@ -242,7 +251,7 @@ class GeoLocation {
 - In defining our datasource above `TypeDataSource<GeoLocation, dynamic>` we have set the value type to `GeoLocation` and builder method's argument type to `dynamic` since we don't require an argument from the user in our builder method.
 - type `GeoLocation` must be defined in `lib/src/base/value_types.dart`
 
-Alternatively we can use a list of values 
+Alternatively we can use a list of values
 
 ```dart
 final product = TypeDataSource<Product, dynamic>(
@@ -261,16 +270,13 @@ final product = TypeDataSource<Product, dynamic>(
 );
 ```
 
+### Add a new DataSource
 
-
-### Add a new DataSource 
-Let's say we want to add a new `DataSource` to generate cat images. we need to add it to the relevent resource. in this case we are going to add a new `cat_image` datasource to the `image` resource, so in our generated `FakerX` class we can have a getter method that generates cat images like below
+Let's say we want to add a new `DataSource` to generate cat images. we need to add it to the relevant resource. in this case we are going to add a new `cat_image` datasource to the `image` resource, so in our generated `FakerX` class we can have a getter method that generates cat images like below
 
 ```dart
 final newCatImage = FakerX.defaultInstance.image.catImage;
 ```
-
-
 
 Now that we want to add the Datasource we should decide whether we want to add it as a global datasource or only for a specific locale. if we add it as a global DataSource it will be available for all generated locales. all global DataSources are marked green in Resources and Localizations in docs.
 
@@ -284,7 +290,7 @@ final i3 = FakerX.localized.es.internet.ipv4;
 
 but if we define it only for a specific locale the generator getter method will only appear for that locale. For example, getter method `neighborhood` for resource `address` is only available for `en_us` locale.
 
-Let's add `cat_image` datasource globally 
+Let's add `cat_image` datasource globally
 
 first we define a new datakey called `cat_image` in `DataKeys` class in `lib/src/base/keys.dart`
 
@@ -297,7 +303,8 @@ class DataKeys{
 }
 ```
 
-Then we add the `cat_image` datasource the resource file in global directory in `lib/src/locales/global/datasources/image.dart` 
+Then we add the `cat_image` datasource the resource file in global directory in `lib/src/locales/global/datasources/image.dart`
+
 ```dart
 final cat_image = StringDataSource.withBuilder(
   dataKey: DataKeys.cat_image,
@@ -313,9 +320,9 @@ Now all we need to do is run the command bash script `generate_and_test.sh`. Thi
 `$ bash generate_and_test.sh`
 **NOTE:** read the console logs it might tell you to run it again.
 
-
 ### Add a new locale
-Let's say we want to add a new locale that does not exist in our library and so that we can generate fake values localized for that locale. let's try adding `en_uk` locale 
+
+Let's say we want to add a new locale that does not exist in our library and so that we can generate fake values localized for that locale. let's try adding `en_uk` locale
 
 - First we need to run a script to create empty resource files and generate basic classes required. run below script
 
@@ -346,8 +353,8 @@ Let's say we want to add a new locale that does not exist in our library and so 
 **NOTE:** read the console logs it might tell you to run it again.
 
 ### Side Notes :
-**NOTE:** With DataSources that use builder methods to generate the value we can use builder methods of other DataSources in them. for example:
 
+**NOTE:** With DataSources that use builder methods to generate the value we can use builder methods of other DataSources in them. for example:
 
 ```dart
 final uri = StringDataSource<UriArgs>.withBuilder(
@@ -362,7 +369,7 @@ final https_url = StringDataSource.withBuilder(
   dataKey: DataKeys.https_url,
   locale: Locales.en_us,
   builder: (_, __) {
-    // here we are calling build method on uri DataSource defined above 
+    // here we are calling build method on uri DataSource defined above
     // to return an https url
     // ! NOTE: call build method not builder callback
     return uri.build(UriArgs(protocol: 'https')),

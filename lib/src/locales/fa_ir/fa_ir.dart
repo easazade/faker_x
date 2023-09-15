@@ -88,7 +88,7 @@ class FaIrLorem extends Lorem {
   FaIrLorem(this.locale) : super(locale);
 
   String paragraph({
-    required int maxSentences,
+    int maxSentences = 1,
   }) =>
       provide(
         DataKeys.paragraph,

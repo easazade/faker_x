@@ -3,9 +3,7 @@ import 'package:faker_x/src/base/base.dart';
 class ParagraphArgs {
   final int maxSentences;
 
-  ParagraphArgs({
-    @nonNullable required this.maxSentences,
-  });
+  ParagraphArgs({this.maxSentences = 1});
 }
 
 final paragraph = StringDataSource<ParagraphArgs>.withBuilder(

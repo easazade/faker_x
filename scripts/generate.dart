@@ -164,7 +164,8 @@ String _createCustomResourceClass({
         final argsBuffer = StringBuffer('{');
 
         for (var arg in dsInfo.builderArgTypeFields) {
-          if (arg.isRequired) argsBuffer.write(' required ');
+          if (arg.isRequired && arg.defaultValue == null)
+            argsBuffer.write(' required ');
           argsBuffer.write(' ${arg.type}');
           argsBuffer.write(
             (arg.isRequired || arg.defaultValue != null) ? ' ' : '? ',

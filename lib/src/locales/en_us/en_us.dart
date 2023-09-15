@@ -98,7 +98,7 @@ class EnUsLorem extends Lorem {
   EnUsLorem(this.locale) : super(locale);
 
   String paragraph({
-    required int maxSentences,
+    int maxSentences = 1,
   }) =>
       provide(
         DataKeys.paragraph,

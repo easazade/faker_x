@@ -31,6 +31,7 @@ String get randomLetterOrNumber =>
 String randomString(int length) =>
     List.generate(length, (index) => randomLetterOrNumber).join();
 
+/// randomly returns either [object1] or [object2]
 T coinToss<T>(T object1, T object2) =>
     (_random.nextInt(100) > 50) ? object1 : object2;
 

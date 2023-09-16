@@ -1,4 +1,5 @@
 {{=<% %>=}}
+import 'package:faker_x/src/base/utility_resources/boolean.dart';
 import 'package:faker_x/src/base/utility_resources/number.dart';
 import 'package:faker_x/src/base/resources.dart';
 import 'package:faker_x/src/base/locale.dart';
@@ -10,10 +11,12 @@ class FakeCollection {
   FakeCollection({required this.locale }):
      number = Number(),
       time = Time(),
+      boolean = Boolean(),
   <%assignings%>;
 
   final Number number;
   final Time time;
+  final Boolean boolean;
   <%#fields%>
   <%&.%>
   <%/fields%>

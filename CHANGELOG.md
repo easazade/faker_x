@@ -8,7 +8,7 @@
 - Fix emailFrom generator
 
 ## 0.5.14
-- Update RAEDME
+- Update README
 - Fix missing method argument type in Numbers class
 - Sort metadata lists read from code so generated code will be the same on windows as well
 - Add code document for scripts

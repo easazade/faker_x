@@ -21,6 +21,7 @@ import 'package:faker_x/src/base/provider_context.dart';
 import 'package:faker_x/src/base/registered_data_sources.dart';
 import 'package:faker_x/src/base/resources.dart';
 import 'package:faker_x/src/base/types.dart';
+import 'package:faker_x/src/base/utility_resources/boolean.dart';
 import 'package:faker_x/src/base/utility_resources/number.dart';
 import 'package:faker_x/src/base/utility_resources/time.dart';
 import 'package:faker_x/src/base/utils.dart';

@@ -6,6 +6,7 @@
 /// NOTE: Some part of some of the generated files are generated using mustache
 /// templates in templates directory.
 
+import 'package:faker_x/src/base/utility_resources/boolean.dart';
 import 'package:faker_x/src/base/utility_resources/number.dart';
 import 'package:faker_x/src/base/resources.dart';
 import 'package:faker_x/src/base/locale.dart';
@@ -17,6 +18,7 @@ class FakeCollection {
   FakeCollection({required this.locale})
       : number = Number(),
         time = Time(),
+        boolean = Boolean(),
         address = Address(locale),
         animal = Animal(locale),
         automotive = Automotive(locale),
@@ -31,6 +33,7 @@ class FakeCollection {
 
   final Number number;
   final Time time;
+  final Boolean boolean;
   final Address address;
   final Animal animal;
   final Automotive automotive;
